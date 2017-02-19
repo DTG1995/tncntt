@@ -14,11 +14,11 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Network\Exception\ForbiddenException;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
-
 /**
  * Static content controller
  *
@@ -55,6 +55,9 @@ class PagesController extends AppController
         if (!empty($path[1])) {
             $subpage = $path[1];
         }
+        $categorys = $this->paginate('Categorys');
+        $this->set('categorys',$categorys);
+
         $this->set(compact('page', 'subpage'));
 
         try {
@@ -65,5 +68,6 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+
     }
 }
