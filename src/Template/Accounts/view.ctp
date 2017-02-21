@@ -28,6 +28,18 @@
             <td><?= $this->Number->format($account->PASSWORD) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('STATUS') ?></th>
+            <td><?= $this->Number->format($account->STATUS) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('CREATED') ?></th>
+            <td><?= h($account->CREATED) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('LAST LOGIN') ?></th>
+            <td><?= h($account->LAST_LOGIN) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('ISADMIN') ?></th>
             <td><?= $account->ISADMIN ? __('Yes') : __('No'); ?></td>
         </tr>

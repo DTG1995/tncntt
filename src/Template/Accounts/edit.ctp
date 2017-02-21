@@ -23,6 +23,9 @@
             echo $this->Form->input('NAMEDISPLAY');
             echo $this->Form->input('PASSWORD');
             echo $this->Form->input('ISADMIN');
+            echo $this->Form->input('CREATED');
+            echo $this->Form->input('LAST_LOGIN');
+            echo $this->Form->input('STATUS');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

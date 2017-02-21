@@ -3,15 +3,15 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<!--<nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Word'), ['action' => 'add']) ?></li>
     </ul>
-</nav>
+</nav>-->
 <div class="words index large-9 medium-8 columns content">
     <h3><?= __('Words') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table-striped"  cellpadding="0" cellspacing="0" style="width:100%;">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>

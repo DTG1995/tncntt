@@ -54,7 +54,7 @@
         <div class="container clearfix">
             <?= $this->fetch('content') ?>
         </div>
-    <div class="row">
+    </div>
     <footer>
     </footer>
 </body>

@@ -18,6 +18,9 @@
                 <th scope="col"><?= $this->Paginator->sort('NAMEDISPLAY') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('PASSWORD') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ISADMIN') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('CREATED') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('LAST_LOGIN') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('STATUS') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -28,6 +31,9 @@
                 <td><?= h($account->NAMEDISPLAY) ?></td>
                 <td><?= $this->Number->format($account->PASSWORD) ?></td>
                 <td><?= h($account->ISADMIN) ?></td>
+                <td><?= h($account->CREATED) ?></td>
+                <td><?= h($account->LAST_LOGIN) ?></td>
+                <td><?= $this->Number->format($account->STATUS) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $account->EMAIL]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $account->EMAIL]) ?>

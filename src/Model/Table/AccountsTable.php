@@ -60,6 +60,22 @@ class AccountsTable extends Table
             ->requirePresence('ISADMIN', 'create')
             ->notEmpty('ISADMIN');
 
+        $validator
+            ->dateTime('CREATED')
+            ->requirePresence('CREATED', 'create')
+            ->notEmpty('CREATED');
+
+        $validator
+            ->dateTime('LAST_LOGIN')
+            ->requirePresence('LAST_LOGIN', 'create')
+            ->notEmpty('LAST_LOGIN');
+
+        $validator
+            ->integer('STATUS')
+            ->requirePresence('STATUS', 'create')
+            ->notEmpty('STATUS');
+
         return $validator;
     }
+    
 }

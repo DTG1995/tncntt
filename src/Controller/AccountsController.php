@@ -18,6 +18,7 @@ class AccountsController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $accounts = $this->paginate($this->Accounts);
 
         $this->set(compact('accounts'));
@@ -33,6 +34,7 @@ class AccountsController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $account = $this->Accounts->get($id, [
             'contain' => []
         ]);
@@ -48,6 +50,7 @@ class AccountsController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $account = $this->Accounts->newEntity();
         if ($this->request->is('post')) {
             $account = $this->Accounts->patchEntity($account, $this->request->data);
@@ -71,6 +74,7 @@ class AccountsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $account = $this->Accounts->get($id, [
             'contain' => []
         ]);
@@ -96,6 +100,7 @@ class AccountsController extends AppController
      */
     public function delete($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $this->request->allowMethod(['post', 'delete']);
         $account = $this->Accounts->get($id);
         if ($this->Accounts->delete($account)) {
@@ -106,4 +111,73 @@ class AccountsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    function check_account_data($data){
+        echo $data['email'];
+        $return = false;
+       
+     
+        $user = $this->Accounts->get($data['email'], [
+            'contain' => []
+        ]);
+		// not found
+		if(!empty($user)) {
+			// check password
+			if($user->PASSWORD ==$data['password']) {
+				$return = $user;
+			}
+            
+		}
+
+	return $return;
+    }
+    function login() {
+		//$salt = Configure::read('Security.salt');
+		//echo md5('password'.$salt);
+
+		// redirect user if already logged in
+        $session = $this->request->session();
+        $account = $this->Accounts->newEntity();
+		if( $session->check('Account') ) {
+			$this->redirect(array('controller'=>'admin','action'=>'index','admin'=>true));
+		}
+		if(!empty($this->request->data)) {
+
+			// set the form data to enable validation
+            // $data = $this->Accounts->patchEntity($account,$this->request->data);
+			// $this->Account->set( $this->request->data );
+			// see if the data validates
+				// check user is valid
+           
+            $result = $this->check_account_data($this->request->data);
+        
+            if( $result !== FALSE ) {
+                // update login time
+                $result->LAST_LOGIN = date("Y-m-d H:i:s");
+                $this->Accounts->save($account);
+                // save to session
+                $session->write('Account',$result);
+                // $session->setFlash('You have successfully logged in','flash_good');
+                $this->redirect(array('controller'=>'admin','action'=>'index','admin'=>true));
+            } else {
+                // $session->setFlash('Either your Username of Password is incorrect','flash_bad');
+            }
+		}
+        else echo 'Data is null';
+	}
+
+
+        /**
+        * Logs out a User
+        */
+        function logout() {
+            $session = $this->request->session();
+            if($session->check('User')) {
+                $session->delete('User');
+                $session->destroy();
+                // $session->setFlash('You have successfully logged out','flash_good');
+            }
+
+            $this->redirect(array('action'=>'login'));
+        }
+
 }

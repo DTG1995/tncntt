@@ -68,6 +68,12 @@ body {
     color: #fff;
     background-color: #367fa9;
 }
+.menu {
+    color: yellow;
+}
+.menu a:active{
+    color:red;
+}
 
 .top-nav>.open>.dropdown-menu {
     float: left;
@@ -142,6 +148,10 @@ ul.alert-dropdown {
 .side-nav>li>ul {
     padding: 0;
 }
+.navbar-inverse .navbar-nav >ul> li.activeselect{
+    font-weight: bold;
+    background-color: white;
+}
 
 .side-nav>li>ul>li>a {
     display: block;
@@ -149,7 +159,6 @@ ul.alert-dropdown {
     text-decoration: none;
     color: #999;
 }
-
 .side-nav>li>ul>li>a:hover {
     color: #fff;
 }

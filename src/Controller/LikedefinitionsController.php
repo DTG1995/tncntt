@@ -18,6 +18,7 @@ class LikedefinitionsController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $likedefinitions = $this->paginate($this->Likedefinitions);
 
         $this->set(compact('likedefinitions'));
@@ -33,6 +34,7 @@ class LikedefinitionsController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $likedefinition = $this->Likedefinitions->get($id, [
             'contain' => []
         ]);
@@ -48,6 +50,7 @@ class LikedefinitionsController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $likedefinition = $this->Likedefinitions->newEntity();
         if ($this->request->is('post')) {
             $likedefinition = $this->Likedefinitions->patchEntity($likedefinition, $this->request->data);
@@ -71,6 +74,7 @@ class LikedefinitionsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $likedefinition = $this->Likedefinitions->get($id, [
             'contain' => []
         ]);
@@ -96,6 +100,7 @@ class LikedefinitionsController extends AppController
      */
     public function delete($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $this->request->allowMethod(['post', 'delete']);
         $likedefinition = $this->Likedefinitions->get($id);
         if ($this->Likedefinitions->delete($likedefinition)) {

@@ -24,132 +24,113 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <?=$this->css('bootstrap.min');?>
+    <?=$this->Html->css('bootstrap.min')?>
+    <?=$this->Html->css('bootstrap')?>
+    <?=$this->Html->css('plugins/morris')?>
+    <?=$this->Html->script('jquery.min')?>
+    <?=$this->Html->script('bootstrap.min')?>
+
+    <?=$this->Html->css('sb-admin')?>
+
 </head>
 <body>
 <div id="wrapper">
-
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" target="_blank" href="../../index.php">E-shop</a>
-        </div>
-        <!-- Top Menu Items -->
-        <ul class="nav navbar-right top-nav">
-            <!--Thông báo-->
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bell"></i> <b class="caret"></b></a>
-                <ul class="dropdown-menu alert-dropdown">
-                    <li>
-                        <a href="#">Đơn Hàng<span class="label label-default">Đặt hàng</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Đơn hàng<span class="label label-primary">Sửa hàng</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">View All</a>
-                    </li>
-                </ul>
-            </li>
-            <!--Thông tin cá nhân-->
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>(Admin) <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="admin.php"><i class="fa fa-fw fa-user"></i>Cá nhân</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="admin.php?id=9"><i class="fa fa-fw fa-power-off"></i>Đăng xuất</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li class="active">
-                    <a href="#"><i class="fa fa-fw fa-dashboard"></i> Hàng hóa</a>
-                </li>
-                <!--Sản Phẩm-->
-                <li>
-                    <a href="admin.php?id=1">  <i class="fa fa-fw fa-file" style="margin-left: 10%;"></i> Loại Mặt Hàng</a>
-                </li>
-                <li>
-                    <a href="admin.php?id=2">  <i class="fa fa-fw fa-file" style="margin-left: 10%;"></i> Hãng Sản Xuất</a>
-                </li>
-                <li>
-                    <a href="admin.php?id=3">  <i class="fa fa-fw fa-file" style="margin-left: 10%;"></i> Sản Phẩm</a>
-                </li>
-
-                <!--Hóa đơn-->
-                <li class="active">
-                    <a href="#"><i class="fa fa-fw fa-dashboard"  ></i> Hóa đơn</a>
-                </li>
-                <li>
-                    <a href="admin.php?id=4">  <i class="fa fa-fw fa-file" style="margin-left: 10%;"></i> Hóa đơn</a>
-                </li>
-                <li>
-                    <a href="#" data-toggle="collapse" data-target="#chitiet"><i class="fa fa-fw fa-arrows-v"></i> Chi Tiết Hóa Đơn <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="chitiet" class="collapse">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menuleft">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <?= $this->Html->link('Dashboard',['controller'=>'admin','action'=>'index'],['class'=>'navbar-brand'],['escape'=>false])?>
+                
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <!--Thông báo-->
+                <li class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <i class="fa fa-bell"></i> <b class="caret"></b></button>
+                    <ul class="dropdown-menu alert-dropdown">
                         <li>
-                            <a href="admin.php?id=5.1">Đã Thanh Toán</a>
+                            <a href="#">Thông báo<span class="label label-default">Thêm từ</span></a>
                         </li>
+                    
+                        <li class="divider"></li>
                         <li>
-                            <a href="admin.php?id=5.2">Chưa Thanh Toán</a>
+                            <a href="#">View All</a>
                         </li>
                     </ul>
                 </li>
-                <!--Thành viên -->
-                <li class="active">
-                    <a href="#"><i class="fa fa-fw fa-dashboard"></i> Thành Viên</a>
-                </li>
-                <li>
-                    <a href="admin.php?id=6"><i class="fa fa-fw fa-file" style="margin-left: 10%;"></i> Thành viên</a>
-                </li>
-                <li class="active">
-                    <a href="#"><i class="fa fa-fw fa-dashboard"></i> Cá nhân</a>
-                </li>
-                <li>
-                    <a href="admin.php" style="margin-left: 10%;"><i class="fa fa-fw fa-file"></i> Thông tin cá nhân</a>
-                </li>
-                <li>
-                    <a href="admin.php?id=9"><i class="fa fa-fw fa-file" style="margin-left: 10%;"></i> Đăng xuất</a>
+                <!--Thông tin cá nhân-->
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>(Admin) <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="admin.php"><i class="fa fa-fw fa-user"></i>Cá nhân</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="admin.php?id=9"><i class="fa fa-fw fa-power-off"></i>Đăng xuất</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
+            <div class="collapse navbar-collapse" id="menuleft">
+                <ul class="nav navbar-nav side-nav">
+                    <!--Category-->
+                    <li class="active">
+                        <?=$this->Html->link('Category',['controller'=>'categorys','action'=>'index']) ?>
+                        <ul >
+                            <li class=<?php echo (!empty($this->request->params['action']) && ($this->request->params['action']=='add') )?'activeselect':'' ?>>
+                                <?= $this->Html->link('Add Category',['controller'=>'categorys','action'=>'add'])?>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Words-->
+                    <li class="active">
+                        <?=$this->Html->link('Words',['controller'=>'words','action'=>'index']) ?>
+                        <ul >
+                            <li class=<?php echo (!empty($this->request->params['action']) && ($this->request->params['action']=='add') )?'activeselect':'' ?>>
+                                <?= $this->Html->link('Add Word',['controller'=>'words','action'=>'add'])?>
+                            </li>
+                        </ul>
+                    </li>
+                        
+                    <!--Mean-->
+                    <li class="active">
+                        <?=$this->Html->link('Means',['controller'=>'Means','action'=>'index']) ?>
+                        <ul >
+                            <li class=<?php echo (!empty($this->request->params['action']) && ($this->request->params['action']=='add') )?'activeselect':'' ?>>
+                                <?= $this->Html->link('Add Mean',['controller'=>'Means','action'=>'add'])?>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <!--Definitions-->
+                    <li class="active">
+                        <?=$this->Html->link('Definitions',['controller'=>'Definitions','action'=>'index']) ?>
+                        <ul >
+                            <li class=<?php echo (!empty($this->request->params['action']) && ($this->request->params['action']=='add') )?'activeselect':'' ?>>
+                                <?= $this->Html->link('Add Definitions',['controller'=>'Definitions','action'=>'add'])?>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
 
-        </div>
-
-    </nav>
+        </nav>
     <div id="page-wrapper">
-        <div class="container-fluid">
-
-        </div>
-        <div class="row">
+        <div class="container-fluid" style="min-height: 450px;">
             <?= $this->fetch('content') ?>
         </div>
     </div>
     <footer>
     </footer>
+</div>
 </body>
 </html>
