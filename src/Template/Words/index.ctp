@@ -11,7 +11,7 @@
 </nav>-->
 <div class="words index large-9 medium-8 columns content">
     <h3><?= __('Words') ?></h3>
-    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0" >
+    <table class="table table-bordered" style="width:100%;" cellpadding="0" cellspacing="0" >
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
@@ -43,6 +43,5 @@
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>

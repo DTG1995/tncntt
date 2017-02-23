@@ -112,7 +112,7 @@ class AccountsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     function check_account_data($data){
-        echo $data['email'];
+        //echo $data['email'];
         $return = false;
        
      
@@ -125,6 +125,7 @@ class AccountsController extends AppController
 			if($user->PASSWORD ==$data['password']) {
 				$return = $user;
 			}
+            
             
 		}
 
@@ -150,16 +151,16 @@ class AccountsController extends AppController
            
             $result = $this->check_account_data($this->request->data);
         
-            if( $result !== FALSE ) {
+            if( $result ) {
                 // update login time
                 $result->LAST_LOGIN = date("Y-m-d H:i:s");
                 $this->Accounts->save($account);
                 // save to session
                 $session->write('Account',$result);
-                // $session->setFlash('You have successfully logged in','flash_good');
+                //$session->setFlash('You have successfully logged in','flash_good');
                 $this->redirect(array('controller'=>'admin','action'=>'index','admin'=>true));
             } else {
-                // $session->setFlash('Either your Username of Password is incorrect','flash_bad');
+                //$session->setFlash('Either your Username of Password is incorrect','flash_bad');
             }
 		}
 	}
