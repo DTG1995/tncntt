@@ -8,8 +8,12 @@ use Cake\ORM\Entity;
  *
  * @property string $EMAIL
  * @property string $NAMEDISPLAY
- * @property int $PASSWORD
+ * @property string $PASSWORD
  * @property bool $ISADMIN
+ * @property \Cake\I18n\Time $CREATED
+ * @property \Cake\I18n\Time $LAST_LOGIN
+ * @property int $STATUS
+ * @property bool $ACTIVE
  */
 class Account extends Entity
 {

@@ -48,7 +48,6 @@ class LikedefinitionsTable extends Table
             ->allowEmpty('IDDEFINITION', 'create');
 
         $validator
-            ->integer('EMAIL')
             ->allowEmpty('EMAIL', 'create');
 
         $validator

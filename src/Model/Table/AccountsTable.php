@@ -51,7 +51,6 @@ class AccountsTable extends Table
             ->notEmpty('NAMEDISPLAY');
 
         $validator
-            ->integer('PASSWORD')
             ->requirePresence('PASSWORD', 'create')
             ->notEmpty('PASSWORD');
 
@@ -75,7 +74,11 @@ class AccountsTable extends Table
             ->requirePresence('STATUS', 'create')
             ->notEmpty('STATUS');
 
+        $validator
+            ->boolean('ACTIVE')
+            ->requirePresence('ACTIVE', 'create')
+            ->notEmpty('ACTIVE');
+
         return $validator;
     }
-    
 }

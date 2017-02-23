@@ -4,15 +4,16 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Definition Entity
+ * Commentdefinition Entity
  *
  * @property int $ID
- * @property int $IDWORD
- * @property string $DEFINE
+ * @property string $CONTENT
+ * @property \Cake\I18n\Time $CREATED
+ * @property int $IDPARENT
+ * @property int $IDDEFINITION
  * @property string $EMAIL
- * @property int $CONTRIBUTE
  */
-class Definition extends Entity
+class Commentdefinition extends Entity
 {
 
     /**

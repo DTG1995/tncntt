@@ -11,7 +11,6 @@ use Cake\ORM\Entity;
  * @property string $MEAN
  * @property int $CONTRIBUTE
  * @property string $EMAIL
- * @property int $IDCATE
  */
 class Mean extends Entity
 {

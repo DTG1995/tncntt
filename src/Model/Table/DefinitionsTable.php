@@ -61,9 +61,9 @@ class DefinitionsTable extends Table
             ->notEmpty('EMAIL');
 
         $validator
-            ->integer('IDCATE')
-            ->requirePresence('IDCATE', 'create')
-            ->notEmpty('IDCATE');
+            ->integer('CONTRIBUTE')
+            ->requirePresence('CONTRIBUTE', 'create')
+            ->notEmpty('CONTRIBUTE');
 
         return $validator;
     }

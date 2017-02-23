@@ -8,6 +8,8 @@ use Cake\ORM\Entity;
  *
  * @property int $ID
  * @property string $NAME
+ * @property bool $ACTIVE
+ * @property int $CONTRIBUTE
  */
 class Category extends Entity
 {

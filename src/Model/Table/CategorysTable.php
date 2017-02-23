@@ -51,6 +51,16 @@ class CategorysTable extends Table
             ->requirePresence('NAME', 'create')
             ->notEmpty('NAME');
 
+        $validator
+            ->boolean('ACTIVE')
+            ->requirePresence('ACTIVE', 'create')
+            ->notEmpty('ACTIVE');
+
+        $validator
+            ->integer('CONTRIBUTE')
+            ->requirePresence('CONTRIBUTE', 'create')
+            ->notEmpty('CONTRIBUTE');
+
         return $validator;
     }
 }

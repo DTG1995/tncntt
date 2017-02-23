@@ -112,7 +112,6 @@ class AccountsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     function check_account_data($data){
-        echo $data['email'];
         $return = false;
        
      
