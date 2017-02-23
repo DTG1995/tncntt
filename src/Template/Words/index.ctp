@@ -11,7 +11,7 @@
 </nav>-->
 <div class="words index large-9 medium-8 columns content">
     <h3><?= __('Words') ?></h3>
-    <table class="table-striped"  cellpadding="0" cellspacing="0" style="width:100%;">
+    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0" >
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>

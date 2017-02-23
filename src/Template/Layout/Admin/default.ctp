@@ -1,4 +1,12 @@
 <?php
+
+ if(!$this->request->session()->check('Account')) {
+     $url =$this->Url->build(['controller'=>'accounts','action'=>'login']);
+     
+    header ("Location: ".$url);
+    exit();
+    // $session->setFlash('You have successfully logged out','flash_good');
+}
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -74,7 +82,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="admin.php?id=9"><i class="fa fa-fw fa-power-off"></i>Đăng xuất</a>
+                            <?= $this->Html->link('Đăng xuất',['controller'=>'accounts', 'action'=>'logout'])?>
                         </li>
                     </ul>
                 </li>

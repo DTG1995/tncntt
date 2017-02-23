@@ -11,7 +11,7 @@
 </nav>
 <div class="categorys index large-9 medium-8 columns content">
     <h3><?= __('Categorys') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>

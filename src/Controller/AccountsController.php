@@ -162,7 +162,6 @@ class AccountsController extends AppController
                 // $session->setFlash('Either your Username of Password is incorrect','flash_bad');
             }
 		}
-        else echo 'Data is null';
 	}
 
 
@@ -171,8 +170,8 @@ class AccountsController extends AppController
         */
         function logout() {
             $session = $this->request->session();
-            if($session->check('User')) {
-                $session->delete('User');
+            if($session->check('Account')) {
+                $session->delete('Account');
                 $session->destroy();
                 // $session->setFlash('You have successfully logged out','flash_good');
             }
