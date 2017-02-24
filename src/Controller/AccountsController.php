@@ -152,12 +152,14 @@ class AccountsController extends AppController
         
             if( $result ) {
                 // update login time
-                $result->LAST_LOGIN = date("Y-m-d H:i:s");
-                $this->Accounts->save($account);
+                $result->LAST_LOGIN = date("Y-m-d H:i:sa");
+                if($this->Accounts->save($result))
+                {
                 // save to session
-                $session->write('Account',$result);
+                    $session->write('Account',$result);
                 //$session->setFlash('You have successfully logged in','flash_good');
                 $this->redirect(array('controller'=>'admin','action'=>'index','admin'=>true));
+                }
             } else {
                 //$session->setFlash('Either your Username of Password is incorrect','flash_bad');
             }
