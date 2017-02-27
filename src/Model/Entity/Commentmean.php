@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $CREATED
  * @property int $IDPARENT
  * @property int $IDMEANS
- * @property string $EMAIL
+ * @property int $ACCOUNT
  */
 class Commentmean extends Entity
 {

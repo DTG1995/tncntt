@@ -44,7 +44,12 @@ class AccountsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->allowEmpty('EMAIL', 'create');
+            ->integer('ID')
+            ->allowEmpty('ID', 'create');
+
+        $validator
+            ->requirePresence('EMAIL', 'create')
+            ->notEmpty('EMAIL');
 
         $validator
             ->requirePresence('NAMEDISPLAY', 'create')

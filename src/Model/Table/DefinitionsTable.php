@@ -57,8 +57,9 @@ class DefinitionsTable extends Table
             ->notEmpty('DEFINE');
 
         $validator
-            ->requirePresence('EMAIL', 'create')
-            ->notEmpty('EMAIL');
+            ->integer('ACCOUNT')
+            ->requirePresence('ACCOUNT', 'create')
+            ->notEmpty('ACCOUNT');
 
         $validator
             ->integer('CONTRIBUTE')

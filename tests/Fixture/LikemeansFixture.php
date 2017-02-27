@@ -18,15 +18,15 @@ class LikemeansFixture extends TestFixture
     // @codingStandardsIgnoreStart
     public $fields = [
         'IDMEAN' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'EMAIL' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'ACCOUNT' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'ISLIKE' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
-            'EMAIL' => ['type' => 'index', 'columns' => ['EMAIL'], 'length' => []],
+            'ACCOUNT' => ['type' => 'index', 'columns' => ['ACCOUNT'], 'length' => []],
         ],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['IDMEAN', 'EMAIL'], 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['IDMEAN', 'ACCOUNT'], 'length' => []],
             'likemeans_ibfk_1' => ['type' => 'foreign', 'columns' => ['IDMEAN'], 'references' => ['means', 'ID'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'likemeans_ibfk_2' => ['type' => 'foreign', 'columns' => ['EMAIL'], 'references' => ['accounts', 'EMAIL'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'likemeans_ibfk_2' => ['type' => 'foreign', 'columns' => ['ACCOUNT'], 'references' => ['accounts', 'ID'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -43,7 +43,7 @@ class LikemeansFixture extends TestFixture
     public $records = [
         [
             'IDMEAN' => 1,
-            'EMAIL' => '906a5675-d4fc-4315-b074-974310ff0fbb',
+            'ACCOUNT' => 1,
             'ISLIKE' => 1
         ],
     ];

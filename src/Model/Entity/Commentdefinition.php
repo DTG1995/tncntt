@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $CREATED
  * @property int $IDPARENT
  * @property int $IDDEFINITION
- * @property string $EMAIL
+ * @property int $ACCOUNT
  */
 class Commentdefinition extends Entity
 {

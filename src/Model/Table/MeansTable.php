@@ -62,8 +62,9 @@ class MeansTable extends Table
             ->notEmpty('CONTRIBUTE');
 
         $validator
-            ->requirePresence('EMAIL', 'create')
-            ->notEmpty('EMAIL');
+            ->integer('ACCOUNT')
+            ->requirePresence('ACCOUNT', 'create')
+            ->notEmpty('ACCOUNT');
 
         return $validator;
     }

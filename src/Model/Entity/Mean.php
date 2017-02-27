@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property int $IDWORD
  * @property string $MEAN
  * @property int $CONTRIBUTE
- * @property string $EMAIL
+ * @property int $ACCOUNT
  */
 class Mean extends Entity
 {

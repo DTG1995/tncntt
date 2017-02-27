@@ -18,7 +18,6 @@ class DefinitionsController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $definitions = $this->paginate($this->Definitions);
 
         $this->set(compact('definitions'));
@@ -34,7 +33,6 @@ class DefinitionsController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->get($id, [
             'contain' => []
         ]);
@@ -50,7 +48,6 @@ class DefinitionsController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->newEntity();
         if ($this->request->is('post')) {
             $definition = $this->Definitions->patchEntity($definition, $this->request->data);
@@ -74,7 +71,6 @@ class DefinitionsController extends AppController
      */
     public function edit($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->get($id, [
             'contain' => []
         ]);
@@ -100,7 +96,6 @@ class DefinitionsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $this->request->allowMethod(['post', 'delete']);
         $definition = $this->Definitions->get($id);
         if ($this->Definitions->delete($definition)) {

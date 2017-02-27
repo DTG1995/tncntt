@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Likemean Entity
  *
  * @property int $IDMEAN
- * @property string $EMAIL
+ * @property int $ACCOUNT
  * @property int $ISLIKE
  */
 class Likemean extends Entity

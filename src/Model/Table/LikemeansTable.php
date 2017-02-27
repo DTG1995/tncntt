@@ -48,7 +48,8 @@ class LikemeansTable extends Table
             ->allowEmpty('IDMEAN', 'create');
 
         $validator
-            ->allowEmpty('EMAIL', 'create');
+            ->integer('ACCOUNT')
+            ->allowEmpty('ACCOUNT', 'create');
 
         $validator
             ->integer('ISLIKE')

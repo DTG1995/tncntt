@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Likedefinition Entity
  *
  * @property int $IDDEFINITION
- * @property string $EMAIL
+ * @property int $ACCOUNT
  * @property int $ISLIKE
  */
 class Likedefinition extends Entity

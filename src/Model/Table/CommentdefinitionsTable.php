@@ -67,8 +67,9 @@ class CommentdefinitionsTable extends Table
             ->notEmpty('IDDEFINITION');
 
         $validator
-            ->requirePresence('EMAIL', 'create')
-            ->notEmpty('EMAIL');
+            ->integer('ACCOUNT')
+            ->requirePresence('ACCOUNT', 'create')
+            ->notEmpty('ACCOUNT');
 
         return $validator;
     }

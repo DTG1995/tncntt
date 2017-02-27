@@ -6,6 +6,7 @@ use Cake\ORM\Entity;
 /**
  * Account Entity
  *
+ * @property int $ID
  * @property string $EMAIL
  * @property string $NAMEDISPLAY
  * @property string $PASSWORD
