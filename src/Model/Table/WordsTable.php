@@ -51,11 +51,6 @@ class WordsTable extends Table
             ->requirePresence('WORD', 'create')
             ->notEmpty('WORD');
 
-        $validator
-            ->integer('IDCATE')
-            ->requirePresence('IDCATE', 'create')
-            ->notEmpty('IDCATE');
-
         return $validator;
     }
 }

@@ -26,26 +26,80 @@ endif;
 
 $this->assign('title','Trang chủ');
 ?>
-
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+        $("#search-box").keyup(function(e){
+            $("#result").html("");
+            if(e.keyCode == 13){
+                $.ajax({
+                    type: "POST",
+                    url: "pages/getresult/"+$(this).val(),
+                    data:'keyword='+$(this).val(),
+                    success: function(data){
+                        $("#suggesstion-box").hide();
+                        $("#result").html(data);
+                        $("#search-box").css("background","#FFF");
+                 }
+             });
+            }else{   
+                    $.ajax({
+                    type: "POST",
+                    url: "pages/gethint/"+$(this).val(),
+                    data:'keyword='+$(this).val(),
+                    beforeSend: function(){
+                        $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+                    },
+                    success: function(data){
+                        $("#suggesstion-box").show();
+                        $("#suggesstion-box").html(data);
+                        $("#search-box").css("background","#FFF");
+                    }
+                    });
+                }});
+            });
+    //To select word
+    function selectWord(val) {
+    
+    $("#search-box").val(val);
+    $("#suggesstion-box").hide();
+    $.ajax({
+        type: "POST",
+        url: "pages/getresult/"+val,
+        data:'keyword='+val,
+        success: function(data){
+            $("#result").html(data);
+            $("#search-box").css("background","#FFF");
+        }
+    });
+    }
+    </script>
+    
 <div class="home">
     <div class="row">
         <div class="form-group">
             <label class='col-md-1 hidden-xs hidden-sm ' for="sel1">Linh vuc:</label>
             <div class="col-md-4">
                 <select class='form-control '  id="sel1">
-                <option value="-1">Tat ca</option>
-            <?php
-                foreach ($categorys as $category) {
-                ?>
-                <option value=<?=$category->ID;?>> <?=$category->NAME;?></option>
-                <?php
-                }
-                ?>
+                    <option value="">Tat ca</option>
+                    <?php
+                        foreach ($categorys as $category) {
+                    ?>
+                    <option value=<?=$category->ID;?>> <?=$category->NAME;?></option>
+                    <?php
+                        }
+                    ?>
                 </select>
             </div>
         </div>
     </div>
-    <div class="row">
-        
+
+    <div class="row input form-group">
+        <div class="frmSearch">
+            <input type="text" id="search-box" placeholder="Word ?" />
+            <div id="suggesstion-box"></div>
+        </div>
+    </div>
+    <div class="row contents" id="result">
     </div>
 </div>

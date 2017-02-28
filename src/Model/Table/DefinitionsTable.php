@@ -66,6 +66,11 @@ class DefinitionsTable extends Table
             ->requirePresence('CONTRIBUTE', 'create')
             ->notEmpty('CONTRIBUTE');
 
+        $validator
+            ->integer('IDCATE')
+            ->requirePresence('IDCATE', 'create')
+            ->notEmpty('IDCATE');
+
         return $validator;
     }
 }

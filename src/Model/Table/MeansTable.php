@@ -66,6 +66,11 @@ class MeansTable extends Table
             ->requirePresence('ACCOUNT', 'create')
             ->notEmpty('ACCOUNT');
 
+        $validator
+            ->integer('IDCATE')
+            ->requirePresence('IDCATE', 'create')
+            ->notEmpty('IDCATE');
+
         return $validator;
     }
 }

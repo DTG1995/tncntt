@@ -11,6 +11,7 @@ use Cake\ORM\Entity;
  * @property string $DEFINE
  * @property int $ACCOUNT
  * @property int $CONTRIBUTE
+ * @property int $IDCATE
  */
 class Definition extends Entity
 {
