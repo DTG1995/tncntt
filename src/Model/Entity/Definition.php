@@ -7,11 +7,13 @@ use Cake\ORM\Entity;
  * Definition Entity
  *
  * @property int $ID
- * @property int $IDWORD
+ * @property int $WORD_ID
  * @property string $DEFINE
  * @property int $ACCOUNT
  * @property int $CONTRIBUTE
  * @property int $IDCATE
+ *
+ * @property \App\Model\Entity\Word $WORDS
  */
 class Definition extends Entity
 {

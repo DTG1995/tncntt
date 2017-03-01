@@ -14,9 +14,10 @@
     <fieldset>
         <legend><?= __('Add Definition') ?></legend>
         <?php
-            echo $this->Form->input('IDWORD');
+            echo $this->Form->input('WORD_ID');
             echo $this->Form->input('DEFINE');
-            echo $this->Form->input('EMAIL');
+            echo $this->Form->input('ACCOUNT');
+            echo $this->Form->input('CONTRIBUTE');
             echo $this->Form->input('IDCATE');
         ?>
     </fieldset>

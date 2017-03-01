@@ -48,7 +48,7 @@ $this->assign('title','Trang chủ');
                     url: "pages/gethint/"+$(this).val(),
                     data:'keyword='+$(this).val(),
                     beforeSend: function(){
-                        $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat 165px");
+                        $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat right");
                     },
                     success: function(data){
                         $("#suggesstion-box").show();
@@ -74,13 +74,13 @@ $this->assign('title','Trang chủ');
     });
     }
     </script>
-    
-<div class="home">
-    <div class="row">
-        <div class="form-group">
-            <label class='col-md-1 hidden-xs hidden-sm ' for="sel1">Linh vuc:</label>
-            <div class="col-md-4">
-                <select class='form-control '  id="sel1">
+
+    <div class="area_combobox">
+    <!-- AREA-COMBOBOX -->
+        <div class="row">
+            <div class="col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <select class='form-control '  id="sel1">
                     <option value="">Tat ca</option>
                     <?php
                         foreach ($categorys as $category) {
@@ -89,17 +89,26 @@ $this->assign('title','Trang chủ');
                     <?php
                         }
                     ?>
-                </select>
+                    </select>
+                </div>
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                
             </div>
         </div>
-    </div>
-
-    <div class="row input form-group">
-        <div class="frmSearch">
-            <input type="text" id="search-box" placeholder="Word ?" />
+        <div class="form-group">
+            <div class="form-group">
+                <div class="frmSearch col-lg-6">
+                    <textarea id="search-box" placeholder="Word ?" /></textarea>
+                </div>
+                <div class="col-lg-6">
+                    <textarea></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div id="suggesstion-box"></div>
         </div>
+        <div class="row contents" id="result">
+        </div>
     </div>
-    <div class="row contents" id="result">
-    </div>
-</div>

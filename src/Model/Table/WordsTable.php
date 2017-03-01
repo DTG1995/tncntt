@@ -29,7 +29,14 @@ class WordsTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        $this->hasMany('Means',[
+            'foreignKey'=>'WORD_ID'
+        ])
+            ->setName('Means');
+        $this->hasMany('Definitions',[
+            'foreignKey'=>'WORD_ID'
+        ])
+            ->setName('Definitions');
         $this->table('words');
         $this->displayField('ID');
         $this->primaryKey('ID');

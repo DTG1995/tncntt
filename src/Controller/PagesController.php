@@ -92,28 +92,30 @@ class PagesController extends AppController
 		$Means = TableRegistry::get('Means');
 		$Definitions = TableRegistry::get('Definitions');
 		$query = $WORDS->find('all',[
-		            'conditions'=>['WORDS.WORD'=>$str]
+		            'conditions'=>['WORDS.WORD'=>$str],
+					'contain'=>['Means','Definitions']
 		        ]);
 		$word = $query->all()->first();
 		
-		if($str!=null){
-			$query = $Means->find('all',[
-			                'conditions'=>['MEANS.IDWORD'=>$word->ID],
-			                'order'=>['MEANS.CONTRIBUTE'=>'ASC']
-			            ]);
-			$means = $query->all();
-			$query = $Definitions->find('all',[
-			                'conditions'=>['DEFINITIONS.IDWORD'=>$word->ID],
-			                'order'=>['DEFINITIONS.CONTRIBUTE'=>'ASC']
-			            ]);
-			$definitions = $query->all();
-		}
-		else {
-			$definitions =[];
-			$means=[];
-		}
-		$this->set('means',$means);
-		$this->set('definition',$definitions);
+		// if($str!=null){
+		// 	$query = $Means->find('all',[
+		// 	                'conditions'=>['MEANS.IDWORD'=>$word->ID],
+		// 	                'order'=>['MEANS.CONTRIBUTE'=>'ASC']
+		// 	            ]);
+		// 	$means = $query->all();
+		// 	$query = $Definitions->find('all',[
+		// 	                'conditions'=>['DEFINITIONS.IDWORD'=>$word->ID],
+		// 	                'order'=>['DEFINITIONS.CONTRIBUTE'=>'ASC']
+		// 	            ]);
+		// 	$definitions = $query->all();
+		// }
+		// else {
+		// 	$definitions =[];
+		// 	$means=[];
+		// }
+		// $this->set('means',$means);
+		// $this->set('definition',$definitions);
+		$this->set('word',$word);
 	}
 }
 

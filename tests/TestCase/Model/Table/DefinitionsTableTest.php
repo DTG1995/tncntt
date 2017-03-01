@@ -24,7 +24,9 @@ class DefinitionsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.definitions'
+        'app.definitions',
+        'app.words',
+        'app.means'
     ];
 
     /**

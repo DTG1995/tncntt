@@ -7,17 +7,19 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Mean'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Words'), ['controller' => 'Words', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Word'), ['controller' => 'Words', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="means index large-9 medium-8 columns content">
     <h3><?= __('Means') ?></h3>
-    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDWORD') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('WORD_ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('CONTRIBUTE') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('EMAIL') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ACCOUNT') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('IDCATE') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -26,9 +28,9 @@
             <?php foreach ($means as $mean): ?>
             <tr>
                 <td><?= $this->Number->format($mean->ID) ?></td>
-                <td><?= $this->Number->format($mean->IDWORD) ?></td>
+                <td><?= $this->Number->format($mean->WORD_ID) ?></td>
                 <td><?= $this->Number->format($mean->CONTRIBUTE) ?></td>
-                <td><?= h($mean->EMAIL) ?></td>
+                <td><?= $this->Number->format($mean->ACCOUNT) ?></td>
                 <td><?= $this->Number->format($mean->IDCATE) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $mean->ID]) ?>

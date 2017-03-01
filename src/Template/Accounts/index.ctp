@@ -11,29 +11,31 @@
 </nav>
 <div class="accounts index large-9 medium-8 columns content">
     <h3><?= __('Accounts') ?></h3>
-    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0" >
+    <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
+                <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('EMAIL') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('NAMEDISPLAY') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('PASSWORD') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ISADMIN') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('CREATED') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('LAST_LOGIN') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('STATUS') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ACTIVE') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($accounts as $account): ?>
             <tr>
+                <td><?= $this->Number->format($account->ID) ?></td>
                 <td><?= h($account->EMAIL) ?></td>
                 <td><?= h($account->NAMEDISPLAY) ?></td>
-                <td><?= $this->Number->format($account->PASSWORD) ?></td>
                 <td><?= h($account->ISADMIN) ?></td>
                 <td><?= h($account->CREATED) ?></td>
                 <td><?= h($account->LAST_LOGIN) ?></td>
                 <td><?= $this->Number->format($account->STATUS) ?></td>
+                <td><?= h($account->ACTIVE) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $account->EMAIL]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $account->EMAIL]) ?>

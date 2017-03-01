@@ -7,6 +7,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Means'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Words'), ['controller' => 'Words', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Word'), ['controller' => 'Words', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="means form large-9 medium-8 columns content">
@@ -14,10 +16,10 @@
     <fieldset>
         <legend><?= __('Add Mean') ?></legend>
         <?php
-            echo $this->Form->input('IDWORD');
+            echo $this->Form->input('WORD_ID');
             echo $this->Form->input('MEAN');
             echo $this->Form->input('CONTRIBUTE');
-            echo $this->Form->input('EMAIL');
+            echo $this->Form->input('ACCOUNT');
             echo $this->Form->input('IDCATE');
         ?>
     </fieldset>

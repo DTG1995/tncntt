@@ -33,6 +33,12 @@ class DefinitionsTable extends Table
         $this->table('definitions');
         $this->displayField('ID');
         $this->primaryKey('ID');
+        $this->belongsTo('Words',[
+            'className'=>'Words',
+            'foreignKey'=>'WORD_ID',
+            'propertyName'=>'WORDS',
+            'joinType'=>'INNER'
+        ]);
     }
 
     /**
@@ -48,9 +54,9 @@ class DefinitionsTable extends Table
             ->allowEmpty('ID', 'create');
 
         $validator
-            ->integer('IDWORD')
-            ->requirePresence('IDWORD', 'create')
-            ->notEmpty('IDWORD');
+            ->integer('WORD_ID')
+            ->requirePresence('WORD_ID', 'create')
+            ->notEmpty('WORD_ID');
 
         $validator
             ->requirePresence('DEFINE', 'create')

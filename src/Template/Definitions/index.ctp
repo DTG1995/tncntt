@@ -11,12 +11,13 @@
 </nav>
 <div class="definitions index large-9 medium-8 columns content">
     <h3><?= __('Definitions') ?></h3>
-    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDWORD') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('EMAIL') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('WORD_ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ACCOUNT') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('CONTRIBUTE') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('IDCATE') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -25,8 +26,9 @@
             <?php foreach ($definitions as $definition): ?>
             <tr>
                 <td><?= $this->Number->format($definition->ID) ?></td>
-                <td><?= $this->Number->format($definition->IDWORD) ?></td>
-                <td><?= h($definition->EMAIL) ?></td>
+                <td><?= $this->Number->format($definition->WORD_ID) ?></td>
+                <td><?= $this->Number->format($definition->ACCOUNT) ?></td>
+                <td><?= $this->Number->format($definition->CONTRIBUTE) ?></td>
                 <td><?= $this->Number->format($definition->IDCATE) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $definition->ID]) ?>

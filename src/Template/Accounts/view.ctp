@@ -24,8 +24,8 @@
             <td><?= h($account->NAMEDISPLAY) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('PASSWORD') ?></th>
-            <td><?= $this->Number->format($account->PASSWORD) ?></td>
+            <th scope="row"><?= __('ID') ?></th>
+            <td><?= $this->Number->format($account->ID) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('STATUS') ?></th>
@@ -43,5 +43,13 @@
             <th scope="row"><?= __('ISADMIN') ?></th>
             <td><?= $account->ISADMIN ? __('Yes') : __('No'); ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('ACTIVE') ?></th>
+            <td><?= $account->ACTIVE ? __('Yes') : __('No'); ?></td>
+        </tr>
     </table>
+    <div class="row">
+        <h4><?= __('PASSWORD') ?></h4>
+        <?= $this->Text->autoParagraph(h($account->PASSWORD)); ?>
+    </div>
 </div>
