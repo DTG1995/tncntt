@@ -25,8 +25,7 @@ class MeansTableTest extends TestCase
      */
     public $fixtures = [
         'app.means',
-        'app.words',
-        'app.definitions'
+        'app.words'
     ];
 
     /**

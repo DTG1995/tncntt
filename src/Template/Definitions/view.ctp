@@ -24,8 +24,8 @@
             <td><?= $this->Number->format($definition->WORD_ID) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('ACCOUNT') ?></th>
-            <td><?= $this->Number->format($definition->ACCOUNT) ?></td>
+            <th scope="row"><?= __('USER ID') ?></th>
+            <td><?= $this->Number->format($definition->USER_ID) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('CONTRIBUTE') ?></th>

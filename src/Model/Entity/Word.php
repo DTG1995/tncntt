@@ -8,6 +8,9 @@ use Cake\ORM\Entity;
  *
  * @property int $ID
  * @property string $WORD
+ *
+ * @property \App\Model\Entity\Mean[] $means
+ * @property \App\Model\Entity\Definition[] $definitions
  */
 class Word extends Entity
 {

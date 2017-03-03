@@ -9,9 +9,9 @@ use Cake\ORM\Entity;
  * @property int $ID
  * @property string $CONTENT
  * @property \Cake\I18n\Time $CREATED
- * @property int $IDPARENT
- * @property int $IDDEFINITION
- * @property int $ACCOUNT
+ * @property int $COMMENTDEFINITION_ID
+ * @property int $DEFINITION_ID
+ * @property int $USER_ID
  */
 class Commentdefinition extends Entity
 {

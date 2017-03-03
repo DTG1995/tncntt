@@ -16,12 +16,12 @@
     <h3><?= h($likemean->IDMEAN) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('EMAIL') ?></th>
-            <td><?= h($likemean->EMAIL) ?></td>
+            <th scope="row"><?= __('MEAN ID') ?></th>
+            <td><?= $this->Number->format($likemean->MEAN_ID) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('IDMEAN') ?></th>
-            <td><?= $this->Number->format($likemean->IDMEAN) ?></td>
+            <th scope="row"><?= __('USER ID') ?></th>
+            <td><?= $this->Number->format($likemean->USER_ID) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('ISLIKE') ?></th>

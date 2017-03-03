@@ -85,27 +85,42 @@ class PagesController extends AppController
 			}
 			else $words = [];
 			$this->set('words',$words);
-			//
 	}
 	function getresult($str=null){
 		$WORDS = TableRegistry::get('Words');
 		$Means = TableRegistry::get('Means');
 		$Definitions = TableRegistry::get('Definitions');
 		$query = $WORDS->find('all',[
+					'fields'=>['ID','WORD'],
 		            'conditions'=>['WORDS.WORD'=>$str],
-					'contain'=>['Means','Definitions']
+					'contain'=>[
+						'Means'=>[
+							'sort'=>['CONTRIBUTE'=>'ASC'],
+							'Likemeans',
+							'Commentmeans'=>[
+								'Users'],'Users'
+						]
+						,'Definitions'=>[
+							'fields'=>['ID','DEFINE','WORD_ID']
+						]
+					]
 		        ]);
 		$word = $query->all()->first();
+		// $query->all()['means']->contain(['likemeans','commentmeans']);
 		
 		// if($str!=null){
 		// 	$query = $Means->find('all',[
-		// 	                'conditions'=>['MEANS.IDWORD'=>$word->ID],
-		// 	                'order'=>['MEANS.CONTRIBUTE'=>'ASC']
+		// 					'fields'=>['ID','MEAN','CREATED'],
+		// 	                'conditions'=>['MEANS.WORD_ID'=>$word->ID],
+		// 	                'order'=>['MEANS.CONTRIBUTE'=>'ASC'],
+		// 					'contain'=>['Likemeans','Commentmeans','Users']
 		// 	            ]);
 		// 	$means = $query->all();
 		// 	$query = $Definitions->find('all',[
-		// 	                'conditions'=>['DEFINITIONS.IDWORD'=>$word->ID],
-		// 	                'order'=>['DEFINITIONS.CONTRIBUTE'=>'ASC']
+		// 					'fields'=>['ID','DEFINITION','CREATED'],
+		// 	                'conditions'=>['DEFINITIONS.WORD_ID'=>$word->ID],
+		// 	                'order'=>['DEFINITIONS.CONTRIBUTE'=>'ASC'],
+		// 					'contain'=>['Likedefinitions','Commentdefinitions','Users']
 		// 	            ]);
 		// 	$definitions = $query->all();
 		// }

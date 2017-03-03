@@ -7,6 +7,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Words'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Means'), ['controller' => 'Means', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Mean'), ['controller' => 'Means', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="words form large-9 medium-8 columns content">
@@ -15,7 +19,6 @@
         <legend><?= __('Add Word') ?></legend>
         <?php
             echo $this->Form->input('WORD');
-            echo $this->Form->input('IDCATE');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

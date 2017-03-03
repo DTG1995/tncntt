@@ -16,9 +16,9 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('CREATED') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDPARENT') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDDEFINITION') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('EMAIL') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('COMMENTDEFINITION_ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('DEFINITION_ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('USER_ID') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -27,9 +27,9 @@
             <tr>
                 <td><?= $this->Number->format($commentdefinition->ID) ?></td>
                 <td><?= h($commentdefinition->CREATED) ?></td>
-                <td><?= $this->Number->format($commentdefinition->IDPARENT) ?></td>
-                <td><?= $this->Number->format($commentdefinition->IDDEFINITION) ?></td>
-                <td><?= h($commentdefinition->EMAIL) ?></td>
+                <td><?= $this->Number->format($commentdefinition->COMMENTDEFINITION_ID) ?></td>
+                <td><?= $this->Number->format($commentdefinition->DEFINITION_ID) ?></td>
+                <td><?= $this->Number->format($commentdefinition->USER_ID) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $commentdefinition->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $commentdefinition->ID]) ?>

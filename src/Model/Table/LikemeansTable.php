@@ -33,6 +33,19 @@ class LikemeansTable extends Table
         $this->table('likemeans');
         $this->displayField('IDMEAN');
         $this->primaryKey(['IDMEAN', 'EMAIL']);
+        $this->belongsTo('MEANS',[
+            'className'=>'Definitions',
+            'foreignKey'=>'MEAN_ID',
+            'propertyName'=>'MEANS',
+            'joinType'=>'INNER'
+        ]);
+        $this->belongsTo('Users',[
+            'className'=>'Users',
+            'foreignKey'=>'USER_ID',
+            'propertyName'=>'USERS',
+            'joinType'=>'INNER',
+            'propertyName'=>'User'
+        ]);
     }
 
     /**
@@ -44,12 +57,12 @@ class LikemeansTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('IDMEAN')
-            ->allowEmpty('IDMEAN', 'create');
+            ->integer('MEAN_ID')
+            ->allowEmpty('MEAN_ID', 'create');
 
         $validator
-            ->integer('ACCOUNT')
-            ->allowEmpty('ACCOUNT', 'create');
+            ->integer('USER_ID')
+            ->allowEmpty('USER_ID', 'create');
 
         $validator
             ->integer('ISLIKE')

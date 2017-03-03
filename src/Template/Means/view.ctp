@@ -18,20 +18,20 @@
     <h3><?= h($mean->ID) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('ID') ?></th>
-            <td><?= $this->Number->format($mean->ID) ?></td>
+            <th scope="row"><?= __('WORDS') ?></th>
+            <td><?= $mean->has('WORDS') ? $this->Html->link($mean->WORDS->ID, ['controller' => 'Words', 'action' => 'view', $mean->WORDS->ID]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('WORD ID') ?></th>
-            <td><?= $this->Number->format($mean->WORD_ID) ?></td>
+            <th scope="row"><?= __('ID') ?></th>
+            <td><?= $this->Number->format($mean->ID) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('CONTRIBUTE') ?></th>
             <td><?= $this->Number->format($mean->CONTRIBUTE) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('ACCOUNT') ?></th>
-            <td><?= $this->Number->format($mean->ACCOUNT) ?></td>
+            <th scope="row"><?= __('USER ID') ?></th>
+            <td><?= $this->Number->format($mean->USER_ID) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('IDCATE') ?></th>

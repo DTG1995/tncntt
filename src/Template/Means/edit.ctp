@@ -22,10 +22,10 @@
     <fieldset>
         <legend><?= __('Edit Mean') ?></legend>
         <?php
-            echo $this->Form->input('WORD_ID');
+            echo $this->Form->input('WORD_ID', ['options' => $words]);
             echo $this->Form->input('MEAN');
             echo $this->Form->input('CONTRIBUTE');
-            echo $this->Form->input('ACCOUNT');
+            echo $this->Form->input('USER_ID');
             echo $this->Form->input('IDCATE');
         ?>
     </fieldset>

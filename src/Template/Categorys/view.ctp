@@ -23,5 +23,13 @@
             <th scope="row"><?= __('ID') ?></th>
             <td><?= $this->Number->format($category->ID) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('CONTRIBUTE') ?></th>
+            <td><?= $this->Number->format($category->CONTRIBUTE) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('ACTIVE') ?></th>
+            <td><?= $category->ACTIVE ? __('Yes') : __('No'); ?></td>
+        </tr>
     </table>
 </div>

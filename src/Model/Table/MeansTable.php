@@ -36,7 +36,22 @@ class MeansTable extends Table
         $this->belongsTo('Words',[
             'className'=>'Words',
             'foreignKey'=>'WORD_ID',
-            'propertyName'=>'WORDS'
+            'propertyName'=>'WORDS',
+            'joinType'=>'INNER',
+            'propertyName'=>'Words'
+        ]);
+        $this->belongsTo('Users',[
+            'className'=>'Users',
+            'foreignKey'=>'USER_ID',
+            'propertyName'=>'USERS',
+            'joinType'=>'INNER',
+            'propertyName'=>'User'
+        ]);
+        $this->hasMany('Commentmeans',[
+            'foreignKey'=>'MEAN_ID'
+        ]);
+        $this->hasMany('Likemeans',[
+            'foreignKey'=>'MEAN_ID'
         ]);
     }
 
@@ -67,9 +82,9 @@ class MeansTable extends Table
             ->notEmpty('CONTRIBUTE');
 
         $validator
-            ->integer('ACCOUNT')
-            ->requirePresence('ACCOUNT', 'create')
-            ->notEmpty('ACCOUNT');
+            ->integer('USER_ID')
+            ->requirePresence('USER_ID', 'create')
+            ->notEmpty('USER_ID');
 
         $validator
             ->integer('IDCATE')

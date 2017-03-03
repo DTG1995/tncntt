@@ -32,7 +32,20 @@ class LikedefinitionsTable extends Table
 
         $this->table('likedefinitions');
         $this->displayField('IDDEFINITION');
-        $this->primaryKey(['IDDEFINITION', 'EMAIL']);
+        $this->primaryKey(['IDDEFINITION', 'USER_ID']);
+        $this->belongsTo('DEFINITIONS',[
+            'className'=>'Definitions',
+            'foreignKey'=>'DEFINITION_ID',
+            'propertyName'=>'DEFINITIONS',
+            'joinType'=>'INNER'
+        ]);
+        $this->belongsTo('Users',[
+            'className'=>'Users',
+            'foreignKey'=>'USER_ID',
+            'propertyName'=>'USERS',
+            'joinType'=>'INNER',
+            'propertyName'=>'User'
+        ]);
     }
 
     /**
@@ -44,12 +57,12 @@ class LikedefinitionsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('IDDEFINITION')
-            ->allowEmpty('IDDEFINITION', 'create');
+            ->integer('DEFINITION_ID')
+            ->allowEmpty('DEFINITION_ID', 'create');
 
         $validator
-            ->integer('ACCOUNT')
-            ->allowEmpty('ACCOUNT', 'create');
+            ->integer('USER_ID')
+            ->allowEmpty('USER_ID', 'create');
 
         $validator
             ->integer('ISLIKE')

@@ -4,11 +4,11 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * Words Controller
+ * Users Controller
  *
- * @property \App\Model\Table\WordsTable $Words
+ * @property \App\Model\Table\UsersTable $Users
  */
-class WordsController extends AppController
+class UsersController extends AppController
 {
 
     /**
@@ -18,27 +18,27 @@ class WordsController extends AppController
      */
     public function index()
     {
-        $words = $this->paginate($this->Words);
+        $users = $this->paginate($this->Users);
 
-        $this->set(compact('words'));
-        $this->set('_serialize', ['words']);
+        $this->set(compact('users'));
+        $this->set('_serialize', ['users']);
     }
 
     /**
      * View method
      *
-     * @param string|null $id Word id.
+     * @param string|null $id User id.
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $word = $this->Words->get($id, [
-            'contain' => ['Means', 'Definitions']
+        $user = $this->Users->get($id, [
+            'contain' => []
         ]);
 
-        $this->set('word', $word);
-        $this->set('_serialize', ['word']);
+        $this->set('user', $user);
+        $this->set('_serialize', ['user']);
     }
 
     /**
@@ -48,60 +48,60 @@ class WordsController extends AppController
      */
     public function add()
     {
-        $word = $this->Words->newEntity();
+        $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $word = $this->Words->patchEntity($word, $this->request->data);
-            if ($this->Words->save($word)) {
-                $this->Flash->success(__('The word has been saved.'));
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The word could not be saved. Please, try again.'));
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('word'));
-        $this->set('_serialize', ['word']);
+        $this->set(compact('user'));
+        $this->set('_serialize', ['user']);
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Word id.
+     * @param string|null $id User id.
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $word = $this->Words->get($id, [
+        $user = $this->Users->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $word = $this->Words->patchEntity($word, $this->request->data);
-            if ($this->Words->save($word)) {
-                $this->Flash->success(__('The word has been saved.'));
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The word could not be saved. Please, try again.'));
+            $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('word'));
-        $this->set('_serialize', ['word']);
+        $this->set(compact('user'));
+        $this->set('_serialize', ['user']);
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Word id.
+     * @param string|null $id User id.
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $word = $this->Words->get($id);
-        if ($this->Words->delete($word)) {
-            $this->Flash->success(__('The word has been deleted.'));
+        $user = $this->Users->get($id);
+        if ($this->Users->delete($user)) {
+            $this->Flash->success(__('The user has been deleted.'));
         } else {
-            $this->Flash->error(__('The word could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

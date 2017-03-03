@@ -16,9 +16,9 @@
         <?php
             echo $this->Form->input('CONTENT');
             echo $this->Form->input('CREATED');
-            echo $this->Form->input('IDPARENT');
-            echo $this->Form->input('IDDEFINITION');
-            echo $this->Form->input('EMAIL');
+            echo $this->Form->input('COMMENTDEFINITION_ID');
+            echo $this->Form->input('DEFINITION_ID');
+            echo $this->Form->input('USER_ID');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

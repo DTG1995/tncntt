@@ -9,9 +9,9 @@ use Cake\ORM\Entity;
  * @property int $ID
  * @property string $CONTENT
  * @property \Cake\I18n\Time $CREATED
- * @property int $IDPARENT
- * @property int $IDMEANS
- * @property int $ACCOUNT
+ * @property int $COMMENTMEAN_ID
+ * @property int $MEAN_ID
+ * @property int $USER_ID
  */
 class Commentmean extends Entity
 {

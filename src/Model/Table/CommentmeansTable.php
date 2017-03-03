@@ -29,7 +29,22 @@ class CommentmeansTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        $this->hasMany('Commentmeans',[
+            'foreignKey'=>'COMMENTMEAN_ID'
+        ]);
+        $this->belongsTo('Commentmeans',[
+            'className'=>'Commentmeans',
+            'foreignKey'=>'COMMENTMEAN_ID'
+        ]);
+        $this->belongsTo('Means',[
+            'className'=>'Means',
+            'foreignKey'=>'MEAN_ID'
+        ]);
+        $this->belongsTo('Users',[
+            'className'=>'Users',
+            'foreignKey'=>'USER_ID',
+            'propertyName'=>'User'
+        ]);
         $this->table('commentmeans');
         $this->displayField('ID');
         $this->primaryKey('ID');
@@ -57,18 +72,18 @@ class CommentmeansTable extends Table
             ->notEmpty('CREATED');
 
         $validator
-            ->integer('IDPARENT')
-            ->allowEmpty('IDPARENT');
+            ->integer('COMMENTMEAN_ID')
+            ->allowEmpty('COMMENTMEAN_ID');
 
         $validator
-            ->integer('IDMEANS')
-            ->requirePresence('IDMEANS', 'create')
-            ->notEmpty('IDMEANS');
+            ->integer('MEAN_ID')
+            ->requirePresence('MEAN_ID', 'create')
+            ->notEmpty('MEAN_ID');
 
         $validator
-            ->integer('ACCOUNT')
-            ->requirePresence('ACCOUNT', 'create')
-            ->notEmpty('ACCOUNT');
+            ->integer('USER_ID')
+            ->requirePresence('USER_ID', 'create')
+            ->notEmpty('USER_ID');
 
         return $validator;
     }

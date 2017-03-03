@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property int $WORD_ID
  * @property string $MEAN
  * @property int $CONTRIBUTE
- * @property int $ACCOUNT
+ * @property int $USER_ID
  * @property int $IDCATE
  *
  * @property \App\Model\Entity\Word $WORDS

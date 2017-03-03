@@ -7,17 +7,17 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Accounts Model
+ * Users Model
  *
- * @method \App\Model\Entity\Account get($primaryKey, $options = [])
- * @method \App\Model\Entity\Account newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Account[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Account|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Account patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Account[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Account findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\User get($primaryKey, $options = [])
+ * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\User|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
  */
-class AccountsTable extends Table
+class UsersTable extends Table
 {
 
     /**
@@ -30,9 +30,27 @@ class AccountsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('accounts');
-        $this->displayField('EMAIL');
-        $this->primaryKey('EMAIL');
+        $this->table('users');
+        $this->displayField('ID');
+        $this->primaryKey('ID');
+        $this->hasMany('commentdefinitions',[
+            'foreignKey'=>'USER_ID'
+        ]);
+        $this->hasMany('commentmeans',[
+            'foreignKey'=>'USER_ID'
+        ]);
+        $this->hasMany('likedefinitions',[
+            'foreignKey'=>'USER_ID'
+        ]);
+        $this->hasMany('likemeans',[
+            'foreignKey'=>'USER_ID'
+        ]);
+        $this->hasMany('means',[
+            'foreignKey'=>'USER_ID'
+        ]);
+        $this->hasMany('definitions',[
+            'foreignKey'=>'USER_ID'
+        ]);
     }
 
     /**

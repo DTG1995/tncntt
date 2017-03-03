@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Account Entity
+ * User Entity
  *
  * @property int $ID
  * @property string $EMAIL
@@ -16,7 +16,7 @@ use Cake\ORM\Entity;
  * @property int $STATUS
  * @property bool $ACTIVE
  */
-class Account extends Entity
+class User extends Entity
 {
 
     /**
@@ -30,6 +30,6 @@ class Account extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'EMAIL' => false
+        'ID' => false
     ];
 }

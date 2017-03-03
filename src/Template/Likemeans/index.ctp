@@ -11,11 +11,11 @@
 </nav>
 <div class="likemeans index large-9 medium-8 columns content">
     <h3><?= __('Likemeans') ?></h3>
-    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('IDMEAN') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('EMAIL') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('MEAN_ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('USER_ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ISLIKE') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -23,8 +23,8 @@
         <tbody>
             <?php foreach ($likemeans as $likemean): ?>
             <tr>
-                <td><?= $this->Number->format($likemean->IDMEAN) ?></td>
-                <td><?= h($likemean->EMAIL) ?></td>
+                <td><?= $this->Number->format($likemean->MEAN_ID) ?></td>
+                <td><?= $this->Number->format($likemean->USER_ID) ?></td>
                 <td><?= $this->Number->format($likemean->ISLIKE) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $likemean->IDMEAN]) ?>

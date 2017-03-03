@@ -16,9 +16,9 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('CREATED') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDPARENT') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDMEANS') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('EMAIL') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('COMMENTMEAN_ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('MEAN_ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('USER_ID') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -27,9 +27,9 @@
             <tr>
                 <td><?= $this->Number->format($commentmean->ID) ?></td>
                 <td><?= h($commentmean->CREATED) ?></td>
-                <td><?= $this->Number->format($commentmean->IDPARENT) ?></td>
-                <td><?= $this->Number->format($commentmean->IDMEANS) ?></td>
-                <td><?= h($commentmean->EMAIL) ?></td>
+                <td><?= $this->Number->format($commentmean->COMMENTMEAN_ID) ?></td>
+                <td><?= $this->Number->format($commentmean->MEAN_ID) ?></td>
+                <td><?= $this->Number->format($commentmean->USER_ID) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $commentmean->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $commentmean->ID]) ?>

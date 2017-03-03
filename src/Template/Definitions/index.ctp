@@ -16,7 +16,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('WORD_ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ACCOUNT') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('USER_ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('CONTRIBUTE') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('IDCATE') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -27,7 +27,7 @@
             <tr>
                 <td><?= $this->Number->format($definition->ID) ?></td>
                 <td><?= $this->Number->format($definition->WORD_ID) ?></td>
-                <td><?= $this->Number->format($definition->ACCOUNT) ?></td>
+                <td><?= $this->Number->format($definition->USER_ID) ?></td>
                 <td><?= $this->Number->format($definition->CONTRIBUTE) ?></td>
                 <td><?= $this->Number->format($definition->IDCATE) ?></td>
                 <td class="actions">

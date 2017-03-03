@@ -6,8 +6,8 @@ use Cake\ORM\Entity;
 /**
  * Likedefinition Entity
  *
- * @property int $IDDEFINITION
- * @property int $ACCOUNT
+ * @property int $DEFINITION_ID
+ * @property int $USER_ID
  * @property int $ISLIKE
  */
 class Likedefinition extends Entity

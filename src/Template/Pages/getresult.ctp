@@ -1,6 +1,14 @@
 <?php 
     $this->layout = false;
 ?>
+<script>
+ var data = "<?=$word['means'][0]->MEAN; ?>";
+$("#txtresult").val(data);
+</script>
+<?php
+    pr($word);
+    
+?>
 <div class="row">
     <!--Dinh nghia-->
     <div class="col-md-6 definitions">

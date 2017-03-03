@@ -19,7 +19,7 @@
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('WORD_ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('CONTRIBUTE') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ACCOUNT') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('USER_ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('IDCATE') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -28,9 +28,9 @@
             <?php foreach ($means as $mean): ?>
             <tr>
                 <td><?= $this->Number->format($mean->ID) ?></td>
-                <td><?= $this->Number->format($mean->WORD_ID) ?></td>
+                <td><?= $mean->has('WORDS') ? $this->Html->link($mean->WORDS->ID, ['controller' => 'Words', 'action' => 'view', $mean->WORDS->ID]) : '' ?></td>
                 <td><?= $this->Number->format($mean->CONTRIBUTE) ?></td>
-                <td><?= $this->Number->format($mean->ACCOUNT) ?></td>
+                <td><?= $this->Number->format($mean->USER_ID) ?></td>
                 <td><?= $this->Number->format($mean->IDCATE) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $mean->ID]) ?>

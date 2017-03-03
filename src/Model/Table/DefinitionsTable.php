@@ -39,6 +39,19 @@ class DefinitionsTable extends Table
             'propertyName'=>'WORDS',
             'joinType'=>'INNER'
         ]);
+        $this->belongsTo('Users',[
+            'className'=>'Users',
+            'foreignKey'=>'USER_ID',
+            'propertyName'=>'USERS',
+            'joinType'=>'INNER',
+            'propertyName'=>'User'
+        ]);
+        $this->hasMany('Commentdefinitions',[
+            'foreignKey'=>'DEFINITION_ID'
+        ]);
+        $this->hasMany('Likedefinitions',[
+            'foreignKey'=>'DEFINITION_ID'
+        ]);
     }
 
     /**
@@ -63,9 +76,9 @@ class DefinitionsTable extends Table
             ->notEmpty('DEFINE');
 
         $validator
-            ->integer('ACCOUNT')
-            ->requirePresence('ACCOUNT', 'create')
-            ->notEmpty('ACCOUNT');
+            ->integer('USER_ID')
+            ->requirePresence('USER_ID', 'create')
+            ->notEmpty('USER_ID');
 
         $validator
             ->integer('CONTRIBUTE')

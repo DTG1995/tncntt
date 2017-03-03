@@ -32,6 +32,8 @@ $this->assign('title','Trang chủ');
         $("#search-box").keyup(function(e){
             $("#result").html("");
             if(e.keyCode == 13){
+                var keyword = $(this).val();
+                $(this).val(keyword.substr(0,keyword.length-1));
                 $.ajax({
                     type: "POST",
                     url: "pages/getresult/"+$(this).val(),
@@ -42,7 +44,8 @@ $this->assign('title','Trang chủ');
                         $("#search-box").css("background","#FFF");
                  }
              });
-            }else{   
+            }else{  
+                    $("#txtresult").val(""); 
                     $.ajax({
                     type: "POST",
                     url: "pages/gethint/"+$(this).val(),
@@ -99,10 +102,10 @@ $this->assign('title','Trang chủ');
         <div class="form-group">
             <div class="form-group">
                 <div class="frmSearch col-lg-6">
-                    <textarea id="search-box" placeholder="Word ?" /></textarea>
+                    <textarea id="search-box" placeholder="Word ?" ></textarea>
                 </div>
                 <div class="col-lg-6">
-                    <textarea></textarea>
+                    <textarea id="txtresult"></textarea>
                 </div>
             </div>
         </div>

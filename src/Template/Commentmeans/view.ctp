@@ -16,20 +16,20 @@
     <h3><?= h($commentmean->ID) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('EMAIL') ?></th>
-            <td><?= h($commentmean->EMAIL) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('ID') ?></th>
             <td><?= $this->Number->format($commentmean->ID) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('IDPARENT') ?></th>
-            <td><?= $this->Number->format($commentmean->IDPARENT) ?></td>
+            <th scope="row"><?= __('COMMENTMEAN ID') ?></th>
+            <td><?= $this->Number->format($commentmean->COMMENTMEAN_ID) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('IDMEANS') ?></th>
-            <td><?= $this->Number->format($commentmean->IDMEANS) ?></td>
+            <th scope="row"><?= __('MEAN ID') ?></th>
+            <td><?= $this->Number->format($commentmean->MEAN_ID) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('USER ID') ?></th>
+            <td><?= $this->Number->format($commentmean->USER_ID) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('CREATED') ?></th>

@@ -9,11 +9,9 @@ use Cake\ORM\Entity;
  * @property int $ID
  * @property int $WORD_ID
  * @property string $DEFINE
- * @property int $ACCOUNT
+ * @property int $USER_ID
  * @property int $CONTRIBUTE
  * @property int $IDCATE
- *
- * @property \App\Model\Entity\Word $WORDS
  */
 class Definition extends Entity
 {

@@ -16,9 +16,9 @@
         <?php
             echo $this->Form->input('CONTENT');
             echo $this->Form->input('CREATED');
-            echo $this->Form->input('IDPARENT');
-            echo $this->Form->input('IDMEANS');
-            echo $this->Form->input('EMAIL');
+            echo $this->Form->input('COMMENTMEAN_ID');
+            echo $this->Form->input('MEAN_ID');
+            echo $this->Form->input('USER_ID');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -29,7 +29,22 @@ class CommentdefinitionsTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        $this->hasMany('Commentdefinitions',[
+            'foreignKey'=>'COMMENTDEFINITION_ID'
+        ]);
+        $this->belongsTo('Commentdefinitions',[
+            'className'=>'Commentdefinitions',
+            'foreignKey'=>'COMMENTDEFINITION_ID'
+        ]);
+        $this->belongsTo('Definitions',[
+            'className'=>'Definitions',
+            'foreignKey'=>'DEFINITION_ID'
+        ]);
+        $this->belongsTo('User',[
+            'className'=>'Users',
+            'foreignKey'=>'USER_ID',
+            'propertyName'=>'User'
+        ]);
         $this->table('commentdefinitions');
         $this->displayField('ID');
         $this->primaryKey('ID');
@@ -57,19 +72,19 @@ class CommentdefinitionsTable extends Table
             ->notEmpty('CREATED');
 
         $validator
-            ->integer('IDPARENT')
-            ->requirePresence('IDPARENT', 'create')
-            ->notEmpty('IDPARENT');
+            ->integer('COMMENTDEFINITION_ID')
+            ->requirePresence('COMMENTDEFINITION_ID', 'create')
+            ->notEmpty('COMMENTDEFINITION_ID');
 
         $validator
-            ->integer('IDDEFINITION')
-            ->requirePresence('IDDEFINITION', 'create')
-            ->notEmpty('IDDEFINITION');
+            ->integer('DEFINITION_ID')
+            ->requirePresence('DEFINITION_ID', 'create')
+            ->notEmpty('DEFINITION_ID');
 
         $validator
-            ->integer('ACCOUNT')
-            ->requirePresence('ACCOUNT', 'create')
-            ->notEmpty('ACCOUNT');
+            ->integer('USER_ID')
+            ->requirePresence('USER_ID', 'create')
+            ->notEmpty('USER_ID');
 
         return $validator;
     }
