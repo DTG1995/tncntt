@@ -16,10 +16,6 @@
     <h3><?= h($commentmean->ID) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('EMAIL') ?></th>
-            <td><?= h($commentmean->EMAIL) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('ID') ?></th>
             <td><?= $this->Number->format($commentmean->ID) ?></td>
         </tr>
@@ -30,6 +26,10 @@
         <tr>
             <th scope="row"><?= __('IDMEANS') ?></th>
             <td><?= $this->Number->format($commentmean->IDMEANS) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('ACCOUNT') ?></th>
+            <td><?= $this->Number->format($commentmean->ACCOUNT) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('CREATED') ?></th>

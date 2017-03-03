@@ -20,11 +20,10 @@
     <fieldset>
         <legend><?= __('Edit Mean') ?></legend>
         <?php
-            echo $this->Form->input('IDWORD');
+            echo $this->Form->input('WORDS_ID');
             echo $this->Form->input('MEAN');
             echo $this->Form->input('CONTRIBUTE');
-            echo $this->Form->input('EMAIL');
-            echo $this->Form->input('IDCATE');
+            echo $this->Form->input('USERS_ID');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

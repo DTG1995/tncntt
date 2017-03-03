@@ -11,14 +11,13 @@
 </nav>
 <div class="means index large-9 medium-8 columns content">
     <h3><?= __('Means') ?></h3>
-    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDWORD') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('WORDS_ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('CONTRIBUTE') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('EMAIL') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDCATE') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('USERS_ID') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -26,10 +25,9 @@
             <?php foreach ($means as $mean): ?>
             <tr>
                 <td><?= $this->Number->format($mean->ID) ?></td>
-                <td><?= $this->Number->format($mean->IDWORD) ?></td>
+                <td><?= $this->Number->format($mean->WORDS_ID) ?></td>
                 <td><?= $this->Number->format($mean->CONTRIBUTE) ?></td>
-                <td><?= h($mean->EMAIL) ?></td>
-                <td><?= $this->Number->format($mean->IDCATE) ?></td>
+                <td><?= $this->Number->format($mean->USERS_ID) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $mean->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $mean->ID]) ?>

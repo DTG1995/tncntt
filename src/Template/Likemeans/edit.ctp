@@ -20,6 +20,8 @@
     <fieldset>
         <legend><?= __('Edit Likemean') ?></legend>
         <?php
+            echo $this->Form->input('MEANS_ID');
+            echo $this->Form->input('USERS_ID');
             echo $this->Form->input('ISLIKE');
         ?>
     </fieldset>

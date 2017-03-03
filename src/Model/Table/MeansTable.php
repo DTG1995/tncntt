@@ -48,9 +48,9 @@ class MeansTable extends Table
             ->allowEmpty('ID', 'create');
 
         $validator
-            ->integer('IDWORD')
-            ->requirePresence('IDWORD', 'create')
-            ->notEmpty('IDWORD');
+            ->integer('WORDS_ID')
+            ->requirePresence('WORDS_ID', 'create')
+            ->notEmpty('WORDS_ID');
 
         $validator
             ->requirePresence('MEAN', 'create')
@@ -62,8 +62,9 @@ class MeansTable extends Table
             ->notEmpty('CONTRIBUTE');
 
         $validator
-            ->requirePresence('EMAIL', 'create')
-            ->notEmpty('EMAIL');
+            ->integer('USERS_ID')
+            ->requirePresence('USERS_ID', 'create')
+            ->notEmpty('USERS_ID');
 
         return $validator;
     }

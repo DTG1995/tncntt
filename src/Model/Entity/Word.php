@@ -8,7 +8,7 @@ use Cake\ORM\Entity;
  *
  * @property int $ID
  * @property string $WORD
- * @property int $IDCATE
+ * @property int $CATEGORYS_ID
  */
 class Word extends Entity
 {

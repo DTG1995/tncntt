@@ -66,8 +66,9 @@ class CommentmeansTable extends Table
             ->notEmpty('IDMEANS');
 
         $validator
-            ->requirePresence('EMAIL', 'create')
-            ->notEmpty('EMAIL');
+            ->integer('ACCOUNT')
+            ->requirePresence('ACCOUNT', 'create')
+            ->notEmpty('ACCOUNT');
 
         return $validator;
     }

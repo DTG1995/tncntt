@@ -24,8 +24,8 @@
             <td><?= $this->Number->format($word->ID) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('IDCATE') ?></th>
-            <td><?= $this->Number->format($word->IDCATE) ?></td>
+            <th scope="row"><?= __('CATEGORYS ID') ?></th>
+            <td><?= $this->Number->format($word->CATEGORYS_ID) ?></td>
         </tr>
     </table>
 </div>

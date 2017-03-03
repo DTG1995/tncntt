@@ -11,11 +11,13 @@
 </nav>
 <div class="categorys index large-9 medium-8 columns content">
     <h3><?= __('Categorys') ?></h3>
-    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('NAME') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ACTIVE') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('CONTRIBUTE') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -24,6 +26,8 @@
             <tr>
                 <td><?= $this->Number->format($category->ID) ?></td>
                 <td><?= h($category->NAME) ?></td>
+                <td><?= h($category->ACTIVE) ?></td>
+                <td><?= $this->Number->format($category->CONTRIBUTE) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $category->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->ID]) ?>

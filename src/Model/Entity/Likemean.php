@@ -6,8 +6,8 @@ use Cake\ORM\Entity;
 /**
  * Likemean Entity
  *
- * @property int $IDMEAN
- * @property string $EMAIL
+ * @property int $MEANS_ID
+ * @property int $USERS_ID
  * @property int $ISLIKE
  */
 class Likemean extends Entity
@@ -25,6 +25,6 @@ class Likemean extends Entity
     protected $_accessible = [
         '*' => true,
         'IDMEAN' => false,
-        'EMAIL' => false
+        'ACCOUNT' => false
     ];
 }

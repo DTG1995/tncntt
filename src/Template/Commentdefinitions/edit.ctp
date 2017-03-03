@@ -23,8 +23,8 @@
             echo $this->Form->input('CONTENT');
             echo $this->Form->input('CREATED');
             echo $this->Form->input('IDPARENT');
-            echo $this->Form->input('IDDEFINITION');
-            echo $this->Form->input('EMAIL');
+            echo $this->Form->input('DEFINITIONS_ID');
+            echo $this->Form->input('USERS_ID');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

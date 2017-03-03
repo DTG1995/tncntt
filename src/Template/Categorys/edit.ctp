@@ -21,6 +21,8 @@
         <legend><?= __('Edit Category') ?></legend>
         <?php
             echo $this->Form->input('NAME');
+            echo $this->Form->input('ACTIVE');
+            echo $this->Form->input('CONTRIBUTE');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

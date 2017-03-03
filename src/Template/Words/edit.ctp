@@ -21,7 +21,7 @@
         <legend><?= __('Edit Word') ?></legend>
         <?php
             echo $this->Form->input('WORD');
-            echo $this->Form->input('IDCATE');
+            echo $this->Form->input('CATEGORYS_ID');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

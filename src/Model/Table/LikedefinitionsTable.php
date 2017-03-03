@@ -32,7 +32,7 @@ class LikedefinitionsTable extends Table
 
         $this->table('likedefinitions');
         $this->displayField('IDDEFINITION');
-        $this->primaryKey(['IDDEFINITION', 'EMAIL']);
+        $this->primaryKey(['IDDEFINITION', 'ACCOUNT']);
     }
 
     /**
@@ -44,11 +44,12 @@ class LikedefinitionsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('IDDEFINITION')
-            ->allowEmpty('IDDEFINITION', 'create');
+            ->integer('DEFINITIONS_ID')
+            ->allowEmpty('DEFINITIONS_ID', 'create');
 
         $validator
-            ->allowEmpty('EMAIL', 'create');
+            ->integer('USERS_ID')
+            ->allowEmpty('USERS_ID', 'create');
 
         $validator
             ->integer('ISLIKE')

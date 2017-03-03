@@ -34,7 +34,6 @@ class MeansController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->get($id, [
             'contain' => []
         ]);
@@ -50,7 +49,6 @@ class MeansController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->newEntity();
         if ($this->request->is('post')) {
             $mean = $this->Means->patchEntity($mean, $this->request->data);
@@ -74,7 +72,6 @@ class MeansController extends AppController
      */
     public function edit($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->get($id, [
             'contain' => []
         ]);
@@ -100,7 +97,6 @@ class MeansController extends AppController
      */
     public function delete($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $this->request->allowMethod(['post', 'delete']);
         $mean = $this->Means->get($id);
         if ($this->Means->delete($mean)) {

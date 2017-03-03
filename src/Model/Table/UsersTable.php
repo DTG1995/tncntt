@@ -7,17 +7,17 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Accounts Model
+ * Users Model
  *
- * @method \App\Model\Entity\Account get($primaryKey, $options = [])
- * @method \App\Model\Entity\Account newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Account[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Account|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Account patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Account[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Account findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\User get($primaryKey, $options = [])
+ * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\User|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
  */
-class AccountsTable extends Table
+class UsersTable extends Table
 {
 
     /**
@@ -30,9 +30,9 @@ class AccountsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('accounts');
-        $this->displayField('EMAIL');
-        $this->primaryKey('EMAIL');
+        $this->table('users');
+        $this->displayField('ID');
+        $this->primaryKey('ID');
     }
 
     /**
@@ -44,15 +44,20 @@ class AccountsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->allowEmpty('EMAIL', 'create');
+            ->integer('ID')
+            ->allowEmpty('ID', 'create');
+
+        $validator
+            ->requirePresence('username', 'create')
+            ->notEmpty('username');
 
         $validator
             ->requirePresence('NAMEDISPLAY', 'create')
             ->notEmpty('NAMEDISPLAY');
 
         $validator
-            ->requirePresence('PASSWORD', 'create')
-            ->notEmpty('PASSWORD');
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
 
         $validator
             ->boolean('ISADMIN')
@@ -80,5 +85,19 @@ class AccountsTable extends Table
             ->notEmpty('ACTIVE');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['username']));
+
+        return $rules;
     }
 }

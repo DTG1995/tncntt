@@ -24,6 +24,7 @@ class CategorysController extends AppController
         $this->set(compact('categorys'));
         $this->set('_serialize', ['categorys']);
     }
+
     /**
      * View method
      *
@@ -33,7 +34,6 @@ class CategorysController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $category = $this->Categorys->get($id, [
             'contain' => []
         ]);
@@ -49,7 +49,6 @@ class CategorysController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $category = $this->Categorys->newEntity();
         if ($this->request->is('post')) {
             $category = $this->Categorys->patchEntity($category, $this->request->data);
@@ -73,7 +72,6 @@ class CategorysController extends AppController
      */
     public function edit($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $category = $this->Categorys->get($id, [
             'contain' => []
         ]);
@@ -99,7 +97,6 @@ class CategorysController extends AppController
      */
     public function delete($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $this->request->allowMethod(['post', 'delete']);
         $category = $this->Categorys->get($id);
         if ($this->Categorys->delete($category)) {

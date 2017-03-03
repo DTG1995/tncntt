@@ -52,9 +52,9 @@ class WordsTable extends Table
             ->notEmpty('WORD');
 
         $validator
-            ->integer('IDCATE')
-            ->requirePresence('IDCATE', 'create')
-            ->notEmpty('IDCATE');
+            ->integer('CATEGORYS_ID')
+            ->requirePresence('CATEGORYS_ID', 'create')
+            ->notEmpty('CATEGORYS_ID');
 
         return $validator;
     }

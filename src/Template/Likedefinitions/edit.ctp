@@ -20,6 +20,8 @@
     <fieldset>
         <legend><?= __('Edit Likedefinition') ?></legend>
         <?php
+            echo $this->Form->input('DEFINITIONS_ID');
+            echo $this->Form->input('USERS_ID');
             echo $this->Form->input('ISLIKE');
         ?>
     </fieldset>

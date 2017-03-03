@@ -11,11 +11,11 @@
 </nav>
 <div class="likedefinitions index large-9 medium-8 columns content">
     <h3><?= __('Likedefinitions') ?></h3>
-    <table class="table-striped" style="width:100%;" cellpadding="0" cellspacing="0">
+    <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('IDDEFINITION') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('EMAIL') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('DEFINITIONS_ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('USERS_ID') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('ISLIKE') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -23,8 +23,8 @@
         <tbody>
             <?php foreach ($likedefinitions as $likedefinition): ?>
             <tr>
-                <td><?= $this->Number->format($likedefinition->IDDEFINITION) ?></td>
-                <td><?= $this->Number->format($likedefinition->EMAIL) ?></td>
+                <td><?= $this->Number->format($likedefinition->DEFINITIONS_ID) ?></td>
+                <td><?= $this->Number->format($likedefinition->USERS_ID) ?></td>
                 <td><?= $this->Number->format($likedefinition->ISLIKE) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $likedefinition->IDDEFINITION]) ?>

@@ -20,6 +20,7 @@ class WordsController extends AppController
     {
         $this->viewBuilder()->setLayout('Admin\default');
         $words = $this->paginate($this->Words);
+
         $this->set(compact('words'));
         $this->set('_serialize', ['words']);
     }
@@ -33,7 +34,6 @@ class WordsController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->get($id, [
             'contain' => []
         ]);
@@ -49,8 +49,6 @@ class WordsController extends AppController
      */
     public function add()
     {
-
-        $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->newEntity();
         if ($this->request->is('post')) {
             $word = $this->Words->patchEntity($word, $this->request->data);
@@ -74,8 +72,6 @@ class WordsController extends AppController
      */
     public function edit($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
-
         $word = $this->Words->get($id, [
             'contain' => []
         ]);
@@ -101,7 +97,6 @@ class WordsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $this->request->allowMethod(['post', 'delete']);
         $word = $this->Words->get($id);
         if ($this->Words->delete($word)) {

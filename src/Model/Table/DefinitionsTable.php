@@ -48,17 +48,18 @@ class DefinitionsTable extends Table
             ->allowEmpty('ID', 'create');
 
         $validator
-            ->integer('IDWORD')
-            ->requirePresence('IDWORD', 'create')
-            ->notEmpty('IDWORD');
+            ->integer('WORDS_ID')
+            ->requirePresence('WORDS_ID', 'create')
+            ->notEmpty('WORDS_ID');
 
         $validator
             ->requirePresence('DEFINE', 'create')
             ->notEmpty('DEFINE');
 
         $validator
-            ->requirePresence('EMAIL', 'create')
-            ->notEmpty('EMAIL');
+            ->integer('USERS_ID')
+            ->requirePresence('USERS_ID', 'create')
+            ->notEmpty('USERS_ID');
 
         $validator
             ->integer('CONTRIBUTE')

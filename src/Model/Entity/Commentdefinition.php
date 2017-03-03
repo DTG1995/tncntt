@@ -10,8 +10,8 @@ use Cake\ORM\Entity;
  * @property string $CONTENT
  * @property \Cake\I18n\Time $CREATED
  * @property int $IDPARENT
- * @property int $IDDEFINITION
- * @property string $EMAIL
+ * @property int $DEFINITIONS_ID
+ * @property int $USERS_ID
  */
 class Commentdefinition extends Entity
 {

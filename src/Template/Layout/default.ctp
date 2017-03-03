@@ -13,7 +13,6 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,6 +40,7 @@
 
 </head>
 <body>
+
     <div class="header row" >  
     <!-- NAV-MENU -->
       <div class="img-responsive col-md-3 col-sm-2 col-xs-12">

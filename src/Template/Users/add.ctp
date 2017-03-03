@@ -6,20 +6,22 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Accounts'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
-<div class="accounts form large-9 medium-8 columns content">
-    <?= $this->Form->create($account) ?>
+<div class="users form large-9 medium-8 columns content">
+    <?= $this->Form->create($user) ?>
     <fieldset>
-        <legend><?= __('Add Account') ?></legend>
+        <legend><?= __('Add User') ?></legend>
         <?php
+            echo $this->Form->input('username');
             echo $this->Form->input('NAMEDISPLAY');
-            echo $this->Form->input('PASSWORD');
+            echo $this->Form->input('password');
             echo $this->Form->input('ISADMIN');
             echo $this->Form->input('CREATED');
             echo $this->Form->input('LAST_LOGIN');
             echo $this->Form->input('STATUS');
+            echo $this->Form->input('ACTIVE');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

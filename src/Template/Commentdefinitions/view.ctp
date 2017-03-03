@@ -16,10 +16,6 @@
     <h3><?= h($commentdefinition->ID) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('EMAIL') ?></th>
-            <td><?= h($commentdefinition->EMAIL) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('ID') ?></th>
             <td><?= $this->Number->format($commentdefinition->ID) ?></td>
         </tr>
@@ -28,8 +24,12 @@
             <td><?= $this->Number->format($commentdefinition->IDPARENT) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('IDDEFINITION') ?></th>
-            <td><?= $this->Number->format($commentdefinition->IDDEFINITION) ?></td>
+            <th scope="row"><?= __('DEFINITIONS ID') ?></th>
+            <td><?= $this->Number->format($commentdefinition->DEFINITIONS_ID) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('USERS ID') ?></th>
+            <td><?= $this->Number->format($commentdefinition->USERS_ID) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('CREATED') ?></th>

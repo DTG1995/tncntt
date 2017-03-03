@@ -22,19 +22,19 @@ class CommentmeansFixture extends TestFixture
         'CREATED' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'IDPARENT' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'IDMEANS' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'EMAIL' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'ACCOUNT' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'IDMEANS' => ['type' => 'index', 'columns' => ['IDMEANS'], 'length' => []],
-            'EMAIL' => ['type' => 'index', 'columns' => ['EMAIL'], 'length' => []],
+            'ACCOUNT' => ['type' => 'index', 'columns' => ['ACCOUNT'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['ID'], 'length' => []],
             'commentmeans_ibfk_1' => ['type' => 'foreign', 'columns' => ['IDMEANS'], 'references' => ['means', 'ID'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'commentmeans_ibfk_2' => ['type' => 'foreign', 'columns' => ['EMAIL'], 'references' => ['accounts', 'EMAIL'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'commentmeans_ibfk_2' => ['type' => 'foreign', 'columns' => ['ACCOUNT'], 'references' => ['users', 'ID'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
-            'collation' => 'utf8mb4_unicode_ci'
+            'collation' => 'utf8_unicode_ci'
         ],
     ];
     // @codingStandardsIgnoreEnd
@@ -48,10 +48,10 @@ class CommentmeansFixture extends TestFixture
         [
             'ID' => 1,
             'CONTENT' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-            'CREATED' => '2017-02-23 07:45:39',
+            'CREATED' => '2017-02-27 04:08:22',
             'IDPARENT' => 1,
             'IDMEANS' => 1,
-            'EMAIL' => 'Lorem ipsum dolor sit amet'
+            'ACCOUNT' => 1
         ],
     ];
 }

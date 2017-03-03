@@ -32,7 +32,7 @@ class LikemeansTable extends Table
 
         $this->table('likemeans');
         $this->displayField('IDMEAN');
-        $this->primaryKey(['IDMEAN', 'EMAIL']);
+        $this->primaryKey(['IDMEAN', 'ACCOUNT']);
     }
 
     /**
@@ -44,11 +44,12 @@ class LikemeansTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('IDMEAN')
-            ->allowEmpty('IDMEAN', 'create');
+            ->integer('MEANS_ID')
+            ->allowEmpty('MEANS_ID', 'create');
 
         $validator
-            ->allowEmpty('EMAIL', 'create');
+            ->integer('USERS_ID')
+            ->allowEmpty('USERS_ID', 'create');
 
         $validator
             ->integer('ISLIKE')

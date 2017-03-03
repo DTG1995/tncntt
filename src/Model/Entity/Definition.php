@@ -7,9 +7,9 @@ use Cake\ORM\Entity;
  * Definition Entity
  *
  * @property int $ID
- * @property int $IDWORD
+ * @property int $WORDS_ID
  * @property string $DEFINE
- * @property string $EMAIL
+ * @property int $USERS_ID
  * @property int $CONTRIBUTE
  */
 class Definition extends Entity

@@ -18,7 +18,7 @@
                 <th scope="col"><?= $this->Paginator->sort('CREATED') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('IDPARENT') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('IDMEANS') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('EMAIL') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ACCOUNT') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -29,7 +29,7 @@
                 <td><?= h($commentmean->CREATED) ?></td>
                 <td><?= $this->Number->format($commentmean->IDPARENT) ?></td>
                 <td><?= $this->Number->format($commentmean->IDMEANS) ?></td>
-                <td><?= h($commentmean->EMAIL) ?></td>
+                <td><?= $this->Number->format($commentmean->ACCOUNT) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $commentmean->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $commentmean->ID]) ?>

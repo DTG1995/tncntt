@@ -18,7 +18,6 @@ class LikemeansController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $likemeans = $this->paginate($this->Likemeans);
 
         $this->set(compact('likemeans'));
@@ -34,7 +33,6 @@ class LikemeansController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $likemean = $this->Likemeans->get($id, [
             'contain' => []
         ]);
@@ -50,7 +48,6 @@ class LikemeansController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $likemean = $this->Likemeans->newEntity();
         if ($this->request->is('post')) {
             $likemean = $this->Likemeans->patchEntity($likemean, $this->request->data);
@@ -74,7 +71,6 @@ class LikemeansController extends AppController
      */
     public function edit($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $likemean = $this->Likemeans->get($id, [
             'contain' => []
         ]);
@@ -100,7 +96,6 @@ class LikemeansController extends AppController
      */
     public function delete($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $this->request->allowMethod(['post', 'delete']);
         $likemean = $this->Likemeans->get($id);
         if ($this->Likemeans->delete($likemean)) {
