@@ -26,11 +26,13 @@ class CommentmeansFixture extends TestFixture
         '_indexes' => [
             'idmeans' => ['type' => 'index', 'columns' => ['mean_id'], 'length' => []],
             'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
+            'commentmean_id' => ['type' => 'index', 'columns' => ['commentmean_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'commentmeans_ibfk_1' => ['type' => 'foreign', 'columns' => ['mean_id'], 'references' => ['means', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
             'commentmeans_ibfk_2' => ['type' => 'foreign', 'columns' => ['user_id'], 'references' => ['users', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'commentmeans_ibfk_3' => ['type' => 'foreign', 'columns' => ['commentmean_id'], 'references' => ['commentmeans', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -48,7 +50,7 @@ class CommentmeansFixture extends TestFixture
         [
             'id' => 1,
             'content' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-            'created' => '2017-03-04 02:44:18',
+            'created' => '2017-03-04 04:38:10',
             'commentmean_id' => 1,
             'mean_id' => 1,
             'user_id' => 1

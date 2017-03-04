@@ -37,13 +37,14 @@ class CommentmeansTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('commentmeans');
-        $this->setDisplayField('id');
-        $this->setPrimaryKey('id');
+        $this->table('commentmeans');
+        $this->displayField('id');
+        $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Commentmeans', [
+        $this->belongsTo('Parent', [
+            'className'=>'Commentmeans',
             'foreignKey' => 'commentmean_id'
         ]);
         $this->belongsTo('Means', [
@@ -54,8 +55,9 @@ class CommentmeansTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->hasMany('Commentmeans', [
-            'foreignKey' => 'commentmean_id'
+        $this->hasMany('Children', [
+            'className'=>'Commentmeans',
+            'foreignKey' => 'commentmean_id',
         ]);
     }
 

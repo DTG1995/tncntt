@@ -53,7 +53,7 @@ class CommentmeansController extends AppController
     {
         $commentmean = $this->Commentmeans->newEntity();
         if ($this->request->is('post')) {
-            $commentmean = $this->Commentmeans->patchEntity($commentmean, $this->request->getData());
+            $commentmean = $this->Commentmeans->patchEntity($commentmean, $this->request->data);
             if ($this->Commentmeans->save($commentmean)) {
                 $this->Flash->success(__('The commentmean has been saved.'));
 
@@ -80,7 +80,7 @@ class CommentmeansController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $commentmean = $this->Commentmeans->patchEntity($commentmean, $this->request->getData());
+            $commentmean = $this->Commentmeans->patchEntity($commentmean, $this->request->data);
             if ($this->Commentmeans->save($commentmean)) {
                 $this->Flash->success(__('The commentmean has been saved.'));
 

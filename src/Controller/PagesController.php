@@ -95,13 +95,36 @@ class PagesController extends AppController
 		            'conditions'=>['Words.word'=>$str],
 					'contain'=>[
 						'Means'=>[
-							'sort'=>['contribute'=>'ASC'],
-							'Likemeans',
+							'fields'=>['id','mean','word_id','contribute','user_id'=>'users.id',
+							'user_display'=>'users.namedisplay','cate_id'=>'categorys.id', 'cate_name'=>'categorys.name'
+							],
+							'sort'=>['means.contribute'=>'DESC'],
+							'Likemeans'=>[
+								'fields'=>['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','mean_id']
+							],
 							'Commentmeans'=>[
-								'Users'],'Users'
-						]
-						,'Definitions'=>[
-							'fields'=>['id','define','word_id']
+								'conditions'=>['commentmeans.commentmean_id IS NULL'],
+								'sort'=>['commentmeans.created'=>'DESC'],
+								'Children',
+								'Users',
+								],'Users',
+							'Categorys'
+						],
+						'Definitions'=>[
+							'fields'=>['id','define','word_id','contribute','user_id'=>'users.id',
+							'user_display'=>'users.namedisplay','cate_id'=>'categorys.id', 'cate_name'=>'categorys.name'
+							],
+							'sort'=>['definitions.contribute'=>'DESC'],
+							'Likedefinitions'=>[
+								'fields'=>['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','definition_id']
+							],
+							'Commentdefinitions'=>[
+								'conditions'=>['commentdefinitions.commentdefinition_id IS NULL'],
+								'sort'=>['commentdefinitions.created'=>'DESC'],
+								'Childrendefinecomment',
+								'Users',
+								],'Users',
+							'Categorys'
 						]
 					]
 		        ]);

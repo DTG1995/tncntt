@@ -7,14 +7,15 @@ $("#txtresult").val(data);
 </script>
 <?php
     pr($word);
-    
+    // echo "<hr>";
+    // pr($word->means[0]->user);
 ?>
 <div class="row">
     <!--Dinh nghia-->
     <div class="col-md-6 definitions">
     <?php
         foreach($word['definitions'] as $def)
-            echo "<p>".$def->DEFINE."</p></br>";
+            echo "<p>".$def->define."</p></br>";
     ?>
     </div>
     <!--Nghia-->
@@ -22,7 +23,7 @@ $("#txtresult").val(data);
     <?php
         foreach($word['means'] as $mean)
         {
-            echo "<p>".$mean->MEAN."</p></br>";
+            echo "<p>".$mean->mean."</p></br>";
         }
     ?>
     </div>

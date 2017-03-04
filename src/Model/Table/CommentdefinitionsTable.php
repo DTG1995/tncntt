@@ -43,9 +43,9 @@ class CommentdefinitionsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Commentdefinitions', [
-            'foreignKey' => 'commentdefinition_id',
-            'joinType' => 'INNER'
+        $this->belongsTo('Parentdefinecomment', [
+            'className'=>'Commentdefinitions',
+            'foreignKey' => 'commentdefinition_id'
         ]);
         $this->belongsTo('Definitions', [
             'foreignKey' => 'definition_id',
@@ -55,7 +55,8 @@ class CommentdefinitionsTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->hasMany('Commentdefinitions', [
+        $this->hasMany('Childrendefinecomment', [
+            'className'=>'Commentdefinitions',
             'foreignKey' => 'commentdefinition_id'
         ]);
     }

@@ -20,10 +20,10 @@
     <fieldset>
         <legend><?= __('Add Commentmean') ?></legend>
         <?php
-            echo $this->Form->control('content');
-            echo $this->Form->control('commentmean_id');
-            echo $this->Form->control('mean_id', ['options' => $means]);
-            echo $this->Form->control('user_id', ['options' => $users]);
+            echo $this->Form->input('content');
+            echo $this->Form->input('commentmean_id');
+            echo $this->Form->input('mean_id', ['options' => $means]);
+            echo $this->Form->input('user_id', ['options' => $users]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

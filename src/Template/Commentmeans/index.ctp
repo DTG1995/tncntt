@@ -33,7 +33,7 @@
                 <td><?= h($commentmean->created) ?></td>
                 <td><?= $this->Number->format($commentmean->commentmean_id) ?></td>
                 <td><?= $commentmean->has('mean') ? $this->Html->link($commentmean->mean->id, ['controller' => 'Means', 'action' => 'view', $commentmean->mean->id]) : '' ?></td>
-                <td><?= $commentmean->has('user') ? $this->Html->link($commentmean->user->id, ['controller' => 'Users', 'action' => 'view', $commentmean->user->id]) : '' ?></td>
+                <td><?= $commentmean->has('user') ? $this->Html->link($commentmean->user->namedisplay, ['controller' => 'Users', 'action' => 'view', $commentmean->user->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $commentmean->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $commentmean->id]) ?>
