@@ -18,6 +18,7 @@ class DefinitionsController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $this->paginate = [
             'contain' => ['Words', 'Users', 'Categorys']
         ];
@@ -36,6 +37,7 @@ class DefinitionsController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->get($id, [
             'contain' => ['Words', 'Users', 'Categorys', 'Commentdefinitions', 'Likedefinitions']
         ]);
@@ -51,6 +53,7 @@ class DefinitionsController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->newEntity();
         if ($this->request->is('post')) {
             $definition = $this->Definitions->patchEntity($definition, $this->request->getData());
@@ -77,6 +80,7 @@ class DefinitionsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->get($id, [
             'contain' => []
         ]);

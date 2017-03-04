@@ -18,10 +18,12 @@ class WordsController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $words = $this->paginate($this->Words);
-
         $this->set(compact('words'));
         $this->set('_serialize', ['words']);
+                
+
     }
 
     /**
@@ -33,6 +35,7 @@ class WordsController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->get($id, [
             'contain' => ['Definitions', 'Means']
         ]);
@@ -48,6 +51,7 @@ class WordsController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->newEntity();
         if ($this->request->is('post')) {
             $word = $this->Words->patchEntity($word, $this->request->getData());
@@ -71,6 +75,7 @@ class WordsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->get($id, [
             'contain' => []
         ]);

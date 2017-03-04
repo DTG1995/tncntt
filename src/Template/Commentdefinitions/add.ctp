@@ -20,10 +20,10 @@
     <fieldset>
         <legend><?= __('Add Commentdefinition') ?></legend>
         <?php
-            echo $this->Form->control('content');
-            echo $this->Form->control('commentdefinition_id');
-            echo $this->Form->control('definition_id', ['options' => $definitions]);
-            echo $this->Form->control('user_id', ['options' => $users]);
+            echo $this->Form->input('content');
+            echo $this->Form->input('commentdefinition_id');
+            echo $this->Form->input('definition_id', ['options' => $definitions]);
+            echo $this->Form->input('user_id', ['options' => $users]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

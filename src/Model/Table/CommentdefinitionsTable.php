@@ -41,6 +41,7 @@ class CommentdefinitionsTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Parentdefinecomment', [

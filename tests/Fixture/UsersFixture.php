@@ -48,8 +48,8 @@ class UsersFixture extends TestFixture
             'namedisplay' => 'Lorem ipsum dolor sit amet',
             'password' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
             'isadmin' => 1,
-            'created' => '2017-03-04 02:45:00',
-            'last_login' => '2017-03-04 02:45:00',
+            'created' => '2017-03-04 03:26:24',
+            'last_login' => '2017-03-04 03:26:24',
             'status' => 1,
             'active' => 1
         ],

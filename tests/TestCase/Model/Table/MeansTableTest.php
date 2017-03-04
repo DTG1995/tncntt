@@ -26,19 +26,13 @@ class MeansTableTest extends TestCase
     public $fixtures = [
         'app.means',
         'app.words',
-        'app.definitions',
         'app.users',
-        'app.commentdefinitions',
-        'app.commentmeans',
-        'app.likedefinitions',
-        'app.likemeans',
-        'app.means',
-        'app.commentmeans',
-        'app.likemeans',
-        'app.definitions',
         'app.categorys',
+        'app.definitions',
         'app.commentdefinitions',
-        'app.likedefinitions'
+        'app.likedefinitions',
+        'app.commentmeans',
+        'app.likemeans'
     ];
 
     /**
@@ -81,6 +75,16 @@ class MeansTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

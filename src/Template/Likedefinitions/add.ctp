@@ -18,7 +18,7 @@
     <fieldset>
         <legend><?= __('Add Likedefinition') ?></legend>
         <?php
-            echo $this->Form->control('islike');
+            echo $this->Form->input('islike');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -18,10 +18,13 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $users = $this->paginate($this->Users);
 
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
+        
+
     }
 
     /**
@@ -33,6 +36,7 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $user = $this->Users->get($id, [
             'contain' => ['Commentdefinitions', 'Commentmeans', 'Definitions', 'Likedefinitions', 'Likemeans', 'Means']
         ]);
@@ -48,6 +52,7 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -71,6 +76,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -108,14 +114,29 @@ class UsersController extends AppController
     }
     public function login()
     {
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-            if ($user) {
+        if($this->request->is('post'))
+        {
+            $user=$this->Auth->identify();
+            if($user)
+            {                     
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                if($this->Auth->user('isadmin'))
+                {
+                    return $this->redirect(['controller'=>'admin','action'=>'index']);
+                }
+                else
+                {
+                   return $this->redirect(['controller'=>'pages','action'=>'display']);
+
+                }
+               
             }
-            $this->Flash->error('Your username or password is incorrect.');
+            return $this->redirect(['Controller'=>'users','action'=>'login']);
         }
     }
-    
+    public function logout()
+        {
+           $this->Auth->logout();
+           return $this->redirect(['controller'=>'pages','action'=>'display']);
+        }
 }

@@ -1,12 +1,20 @@
 <?php
-
- if(!$this->request->session()->check('Account')) {
-     $url =$this->Url->build(['controller'=>'accounts','action'=>'login']);
-     
-    header ("Location: ".$url);
+$loguser = $this->request->session()->read('Auth.User');
+$url =$this->Url->build(['controller'=>'pages','action'=>'display']);
+if($loguser['isadmin']==0 || $loguser == null)
+{
+    header("Location: ".$url);
     exit();
-    // $session->setFlash('You have successfully logged out','flash_good');
 }
+// namespace App\View\Helper;
+// App::uses('AuthComponent', 'Controller/Component');
+
+// if($this->AuthUser->i())
+// {
+//      $url =$this->Url->build(['controller'=>'pages','action'=>'display']);
+//     header ("Location: ".$url);
+//     exit();
+// }
 /**
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -219,9 +227,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <div class="user-name">
                                                     <p>Administrator</p>
                                                     <span>
-                                                        <?php $Account=$this->request->session()->read('Account');
-                                                        echo $Account['NAMEDISPLAY'];
-                                                        ?>
+                                                            <?=$loguser['namedisplay']?>
 
                                                     </span>
                                                 </div>
@@ -234,7 +240,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
                                             <li> <a href="#"><i class="fa fa-user"></i> Thông Tin</a> </li> 
                                             <li>
-                                            <?=$this->Html->link("<i class='fa fa-sign-out'></i><span>Đăng xuất</span><div class='clearfix'></div>",['controller'=>'accounts','action'=>'logout'],[ 'escape' => false]) ?>
+                                            <?=$this->Html->link("<i class='fa fa-sign-out'></i><span>Đăng xuất</span><div class='clearfix'></div>",['controller'=>'users','action'=>'logout'],[ 'escape' => false]) ?>
                                              </li>
                                         </ul>
                                     </li>
@@ -278,7 +284,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </li>
 
                                         <li>
+                                            <?=$this->Html->link("<i class='fa fa-reddit'></i><span>Definitions</span><div class='clearfix'></div>",['controller'=>'Definitions','action'=>'index'],[ 'escape' => false]) ?>
+                                            
+                                        </li>
+
+                                        <li>
                                             <?=$this->Html->link("<i class='fa fa-reddit'></i><span>Means</span><div class='clearfix'></div>",['controller'=>'Means','action'=>'index'],[ 'escape' => false]) ?>
+                                            
+                                        </li>
+                                        
+                                        <li>
+                                            <?=$this->Html->link("<i class='fa fa-reddit'></i><span>Users</span><div class='clearfix'></div>",['controller'=>'Users','action'=>'index'],[ 'escape' => false]) ?>
                                             
                                         </li>
 

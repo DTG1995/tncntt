@@ -17,14 +17,14 @@ class WordsControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.words',
-        'app.means',
+        'app.definitions',
         'app.users',
         'app.commentdefinitions',
-        'app.definitions',
-        'app.categorys',
-        'app.likedefinitions',
         'app.commentmeans',
-        'app.likemeans'
+        'app.means',
+        'app.categorys',
+        'app.likemeans',
+        'app.likedefinitions'
     ];
 
     /**

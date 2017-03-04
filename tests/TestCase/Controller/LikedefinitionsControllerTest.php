@@ -17,22 +17,12 @@ class LikedefinitionsControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.likedefinitions',
-        'app.d_e_f_i_n_i_t_i_o_n_s',
-        'app.words',
-        'app.means',
-        'app.users',
-        'app.commentdefinitions',
         'app.definitions',
+        'app.words',
+        'app.users',
         'app.categorys',
-        'app.commentdefinitions',
-        'app.commentmeans',
-        'app.likedefinitions',
-        'app.likemeans',
-        'app.m_e_a_n_s',
         'app.means',
-        'app.commentmeans',
-        'app.likemeans',
-        'app.definitions'
+        'app.commentdefinitions'
     ];
 
     /**

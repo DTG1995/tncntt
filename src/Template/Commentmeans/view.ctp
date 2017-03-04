@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('User') ?></th>
-            <td><?= $commentmean->has('user') ? $this->Html->link($commentmean->user->namedisplay, ['controller' => 'Users', 'action' => 'view', $commentmean->user->id]) : '' ?></td>
+            <td><?= $commentmean->has('user') ? $this->Html->link($commentmean->user->id, ['controller' => 'Users', 'action' => 'view', $commentmean->user->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>

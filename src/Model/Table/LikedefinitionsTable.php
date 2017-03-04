@@ -37,6 +37,7 @@ class LikedefinitionsTable extends Table
         $this->setDisplayField('definition_id');
         $this->setPrimaryKey(['definition_id', 'user_id']);
 
+
         $this->belongsTo('Definitions', [
             'foreignKey' => 'definition_id',
             'joinType' => 'INNER'

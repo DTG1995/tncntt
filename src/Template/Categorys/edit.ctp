@@ -12,11 +12,7 @@
                 ['confirm' => __('Are you sure you want to delete # {0}?', $category->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Categorys'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Means'), ['controller' => 'Means', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Mean'), ['controller' => 'Means', 'action' => 'add']) ?></li>
+
     </ul>
 </nav>
 <div class="categorys form large-9 medium-8 columns content">
@@ -24,9 +20,9 @@
     <fieldset>
         <legend><?= __('Edit Category') ?></legend>
         <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('active');
-            echo $this->Form->control('contribute');
+            echo $this->Form->input('name');
+            echo $this->Form->input('active');
+            echo $this->Form->input('contribute');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
