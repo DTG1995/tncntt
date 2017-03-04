@@ -19,7 +19,7 @@ class CommentmeansController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Commentmeans', 'Means', 'Users']
+            'contain' => ['Means', 'Users']
         ];
         $commentmeans = $this->paginate($this->Commentmeans);
 
@@ -37,7 +37,7 @@ class CommentmeansController extends AppController
     public function view($id = null)
     {
         $commentmean = $this->Commentmeans->get($id, [
-            'contain' => ['Commentmeans', 'Means', 'Users']
+            'contain' => ['Means', 'Users', 'Commentmeans']
         ]);
 
         $this->set('commentmean', $commentmean);
@@ -61,10 +61,9 @@ class CommentmeansController extends AppController
             }
             $this->Flash->error(__('The commentmean could not be saved. Please, try again.'));
         }
-        $commentmeans = $this->Commentmeans->Commentmeans->find('list', ['limit' => 200]);
         $means = $this->Commentmeans->Means->find('list', ['limit' => 200]);
         $users = $this->Commentmeans->Users->find('list', ['limit' => 200]);
-        $this->set(compact('commentmean', 'commentmeans', 'means', 'users'));
+        $this->set(compact('commentmean', 'means', 'users'));
         $this->set('_serialize', ['commentmean']);
     }
 
@@ -89,10 +88,9 @@ class CommentmeansController extends AppController
             }
             $this->Flash->error(__('The commentmean could not be saved. Please, try again.'));
         }
-        $commentmeans = $this->Commentmeans->Commentmeans->find('list', ['limit' => 200]);
         $means = $this->Commentmeans->Means->find('list', ['limit' => 200]);
         $users = $this->Commentmeans->Users->find('list', ['limit' => 200]);
-        $this->set(compact('commentmean', 'commentmeans', 'means', 'users'));
+        $this->set(compact('commentmean', 'means', 'users'));
         $this->set('_serialize', ['commentmean']);
     }
 

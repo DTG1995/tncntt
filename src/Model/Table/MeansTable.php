@@ -37,8 +37,8 @@ class MeansTable extends Table
         parent::initialize($config);
 
         $this->table('means');
-        $this->displayField('MEAN');
-        $this->primaryKey('ID');
+        $this->displayField('id');
+        $this->primaryKey('id');
 
         $this->belongsTo('Words', [
             'foreignKey' => 'word_id',

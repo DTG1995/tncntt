@@ -8,13 +8,13 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $likedefinition->IDDEFINITION],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $likedefinition->IDDEFINITION)]
+                ['action' => 'delete', $likedefinition->definition_id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $likedefinition->definition_id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Likedefinitions'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List D E F I N I T I O N S'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New D E F I N I T I O N'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
@@ -24,8 +24,6 @@
     <fieldset>
         <legend><?= __('Edit Likedefinition') ?></legend>
         <?php
-            echo $this->Form->input('definition_id');
-            echo $this->Form->input('user_id');
             echo $this->Form->input('islike');
         ?>
     </fieldset>

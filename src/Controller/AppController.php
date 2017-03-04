@@ -43,6 +43,7 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth');
 
         /*
          * Enable the following components for recommended CakePHP security settings.
@@ -65,5 +66,9 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+    }
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['display']);
     }
 }

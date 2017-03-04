@@ -13,8 +13,9 @@ use Cake\ORM\Entity;
  * @property int $user_id
  * @property int $category_id
  *
- * @property \App\Model\Entity\Word $Words
- * @property \App\Model\Entity\User $User
+ * @property \App\Model\Entity\Word $word
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Category $category
  * @property \App\Model\Entity\Commentmean[] $commentmeans
  * @property \App\Model\Entity\Likemean[] $likemeans
  */
@@ -32,6 +33,6 @@ class Mean extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'ID' => false
+        'id' => false
     ];
 }

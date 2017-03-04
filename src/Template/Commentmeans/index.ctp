@@ -32,12 +32,12 @@
                 <td><?= $this->Number->format($commentmean->id) ?></td>
                 <td><?= h($commentmean->created) ?></td>
                 <td><?= $this->Number->format($commentmean->commentmean_id) ?></td>
-                <td><?= $this->Number->format($commentmean->mean_id) ?></td>
-                <td><?= $this->Number->format($commentmean->user_id) ?></td>
+                <td><?= $commentmean->has('mean') ? $this->Html->link($commentmean->mean->id, ['controller' => 'Means', 'action' => 'view', $commentmean->mean->id]) : '' ?></td>
+                <td><?= $commentmean->has('user') ? $this->Html->link($commentmean->user->id, ['controller' => 'Users', 'action' => 'view', $commentmean->user->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $commentmean->ID]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $commentmean->ID]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $commentmean->ID], ['confirm' => __('Are you sure you want to delete # {0}?', $commentmean->ID)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $commentmean->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $commentmean->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $commentmean->id], ['confirm' => __('Are you sure you want to delete # {0}?', $commentmean->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

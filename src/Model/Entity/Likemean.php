@@ -10,8 +10,8 @@ use Cake\ORM\Entity;
  * @property int $user_id
  * @property int $islike
  *
- * @property \App\Model\Entity\Definition $MEANS
- * @property \App\Model\Entity\User $User
+ * @property \App\Model\Entity\Mean $mean
+ * @property \App\Model\Entity\User $user
  */
 class Likemean extends Entity
 {
@@ -27,7 +27,7 @@ class Likemean extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'IDMEAN' => false,
-        'EMAIL' => false
+        'mean_id' => false,
+        'user_id' => false
     ];
 }

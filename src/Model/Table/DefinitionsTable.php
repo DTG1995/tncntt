@@ -37,8 +37,8 @@ class DefinitionsTable extends Table
         parent::initialize($config);
 
         $this->table('definitions');
-        $this->displayField('define');
-        $this->primaryKey('ID');
+        $this->displayField('id');
+        $this->primaryKey('id');
 
         $this->belongsTo('Words', [
             'foreignKey' => 'word_id',

@@ -13,9 +13,9 @@ use Cake\ORM\Entity;
  * @property int $definition_id
  * @property int $user_id
  *
- * @property \App\Model\Entity\Commentdefinition $commentdefinition
+ * @property \App\Model\Entity\Commentdefinition[] $commentdefinitions
  * @property \App\Model\Entity\Definition $definition
- * @property \App\Model\Entity\User $User
+ * @property \App\Model\Entity\User $user
  */
 class Commentdefinition extends Entity
 {
@@ -31,6 +31,6 @@ class Commentdefinition extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'ID' => false
+        'id' => false
     ];
 }

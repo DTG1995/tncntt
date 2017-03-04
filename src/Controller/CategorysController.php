@@ -18,6 +18,7 @@ class CategorysController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $categorys = $this->paginate($this->Categorys);
 
         $this->set(compact('categorys'));
@@ -33,8 +34,9 @@ class CategorysController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $category = $this->Categorys->get($id, [
-            'contain' => []
+            'contain' => ['Definitions', 'Means']
         ]);
 
         $this->set('category', $category);
@@ -48,6 +50,7 @@ class CategorysController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $category = $this->Categorys->newEntity();
         if ($this->request->is('post')) {
             $category = $this->Categorys->patchEntity($category, $this->request->data);
@@ -71,6 +74,7 @@ class CategorysController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $category = $this->Categorys->get($id, [
             'contain' => []
         ]);

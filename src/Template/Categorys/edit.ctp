@@ -8,11 +8,10 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $category->ID],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $category->ID)]
+                ['action' => 'delete', $category->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $category->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Categorys'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="categorys form large-9 medium-8 columns content">
@@ -20,7 +19,6 @@
     <fieldset>
         <legend><?= __('Edit Category') ?></legend>
         <?php
-            echo $this->Form->input('id');
             echo $this->Form->input('name');
             echo $this->Form->input('active');
             echo $this->Form->input('contribute');

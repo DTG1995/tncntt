@@ -18,8 +18,9 @@ class MeansController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $this->paginate = [
-            'contain' => ['Words', 'Users']
+            'contain' => ['Words', 'Users', 'Categorys']
         ];
         $means = $this->paginate($this->Means);
 
@@ -36,8 +37,9 @@ class MeansController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->get($id, [
-            'contain' => ['Words', 'Users', 'Commentmeans', 'Likemeans']
+            'contain' => ['Words', 'Users', 'Categorys', 'Commentmeans', 'Likemeans']
         ]);
 
         $this->set('mean', $mean);
@@ -51,6 +53,7 @@ class MeansController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->newEntity();
         if ($this->request->is('post')) {
             $mean = $this->Means->patchEntity($mean, $this->request->data);
@@ -63,7 +66,8 @@ class MeansController extends AppController
         }
         $words = $this->Means->Words->find('list', ['limit' => 200]);
         $users = $this->Means->Users->find('list', ['limit' => 200]);
-        $this->set(compact('mean', 'words', 'users'));
+        $categorys = $this->Means->Categorys->find('list', ['limit' => 200]);
+        $this->set(compact('mean', 'words', 'users', 'categorys'));
         $this->set('_serialize', ['mean']);
     }
 
@@ -76,6 +80,7 @@ class MeansController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->get($id, [
             'contain' => []
         ]);
@@ -90,7 +95,8 @@ class MeansController extends AppController
         }
         $words = $this->Means->Words->find('list', ['limit' => 200]);
         $users = $this->Means->Users->find('list', ['limit' => 200]);
-        $this->set(compact('mean', 'words', 'users'));
+        $categorys = $this->Means->Categorys->find('list', ['limit' => 200]);
+        $this->set(compact('mean', 'words', 'users', 'categorys'));
         $this->set('_serialize', ['mean']);
     }
 

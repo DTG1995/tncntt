@@ -19,7 +19,7 @@ class LikedefinitionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['DEFINITIONS', 'Users']
+            'contain' => ['Definitions', 'Users']
         ];
         $likedefinitions = $this->paginate($this->Likedefinitions);
 
@@ -37,7 +37,7 @@ class LikedefinitionsController extends AppController
     public function view($id = null)
     {
         $likedefinition = $this->Likedefinitions->get($id, [
-            'contain' => ['DEFINITIONS', 'Users']
+            'contain' => ['Definitions', 'Users']
         ]);
 
         $this->set('likedefinition', $likedefinition);
@@ -61,9 +61,9 @@ class LikedefinitionsController extends AppController
             }
             $this->Flash->error(__('The likedefinition could not be saved. Please, try again.'));
         }
-        $dEFINITIONS = $this->Likedefinitions->DEFINITIONS->find('list', ['limit' => 200]);
+        $definitions = $this->Likedefinitions->Definitions->find('list', ['limit' => 200]);
         $users = $this->Likedefinitions->Users->find('list', ['limit' => 200]);
-        $this->set(compact('likedefinition', 'dEFINITIONS', 'users'));
+        $this->set(compact('likedefinition', 'definitions', 'users'));
         $this->set('_serialize', ['likedefinition']);
     }
 
@@ -88,9 +88,9 @@ class LikedefinitionsController extends AppController
             }
             $this->Flash->error(__('The likedefinition could not be saved. Please, try again.'));
         }
-        $dEFINITIONS = $this->Likedefinitions->DEFINITIONS->find('list', ['limit' => 200]);
+        $definitions = $this->Likedefinitions->Definitions->find('list', ['limit' => 200]);
         $users = $this->Likedefinitions->Users->find('list', ['limit' => 200]);
-        $this->set(compact('likedefinition', 'dEFINITIONS', 'users'));
+        $this->set(compact('likedefinition', 'definitions', 'users'));
         $this->set('_serialize', ['likedefinition']);
     }
 

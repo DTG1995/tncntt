@@ -26,20 +26,7 @@ class CommentmeansTableTest extends TestCase
     public $fixtures = [
         'app.commentmeans',
         'app.means',
-        'app.words',
-        'app.definitions',
-        'app.users',
-        'app.commentdefinitions',
-        'app.commentmeans',
-        'app.likedefinitions',
-        'app.d_e_f_i_n_i_t_i_o_n_s',
-        'app.commentdefinitions',
-        'app.likedefinitions',
-        'app.likemeans',
-        'app.m_e_a_n_s',
-        'app.means',
-        'app.likemeans',
-        'app.definitions'
+        'app.users'
     ];
 
     /**
@@ -82,6 +69,16 @@ class CommentmeansTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

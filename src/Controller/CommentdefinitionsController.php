@@ -19,7 +19,7 @@ class CommentdefinitionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Commentdefinitions', 'Definitions', 'Users']
+            'contain' => ['Definitions', 'Users']
         ];
         $commentdefinitions = $this->paginate($this->Commentdefinitions);
 
@@ -37,7 +37,7 @@ class CommentdefinitionsController extends AppController
     public function view($id = null)
     {
         $commentdefinition = $this->Commentdefinitions->get($id, [
-            'contain' => ['Commentdefinitions', 'Definitions', 'User']
+            'contain' => ['Definitions', 'Users', 'Commentdefinitions']
         ]);
 
         $this->set('commentdefinition', $commentdefinition);
@@ -61,10 +61,9 @@ class CommentdefinitionsController extends AppController
             }
             $this->Flash->error(__('The commentdefinition could not be saved. Please, try again.'));
         }
-        $commentdefinitions = $this->Commentdefinitions->Commentdefinitions->find('list', ['limit' => 200]);
         $definitions = $this->Commentdefinitions->Definitions->find('list', ['limit' => 200]);
-        $user = $this->Commentdefinitions->User->find('list', ['limit' => 200]);
-        $this->set(compact('commentdefinition', 'commentdefinitions', 'definitions', 'user'));
+        $users = $this->Commentdefinitions->Users->find('list', ['limit' => 200]);
+        $this->set(compact('commentdefinition', 'definitions', 'users'));
         $this->set('_serialize', ['commentdefinition']);
     }
 
@@ -89,10 +88,9 @@ class CommentdefinitionsController extends AppController
             }
             $this->Flash->error(__('The commentdefinition could not be saved. Please, try again.'));
         }
-        $commentdefinitions = $this->Commentdefinitions->Commentdefinitions->find('list', ['limit' => 200]);
         $definitions = $this->Commentdefinitions->Definitions->find('list', ['limit' => 200]);
-        $user = $this->Commentdefinitions->User->find('list', ['limit' => 200]);
-        $this->set(compact('commentdefinition', 'commentdefinitions', 'definitions', 'user'));
+        $users = $this->Commentdefinitions->Users->find('list', ['limit' => 200]);
+        $this->set(compact('commentdefinition', 'definitions', 'users'));
         $this->set('_serialize', ['commentdefinition']);
     }
 

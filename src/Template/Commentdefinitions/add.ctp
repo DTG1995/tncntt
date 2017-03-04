@@ -7,12 +7,12 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Commentdefinitions'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Commentdefinitions'), ['controller' => 'Commentdefinitions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Commentdefinition'), ['controller' => 'Commentdefinitions', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List User'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Commentdefinitions'), ['controller' => 'Commentdefinitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Commentdefinition'), ['controller' => 'Commentdefinitions', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="commentdefinitions form large-9 medium-8 columns content">
@@ -20,11 +20,10 @@
     <fieldset>
         <legend><?= __('Add Commentdefinition') ?></legend>
         <?php
-            echo $this->Form->input('id');
             echo $this->Form->input('content');
             echo $this->Form->input('commentdefinition_id');
-            echo $this->Form->input('definition_id');
-            echo $this->Form->input('user_id');
+            echo $this->Form->input('definition_id', ['options' => $definitions]);
+            echo $this->Form->input('user_id', ['options' => $users]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

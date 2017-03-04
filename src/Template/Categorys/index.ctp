@@ -3,14 +3,10 @@
   * @var \App\View\AppView $this
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Category'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
+
 <div class="categorys index large-9 medium-8 columns content">
     <h3><?= __('Categorys') ?></h3>
+    <?= $this->Html->link(__('New Category'), ['action' => 'add']) ?>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -29,9 +25,9 @@
                 <td><?= h($category->active) ?></td>
                 <td><?= $this->Number->format($category->contribute) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $category->ID]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->ID]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->ID], ['confirm' => __('Are you sure you want to delete # {0}?', $category->ID)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $category->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->id], ['confirm' => __('Are you sure you want to delete # {0}?', $category->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

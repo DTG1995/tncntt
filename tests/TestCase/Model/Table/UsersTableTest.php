@@ -28,17 +28,11 @@ class UsersTableTest extends TestCase
         'app.commentdefinitions',
         'app.definitions',
         'app.words',
-        'app.means',
         'app.categorys',
-        'app.commentmeans',
-        'app.likemeans',
-        'app.commentdefinitions',
-        'app.likedefinitions',
-        'app.commentmeans',
-        'app.likedefinitions',
-        'app.likemeans',
         'app.means',
-        'app.definitions'
+        'app.commentmeans',
+        'app.likemeans',
+        'app.likedefinitions'
     ];
 
     /**
@@ -81,6 +75,16 @@ class UsersTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

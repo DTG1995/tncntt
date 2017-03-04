@@ -18,10 +18,13 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $users = $this->paginate($this->Users);
 
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
+        
+
     }
 
     /**
@@ -33,8 +36,9 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $user = $this->Users->get($id, [
-            'contain' => ['commentdefinitions', 'commentmeans', 'likedefinitions', 'likemeans', 'means', 'definitions']
+            'contain' => ['Commentdefinitions', 'Commentmeans', 'Definitions', 'Likedefinitions', 'Likemeans', 'Means']
         ]);
 
         $this->set('user', $user);
@@ -48,6 +52,7 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
@@ -71,6 +76,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -106,4 +112,31 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    public function login()
+    {
+        if($this->request->is('post'))
+        {
+            $user=$this->Auth->identify();
+            if($user)
+            {                     
+                $this->Auth->setUser($user);
+                if($this->Auth->user('isadmin'))
+                {
+                    return $this->redirect(['controller'=>'admin','action'=>'index']);
+                }
+                else
+                {
+                   return $this->redirect(['controller'=>'pages','action'=>'display']);
+
+                }
+               
+            }
+            return $this->redirect(['Controller'=>'users','action'=>'login']);
+        }
+    }
+    public function logout()
+        {
+           $this->Auth->logout();
+           return $this->redirect(['controller'=>'pages','action'=>'display']);
+        }
 }

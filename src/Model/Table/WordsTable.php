@@ -34,7 +34,7 @@ class WordsTable extends Table
         parent::initialize($config);
 
         $this->table('words');
-        $this->displayField('word');
+        $this->displayField('id');
         $this->primaryKey('id');
 
         $this->hasMany('Definitions', [
