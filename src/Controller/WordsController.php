@@ -34,7 +34,7 @@ class WordsController extends AppController
     public function view($id = null)
     {
         $word = $this->Words->get($id, [
-            'contain' => ['Means', 'Definitions']
+            'contain' => ['Definitions', 'Means']
         ]);
 
         $this->set('word', $word);
@@ -50,7 +50,7 @@ class WordsController extends AppController
     {
         $word = $this->Words->newEntity();
         if ($this->request->is('post')) {
-            $word = $this->Words->patchEntity($word, $this->request->data);
+            $word = $this->Words->patchEntity($word, $this->request->getData());
             if ($this->Words->save($word)) {
                 $this->Flash->success(__('The word has been saved.'));
 
@@ -75,7 +75,7 @@ class WordsController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $word = $this->Words->patchEntity($word, $this->request->data);
+            $word = $this->Words->patchEntity($word, $this->request->getData());
             if ($this->Words->save($word)) {
                 $this->Flash->success(__('The word has been saved.'));
 

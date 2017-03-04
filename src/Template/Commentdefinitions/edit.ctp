@@ -8,17 +8,17 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $commentdefinition->ID],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $commentdefinition->ID)]
+                ['action' => 'delete', $commentdefinition->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $commentdefinition->id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Commentdefinitions'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Commentdefinitions'), ['controller' => 'Commentdefinitions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Commentdefinition'), ['controller' => 'Commentdefinitions', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List User'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Commentdefinitions'), ['controller' => 'Commentdefinitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Commentdefinition'), ['controller' => 'Commentdefinitions', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="commentdefinitions form large-9 medium-8 columns content">
@@ -26,11 +26,10 @@
     <fieldset>
         <legend><?= __('Edit Commentdefinition') ?></legend>
         <?php
-            echo $this->Form->input('id');
-            echo $this->Form->input('content');
-            echo $this->Form->input('commentdefinition_id');
-            echo $this->Form->input('definition_id');
-            echo $this->Form->input('user_id');
+            echo $this->Form->control('content');
+            echo $this->Form->control('commentdefinition_id');
+            echo $this->Form->control('definition_id', ['options' => $definitions]);
+            echo $this->Form->control('user_id', ['options' => $users]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

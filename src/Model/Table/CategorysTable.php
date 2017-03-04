@@ -33,9 +33,9 @@ class CategorysTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('categorys');
-        $this->displayField('name');
-        $this->primaryKey('id');
+        $this->setTable('categorys');
+        $this->setDisplayField('name');
+        $this->setPrimaryKey('id');
 
         $this->hasMany('Definitions', [
             'foreignKey' => 'category_id'

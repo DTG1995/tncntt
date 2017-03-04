@@ -13,8 +13,9 @@ use Cake\ORM\Entity;
  * @property int $contribute
  * @property int $category_id
  *
- * @property \App\Model\Entity\Word $WORDS
- * @property \App\Model\Entity\User $User
+ * @property \App\Model\Entity\Word $word
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Category $category
  * @property \App\Model\Entity\Commentdefinition[] $commentdefinitions
  * @property \App\Model\Entity\Likedefinition[] $likedefinitions
  */
@@ -32,6 +33,6 @@ class Definition extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'ID' => false
+        'id' => false
     ];
 }

@@ -18,10 +18,10 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Commentdefinition[] $commentdefinitions
  * @property \App\Model\Entity\Commentmean[] $commentmeans
+ * @property \App\Model\Entity\Definition[] $definitions
  * @property \App\Model\Entity\Likedefinition[] $likedefinitions
  * @property \App\Model\Entity\Likemean[] $likemeans
  * @property \App\Model\Entity\Mean[] $means
- * @property \App\Model\Entity\Definition[] $definitions
  */
 class User extends Entity
 {
@@ -37,7 +37,7 @@ class User extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'ID' => false
+        'id' => false
     ];
 
     /**

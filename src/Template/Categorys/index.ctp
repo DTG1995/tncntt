@@ -7,6 +7,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Category'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Means'), ['controller' => 'Means', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Mean'), ['controller' => 'Means', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="categorys index large-9 medium-8 columns content">
@@ -29,9 +33,9 @@
                 <td><?= h($category->active) ?></td>
                 <td><?= $this->Number->format($category->contribute) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $category->ID]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->ID]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->ID], ['confirm' => __('Are you sure you want to delete # {0}?', $category->ID)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $category->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $category->id], ['confirm' => __('Are you sure you want to delete # {0}?', $category->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

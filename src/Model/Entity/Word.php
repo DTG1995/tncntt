@@ -9,8 +9,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $word
  *
- * @property \App\Model\Entity\Mean[] $means
  * @property \App\Model\Entity\Definition[] $definitions
+ * @property \App\Model\Entity\Mean[] $means
  */
 class Word extends Entity
 {
@@ -26,6 +26,6 @@ class Word extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'ID' => false
+        'id' => false
     ];
 }

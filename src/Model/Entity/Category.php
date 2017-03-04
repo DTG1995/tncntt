@@ -10,6 +10,9 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property bool $active
  * @property int $contribute
+ *
+ * @property \App\Model\Entity\Definition[] $definitions
+ * @property \App\Model\Entity\Mean[] $means
  */
 class Category extends Entity
 {
@@ -25,6 +28,6 @@ class Category extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'ID' => false
+        'id' => false
     ];
 }

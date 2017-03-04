@@ -8,8 +8,8 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $definition->ID],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $definition->ID)]
+                ['action' => 'delete', $definition->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $definition->id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Definitions'), ['action' => 'index']) ?></li>
@@ -17,6 +17,8 @@
         <li><?= $this->Html->link(__('New Word'), ['controller' => 'Words', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Categorys'), ['controller' => 'Categorys', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categorys', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Commentdefinitions'), ['controller' => 'Commentdefinitions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Commentdefinition'), ['controller' => 'Commentdefinitions', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Likedefinitions'), ['controller' => 'Likedefinitions', 'action' => 'index']) ?></li>
@@ -28,12 +30,11 @@
     <fieldset>
         <legend><?= __('Edit Definition') ?></legend>
         <?php
-            echo $this->Form->input('id');
-            echo $this->Form->input('word_id');
-            echo $this->Form->input('define');
-            echo $this->Form->input('user_id');
-            echo $this->Form->input('contribute');
-            echo $this->Form->input('category_id');
+            echo $this->Form->control('word_id', ['options' => $words]);
+            echo $this->Form->control('define');
+            echo $this->Form->control('user_id', ['options' => $users]);
+            echo $this->Form->control('contribute');
+            echo $this->Form->control('category_id', ['options' => $categorys]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

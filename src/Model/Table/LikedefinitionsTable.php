@@ -33,9 +33,9 @@ class LikedefinitionsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('likedefinitions');
-        $this->displayField('islike');
-        $this->primaryKey(['definition_id', 'user_id']);
+        $this->setTable('likedefinitions');
+        $this->setDisplayField('definition_id');
+        $this->setPrimaryKey(['definition_id', 'user_id']);
 
         $this->belongsTo('Definitions', [
             'foreignKey' => 'definition_id',

@@ -33,9 +33,9 @@ class LikemeansTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('likemeans');
-        $this->displayField('islike');
-        $this->primaryKey(['mean_id', 'user_id']);
+        $this->setTable('likemeans');
+        $this->setDisplayField('mean_id');
+        $this->setPrimaryKey(['mean_id', 'user_id']);
 
         $this->belongsTo('Means', [
             'foreignKey' => 'mean_id',

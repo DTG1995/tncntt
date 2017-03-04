@@ -7,8 +7,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Likedefinition'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List D E F I N I T I O N S'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New D E F I N I T I O N'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
@@ -27,13 +27,13 @@
         <tbody>
             <?php foreach ($likedefinitions as $likedefinition): ?>
             <tr>
-                <td><?= $this->Number->format($likedefinition->definition_id) ?></td>
-                <td><?= $this->Number->format($likedefinition->user_id) ?></td>
+                <td><?= $likedefinition->has('definition') ? $this->Html->link($likedefinition->definition->id, ['controller' => 'Definitions', 'action' => 'view', $likedefinition->definition->id]) : '' ?></td>
+                <td><?= $likedefinition->has('user') ? $this->Html->link($likedefinition->user->id, ['controller' => 'Users', 'action' => 'view', $likedefinition->user->id]) : '' ?></td>
                 <td><?= $this->Number->format($likedefinition->islike) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $likedefinition->IDDEFINITION]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $likedefinition->IDDEFINITION]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $likedefinition->IDDEFINITION], ['confirm' => __('Are you sure you want to delete # {0}?', $likedefinition->IDDEFINITION)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $likedefinition->definition_id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $likedefinition->definition_id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $likedefinition->definition_id], ['confirm' => __('Are you sure you want to delete # {0}?', $likedefinition->definition_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

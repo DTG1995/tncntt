@@ -34,7 +34,7 @@ class CategorysController extends AppController
     public function view($id = null)
     {
         $category = $this->Categorys->get($id, [
-            'contain' => []
+            'contain' => ['Definitions', 'Means']
         ]);
 
         $this->set('category', $category);
@@ -50,7 +50,7 @@ class CategorysController extends AppController
     {
         $category = $this->Categorys->newEntity();
         if ($this->request->is('post')) {
-            $category = $this->Categorys->patchEntity($category, $this->request->data);
+            $category = $this->Categorys->patchEntity($category, $this->request->getData());
             if ($this->Categorys->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
@@ -75,7 +75,7 @@ class CategorysController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $category = $this->Categorys->patchEntity($category, $this->request->data);
+            $category = $this->Categorys->patchEntity($category, $this->request->getData());
             if ($this->Categorys->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 

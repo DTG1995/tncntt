@@ -19,7 +19,7 @@ class MeansController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Words', 'Users']
+            'contain' => ['Words', 'Users', 'Categorys']
         ];
         $means = $this->paginate($this->Means);
 
@@ -37,7 +37,7 @@ class MeansController extends AppController
     public function view($id = null)
     {
         $mean = $this->Means->get($id, [
-            'contain' => ['Words', 'Users', 'Commentmeans', 'Likemeans']
+            'contain' => ['Words', 'Users', 'Categorys', 'Commentmeans', 'Likemeans']
         ]);
 
         $this->set('mean', $mean);
@@ -53,7 +53,7 @@ class MeansController extends AppController
     {
         $mean = $this->Means->newEntity();
         if ($this->request->is('post')) {
-            $mean = $this->Means->patchEntity($mean, $this->request->data);
+            $mean = $this->Means->patchEntity($mean, $this->request->getData());
             if ($this->Means->save($mean)) {
                 $this->Flash->success(__('The mean has been saved.'));
 
@@ -63,7 +63,8 @@ class MeansController extends AppController
         }
         $words = $this->Means->Words->find('list', ['limit' => 200]);
         $users = $this->Means->Users->find('list', ['limit' => 200]);
-        $this->set(compact('mean', 'words', 'users'));
+        $categorys = $this->Means->Categorys->find('list', ['limit' => 200]);
+        $this->set(compact('mean', 'words', 'users', 'categorys'));
         $this->set('_serialize', ['mean']);
     }
 
@@ -80,7 +81,7 @@ class MeansController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $mean = $this->Means->patchEntity($mean, $this->request->data);
+            $mean = $this->Means->patchEntity($mean, $this->request->getData());
             if ($this->Means->save($mean)) {
                 $this->Flash->success(__('The mean has been saved.'));
 
@@ -90,7 +91,8 @@ class MeansController extends AppController
         }
         $words = $this->Means->Words->find('list', ['limit' => 200]);
         $users = $this->Means->Users->find('list', ['limit' => 200]);
-        $this->set(compact('mean', 'words', 'users'));
+        $categorys = $this->Means->Categorys->find('list', ['limit' => 200]);
+        $this->set(compact('mean', 'words', 'users', 'categorys'));
         $this->set('_serialize', ['mean']);
     }
 

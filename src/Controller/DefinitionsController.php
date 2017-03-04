@@ -19,7 +19,7 @@ class DefinitionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Words', 'Users']
+            'contain' => ['Words', 'Users', 'Categorys']
         ];
         $definitions = $this->paginate($this->Definitions);
 
@@ -37,7 +37,7 @@ class DefinitionsController extends AppController
     public function view($id = null)
     {
         $definition = $this->Definitions->get($id, [
-            'contain' => ['Words', 'Users', 'Commentdefinitions', 'Likedefinitions']
+            'contain' => ['Words', 'Users', 'Categorys', 'Commentdefinitions', 'Likedefinitions']
         ]);
 
         $this->set('definition', $definition);
@@ -53,7 +53,7 @@ class DefinitionsController extends AppController
     {
         $definition = $this->Definitions->newEntity();
         if ($this->request->is('post')) {
-            $definition = $this->Definitions->patchEntity($definition, $this->request->data);
+            $definition = $this->Definitions->patchEntity($definition, $this->request->getData());
             if ($this->Definitions->save($definition)) {
                 $this->Flash->success(__('The definition has been saved.'));
 
@@ -63,7 +63,8 @@ class DefinitionsController extends AppController
         }
         $words = $this->Definitions->Words->find('list', ['limit' => 200]);
         $users = $this->Definitions->Users->find('list', ['limit' => 200]);
-        $this->set(compact('definition', 'words', 'users'));
+        $categorys = $this->Definitions->Categorys->find('list', ['limit' => 200]);
+        $this->set(compact('definition', 'words', 'users', 'categorys'));
         $this->set('_serialize', ['definition']);
     }
 
@@ -80,7 +81,7 @@ class DefinitionsController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $definition = $this->Definitions->patchEntity($definition, $this->request->data);
+            $definition = $this->Definitions->patchEntity($definition, $this->request->getData());
             if ($this->Definitions->save($definition)) {
                 $this->Flash->success(__('The definition has been saved.'));
 
@@ -90,7 +91,8 @@ class DefinitionsController extends AppController
         }
         $words = $this->Definitions->Words->find('list', ['limit' => 200]);
         $users = $this->Definitions->Users->find('list', ['limit' => 200]);
-        $this->set(compact('definition', 'words', 'users'));
+        $categorys = $this->Definitions->Categorys->find('list', ['limit' => 200]);
+        $this->set(compact('definition', 'words', 'users', 'categorys'));
         $this->set('_serialize', ['definition']);
     }
 

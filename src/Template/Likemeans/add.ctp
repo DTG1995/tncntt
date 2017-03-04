@@ -7,8 +7,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Likemeans'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List M E A N S'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New M E A N'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Means'), ['controller' => 'Means', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Mean'), ['controller' => 'Means', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
@@ -18,9 +18,7 @@
     <fieldset>
         <legend><?= __('Add Likemean') ?></legend>
         <?php
-            echo $this->Form->input('mean_id');
-            echo $this->Form->input('user_id');
-            echo $this->Form->input('islike');
+            echo $this->Form->control('islike');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -11,6 +11,8 @@
         <li><?= $this->Html->link(__('New Word'), ['controller' => 'Words', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Categorys'), ['controller' => 'Categorys', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categorys', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Commentdefinitions'), ['controller' => 'Commentdefinitions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Commentdefinition'), ['controller' => 'Commentdefinitions', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Likedefinitions'), ['controller' => 'Likedefinitions', 'action' => 'index']) ?></li>
@@ -34,14 +36,14 @@
             <?php foreach ($definitions as $definition): ?>
             <tr>
                 <td><?= $this->Number->format($definition->id) ?></td>
-                <td><?= $this->Number->format($definition->word_id) ?></td>
-                <td><?= $this->Number->format($definition->user_id) ?></td>
+                <td><?= $definition->has('word') ? $this->Html->link($definition->word->id, ['controller' => 'Words', 'action' => 'view', $definition->word->id]) : '' ?></td>
+                <td><?= $definition->has('user') ? $this->Html->link($definition->user->id, ['controller' => 'Users', 'action' => 'view', $definition->user->id]) : '' ?></td>
                 <td><?= $this->Number->format($definition->contribute) ?></td>
-                <td><?= $this->Number->format($definition->category_id) ?></td>
+                <td><?= $definition->has('category') ? $this->Html->link($definition->category->name, ['controller' => 'Categorys', 'action' => 'view', $definition->category->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $definition->ID]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $definition->ID]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $definition->ID], ['confirm' => __('Are you sure you want to delete # {0}?', $definition->ID)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $definition->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $definition->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $definition->id], ['confirm' => __('Are you sure you want to delete # {0}?', $definition->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

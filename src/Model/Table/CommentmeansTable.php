@@ -37,9 +37,9 @@ class CommentmeansTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('commentmeans');
-        $this->displayField('content');
-        $this->primaryKey('id');
+        $this->setTable('commentmeans');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 

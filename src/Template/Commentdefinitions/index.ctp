@@ -9,7 +9,7 @@
         <li><?= $this->Html->link(__('New Commentdefinition'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List User'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
@@ -32,12 +32,12 @@
                 <td><?= $this->Number->format($commentdefinition->id) ?></td>
                 <td><?= h($commentdefinition->created) ?></td>
                 <td><?= $this->Number->format($commentdefinition->commentdefinition_id) ?></td>
-                <td><?= $this->Number->format($commentdefinition->definition_id) ?></td>
-                <td><?= $this->Number->format($commentdefinition->user_id) ?></td>
+                <td><?= $commentdefinition->has('definition') ? $this->Html->link($commentdefinition->definition->id, ['controller' => 'Definitions', 'action' => 'view', $commentdefinition->definition->id]) : '' ?></td>
+                <td><?= $commentdefinition->has('user') ? $this->Html->link($commentdefinition->user->id, ['controller' => 'Users', 'action' => 'view', $commentdefinition->user->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $commentdefinition->ID]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $commentdefinition->ID]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $commentdefinition->ID], ['confirm' => __('Are you sure you want to delete # {0}?', $commentdefinition->ID)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $commentdefinition->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $commentdefinition->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $commentdefinition->id], ['confirm' => __('Are you sure you want to delete # {0}?', $commentdefinition->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

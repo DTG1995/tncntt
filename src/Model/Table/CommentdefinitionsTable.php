@@ -37,9 +37,9 @@ class CommentdefinitionsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('commentdefinitions');
-        $this->displayField('content');
-        $this->primaryKey('id');
+        $this->setTable('commentdefinitions');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 

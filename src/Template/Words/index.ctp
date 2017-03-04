@@ -7,10 +7,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Word'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Means'), ['controller' => 'Means', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Mean'), ['controller' => 'Means', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Means'), ['controller' => 'Means', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Mean'), ['controller' => 'Means', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="words index large-9 medium-8 columns content">
@@ -29,9 +29,9 @@
                 <td><?= $this->Number->format($word->id) ?></td>
                 <td><?= h($word->word) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $word->ID]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $word->ID]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $word->ID], ['confirm' => __('Are you sure you want to delete # {0}?', $word->ID)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $word->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $word->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $word->id], ['confirm' => __('Are you sure you want to delete # {0}?', $word->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
