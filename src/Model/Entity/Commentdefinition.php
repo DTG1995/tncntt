@@ -6,12 +6,16 @@ use Cake\ORM\Entity;
 /**
  * Commentdefinition Entity
  *
- * @property int $ID
- * @property string $CONTENT
- * @property \Cake\I18n\Time $CREATED
- * @property int $COMMENTDEFINITION_ID
- * @property int $DEFINITION_ID
- * @property int $USER_ID
+ * @property int $id
+ * @property string $content
+ * @property \Cake\I18n\Time $created
+ * @property int $commentdefinition_id
+ * @property int $definition_id
+ * @property int $user_id
+ *
+ * @property \App\Model\Entity\Commentdefinition $commentdefinition
+ * @property \App\Model\Entity\Definition $definition
+ * @property \App\Model\Entity\User $User
  */
 class Commentdefinition extends Entity
 {

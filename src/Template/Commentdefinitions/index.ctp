@@ -7,6 +7,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Commentdefinition'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Definitions'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Definition'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List User'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="commentdefinitions index large-9 medium-8 columns content">
@@ -14,22 +18,22 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('CREATED') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('COMMENTDEFINITION_ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('DEFINITION_ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('USER_ID') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('commentdefinition_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('definition_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($commentdefinitions as $commentdefinition): ?>
             <tr>
-                <td><?= $this->Number->format($commentdefinition->ID) ?></td>
-                <td><?= h($commentdefinition->CREATED) ?></td>
-                <td><?= $this->Number->format($commentdefinition->COMMENTDEFINITION_ID) ?></td>
-                <td><?= $this->Number->format($commentdefinition->DEFINITION_ID) ?></td>
-                <td><?= $this->Number->format($commentdefinition->USER_ID) ?></td>
+                <td><?= $this->Number->format($commentdefinition->id) ?></td>
+                <td><?= h($commentdefinition->created) ?></td>
+                <td><?= $this->Number->format($commentdefinition->commentdefinition_id) ?></td>
+                <td><?= $this->Number->format($commentdefinition->definition_id) ?></td>
+                <td><?= $this->Number->format($commentdefinition->user_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $commentdefinition->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $commentdefinition->ID]) ?>

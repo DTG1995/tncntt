@@ -19,7 +19,7 @@ class MeansController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Words']
+            'contain' => ['Words', 'Users']
         ];
         $means = $this->paginate($this->Means);
 
@@ -37,7 +37,7 @@ class MeansController extends AppController
     public function view($id = null)
     {
         $mean = $this->Means->get($id, [
-            'contain' => ['Words']
+            'contain' => ['Words', 'Users', 'Commentmeans', 'Likemeans']
         ]);
 
         $this->set('mean', $mean);
@@ -62,7 +62,8 @@ class MeansController extends AppController
             $this->Flash->error(__('The mean could not be saved. Please, try again.'));
         }
         $words = $this->Means->Words->find('list', ['limit' => 200]);
-        $this->set(compact('mean', 'words'));
+        $users = $this->Means->Users->find('list', ['limit' => 200]);
+        $this->set(compact('mean', 'words', 'users'));
         $this->set('_serialize', ['mean']);
     }
 
@@ -88,7 +89,8 @@ class MeansController extends AppController
             $this->Flash->error(__('The mean could not be saved. Please, try again.'));
         }
         $words = $this->Means->Words->find('list', ['limit' => 200]);
-        $this->set(compact('mean', 'words'));
+        $users = $this->Means->Users->find('list', ['limit' => 200]);
+        $this->set(compact('mean', 'words', 'users'));
         $this->set('_serialize', ['mean']);
     }
 

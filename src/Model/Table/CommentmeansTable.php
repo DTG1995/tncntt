@@ -9,6 +9,11 @@ use Cake\Validation\Validator;
 /**
  * Commentmeans Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Commentmeans
+ * @property \Cake\ORM\Association\BelongsTo $Means
+ * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\HasMany $Commentmeans
+ *
  * @method \App\Model\Entity\Commentmean get($primaryKey, $options = [])
  * @method \App\Model\Entity\Commentmean newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Commentmean[] newEntities(array $data, array $options = [])
@@ -16,6 +21,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Commentmean patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Commentmean[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Commentmean findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class CommentmeansTable extends Table
 {
@@ -29,25 +36,27 @@ class CommentmeansTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-        $this->hasMany('Commentmeans',[
-            'foreignKey'=>'COMMENTMEAN_ID'
-        ]);
-        $this->belongsTo('Commentmeans',[
-            'className'=>'Commentmeans',
-            'foreignKey'=>'COMMENTMEAN_ID'
-        ]);
-        $this->belongsTo('Means',[
-            'className'=>'Means',
-            'foreignKey'=>'MEAN_ID'
-        ]);
-        $this->belongsTo('Users',[
-            'className'=>'Users',
-            'foreignKey'=>'USER_ID',
-            'propertyName'=>'User'
-        ]);
+
         $this->table('commentmeans');
-        $this->displayField('ID');
-        $this->primaryKey('ID');
+        $this->displayField('content');
+        $this->primaryKey('id');
+
+        $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Commentmeans', [
+            'foreignKey' => 'commentmean_id'
+        ]);
+        $this->belongsTo('Means', [
+            'foreignKey' => 'mean_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->hasMany('Commentmeans', [
+            'foreignKey' => 'commentmean_id'
+        ]);
     }
 
     /**
@@ -59,32 +68,29 @@ class CommentmeansTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('ID')
-            ->allowEmpty('ID', 'create');
+            ->integer('id')
+            ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('CONTENT', 'create')
-            ->notEmpty('CONTENT');
-
-        $validator
-            ->dateTime('CREATED')
-            ->requirePresence('CREATED', 'create')
-            ->notEmpty('CREATED');
-
-        $validator
-            ->integer('COMMENTMEAN_ID')
-            ->allowEmpty('COMMENTMEAN_ID');
-
-        $validator
-            ->integer('MEAN_ID')
-            ->requirePresence('MEAN_ID', 'create')
-            ->notEmpty('MEAN_ID');
-
-        $validator
-            ->integer('USER_ID')
-            ->requirePresence('USER_ID', 'create')
-            ->notEmpty('USER_ID');
+            ->requirePresence('content', 'create')
+            ->notEmpty('content');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['commentmean_id'], 'Commentmeans'));
+        $rules->add($rules->existsIn(['mean_id'], 'Means'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
+
+        return $rules;
     }
 }

@@ -17,16 +17,16 @@ class LikemeansFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'MEAN_ID' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'USER_ID' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'ISLIKE' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'mean_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'islike' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
-            'ACCOUNT' => ['type' => 'index', 'columns' => ['USER_ID'], 'length' => []],
+            'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
         ],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['MEAN_ID', 'USER_ID'], 'length' => []],
-            'likemeans_ibfk_1' => ['type' => 'foreign', 'columns' => ['MEAN_ID'], 'references' => ['means', 'ID'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'likemeans_ibfk_2' => ['type' => 'foreign', 'columns' => ['USER_ID'], 'references' => ['users', 'ID'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['mean_id', 'user_id'], 'length' => []],
+            'likemeans_ibfk_1' => ['type' => 'foreign', 'columns' => ['mean_id'], 'references' => ['means', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'likemeans_ibfk_2' => ['type' => 'foreign', 'columns' => ['user_id'], 'references' => ['users', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -42,9 +42,9 @@ class LikemeansFixture extends TestFixture
      */
     public $records = [
         [
-            'MEAN_ID' => 1,
-            'USER_ID' => 1,
-            'ISLIKE' => 1
+            'mean_id' => 1,
+            'user_id' => 1,
+            'islike' => 1
         ],
     ];
 }

@@ -16,20 +16,20 @@
     <h3><?= h($category->ID) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('NAME') ?></th>
-            <td><?= h($category->NAME) ?></td>
+            <th scope="row"><?= __('Name') ?></th>
+            <td><?= h($category->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('ID') ?></th>
-            <td><?= $this->Number->format($category->ID) ?></td>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($category->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('CONTRIBUTE') ?></th>
-            <td><?= $this->Number->format($category->CONTRIBUTE) ?></td>
+            <th scope="row"><?= __('Contribute') ?></th>
+            <td><?= $this->Number->format($category->contribute) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('ACTIVE') ?></th>
-            <td><?= $category->ACTIVE ? __('Yes') : __('No'); ?></td>
+            <th scope="row"><?= __('Active') ?></th>
+            <td><?= $category->active ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
 </div>

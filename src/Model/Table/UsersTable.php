@@ -9,6 +9,13 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property \Cake\ORM\Association\HasMany $Commentdefinitions
+ * @property \Cake\ORM\Association\HasMany $Commentmeans
+ * @property \Cake\ORM\Association\HasMany $Definitions
+ * @property \Cake\ORM\Association\HasMany $Likedefinitions
+ * @property \Cake\ORM\Association\HasMany $Likemeans
+ * @property \Cake\ORM\Association\HasMany $Means
+ *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
@@ -16,6 +23,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class UsersTable extends Table
 {
@@ -31,25 +40,28 @@ class UsersTable extends Table
         parent::initialize($config);
 
         $this->table('users');
-        $this->displayField('ID');
+        $this->displayField('namedisplay');
         $this->primaryKey('ID');
-        $this->hasMany('commentdefinitions',[
-            'foreignKey'=>'USER_ID'
+
+        $this->addBehavior('Timestamp');
+
+        $this->hasMany('Commentdefinitions', [
+            'foreignKey' => 'user_id'
         ]);
-        $this->hasMany('commentmeans',[
-            'foreignKey'=>'USER_ID'
+        $this->hasMany('Commentmeans', [
+            'foreignKey' => 'user_id'
         ]);
-        $this->hasMany('likedefinitions',[
-            'foreignKey'=>'USER_ID'
+        $this->hasMany('Definitions', [
+            'foreignKey' => 'user_id'
         ]);
-        $this->hasMany('likemeans',[
-            'foreignKey'=>'USER_ID'
+        $this->hasMany('Likedefinitions', [
+            'foreignKey' => 'user_id'
         ]);
-        $this->hasMany('means',[
-            'foreignKey'=>'USER_ID'
+        $this->hasMany('Likemeans', [
+            'foreignKey' => 'user_id'
         ]);
-        $this->hasMany('definitions',[
-            'foreignKey'=>'USER_ID'
+        $this->hasMany('Means', [
+            'foreignKey' => 'user_id'
         ]);
     }
 
@@ -62,46 +74,55 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('ID')
-            ->allowEmpty('ID', 'create');
+            ->integer('id')
+            ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('EMAIL', 'create')
-            ->notEmpty('EMAIL');
+            ->requirePresence('username', 'create')
+            ->notEmpty('username');
 
         $validator
-            ->requirePresence('NAMEDISPLAY', 'create')
-            ->notEmpty('NAMEDISPLAY');
+            ->requirePresence('namedisplay', 'create')
+            ->notEmpty('namedisplay');
 
         $validator
-            ->requirePresence('PASSWORD', 'create')
-            ->notEmpty('PASSWORD');
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
 
         $validator
-            ->boolean('ISADMIN')
-            ->requirePresence('ISADMIN', 'create')
-            ->notEmpty('ISADMIN');
+            ->boolean('isadmin')
+            ->requirePresence('isadmin', 'create')
+            ->notEmpty('isadmin');
 
         $validator
-            ->dateTime('CREATED')
-            ->requirePresence('CREATED', 'create')
-            ->notEmpty('CREATED');
+            ->dateTime('last_login')
+            ->requirePresence('last_login', 'create')
+            ->notEmpty('last_login');
 
         $validator
-            ->dateTime('LAST_LOGIN')
-            ->requirePresence('LAST_LOGIN', 'create')
-            ->notEmpty('LAST_LOGIN');
+            ->integer('status')
+            ->requirePresence('status', 'create')
+            ->notEmpty('status');
 
         $validator
-            ->integer('STATUS')
-            ->requirePresence('STATUS', 'create')
-            ->notEmpty('STATUS');
-
-        $validator
-            ->boolean('ACTIVE')
-            ->requirePresence('ACTIVE', 'create')
-            ->notEmpty('ACTIVE');
+            ->boolean('active')
+            ->requirePresence('active', 'create')
+            ->notEmpty('active');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['username']));
+
+        return $rules;
     }
 }

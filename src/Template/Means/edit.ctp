@@ -15,6 +15,12 @@
         <li><?= $this->Html->link(__('List Means'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Words'), ['controller' => 'Words', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Word'), ['controller' => 'Words', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Commentmeans'), ['controller' => 'Commentmeans', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Commentmean'), ['controller' => 'Commentmeans', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Likemeans'), ['controller' => 'Likemeans', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Likemean'), ['controller' => 'Likemeans', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="means form large-9 medium-8 columns content">
@@ -22,11 +28,12 @@
     <fieldset>
         <legend><?= __('Edit Mean') ?></legend>
         <?php
-            echo $this->Form->input('WORD_ID', ['options' => $words]);
-            echo $this->Form->input('MEAN');
-            echo $this->Form->input('CONTRIBUTE');
-            echo $this->Form->input('USER_ID');
-            echo $this->Form->input('IDCATE');
+            echo $this->Form->input('id');
+            echo $this->Form->input('word_id');
+            echo $this->Form->input('mean');
+            echo $this->Form->input('contribute');
+            echo $this->Form->input('user_id');
+            echo $this->Form->input('category_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

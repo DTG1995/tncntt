@@ -9,6 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Likemeans Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Means
+ * @property \Cake\ORM\Association\BelongsTo $Users
+ *
  * @method \App\Model\Entity\Likemean get($primaryKey, $options = [])
  * @method \App\Model\Entity\Likemean newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Likemean[] newEntities(array $data, array $options = [])
@@ -31,20 +34,16 @@ class LikemeansTable extends Table
         parent::initialize($config);
 
         $this->table('likemeans');
-        $this->displayField('IDMEAN');
-        $this->primaryKey(['IDMEAN', 'EMAIL']);
-        $this->belongsTo('MEANS',[
-            'className'=>'Definitions',
-            'foreignKey'=>'MEAN_ID',
-            'propertyName'=>'MEANS',
-            'joinType'=>'INNER'
+        $this->displayField('islike');
+        $this->primaryKey(['mean_id', 'user_id']);
+
+        $this->belongsTo('Means', [
+            'foreignKey' => 'mean_id',
+            'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Users',[
-            'className'=>'Users',
-            'foreignKey'=>'USER_ID',
-            'propertyName'=>'USERS',
-            'joinType'=>'INNER',
-            'propertyName'=>'User'
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
         ]);
     }
 
@@ -57,18 +56,25 @@ class LikemeansTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('MEAN_ID')
-            ->allowEmpty('MEAN_ID', 'create');
-
-        $validator
-            ->integer('USER_ID')
-            ->allowEmpty('USER_ID', 'create');
-
-        $validator
-            ->integer('ISLIKE')
-            ->requirePresence('ISLIKE', 'create')
-            ->notEmpty('ISLIKE');
+            ->integer('islike')
+            ->requirePresence('islike', 'create')
+            ->notEmpty('islike');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['mean_id'], 'Means'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
+
+        return $rules;
     }
 }

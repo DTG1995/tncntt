@@ -7,6 +7,14 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Definition'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Words'), ['controller' => 'Words', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Word'), ['controller' => 'Words', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Commentdefinitions'), ['controller' => 'Commentdefinitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Commentdefinition'), ['controller' => 'Commentdefinitions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Likedefinitions'), ['controller' => 'Likedefinitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Likedefinition'), ['controller' => 'Likedefinitions', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="definitions index large-9 medium-8 columns content">
@@ -14,22 +22,22 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('WORD_ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('USER_ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('CONTRIBUTE') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDCATE') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('word_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('contribute') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('category_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($definitions as $definition): ?>
             <tr>
-                <td><?= $this->Number->format($definition->ID) ?></td>
-                <td><?= $this->Number->format($definition->WORD_ID) ?></td>
-                <td><?= $this->Number->format($definition->USER_ID) ?></td>
-                <td><?= $this->Number->format($definition->CONTRIBUTE) ?></td>
-                <td><?= $this->Number->format($definition->IDCATE) ?></td>
+                <td><?= $this->Number->format($definition->id) ?></td>
+                <td><?= $this->Number->format($definition->word_id) ?></td>
+                <td><?= $this->Number->format($definition->user_id) ?></td>
+                <td><?= $this->Number->format($definition->contribute) ?></td>
+                <td><?= $this->Number->format($definition->category_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $definition->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $definition->ID]) ?>

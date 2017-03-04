@@ -6,15 +6,22 @@ use Cake\ORM\Entity;
 /**
  * User Entity
  *
- * @property int $ID
- * @property string $EMAIL
- * @property string $NAMEDISPLAY
- * @property string $PASSWORD
- * @property bool $ISADMIN
- * @property \Cake\I18n\Time $CREATED
- * @property \Cake\I18n\Time $LAST_LOGIN
- * @property int $STATUS
- * @property bool $ACTIVE
+ * @property int $id
+ * @property string $username
+ * @property string $namedisplay
+ * @property string $password
+ * @property bool $isadmin
+ * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $last_login
+ * @property int $status
+ * @property bool $active
+ *
+ * @property \App\Model\Entity\Commentdefinition[] $commentdefinitions
+ * @property \App\Model\Entity\Commentmean[] $commentmeans
+ * @property \App\Model\Entity\Likedefinition[] $likedefinitions
+ * @property \App\Model\Entity\Likemean[] $likemeans
+ * @property \App\Model\Entity\Mean[] $means
+ * @property \App\Model\Entity\Definition[] $definitions
  */
 class User extends Entity
 {
@@ -31,5 +38,14 @@ class User extends Entity
     protected $_accessible = [
         '*' => true,
         'ID' => false
+    ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'password'
     ];
 }

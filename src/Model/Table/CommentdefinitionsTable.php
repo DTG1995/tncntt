@@ -9,6 +9,11 @@ use Cake\Validation\Validator;
 /**
  * Commentdefinitions Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Commentdefinitions
+ * @property \Cake\ORM\Association\BelongsTo $Definitions
+ * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\HasMany $Commentdefinitions
+ *
  * @method \App\Model\Entity\Commentdefinition get($primaryKey, $options = [])
  * @method \App\Model\Entity\Commentdefinition newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Commentdefinition[] newEntities(array $data, array $options = [])
@@ -16,6 +21,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Commentdefinition patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Commentdefinition[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Commentdefinition findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class CommentdefinitionsTable extends Table
 {
@@ -29,25 +36,28 @@ class CommentdefinitionsTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-        $this->hasMany('Commentdefinitions',[
-            'foreignKey'=>'COMMENTDEFINITION_ID'
-        ]);
-        $this->belongsTo('Commentdefinitions',[
-            'className'=>'Commentdefinitions',
-            'foreignKey'=>'COMMENTDEFINITION_ID'
-        ]);
-        $this->belongsTo('Definitions',[
-            'className'=>'Definitions',
-            'foreignKey'=>'DEFINITION_ID'
-        ]);
-        $this->belongsTo('User',[
-            'className'=>'Users',
-            'foreignKey'=>'USER_ID',
-            'propertyName'=>'User'
-        ]);
+
         $this->table('commentdefinitions');
-        $this->displayField('ID');
-        $this->primaryKey('ID');
+        $this->displayField('content');
+        $this->primaryKey('id');
+
+        $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Commentdefinitions', [
+            'foreignKey' => 'commentdefinition_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Definitions', [
+            'foreignKey' => 'definition_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->hasMany('Commentdefinitions', [
+            'foreignKey' => 'commentdefinition_id'
+        ]);
     }
 
     /**
@@ -59,33 +69,29 @@ class CommentdefinitionsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('ID')
-            ->allowEmpty('ID', 'create');
+            ->integer('id')
+            ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('CONTENT', 'create')
-            ->notEmpty('CONTENT');
-
-        $validator
-            ->dateTime('CREATED')
-            ->requirePresence('CREATED', 'create')
-            ->notEmpty('CREATED');
-
-        $validator
-            ->integer('COMMENTDEFINITION_ID')
-            ->requirePresence('COMMENTDEFINITION_ID', 'create')
-            ->notEmpty('COMMENTDEFINITION_ID');
-
-        $validator
-            ->integer('DEFINITION_ID')
-            ->requirePresence('DEFINITION_ID', 'create')
-            ->notEmpty('DEFINITION_ID');
-
-        $validator
-            ->integer('USER_ID')
-            ->requirePresence('USER_ID', 'create')
-            ->notEmpty('USER_ID');
+            ->requirePresence('content', 'create')
+            ->notEmpty('content');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['commentdefinition_id'], 'Commentdefinitions'));
+        $rules->add($rules->existsIn(['definition_id'], 'Definitions'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
+
+        return $rules;
     }
 }

@@ -24,7 +24,8 @@
     <fieldset>
         <legend><?= __('Edit Word') ?></legend>
         <?php
-            echo $this->Form->input('WORD');
+            echo $this->Form->input('id');
+            echo $this->Form->input('word');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

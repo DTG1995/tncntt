@@ -6,14 +6,17 @@ use Cake\ORM\Entity;
 /**
  * Mean Entity
  *
- * @property int $ID
- * @property int $WORD_ID
- * @property string $MEAN
- * @property int $CONTRIBUTE
- * @property int $USER_ID
- * @property int $IDCATE
+ * @property int $id
+ * @property int $word_id
+ * @property string $mean
+ * @property int $contribute
+ * @property int $user_id
+ * @property int $category_id
  *
- * @property \App\Model\Entity\Word $WORDS
+ * @property \App\Model\Entity\Word $Words
+ * @property \App\Model\Entity\User $User
+ * @property \App\Model\Entity\Commentmean[] $commentmeans
+ * @property \App\Model\Entity\Likemean[] $likemeans
  */
 class Mean extends Entity
 {

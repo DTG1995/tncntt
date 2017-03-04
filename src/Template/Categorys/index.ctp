@@ -14,20 +14,20 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('NAME') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ACTIVE') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('CONTRIBUTE') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('active') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('contribute') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($categorys as $category): ?>
             <tr>
-                <td><?= $this->Number->format($category->ID) ?></td>
-                <td><?= h($category->NAME) ?></td>
-                <td><?= h($category->ACTIVE) ?></td>
-                <td><?= $this->Number->format($category->CONTRIBUTE) ?></td>
+                <td><?= $this->Number->format($category->id) ?></td>
+                <td><?= h($category->name) ?></td>
+                <td><?= h($category->active) ?></td>
+                <td><?= $this->Number->format($category->contribute) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $category->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $category->ID]) ?>

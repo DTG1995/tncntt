@@ -18,6 +18,9 @@ class LikemeansController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['MEANS', 'Users']
+        ];
         $likemeans = $this->paginate($this->Likemeans);
 
         $this->set(compact('likemeans'));
@@ -34,7 +37,7 @@ class LikemeansController extends AppController
     public function view($id = null)
     {
         $likemean = $this->Likemeans->get($id, [
-            'contain' => []
+            'contain' => ['MEANS', 'Users']
         ]);
 
         $this->set('likemean', $likemean);
@@ -58,7 +61,9 @@ class LikemeansController extends AppController
             }
             $this->Flash->error(__('The likemean could not be saved. Please, try again.'));
         }
-        $this->set(compact('likemean'));
+        $mEANS = $this->Likemeans->MEANS->find('list', ['limit' => 200]);
+        $users = $this->Likemeans->Users->find('list', ['limit' => 200]);
+        $this->set(compact('likemean', 'mEANS', 'users'));
         $this->set('_serialize', ['likemean']);
     }
 
@@ -83,7 +88,9 @@ class LikemeansController extends AppController
             }
             $this->Flash->error(__('The likemean could not be saved. Please, try again.'));
         }
-        $this->set(compact('likemean'));
+        $mEANS = $this->Likemeans->MEANS->find('list', ['limit' => 200]);
+        $users = $this->Likemeans->Users->find('list', ['limit' => 200]);
+        $this->set(compact('likemean', 'mEANS', 'users'));
         $this->set('_serialize', ['likemean']);
     }
 

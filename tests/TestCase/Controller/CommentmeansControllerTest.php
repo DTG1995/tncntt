@@ -16,7 +16,22 @@ class CommentmeansControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.commentmeans'
+        'app.commentmeans',
+        'app.means',
+        'app.words',
+        'app.definitions',
+        'app.users',
+        'app.commentdefinitions',
+        'app.commentmeans',
+        'app.likedefinitions',
+        'app.d_e_f_i_n_i_t_i_o_n_s',
+        'app.commentdefinitions',
+        'app.likedefinitions',
+        'app.likemeans',
+        'app.m_e_a_n_s',
+        'app.means',
+        'app.likemeans',
+        'app.definitions'
     ];
 
     /**

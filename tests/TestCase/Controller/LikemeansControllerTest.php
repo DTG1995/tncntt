@@ -16,7 +16,22 @@ class LikemeansControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.likemeans'
+        'app.likemeans',
+        'app.m_e_a_n_s',
+        'app.words',
+        'app.means',
+        'app.users',
+        'app.commentdefinitions',
+        'app.definitions',
+        'app.categorys',
+        'app.commentdefinitions',
+        'app.likedefinitions',
+        'app.commentmeans',
+        'app.likedefinitions',
+        'app.likemeans',
+        'app.means',
+        'app.commentmeans',
+        'app.definitions'
     ];
 
     /**

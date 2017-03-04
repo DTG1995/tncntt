@@ -6,9 +6,12 @@ use Cake\ORM\Entity;
 /**
  * Likedefinition Entity
  *
- * @property int $DEFINITION_ID
- * @property int $USER_ID
- * @property int $ISLIKE
+ * @property int $definition_id
+ * @property int $user_id
+ * @property int $islike
+ *
+ * @property \App\Model\Entity\Definition $DEFINITIONS
+ * @property \App\Model\Entity\User $User
  */
 class Likedefinition extends Entity
 {
@@ -25,6 +28,6 @@ class Likedefinition extends Entity
     protected $_accessible = [
         '*' => true,
         'IDDEFINITION' => false,
-        'EMAIL' => false
+        'USER_ID' => false
     ];
 }

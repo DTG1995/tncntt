@@ -6,10 +6,10 @@ use Cake\ORM\Entity;
 /**
  * Category Entity
  *
- * @property int $ID
- * @property string $NAME
- * @property bool $ACTIVE
- * @property int $CONTRIBUTE
+ * @property int $id
+ * @property string $name
+ * @property bool $active
+ * @property int $contribute
  */
 class Category extends Entity
 {

@@ -91,17 +91,17 @@ class PagesController extends AppController
 		$Means = TableRegistry::get('Means');
 		$Definitions = TableRegistry::get('Definitions');
 		$query = $WORDS->find('all',[
-					'fields'=>['ID','WORD'],
-		            'conditions'=>['WORDS.WORD'=>$str],
+					'fields'=>['id','word'],
+		            'conditions'=>['Words.word'=>$str],
 					'contain'=>[
 						'Means'=>[
-							'sort'=>['CONTRIBUTE'=>'ASC'],
+							'sort'=>['contribute'=>'ASC'],
 							'Likemeans',
 							'Commentmeans'=>[
 								'Users'],'Users'
 						]
 						,'Definitions'=>[
-							'fields'=>['ID','DEFINE','WORD_ID']
+							'fields'=>['id','define','word_id']
 						]
 					]
 		        ]);

@@ -18,6 +18,9 @@ class DefinitionsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Words', 'Users']
+        ];
         $definitions = $this->paginate($this->Definitions);
 
         $this->set(compact('definitions'));
@@ -34,7 +37,7 @@ class DefinitionsController extends AppController
     public function view($id = null)
     {
         $definition = $this->Definitions->get($id, [
-            'contain' => []
+            'contain' => ['Words', 'Users', 'Commentdefinitions', 'Likedefinitions']
         ]);
 
         $this->set('definition', $definition);
@@ -58,7 +61,9 @@ class DefinitionsController extends AppController
             }
             $this->Flash->error(__('The definition could not be saved. Please, try again.'));
         }
-        $this->set(compact('definition'));
+        $words = $this->Definitions->Words->find('list', ['limit' => 200]);
+        $users = $this->Definitions->Users->find('list', ['limit' => 200]);
+        $this->set(compact('definition', 'words', 'users'));
         $this->set('_serialize', ['definition']);
     }
 
@@ -83,7 +88,9 @@ class DefinitionsController extends AppController
             }
             $this->Flash->error(__('The definition could not be saved. Please, try again.'));
         }
-        $this->set(compact('definition'));
+        $words = $this->Definitions->Words->find('list', ['limit' => 200]);
+        $users = $this->Definitions->Users->find('list', ['limit' => 200]);
+        $this->set(compact('definition', 'words', 'users'));
         $this->set('_serialize', ['definition']);
     }
 

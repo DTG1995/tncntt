@@ -17,22 +17,22 @@ class DefinitionsFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'ID' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'WORD_ID' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'DEFINE' => ['type' => 'text', 'length' => null, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null],
-        'USER_ID' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'CONTRIBUTE' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'IDCATE' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'word_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'define' => ['type' => 'text', 'length' => null, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null],
+        'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'contribute' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'category_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
-            'IDWORD' => ['type' => 'index', 'columns' => ['WORD_ID'], 'length' => []],
-            'ACCOUNT' => ['type' => 'index', 'columns' => ['USER_ID'], 'length' => []],
-            'IDCATE' => ['type' => 'index', 'columns' => ['IDCATE'], 'length' => []],
+            'word_id' => ['type' => 'index', 'columns' => ['word_id'], 'length' => []],
+            'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
+            'category_id' => ['type' => 'index', 'columns' => ['category_id'], 'length' => []],
         ],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['ID'], 'length' => []],
-            'definitions_ibfk_1' => ['type' => 'foreign', 'columns' => ['WORD_ID'], 'references' => ['words', 'ID'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'definitions_ibfk_2' => ['type' => 'foreign', 'columns' => ['USER_ID'], 'references' => ['users', 'ID'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'definitions_ibfk_3' => ['type' => 'foreign', 'columns' => ['IDCATE'], 'references' => ['categorys', 'ID'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'definitions_ibfk_1' => ['type' => 'foreign', 'columns' => ['word_id'], 'references' => ['words', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'definitions_ibfk_2' => ['type' => 'foreign', 'columns' => ['user_id'], 'references' => ['users', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'definitions_ibfk_3' => ['type' => 'foreign', 'columns' => ['category_id'], 'references' => ['categorys', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -48,12 +48,12 @@ class DefinitionsFixture extends TestFixture
      */
     public $records = [
         [
-            'ID' => 1,
-            'WORD_ID' => 1,
-            'DEFINE' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-            'USER_ID' => 1,
-            'CONTRIBUTE' => 1,
-            'IDCATE' => 1
+            'id' => 1,
+            'word_id' => 1,
+            'define' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+            'user_id' => 1,
+            'contribute' => 1,
+            'category_id' => 1
         ],
     ];
 }

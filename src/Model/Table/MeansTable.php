@@ -9,6 +9,12 @@ use Cake\Validation\Validator;
 /**
  * Means Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Words
+ * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\BelongsTo $Categorys
+ * @property \Cake\ORM\Association\HasMany $Commentmeans
+ * @property \Cake\ORM\Association\HasMany $Likemeans
+ *
  * @method \App\Model\Entity\Mean get($primaryKey, $options = [])
  * @method \App\Model\Entity\Mean newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Mean[] newEntities(array $data, array $options = [])
@@ -31,27 +37,26 @@ class MeansTable extends Table
         parent::initialize($config);
 
         $this->table('means');
-        $this->displayField('ID');
+        $this->displayField('MEAN');
         $this->primaryKey('ID');
-        $this->belongsTo('Words',[
-            'className'=>'Words',
-            'foreignKey'=>'WORD_ID',
-            'propertyName'=>'WORDS',
-            'joinType'=>'INNER',
-            'propertyName'=>'Words'
+
+        $this->belongsTo('Words', [
+            'foreignKey' => 'word_id',
+            'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Users',[
-            'className'=>'Users',
-            'foreignKey'=>'USER_ID',
-            'propertyName'=>'USERS',
-            'joinType'=>'INNER',
-            'propertyName'=>'User'
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
         ]);
-        $this->hasMany('Commentmeans',[
-            'foreignKey'=>'MEAN_ID'
+        $this->belongsTo('Categorys', [
+            'foreignKey' => 'category_id',
+            'joinType' => 'INNER'
         ]);
-        $this->hasMany('Likemeans',[
-            'foreignKey'=>'MEAN_ID'
+        $this->hasMany('Commentmeans', [
+            'foreignKey' => 'mean_id'
+        ]);
+        $this->hasMany('Likemeans', [
+            'foreignKey' => 'mean_id'
         ]);
     }
 
@@ -64,33 +69,34 @@ class MeansTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('ID')
-            ->allowEmpty('ID', 'create');
+            ->integer('id')
+            ->allowEmpty('id', 'create');
 
         $validator
-            ->integer('WORD_ID')
-            ->requirePresence('WORD_ID', 'create')
-            ->notEmpty('WORD_ID');
+            ->requirePresence('mean', 'create')
+            ->notEmpty('mean');
 
         $validator
-            ->requirePresence('MEAN', 'create')
-            ->notEmpty('MEAN');
-
-        $validator
-            ->integer('CONTRIBUTE')
-            ->requirePresence('CONTRIBUTE', 'create')
-            ->notEmpty('CONTRIBUTE');
-
-        $validator
-            ->integer('USER_ID')
-            ->requirePresence('USER_ID', 'create')
-            ->notEmpty('USER_ID');
-
-        $validator
-            ->integer('IDCATE')
-            ->requirePresence('IDCATE', 'create')
-            ->notEmpty('IDCATE');
+            ->integer('contribute')
+            ->requirePresence('contribute', 'create')
+            ->notEmpty('contribute');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['word_id'], 'Words'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['category_id'], 'Categorys'));
+
+        return $rules;
     }
 }

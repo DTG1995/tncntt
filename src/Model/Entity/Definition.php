@@ -6,12 +6,17 @@ use Cake\ORM\Entity;
 /**
  * Definition Entity
  *
- * @property int $ID
- * @property int $WORD_ID
- * @property string $DEFINE
- * @property int $USER_ID
- * @property int $CONTRIBUTE
- * @property int $IDCATE
+ * @property int $id
+ * @property int $word_id
+ * @property string $define
+ * @property int $user_id
+ * @property int $contribute
+ * @property int $category_id
+ *
+ * @property \App\Model\Entity\Word $WORDS
+ * @property \App\Model\Entity\User $User
+ * @property \App\Model\Entity\Commentdefinition[] $commentdefinitions
+ * @property \App\Model\Entity\Likedefinition[] $likedefinitions
  */
 class Definition extends Entity
 {

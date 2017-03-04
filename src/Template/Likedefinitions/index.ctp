@@ -7,6 +7,10 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Likedefinition'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List D E F I N I T I O N S'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New D E F I N I T I O N'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="likedefinitions index large-9 medium-8 columns content">
@@ -14,18 +18,18 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('DEFINITION_ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('USER_ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ISLIKE') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('definition_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('islike') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($likedefinitions as $likedefinition): ?>
             <tr>
-                <td><?= $this->Number->format($likedefinition->DEFINITION_ID) ?></td>
-                <td><?= $this->Number->format($likedefinition->USER_ID) ?></td>
-                <td><?= $this->Number->format($likedefinition->ISLIKE) ?></td>
+                <td><?= $this->Number->format($likedefinition->definition_id) ?></td>
+                <td><?= $this->Number->format($likedefinition->user_id) ?></td>
+                <td><?= $this->Number->format($likedefinition->islike) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $likedefinition->IDDEFINITION]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $likedefinition->IDDEFINITION]) ?>

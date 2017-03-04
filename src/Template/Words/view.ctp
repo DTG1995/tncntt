@@ -20,12 +20,12 @@
     <h3><?= h($word->ID) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('WORD') ?></th>
-            <td><?= h($word->WORD) ?></td>
+            <th scope="row"><?= __('Word') ?></th>
+            <td><?= h($word->word) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('ID') ?></th>
-            <td><?= $this->Number->format($word->ID) ?></td>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($word->id) ?></td>
         </tr>
     </table>
     <div class="related">
@@ -33,22 +33,22 @@
         <?php if (!empty($word->means)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('ID') ?></th>
-                <th scope="col"><?= __('WORD ID') ?></th>
-                <th scope="col"><?= __('MEAN') ?></th>
-                <th scope="col"><?= __('CONTRIBUTE') ?></th>
-                <th scope="col"><?= __('ACCOUNT') ?></th>
-                <th scope="col"><?= __('IDCATE') ?></th>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Word Id') ?></th>
+                <th scope="col"><?= __('Mean') ?></th>
+                <th scope="col"><?= __('Contribute') ?></th>
+                <th scope="col"><?= __('User Id') ?></th>
+                <th scope="col"><?= __('Category Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($word->means as $means): ?>
             <tr>
-                <td><?= h($means->ID) ?></td>
-                <td><?= h($means->WORD_ID) ?></td>
-                <td><?= h($means->MEAN) ?></td>
-                <td><?= h($means->CONTRIBUTE) ?></td>
-                <td><?= h($means->ACCOUNT) ?></td>
-                <td><?= h($means->IDCATE) ?></td>
+                <td><?= h($means->id) ?></td>
+                <td><?= h($means->word_id) ?></td>
+                <td><?= h($means->mean) ?></td>
+                <td><?= h($means->contribute) ?></td>
+                <td><?= h($means->user_id) ?></td>
+                <td><?= h($means->category_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Means', 'action' => 'view', $means->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Means', 'action' => 'edit', $means->ID]) ?>
@@ -64,22 +64,22 @@
         <?php if (!empty($word->definitions)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('ID') ?></th>
-                <th scope="col"><?= __('WORD ID') ?></th>
-                <th scope="col"><?= __('DEFINE') ?></th>
-                <th scope="col"><?= __('ACCOUNT') ?></th>
-                <th scope="col"><?= __('CONTRIBUTE') ?></th>
-                <th scope="col"><?= __('IDCATE') ?></th>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Word Id') ?></th>
+                <th scope="col"><?= __('Define') ?></th>
+                <th scope="col"><?= __('User Id') ?></th>
+                <th scope="col"><?= __('Contribute') ?></th>
+                <th scope="col"><?= __('Category Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($word->definitions as $definitions): ?>
             <tr>
-                <td><?= h($definitions->ID) ?></td>
-                <td><?= h($definitions->WORD_ID) ?></td>
-                <td><?= h($definitions->DEFINE) ?></td>
-                <td><?= h($definitions->ACCOUNT) ?></td>
-                <td><?= h($definitions->CONTRIBUTE) ?></td>
-                <td><?= h($definitions->IDCATE) ?></td>
+                <td><?= h($definitions->id) ?></td>
+                <td><?= h($definitions->word_id) ?></td>
+                <td><?= h($definitions->define) ?></td>
+                <td><?= h($definitions->user_id) ?></td>
+                <td><?= h($definitions->contribute) ?></td>
+                <td><?= h($definitions->category_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Definitions', 'action' => 'view', $definitions->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Definitions', 'action' => 'edit', $definitions->ID]) ?>

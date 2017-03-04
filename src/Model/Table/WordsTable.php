@@ -9,6 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Words Model
  *
+ * @property \Cake\ORM\Association\HasMany $Definitions
+ * @property \Cake\ORM\Association\HasMany $Means
+ *
  * @method \App\Model\Entity\Word get($primaryKey, $options = [])
  * @method \App\Model\Entity\Word newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Word[] newEntities(array $data, array $options = [])
@@ -31,16 +34,15 @@ class WordsTable extends Table
         parent::initialize($config);
 
         $this->table('words');
-        $this->displayField('ID');
-        $this->primaryKey('ID');
-        $this->hasMany('Means',[
-            'foreignKey'=>'WORD_ID'
-        ])
-            ->setName('Means');
-        $this->hasMany('Definitions',[
-            'foreignKey'=>'WORD_ID'
-        ])
-            ->setName('Definitions');
+        $this->displayField('word');
+        $this->primaryKey('id');
+
+        $this->hasMany('Definitions', [
+            'foreignKey' => 'word_id'
+        ]);
+        $this->hasMany('Means', [
+            'foreignKey' => 'word_id'
+        ]);
     }
 
     /**
@@ -52,12 +54,12 @@ class WordsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('ID')
-            ->allowEmpty('ID', 'create');
+            ->integer('id')
+            ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('WORD', 'create')
-            ->notEmpty('WORD');
+            ->requirePresence('word', 'create')
+            ->notEmpty('word');
 
         return $validator;
     }

@@ -9,6 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Categorys Model
  *
+ * @property \Cake\ORM\Association\HasMany $Definitions
+ * @property \Cake\ORM\Association\HasMany $Means
+ *
  * @method \App\Model\Entity\Category get($primaryKey, $options = [])
  * @method \App\Model\Entity\Category newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Category[] newEntities(array $data, array $options = [])
@@ -31,8 +34,15 @@ class CategorysTable extends Table
         parent::initialize($config);
 
         $this->table('categorys');
-        $this->displayField('ID');
-        $this->primaryKey('ID');
+        $this->displayField('name');
+        $this->primaryKey('id');
+
+        $this->hasMany('Definitions', [
+            'foreignKey' => 'category_id'
+        ]);
+        $this->hasMany('Means', [
+            'foreignKey' => 'category_id'
+        ]);
     }
 
     /**
@@ -44,22 +54,22 @@ class CategorysTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('ID')
-            ->allowEmpty('ID', 'create');
+            ->integer('id')
+            ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('NAME', 'create')
-            ->notEmpty('NAME');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         $validator
-            ->boolean('ACTIVE')
-            ->requirePresence('ACTIVE', 'create')
-            ->notEmpty('ACTIVE');
+            ->boolean('active')
+            ->requirePresence('active', 'create')
+            ->notEmpty('active');
 
         $validator
-            ->integer('CONTRIBUTE')
-            ->requirePresence('CONTRIBUTE', 'create')
-            ->notEmpty('CONTRIBUTE');
+            ->integer('contribute')
+            ->requirePresence('contribute', 'create')
+            ->notEmpty('contribute');
 
         return $validator;
     }

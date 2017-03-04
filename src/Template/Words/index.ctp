@@ -18,16 +18,16 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('WORD') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('word') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($words as $word): ?>
             <tr>
-                <td><?= $this->Number->format($word->ID) ?></td>
-                <td><?= h($word->WORD) ?></td>
+                <td><?= $this->Number->format($word->id) ?></td>
+                <td><?= h($word->word) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $word->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $word->ID]) ?>

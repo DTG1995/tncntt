@@ -14,9 +14,10 @@
     <fieldset>
         <legend><?= __('Add Category') ?></legend>
         <?php
-            echo $this->Form->input('NAME');
-            echo $this->Form->input('ACTIVE');
-            echo $this->Form->input('CONTRIBUTE');
+            echo $this->Form->input('id');
+            echo $this->Form->input('name');
+            echo $this->Form->input('active');
+            echo $this->Form->input('contribute');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

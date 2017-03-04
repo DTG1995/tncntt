@@ -9,6 +9,12 @@
         <li><?= $this->Html->link(__('New Mean'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Words'), ['controller' => 'Words', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Word'), ['controller' => 'Words', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Commentmeans'), ['controller' => 'Commentmeans', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Commentmean'), ['controller' => 'Commentmeans', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Likemeans'), ['controller' => 'Likemeans', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Likemean'), ['controller' => 'Likemeans', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="means index large-9 medium-8 columns content">
@@ -16,22 +22,22 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('WORD_ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('CONTRIBUTE') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('USER_ID') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('IDCATE') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('word_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('contribute') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('category_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($means as $mean): ?>
             <tr>
-                <td><?= $this->Number->format($mean->ID) ?></td>
-                <td><?= $mean->has('WORDS') ? $this->Html->link($mean->WORDS->ID, ['controller' => 'Words', 'action' => 'view', $mean->WORDS->ID]) : '' ?></td>
-                <td><?= $this->Number->format($mean->CONTRIBUTE) ?></td>
-                <td><?= $this->Number->format($mean->USER_ID) ?></td>
-                <td><?= $this->Number->format($mean->IDCATE) ?></td>
+                <td><?= $this->Number->format($mean->id) ?></td>
+                <td><?= $this->Number->format($mean->word_id) ?></td>
+                <td><?= $this->Number->format($mean->contribute) ?></td>
+                <td><?= $this->Number->format($mean->user_id) ?></td>
+                <td><?= $this->Number->format($mean->category_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $mean->ID]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $mean->ID]) ?>

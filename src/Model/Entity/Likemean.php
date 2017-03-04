@@ -6,9 +6,12 @@ use Cake\ORM\Entity;
 /**
  * Likemean Entity
  *
- * @property int $MEAN_ID
- * @property int $USER_ID
- * @property int $ISLIKE
+ * @property int $mean_id
+ * @property int $user_id
+ * @property int $islike
+ *
+ * @property \App\Model\Entity\Definition $MEANS
+ * @property \App\Model\Entity\User $User
  */
 class Likemean extends Entity
 {

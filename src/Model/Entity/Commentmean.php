@@ -6,12 +6,16 @@ use Cake\ORM\Entity;
 /**
  * Commentmean Entity
  *
- * @property int $ID
- * @property string $CONTENT
- * @property \Cake\I18n\Time $CREATED
- * @property int $COMMENTMEAN_ID
- * @property int $MEAN_ID
- * @property int $USER_ID
+ * @property int $id
+ * @property string $content
+ * @property \Cake\I18n\Time $created
+ * @property int $commentmean_id
+ * @property int $mean_id
+ * @property int $user_id
+ *
+ * @property \App\Model\Entity\Commentmean $commentmean
+ * @property \App\Model\Entity\Mean $mean
+ * @property \App\Model\Entity\User $User
  */
 class Commentmean extends Entity
 {

@@ -17,10 +17,10 @@ class WordsFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'ID' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'WORD' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'word' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['ID'], 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -36,8 +36,8 @@ class WordsFixture extends TestFixture
      */
     public $records = [
         [
-            'ID' => 1,
-            'WORD' => 'Lorem ipsum dolor sit amet'
+            'id' => 1,
+            'word' => 'Lorem ipsum dolor sit amet'
         ],
     ];
 }

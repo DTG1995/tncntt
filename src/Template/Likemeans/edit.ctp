@@ -13,6 +13,10 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Likemeans'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List M E A N S'), ['controller' => 'Definitions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New M E A N'), ['controller' => 'Definitions', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="likemeans form large-9 medium-8 columns content">
@@ -20,9 +24,9 @@
     <fieldset>
         <legend><?= __('Edit Likemean') ?></legend>
         <?php
-            echo $this->Form->input('MEAN_ID');
-            echo $this->Form->input('USER_ID');
-            echo $this->Form->input('ISLIKE');
+            echo $this->Form->input('mean_id');
+            echo $this->Form->input('user_id');
+            echo $this->Form->input('islike');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

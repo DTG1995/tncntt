@@ -9,6 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Likedefinitions Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $Definitions
+ * @property \Cake\ORM\Association\BelongsTo $Users
+ *
  * @method \App\Model\Entity\Likedefinition get($primaryKey, $options = [])
  * @method \App\Model\Entity\Likedefinition newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Likedefinition[] newEntities(array $data, array $options = [])
@@ -31,20 +34,16 @@ class LikedefinitionsTable extends Table
         parent::initialize($config);
 
         $this->table('likedefinitions');
-        $this->displayField('IDDEFINITION');
-        $this->primaryKey(['IDDEFINITION', 'USER_ID']);
-        $this->belongsTo('DEFINITIONS',[
-            'className'=>'Definitions',
-            'foreignKey'=>'DEFINITION_ID',
-            'propertyName'=>'DEFINITIONS',
-            'joinType'=>'INNER'
+        $this->displayField('islike');
+        $this->primaryKey(['definition_id', 'user_id']);
+
+        $this->belongsTo('Definitions', [
+            'foreignKey' => 'definition_id',
+            'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Users',[
-            'className'=>'Users',
-            'foreignKey'=>'USER_ID',
-            'propertyName'=>'USERS',
-            'joinType'=>'INNER',
-            'propertyName'=>'User'
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
         ]);
     }
 
@@ -57,18 +56,25 @@ class LikedefinitionsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('DEFINITION_ID')
-            ->allowEmpty('DEFINITION_ID', 'create');
-
-        $validator
-            ->integer('USER_ID')
-            ->allowEmpty('USER_ID', 'create');
-
-        $validator
-            ->integer('ISLIKE')
-            ->requirePresence('ISLIKE', 'create')
-            ->notEmpty('ISLIKE');
+            ->integer('islike')
+            ->requirePresence('islike', 'create')
+            ->notEmpty('islike');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['definition_id'], 'Definitions'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
+
+        return $rules;
     }
 }

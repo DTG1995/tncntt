@@ -34,7 +34,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' => ['commentdefinitions', 'commentmeans', 'likedefinitions', 'likemeans', 'means', 'definitions']
         ]);
 
         $this->set('user', $user);
