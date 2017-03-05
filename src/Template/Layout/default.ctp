@@ -25,15 +25,16 @@
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    
 
     <?= $this->Html->css('bootstrap.min')?>
 
 
-    <!-- <?= $this->Html->css('layout.css') ?> -->
+    <?= $this->Html->css('layout.css') ?>
    
-
+    <?= $this->Html->script("jquery-3.1.1.min.js")?>
+    <?= $this->Html->script("bootstrap.min.js")?>
+    
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -41,21 +42,59 @@
 
 </head>
 <body>
-    <div class="header row" >  
-    <!-- NAV-MENU -->
-      <div class="img-responsive col-md-3 col-sm-2 col-xs-12">
-        <?=$this->Html->image('Logo-GTP.PNG',['class'=>'img-responsive','alt'=>'logo'])?>
-      </div>
-      <div class="col-md-5 col-sm-10 hidden-xs">
-        Thuật Ngữ Chuyên Ngành Công Nghệ Thông Tin
-      </div>
-    </div>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
-    </div>
+<!-- NAV-MENU -->
+    <nav class="navbar navbar-menu header">
 
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menumobile" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-th"></span>
+          </button>
+          <a class="navbar-brand" style="margin-top: -2px;" href="#">
+            <img alt="Brand" src="image/logo.png">
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="menumobile">
+          <ul class="nav navbar-nav">
+
+             <li class="dropdown mega-dropdown">
+              <a href="#"  > Trang chủ </a> 
+            </li>
+
+          </ul>
+          
+          <ul class="nav navbar-nav navbar-right">
+            
+            <li class="dropdown">
+              <a href="index.php" > Đăng ký </a>
+            </li>
+            <li class="dropdown">
+              <a href="index.php" > Đăng nhập </a>
+            </li>
+          </ul>
+
+        </div><!-- /.navbar-collapse -->
+      <!-- </div> --><!-- /.container-fluid -->
+    </nav>
+    <!-- AREA-TEXT -->
+    <div class="area-text">
+        <?= $this->Flash->render() ?>
+        <div class="container-fluid">
+            <?= $this->fetch('content') ?>
+        </div>
+    </div>
+    <!-- FOOTER -->
     <footer>
+        <div class="navbar nav-footer">
+            <div class="container" style="margin: auto">
+
+              <p class="navbar-text">© 2016 - Được phát triển bởi thuatnguchuyennganhCNTT
+                   <a href="index.php" target="_blank" >Nhóm TPG</a>
+              </p>
+
+            </div>
+        </div>
     </footer>
 </body>
 </html>

@@ -79,7 +79,7 @@ class PagesController extends AppController
 			if($str!=null){
 				$query = $WORDS->find('all'
 				                ,[
-				                    'conditions'=>['WORDS.WORD LIKE'=>'%'.$str.'%']
+				                    'conditions'=>['words.word LIKE'=>'%'.$str.'%']
 				                    ]);
 				$words = $query->all();
 			}
@@ -103,10 +103,8 @@ class PagesController extends AppController
 								'fields'=>['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','mean_id']
 							],
 							'Commentmeans'=>[
-								'conditions'=>['commentmeans.commentmean_id IS NULL'],
-								'sort'=>['commentmeans.created'=>'DESC'],
-								'Children',
-								'Users',
+								'fields'=>['mean_id','count'=>'count(commentmean_id IS NULL)'],
+								'conditions'=>['commentmean_id IS'=> NULL]
 								],'Users',
 							'Categorys'
 						],
@@ -119,41 +117,82 @@ class PagesController extends AppController
 								'fields'=>['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','definition_id']
 							],
 							'Commentdefinitions'=>[
-								'conditions'=>['commentdefinitions.commentdefinition_id IS NULL'],
-								'sort'=>['commentdefinitions.created'=>'DESC'],
-								'Childrendefinecomment',
-								'Users',
-								],'Users',
+								'fields'=>['definition_id','count'=>'count(commentdefinition_id IS NULL)'],
+								'conditions'=>['commentdefinition_id IS'=> NULL]
+							],
+							'Users',
 							'Categorys'
 						]
 					]
 		        ]);
 		$word = $query->all()->first();
-		// $query->all()['means']->contain(['likemeans','commentmeans']);
-		
-		// if($str!=null){
-		// 	$query = $Means->find('all',[
-		// 					'fields'=>['ID','MEAN','CREATED'],
-		// 	                'conditions'=>['MEANS.WORD_ID'=>$word->ID],
-		// 	                'order'=>['MEANS.CONTRIBUTE'=>'ASC'],
-		// 					'contain'=>['Likemeans','Commentmeans','Users']
-		// 	            ]);
-		// 	$means = $query->all();
-		// 	$query = $Definitions->find('all',[
-		// 					'fields'=>['ID','DEFINITION','CREATED'],
-		// 	                'conditions'=>['DEFINITIONS.WORD_ID'=>$word->ID],
-		// 	                'order'=>['DEFINITIONS.CONTRIBUTE'=>'ASC'],
-		// 					'contain'=>['Likedefinitions','Commentdefinitions','Users']
-		// 	            ]);
-		// 	$definitions = $query->all();
-		// }
-		// else {
-		// 	$definitions =[];
-		// 	$means=[];
-		// }
-		// $this->set('means',$means);
-		// $this->set('definition',$definitions);
 		$this->set('word',$word);
+	}
+	function getcommentmean($mean_id=0,$parent_id=0){
+		$CommentMeans = TableRegistry::get('Commentmeans');
+		$commentmeans = [];
+		$query;
+		if($mean_id!=0){
+			if($parent_id==0)
+				$query = $CommentMeans->find('all',[
+					'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+					],
+					'conditions'=>['commentmeans.mean_id'=>$mean_id,'commentmeans.commentmean_id IS'=>NULL],
+					'contain'=>[
+						'Children'=>[
+						'fields'=>['commentmean_id','count'=>'count(Children.id)'
+						],
+						'Users'
+					],'Users'],
+					'sort'=>['creadted'=>'DECS'],
+					'limit'=>3
+				]);
+			else
+				$query = $CommentMeans->find('all',[
+					'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+					],
+					'conditions'=>['commentmeans.mean_id'=>$mean_id,'commentmeans.commentmean_id'=>$parent_id],
+					'contain'=>[
+						'Children'=>[
+						'fields'=>['commentmean_id','count'=>'count(Children.id)'
+						],
+						'Users'
+					],'Users'],
+					'sort'=>['creadted'=>'DECS'],
+					'limit'=>3
+				]);
+			$commentmeans = $query->all()->toArray();
+		}
+		$this->set('mean',$mean_id);
+		$this->set('parent',$parent_id);
+		$this->set('comments',$commentmeans);
+	}
+	function getcommentdefine($define_id=0,$parent_id=null){
+		$CommentDefinitons = TableRegistry::get('Commentdefinitions');
+		$commentdefinitions = [];
+		if($define_id!=null){
+			$query = $CommentDefinitons->find('all',[
+				'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+				],
+				'conditions'=>['commentdefinitions.definition_id'=>$define_id,'commentdefinitions.commentdefinition_id IS'=>$parent_id],
+				'contain'=>'Users',
+				'sort'=>['creadted'=>'DECS'],
+				'limit'=>3
+			]);
+			if($parent_id==null)
+			{
+				$query->contain([
+					'Childrendefinecomment'=>[
+						'fields'=>['commentdefinition_id','count'=>'count(Childrendefinecomment.id)'
+						],
+						'Users'
+					]
+				]);
+			}
+			$commentdefinitions = $query->all()->toArray();
+		}
+		$this->set('parent',$parent_id);
+		$this->set('comments',$commentdefinitions);
 	}
 }
 

@@ -69,6 +69,6 @@ class AppController extends Controller
     }
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['display']);
+        $this->Auth->allow(['display','gethint','getresult','getcommentdefine','getcommentmean']);
     }
 }

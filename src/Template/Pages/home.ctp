@@ -26,14 +26,15 @@ endif;
 
 $this->assign('title','Trang chủ');
 ?>
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+
     <script>
         $(document).ready(function(){
         $("#search-box").keyup(function(e){
             $("#result").html("");
+            $("#txtresult").val("");
+            $("#ratingmean").html("");
             if(e.keyCode == 13){
-                var keyword = $(this).val();
-                $(this).val(keyword.substr(0,keyword.length-1));
                 $.ajax({
                     type: "POST",
                     url: "pages/getresult/"+$(this).val(),
@@ -44,8 +45,7 @@ $this->assign('title','Trang chủ');
                         $("#search-box").css("background","#FFF");
                  }
              });
-            }else{  
-                    $("#txtresult").val(""); 
+            }else{   
                     $.ajax({
                     type: "POST",
                     url: "pages/gethint/"+$(this).val(),
@@ -64,54 +64,111 @@ $this->assign('title','Trang chủ');
     //To select word
     function selectWord(val) {
     
-    $("#search-box").val(val);
-    $("#suggesstion-box").hide();
-    $.ajax({
-        type: "POST",
-        url: "pages/getresult/"+val,
-        data:'keyword='+val,
-        success: function(data){
-            $("#result").html(data);
-            $("#search-box").css("background","#FFF");
+        $("#search-box").val(val);
+        $("#suggesstion-box").hide();
+        $.ajax({
+            type: "POST",
+            url: "pages/getresult/"+val,
+            data:'keyword='+val,
+            success: function(data){
+                // $("#result").html(data);
+                // $("#result1").val(data);
+                $("#search-box").css("background","#FFF");
+            }
+        });
+    }
+    function viewcomment(type,idhtml,id,parent){
+        debugger;
+        if($(idhtml).text()!="")
+        {
+            $(idhtml).text("");
+            $(idhtml).hide();
         }
-    });
+        else{
+            // $('.commentcontent').hide();
+            if(type=='define')
+            {
+                $.ajax({
+                type: "POST",
+                url: "pages/getcommentdefine/"+id+"/"+parent,
+                success: function(data){
+                    $(idhtml).html(data);
+                    $(idhtml).show();
+                    }
+                });
+            }
+            else{
+                $.ajax({
+                type: "POST",
+                url: "pages/getcommentmean/"+id+"/"+parent,
+                success: function(data){
+                    $(idhtml).html(data);
+                    $(idhtml).show();
+                    }
+                });
+            }
+        }
     }
     </script>
-
-    <div class="area_combobox">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <?= $this->Html->script("like-dislike.js") ?>
+    
+<h1>Tra cứu thuật ngữ công nghệ thông tin </h1>
+<div>
+    <div class="container-fluid area_combobox">
     <!-- AREA-COMBOBOX -->
-        <div class="row">
+        <div class="">
             <div class="col-sm-3 col-xs-12">
                 <div class="form-group">
-                    <select class='form-control '  id="sel1">
-                    <option value="">Tat ca</option>
-                    <?php
-                        foreach ($categorys as $category) {
-                    ?>
-                    <option value=<?=$category->ID;?>> <?=$category->NAME;?></option>
-                    <?php
-                        }
-                    ?>
-                    </select>
-                </div>
+                    <!--<select class="w3-select form-control" id="sel1">-->
+                      <!--<option value="">Tất cả</option>-->
+                        <?php
+                            // foreach ($categorys as $category) {
+                        ?>
+                        <!--<option value=<?=$category->ID;?>> <?=$category->NAME;?> </option>-->
+                        <?php
+                            // }
+                        ?>
+                    <!--</select>-->
+                  </div>
             </div>
             <div class="col-sm-8 col-xs-12">
                 
             </div>
         </div>
-        <div class="form-group">
-            <div class="form-group">
-                <div class="frmSearch col-lg-6">
-                    <textarea id="search-box" placeholder="Word ?" ></textarea>
+    </div>
+    <div class="area_text container-fluid"> 
+    <!-- AREA_TEXT -->
+      <div class="">
+            <form>
+                <div class="col-xs-12 col-sm-6 text_translate">
+                    <input type="textFind" id="search-box"  name="fname" placeholder="Nhập từ cần tra...">
                 </div>
-                <div class="col-lg-6">
-                    <textarea id="txtresult"></textarea>
+                <div class="col-xs-12 col-sm-6">
+                    <input readonly type="textseached" id="txtresult" name="fname" placeholder="Hiển thị nghĩa...">
+                    <div class="rating" id="ratingmean">
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
+    </div>
+    <div>
         <div class="row">
             <div id="suggesstion-box"></div>
         </div>
         <div class="row contents" id="result">
         </div>
     </div>
+<script>
+ $('#rating').likeDislike({
+        reverseMode: false,
+        disabledClass: 'disable',
+        click: function (value, l, d, event) {
+            var likes = $(this.element).find('.likes');
+            var dislikes =  $(this.element).find('.dislikes');
+
+            likes.text(parseInt(likes.text()) + l);
+            dislikes.text(parseInt(dislikes.text()) + d);
+        }
+    });
+</script>
