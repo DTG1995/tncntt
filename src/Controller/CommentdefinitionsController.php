@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\I18n\Time;
 /**
  * Commentdefinitions Controller
  *
@@ -113,4 +113,51 @@ class CommentdefinitionsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    public function comment($define_id=0,$content=null,$parent=0){
+		if($this->Auth->user()!=null){
+			
+			$comment = $this->Commentdefinitions->newEntity();
+			$comment->content = $content;
+			$comment->user_id=$this->Auth->user('id');
+			if($parent!=0)
+			    $comment->commentdefinition_id=$parent;
+			$comment->created = Time::now();
+			$comment->definition_id = $define_id;
+			if ($this->Commentdefinitions->save($comment)) {
+				if($parent!=0)
+                    $query = $this->Commentdefinitions->find('all',[
+                        'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+                        ],
+                        'conditions'=>['commentdefinitions.definition_id'=>$define_id,'commentdefinitions.commentdefinition_id'=>$parent],
+                        'contain'=>[
+                            'Childrendefinecomment'=>[
+                            'fields'=>['commentdefinition_id','count'=>'count(Childrendefinecomment.id)'
+                            ],
+                            'Users'
+                        ],'Users'],
+                        'order'=>['commentdefinitions.created'=>'DESC'],
+                        'limit'=>3
+                    ]);
+				else 
+                    $query = $this->Commentdefinitions->find('all',[
+                        'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+                        ],
+                        'conditions'=>['commentdefinitions.definition_id'=>$define_id,'commentdefinitions.commentdefinition_id IS'=> NULL],
+                        'contain'=>[
+                            'Childrendefinecomment'=>[
+                            'fields'=>['commentdefinition_id','count'=>'count(Childrendefinecomment.id)'
+                            ],
+                            'Users'
+                        ],'Users'],
+                        'order'=>['commentdefinitions.created'=>'DESC'],
+                        'limit'=>3
+                    ]);
+			}
+			$this->set('count',$query->count());
+            $this->set('comments',$query->all()->toArray());
+			$this->set('definition',$define_id);
+			$this->set('parent',$parent);
+			// 			$this->set('_serialize', ['likemean']);
+		}
+	}
 }

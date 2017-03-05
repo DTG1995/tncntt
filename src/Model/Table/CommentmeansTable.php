@@ -89,7 +89,7 @@ class CommentmeansTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['commentmean_id'], 'Commentmeans'));
+        // $rules->add($rules->existsIn(['commentmean_id'], 'Commentmeans'));
         $rules->add($rules->existsIn(['mean_id'], 'Means'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 

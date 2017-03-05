@@ -57,10 +57,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     // $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
-
+    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
+    $routes->connect('/signup', ['controller' => 'Users', 'action' => 'adduser']);
     // $routes->connect('/admin?id=1', ['controller' => 'Words', 'action' => 'add']);
-    $routes->connect('/admin/1', ['controller' => 'Words', 'action' => 'add']);
-    $routes->connect('/admin/2', ['controller' => 'Words', 'action' => 'edit']);
+    
     
     
     // $routes->connect('/admin', ['controller' => 'Words', 'action' => 'delete']);   

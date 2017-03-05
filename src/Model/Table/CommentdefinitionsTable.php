@@ -90,7 +90,7 @@ class CommentdefinitionsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['commentdefinition_id'], 'Commentdefinitions'));
+        // $rules->add($rules->existsIn(['commentdefinition_id'], 'Commentdefinitions'));
         $rules->add($rules->existsIn(['definition_id'], 'Definitions'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 

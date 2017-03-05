@@ -71,14 +71,13 @@ $this->assign('title','Trang chủ');
             url: "pages/getresult/"+val,
             data:'keyword='+val,
             success: function(data){
-                // $("#result").html(data);
-                // $("#result1").val(data);
+                $("#suggesstion-box").hide();
+                $("#result").html(data);
                 $("#search-box").css("background","#FFF");
             }
         });
     }
     function viewcomment(type,idhtml,id,parent){
-        debugger;
         if($(idhtml).text()!="")
         {
             $(idhtml).text("");
@@ -109,6 +108,40 @@ $this->assign('title','Trang chủ');
             }
         }
     }
+    function addcomment(type,idhtml,id,parent,a,e){
+        
+        if(e.keyCode==13)
+        {
+            $(idhtml).html("");
+            if(type=='define'){
+                url = "commentdefinitions/comment/"+id+"/"+a.value+"/"+parent;
+                if(parent == 0)
+                    url ="commentdefinitions/comment/"+id+"/"+a.value;
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    success: function(data){
+                        $(idhtml).html(data);
+                        $(idhtml).show();
+                        }
+                    });
+            }
+            else{
+                url = "commentmeans/comment/"+id+"/"+a.value+"/"+parent;
+                if(parent == 0)
+                    url ="commentmeans/comment/"+id+"/"+a.value;
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    success: function(data){
+                        $(idhtml).html(data);
+                        $(idhtml).show();
+                        }
+                    });
+            }
+        }
+    }
+
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <?= $this->Html->script("like-dislike.js") ?>
@@ -125,7 +158,7 @@ $this->assign('title','Trang chủ');
                         <?php
                             // foreach ($categorys as $category) {
                         ?>
-                        <!--<option value=<?=$category->ID;?>> <?=$category->NAME;?> </option>-->
+                        <!--<option value=<?php//$category->id;?>> <?php//$category->name;?> </option>-->
                         <?php
                             // }
                         ?>

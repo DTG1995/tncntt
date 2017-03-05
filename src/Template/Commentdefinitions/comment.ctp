@@ -1,10 +1,15 @@
 <?php
     $this->layout=null;
-    $idhtml = $parent==0?'#define'.$definition:'#commentdefine'.$parent;
+    $idhtml = $parent==null?'#define'.$definition:'#commentdefine'.$parent;
+    $idhtmlcomment = $idhtml."_comment";
+    ?>
+    <script>
+        $("<?=$idhtmlcomment?>").text("<?=$count?>");
+        </script>
+    <?php
     if(count($comments)<1)
     {
         ?>
-     
         <div class="comments">
             <input type="text" onkeypress="addcomment('define','<?=$idhtml?>',<?=$definition?>,<?=$parent?>,this,event);" class="newcomment" placeholder="Viết bình luận..."/>
         </div>

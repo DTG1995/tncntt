@@ -1,6 +1,12 @@
 <?php
     $this->layout=null;
-    $idhtml = $parent==0?'#mean'.$mean:'#commentmean'.$parent;
+    $idhtml = $parent==null?'#mean'.$mean:'#commentmean'.$parent;
+    $idhtmlcomment = $idhtml."_comment";
+    ?>
+    <script>
+        $("<?=$idhtmlcomment?>").text("<?=$count?>");
+        </script>
+    <?php
     if(count($comments)<1)
     {
         ?>
@@ -25,7 +31,7 @@
                 {?>
                 <a class="comment" onclick="return viewcomment('mean','#commentmean<?=$comment->id?>',<?=$mean?>,<?=$comment->id?>);">
                 <span class="glyphicon glyphicon-comment"></span> Bình luận</a>
-                <span class="comment" id="commentmean<?=$comment->id?>_comment"><?php echo count($comment->children)>0?$comment->children[0]->count:0 ?></span>
+                <span class="comment" id="commentmean<?=$comment->id?>_comment" ><?php echo count($comment->children)>0?$comment->children[0]->count:0 ?></span>
                 <div id="commentmean<?=$comment->id?>"></div>
                 <?php
                 }?>

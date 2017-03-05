@@ -2,7 +2,7 @@
 namespace App\Model\Entity;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
-
+use Cake\I18n\Time;
 /**
  * User Entity
  *
@@ -51,5 +51,25 @@ class User extends Entity
     protected function _setPassword($password)
     {
         return(new DefaultPasswordHasher)->hash($password);
+    }
+    protected function _setIsadmin($isadmin){
+        if($isadmin==null)
+            return(0);
+        return $isadmin;
+    }
+    protected function _setActive($active){
+        if($active==null)
+            return(0);
+        return $active;
+    }
+    protected function _setLast_login($last_login){
+        if($last_login==null)
+            return(Time::now());
+        return $last_login;
+    }
+    protected function _setStatus($status){
+        if($status==null)
+            return(0);
+        return $status;
     }
 }
