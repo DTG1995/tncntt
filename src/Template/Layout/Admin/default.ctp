@@ -40,22 +40,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Bootstrap Core CSS -->
 <?= $this->Html->css('admin/css/bootstrap.min.css') ?>
-<!-- Graph CSS -->
-<?php echo $this->Html->css('admin/css/font-awesome')?>
-
-<!-- jQuery -->
-<?php echo $this->Html->script('/css/admin/js/jquery-2.1.4.min.js')?>
-
-<!-- //jQuery -->
-<!--<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
-<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
-
-<!-- lined-icons -->
-<?php echo $this->Html->css('admin/css/icon-font.min.css')?>
-
 <!-- Custom CSS -->
 <?= $this->Html->css('admin/css/style.css')?>
 <?= $this->Html->css('admin/css/morris.css')?>
+
+<!-- Graph CSS -->
+<?php echo $this->Html->css('admin/css/font-awesome')?>
+<!-- jQuery -->
+<?php echo $this->Html->script('jquery-2.1.4.min.js')?>
+
+<!-- //jQuery -->
+<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
+<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<!-- lined-icons -->
+<?php echo $this->Html->css('admin/css/icon-font.min.css')?>
+
+
+
 </head> 
 <body>
    <div class="page-container">
@@ -91,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 </div>
                                             </li>
                                             <li><a href="#">
-                                               <div class="user_img"><img src="images/in11.jpg" alt=""></div>
+                                               <div class="user_img"><!-- <img src="images/in11.jpg" alt=""> --></div>
                                                <div class="notification_desc">
                                                 <p>Lorem ipsum dolor</p>
                                                 <p><span>1 hour ago</span></p>
@@ -99,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                <div class="clearfix"></div> 
                                             </a></li>
                                             <li class="odd"><a href="#">
-                                                <div class="user_img"><img src="images/in10.jpg" alt=""></div>
+                                                <div class="user_img"><!-- <img src="images/in10.jpg" alt=""> --></div>
                                                <div class="notification_desc">
                                                 <p>Lorem ipsum dolor </p>
                                                 <p><span>1 hour ago</span></p>
@@ -107,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                               <div class="clearfix"></div>  
                                             </a></li>
                                             <li><a href="#">
-                                               <div class="user_img"><img src="images/in9.jpg" alt=""></div>
+                                               <div class="user_img"><!-- <img src="images/in9.jpg" alt=""> --></div>
                                                <div class="notification_desc">
                                                 <p>Lorem ipsum dolor</p>
                                                 <p><span>1 hour ago</span></p>
@@ -130,7 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 </div>
                                             </li>
                                             <li><a href="#">
-                                                <div class="user_img"><img src="images/in8.jpg" alt=""></div>
+                                                <div class="user_img"><!-- <img src="images/in8.jpg" alt=""> --></div>
                                                <div class="notification_desc">
                                                 <p>Lorem ipsum dolor</p>
                                                 <p><span>1 hour ago</span></p>
@@ -138,7 +139,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                               <div class="clearfix"></div>  
                                              </a></li>
                                              <li class="odd"><a href="#">
-                                                <div class="user_img"><img src="images/in6.jpg" alt=""></div>
+                                                <div class="user_img"><!-- <img src="images/in6.jpg" alt=""> --></div>
                                                <div class="notification_desc">
                                                 <p>Lorem ipsum dolor</p>
                                                 <p><span>1 hour ago</span></p>
@@ -146,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                <div class="clearfix"></div> 
                                              </a></li>
                                              <li><a href="#">
-                                                <div class="user_img"><img src="images/in7.jpg" alt=""></div>
+                                                <div class="user_img"><!-- <img src="images/in7.jpg" alt=""> --></div>
                                                <div class="notification_desc">
                                                 <p>Lorem ipsum dolor</p>
                                                 <p><span>1 hour ago</span></p>
@@ -271,9 +272,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div style="border-top:1px ridge rgba(255, 255, 255, 0.15)"></div>
                            <div class="menu">
                                     <ul id="menu" >
-                                        <li>
-                                             <?=$this->Html->link("<i class='fa fa-tachometer'></i><span>Trang Chủ</span><div class='clearfix'></div>",['controller'=>'admin','action'=>'index'],[ 'escape' => false]) ?>
-                                        </li>
+              
 
                                         <li>
                                             <?=$this->Html->link("<i class='fa fa-file-word-o'></i><span>Words</span><div class='clearfix'></div>",['controller'=>'Words','action'=>'index'],[ 'escape' => false]) ?>
@@ -324,14 +323,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         });
                             </script>
 <!--js -->
-<script src="js/jquery.nicescroll.js"></script>
-<script src="js/scripts.js"></script>
+<?php echo $this->Html->script('jquery.nicescroll.js')?>
+<?php echo $this->Html->script('scripts.js')?>
 <!-- Bootstrap Core JavaScript -->
-   <script src="js/bootstrap.min.js"></script>
+<?php echo $this->Html->script('bootstrap.min.js')?>
    <!-- /Bootstrap Core JavaScript -->     
 <!-- morris JavaScript -->  
-<script src="js/raphael-min.js"></script>
-<script src="js/morris.js"></script>
+<?php echo $this->Html->script('raphael-min.js')?>
+<?php echo $this->Html->script('morris.js')?>
 <script>
     $(document).ready(function() {
         //BOX BUTTON SHOW AND CLOSE

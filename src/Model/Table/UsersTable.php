@@ -40,7 +40,7 @@ class UsersTable extends Table
         parent::initialize($config);
 
         $this->table('users');
-        $this->displayField('id');
+        $this->displayField('namedisplay');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');

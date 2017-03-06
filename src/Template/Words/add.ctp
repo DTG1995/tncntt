@@ -3,14 +3,13 @@
   * @var \App\View\AppView $this
   */
 ?>
-<div class="words form large-9 medium-8 columns content">
+<div class="large-9 medium-8 columns content">
     <?= $this->Form->create($word) ?>
-    <fieldset>
-        <legend><?= __('Add Word') ?></legend>
-        <?php
-            echo $this->Form->input('word');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+            <div class="form-group">
+        <label for="usr">Nhập Từ Cần Thêm</label>
+        <input type="text" class="form-control" name="word">
+        </div>
+    <?= $this->Form->button(__('Thêm'),['class'=>'btn btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>
+

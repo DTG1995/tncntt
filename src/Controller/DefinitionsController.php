@@ -39,7 +39,7 @@ class DefinitionsController extends AppController
     {
         $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->get($id, [
-            'contain' => ['Words', 'Users', 'Categorys', 'Commentdefinitions', 'Likedefinitions']
+            'contain' => ['Words', 'Users', 'Categorys', 'Commentdefinitions'=>'Users', 'Likedefinitions'=>'Users']
         ]);
 
         $this->set('definition', $definition);

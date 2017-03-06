@@ -38,7 +38,7 @@ class UsersController extends AppController
     {
         $this->viewBuilder()->setLayout('Admin\default');
         $user = $this->Users->get($id, [
-            'contain' => ['Commentdefinitions', 'Commentmeans', 'Definitions', 'Likedefinitions', 'Likemeans', 'Means']
+            'contain' => ['Commentdefinitions', 'Commentmeans', 'Definitions'=>['Users','Categorys','Words'], 'Likedefinitions', 'Likemeans', 'Means'=>['Words','Users','Categorys']]
         ]);
 
         $this->set('user', $user);

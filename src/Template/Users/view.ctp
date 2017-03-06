@@ -4,30 +4,26 @@
   */
 ?>
 <div class="users view large-9 medium-8 columns content">
-    <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-striped">
         <tr>
-            <th scope="row"><?= __('Username') ?></th>
+            <th scope="row"><?= __('Tên Đăng Nhập') ?></th>
             <td><?= h($user->username) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Namedisplay') ?></th>
+            <th scope="row"><?= __('Tên hiển thị') ?></th>
             <td><?= h($user->namedisplay) ?></td>
         </tr>
+
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Status') ?></th>
+            <th scope="row"><?= __('Trạng thái') ?></th>
             <td><?= $this->Number->format($user->status) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Created') ?></th>
+            <th scope="row"><?= __('Thời gian') ?></th>
             <td><?= h($user->created) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Last Login') ?></th>
+            <th scope="row"><?= __('Đăng nhập lần cuối') ?></th>
             <td><?= h($user->last_login) ?></td>
         </tr>
         <tr>
@@ -35,16 +31,12 @@
             <td><?= $user->isadmin ? __('Yes') : __('No'); ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Active') ?></th>
+            <th scope="row"><?= __('Hoạt Động') ?></th>
             <td><?= $user->active ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
-    <div class="row">
-        <h4><?= __('Password') ?></h4>
-        <?= $this->Text->autoParagraph(h($user->password)); ?>
-    </div>
     <div class="related">
-        <h4><?= __('Related Commentdefinitions') ?></h4>
+        <h4><?= __('Bình luận liên quan đến định nghĩa') ?></h4>
         <?php if (!empty($user->commentdefinitions)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
@@ -67,7 +59,7 @@
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Commentdefinitions', 'action' => 'view', $commentdefinitions->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Commentdefinitions', 'action' => 'edit', $commentdefinitions->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Commentdefinitions', 'action' => 'delete', $commentdefinitions->id], ['confirm' => __('Are you sure you want to delete # {0}?', $commentdefinitions->id)]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Commentdefinitions', 'action' => 'delete', $commentdefinitions->id], ['confirm' => __('Bạn có muốn xóa không?', $commentdefinitions->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -75,9 +67,9 @@
         <?php endif; ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Commentmeans') ?></h4>
+        <h4><?= __('Bình luận liên quan đến nghĩa') ?></h4>
         <?php if (!empty($user->commentmeans)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="table table-striped">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Content') ?></th>
@@ -98,7 +90,7 @@
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Commentmeans', 'action' => 'view', $commentmeans->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Commentmeans', 'action' => 'edit', $commentmeans->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Commentmeans', 'action' => 'delete', $commentmeans->id], ['confirm' => __('Are you sure you want to delete # {0}?', $commentmeans->id)]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Commentmeans', 'action' => 'delete', $commentmeans->id], ['confirm' => __('Bạn có muốn xóa không?', $commentmeans->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -106,30 +98,28 @@
         <?php endif; ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Definitions') ?></h4>
+        <h4><?= __('Định nghĩa liên quan') ?></h4>
         <?php if (!empty($user->definitions)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="table table-striped">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Word Id') ?></th>
-                <th scope="col"><?= __('Define') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col"><?= __('Contribute') ?></th>
-                <th scope="col"><?= __('Category Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= __('Thuật ngữ') ?></th>
+                <th scope="col"><?= __('Định nghĩa') ?></th>
+                <th scope="col"><?= __('User ') ?></th>
+                <th scope="col"><?= __('Đóng góp') ?></th>
+                <th scope="col"><?= __('Lĩnh vực') ?></th>
+                <th scope="col" class="actions"><?= __('Hành động') ?></th>
             </tr>
             <?php foreach ($user->definitions as $definitions): ?>
             <tr>
-                <td><?= h($definitions->id) ?></td>
-                <td><?= h($definitions->word_id) ?></td>
+                <td><?= h($definitions->word->word) ?></td>
                 <td><?= h($definitions->define) ?></td>
-                <td><?= h($definitions->user_id) ?></td>
+                <td><?= h($definitions->user->namedisplay) ?></td>
                 <td><?= h($definitions->contribute) ?></td>
-                <td><?= h($definitions->category_id) ?></td>
+                <td><?= h($definitions->category->name) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Definitions', 'action' => 'view', $definitions->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Definitions', 'action' => 'edit', $definitions->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Definitions', 'action' => 'delete', $definitions->id], ['confirm' => __('Are you sure you want to delete # {0}?', $definitions->id)]) ?>
+                    <?= $this->Html->link(__('Chi tiết'), ['controller' => 'Definitions', 'action' => 'view', $definitions->id]) ?>
+                    <?= $this->Html->link(__('Sửa'), ['controller' => 'Definitions', 'action' => 'edit', $definitions->id]) ?>
+                    <?= $this->Form->postLink(__('Xóa'), ['controller' => 'Definitions', 'action' => 'delete', $definitions->id], ['confirm' => __('Bạn có muốn xóa không?', $definitions->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -137,9 +127,9 @@
         <?php endif; ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Likedefinitions') ?></h4>
+        <h4><?= __('Like định nghĩa') ?></h4>
         <?php if (!empty($user->likedefinitions)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="table table-striped">
             <tr>
                 <th scope="col"><?= __('Definition Id') ?></th>
                 <th scope="col"><?= __('User Id') ?></th>
@@ -154,7 +144,7 @@
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Likedefinitions', 'action' => 'view', $likedefinitions->definition_id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Likedefinitions', 'action' => 'edit', $likedefinitions->definition_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Likedefinitions', 'action' => 'delete', $likedefinitions->definition_id], ['confirm' => __('Are you sure you want to delete # {0}?', $likedefinitions->definition_id)]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Likedefinitions', 'action' => 'delete', $likedefinitions->definition_id], ['confirm' => __('Bạn có muốn xóa không?', $likedefinitions->definition_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -162,9 +152,9 @@
         <?php endif; ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Likemeans') ?></h4>
+        <h4><?= __('Like nghĩa') ?></h4>
         <?php if (!empty($user->likemeans)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="table table-striped">
             <tr>
                 <th scope="col"><?= __('Mean Id') ?></th>
                 <th scope="col"><?= __('User Id') ?></th>
@@ -179,7 +169,7 @@
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Likemeans', 'action' => 'view', $likemeans->mean_id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Likemeans', 'action' => 'edit', $likemeans->mean_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Likemeans', 'action' => 'delete', $likemeans->mean_id], ['confirm' => __('Are you sure you want to delete # {0}?', $likemeans->mean_id)]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Likemeans', 'action' => 'delete', $likemeans->mean_id], ['confirm' => __('Bạn có muốn xóa không?', $likemeans->mean_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -187,30 +177,28 @@
         <?php endif; ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Means') ?></h4>
+        <h4><?= __('Nghĩa Liên quan') ?></h4>
         <?php if (!empty($user->means)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="table table-striped">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Word Id') ?></th>
-                <th scope="col"><?= __('Mean') ?></th>
-                <th scope="col"><?= __('Contribute') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col"><?= __('Category Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= __('Thuật ngữ') ?></th>
+                <th scope="col"><?= __('Nghĩa') ?></th>
+                <th scope="col"><?= __('Đóng góp') ?></th>
+                <th scope="col"><?= __('User') ?></th>
+                <th scope="col"><?= __('Lĩnh vực') ?></th>
+                <th scope="col" class="actions"><?= __('Hành động') ?></th>
             </tr>
             <?php foreach ($user->means as $means): ?>
             <tr>
-                <td><?= h($means->id) ?></td>
-                <td><?= h($means->word_id) ?></td>
+                <td><?= h($means->word->word) ?></td>
                 <td><?= h($means->mean) ?></td>
                 <td><?= h($means->contribute) ?></td>
-                <td><?= h($means->user_id) ?></td>
-                <td><?= h($means->category_id) ?></td>
+                <td><?= h($means->user->namedisplay) ?></td>
+                <td><?= h($means->category->name) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Means', 'action' => 'view', $means->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Means', 'action' => 'edit', $means->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Means', 'action' => 'delete', $means->id], ['confirm' => __('Are you sure you want to delete # {0}?', $means->id)]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Means', 'action' => 'delete', $means->id], ['confirm' => __('Bạn có muốn xóa không?', $means->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
