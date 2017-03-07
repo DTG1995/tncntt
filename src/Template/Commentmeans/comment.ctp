@@ -1,6 +1,8 @@
 <?php
+    $loguser = $this->request->session()->read('Auth.User');
+    
     $this->layout=null;
-    $idhtml = $parent==null?'#mean'.$mean:'#commentmean'.$parent;
+    $idhtml = $parent==0?'#mean'.$mean:'#commentmean'.$parent;
     $idhtmlcomment = $idhtml."_comment";
     ?>
     <script>
@@ -11,7 +13,17 @@
     {
         ?>
         <div class="comments">
+        <?php
+        if($loguser==null)
+        {
+            echo "<span>Bạn cần ".$this->Html->link('đăng nhập',['controller'=>'Users','action'=>'login'])." để có thể tham gia bình luận!</span>";
+        }
+        else
+        {
+            ?>
             <input type="text" onkeypress="addcomment('mean','<?=$idhtml?>',<?=$mean?>,<?=$parent?>,this,event);" class="newcomment" placeholder="Viết bình luận..."/>
+            <?php
+        }?>
         </div>
         <?php
     }
@@ -39,12 +51,20 @@
         </li>
     
     <?php
-    }?>
+    }
+    if($loguser==null)
+        {
+            echo "<li><span>Bạn cần ".$this->Html->link('đăng nhập',['controller'=>'Users','action'=>'login'])." để có thể tham gia bình luận!</span></li>";
+        }
+        else
+        {
+    ?>
         <li>
             <input type="text" onkeypress="addcomment('mean','<?=$idhtml?>',<?=$mean?>,<?=$parent?>,this,event);" class="newcomment" placeholder="Viết bình luận..."/>
         </li>
     </ul>
     </div>
 <?php
+        }
     }
 ?>

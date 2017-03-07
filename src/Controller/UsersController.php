@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\I18n\Time;
 /**
  * Users Controller
  *
@@ -38,7 +38,7 @@ class UsersController extends AppController
     {
         $this->viewBuilder()->setLayout('Admin\default');
         $user = $this->Users->get($id, [
-            'contain' => ['Commentdefinitions', 'Commentmeans', 'Definitions', 'Likedefinitions', 'Likemeans', 'Means']
+            'contain' => ['Commentdefinitions', 'Commentmeans', 'Definitions'=>['Users','Categorys','Words'], 'Likedefinitions', 'Likemeans', 'Means'=>['Words','Users','Categorys']]
         ]);
 
         $this->set('user', $user);
@@ -114,24 +114,38 @@ class UsersController extends AppController
     }
     public function login()
     {
-        if($this->request->is('post'))
+        if($this->Auth->user('id') == null)
         {
-            $user=$this->Auth->identify();
-            if($user)
-            {                     
-                $this->Auth->setUser($user);
-                if($this->Auth->user('isadmin'))
+            if($this->request->is('post'))
+            {
+                $user=$this->Auth->identify();
+                if($user)
+                { 
+                    $this->Auth->setUser($user);
+                    if($this->Auth->user('isadmin'))
+                    {
+                        return $this->redirect(['controller'=>'admin','action'=>'index']);
+                    }
+                    else
+                    {
+                    return $this->redirect(['controller'=>'pages','action'=>'display']);
+
+                    }
+                
+                }
+                return $this->redirect(['Controller'=>'users','action'=>'login']);
+            }
+        }
+        else{
+            if($this->Auth->user('isadmin'))
                 {
                     return $this->redirect(['controller'=>'admin','action'=>'index']);
                 }
                 else
                 {
-                   return $this->redirect(['controller'=>'pages','action'=>'display']);
+                return $this->redirect(['controller'=>'pages','action'=>'display']);
 
                 }
-               
-            }
-            return $this->redirect(['Controller'=>'users','action'=>'login']);
         }
     }
     public function logout()

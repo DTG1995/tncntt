@@ -36,7 +36,7 @@ class CategorysController extends AppController
     {
         $this->viewBuilder()->setLayout('Admin\default');
         $category = $this->Categorys->get($id, [
-            'contain' => ['Definitions', 'Means']
+            'contain' => ['Definitions'=>['Users','Words','Categorys'], 'Means'=>['Users','Words','Categorys']]
         ]);
 
         $this->set('category', $category);
