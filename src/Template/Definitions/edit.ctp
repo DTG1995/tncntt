@@ -9,11 +9,11 @@
     <fieldset style="padding-bottom: 20px;">
         <legend><?= __('Sửa Định Nghĩa') ?></legend>
         <?php
-            echo $this->Form->input('word_id', ['options' => $words,'class'=>'form-control']);
-            echo $this->Form->input('define',['class'=>'form-control','style'=>'resize:none;']);
+            echo $this->Form->input('word_id', ['options' => $words,'class'=>'form-control','label'=>'Thuật Ngữ']);
+            echo $this->Form->input('define',['class'=>'form-control','style'=>'resize:none;','label'=>'Định Nghĩa']);
             echo $this->Form->input('user_id', ['options' => $users,'class'=>'form-control']);
-            echo $this->Form->input('contribute',['class'=>'form-control']);
-            echo $this->Form->input('category_id', ['options' => $categorys,'class'=>'form-control']);
+            echo $this->Form->input('contribute',['class'=>'form-control','label'=>'Đóng góp']);
+            echo $this->Form->input('category_id', ['options' => $categorys,'class'=>'form-control','label'=>'Thể Loại']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Sửa'),['class'=>'btn btn-success']) ?>

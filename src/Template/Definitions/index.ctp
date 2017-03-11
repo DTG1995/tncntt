@@ -10,11 +10,11 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Thuật Ngữ') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Định Nghĩa') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('User') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Đóng Góp') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Lĩnh Vực') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('word_id',['label'=>'Thuật Ngữ']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('define',['label'=>'Định Nghĩa']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id',['label'=>'User']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('contribute',['label'=>'Đóng Góp']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('category_id',['label'=>'Lĩnh Vực']) ?></th>
                 <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
         </thead>

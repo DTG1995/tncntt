@@ -111,4 +111,10 @@ class WordsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+        public $paginate=[
+        'limit'=>10,
+        'order'=>[
+                'Words.word'=>'asc'
+            ]
+    ];
 }

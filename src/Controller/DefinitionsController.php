@@ -119,4 +119,10 @@ class DefinitionsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    public $paginate=[
+        'limit'=>10,
+        'order'=>[
+                'definitions.define'=>'asc'
+            ]
+    ];
 }

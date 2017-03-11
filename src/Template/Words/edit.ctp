@@ -8,7 +8,7 @@
     <fieldset>
         <legend><?= __('Sửa Thuật Ngữ') ?></legend>
         <?php
-            echo $this->Form->input('word',['class'=>'form-control']);
+            echo $this->Form->input('word',['class'=>'form-control','label'=>'Thuật Ngữ']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Sửa'),['class'=>'btn btn-success']) ?>

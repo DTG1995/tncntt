@@ -5,15 +5,16 @@
 ?>
 
 <div class="categorys index large-9 medium-8 columns content">
+
     <h3><?= __('Lĩnh Vực') ?></h3>
     <?= $this->Html->link(__('Thêm Lĩnh Mới'), ['action' => 'add']) ?>
     <table cellpadding="0" cellspacing="0" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Lĩnh vực') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('name',['label'=>'Lĩnh vực']) ?></th>
                 <th scope="col"><?= $this->Paginator->sort('active') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Đóng Góp') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('contribute',['label'=>'Đóng Góp']) ?></th>
                 <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
         </thead>
