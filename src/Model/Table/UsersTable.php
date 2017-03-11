@@ -91,23 +91,22 @@ class UsersTable extends Table
 
         $validator
             ->boolean('isadmin')
-            ->requirePresence('isadmin', 'create')
-            ->notEmpty('isadmin');
+            ->allowEmpty('isadmin', 'create');
+           // ->notEmpty('isadmin');
 
         $validator
-            ->dateTime('last_login')
-            ->requirePresence('last_login', 'create')
-            ->notEmpty('last_login');
+            ->dateTime('last_login')->allowEmpty('last_login', 'create');
+           // ->notEmpty('last_login');
 
         $validator
             ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+            ->allowEmpty('status', 'create');
+            //->notEmpty('status');
 
         $validator
             ->boolean('active')
-            ->requirePresence('active', 'create')
-            ->notEmpty('active');
+            ->allowEmpty('active', 'create');
+            //->notEmpty('active');
 
         return $validator;
     }

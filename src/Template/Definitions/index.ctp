@@ -5,18 +5,18 @@
 ?>
 
 <div class="definitions index large-9 medium-8 columns content">
-    <h3><?= __('Definitions') ?></h3>
-    <?= $this->Html->link(__('New Definition'), ['action' => 'add']) ?>
-    <table cellpadding="0" cellspacing="0">
+    <h3><?= __('Định Nghĩa') ?></h3>
+    <?= $this->Html->link(__('Thêm Định Nghĩa Mới'), ['action' => 'add']) ?>
+    <table cellpadding="0" cellspacing="0" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('word_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('define') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('contribute') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('category_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Thuật Ngữ') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Định Nghĩa') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('User') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Đóng Góp') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Lĩnh Vực') ?></th>
+                <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -25,13 +25,13 @@
                 <td><?= $this->Number->format($definition->id) ?></td>
                 <td><?= $definition->has('word') ? $this->Html->link($definition->word->word, ['controller' => 'Words', 'action' => 'view', $definition->word->id]) : '' ?></td>
                 <td><?= $definition->define?></td>
-                <td><?= $definition->has('user') ? $this->Html->link($definition->user->id, ['controller' => 'Users', 'action' => 'view', $definition->user->id]) : '' ?></td>
+                <td><?= $definition->has('user') ? $this->Html->link($definition->user->namedisplay, ['controller' => 'Users', 'action' => 'view', $definition->user->id]) : '' ?></td>
                 <td><?= $this->Number->format($definition->contribute) ?></td>
                 <td><?= $definition->has('category') ? $this->Html->link($definition->category->name, ['controller' => 'Categorys', 'action' => 'view', $definition->category->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $definition->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $definition->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $definition->id], ['confirm' => __('Are you sure you want to delete # {0}?', $definition->id)]) ?>
+                    <?= $this->Html->link(__('Chi Tiết'), ['action' => 'view', $definition->id]) ?>
+                    <?= $this->Html->link(__('Sửa'), ['action' => 'edit', $definition->id]) ?>
+                    <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $definition->id], ['confirm' => __('Bạn Có Muốn Xóa Không?', $definition->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

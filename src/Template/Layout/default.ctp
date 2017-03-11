@@ -24,17 +24,10 @@
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
-    
-
     <?= $this->Html->css('bootstrap.min')?>
-
-
-    <?= $this->Html->css('layout.css') ?>
-   
     <?= $this->Html->script("jquery-3.1.1.min.js")?>
     <?= $this->Html->script("bootstrap.min.js")?>
-    
+     <?= $this->Html->css('layout') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -43,6 +36,16 @@
 </head>
 <body>
 <!-- NAV-MENU -->
+    <?php 
+        $user = true;
+        $loguser = $this->request->session()->read('Auth.User');
+        //$url =$this->Url->build(['controller'=>'pages','action'=>'display']);
+        if($loguser['isadmin']==0 || $loguser == null)
+        {
+            $user = false;
+        }
+
+     ?>
     <nav class="navbar navbar-menu header">
 
         <div class="navbar-header">
@@ -51,7 +54,7 @@
             <span class="glyphicon glyphicon-th"></span>
           </button>
           <a class="navbar-brand" style="margin-top: -2px;" href="#">
-            <img alt="Brand" src="image/logo.png">
+              <?php //$this->Html->image('',['alt'=>'logo','class'=>'logo']) ?> 
           </a>
         </div>
 
@@ -59,19 +62,30 @@
           <ul class="nav navbar-nav">
 
              <li class="dropdown mega-dropdown">
-              <a href="#"  > Trang chủ </a> 
+              <a href="#"  > Trang chủ 1 </a> 
             </li>
 
           </ul>
           
           <ul class="nav navbar-nav navbar-right">
-            
-            <li class="dropdown">
-              <a href="index.php" > Đăng ký </a>
-            </li>
-            <li class="dropdown">
-              <a href="index.php" > Đăng nhập </a>
-            </li>
+              <?php
+                if($user){
+                  ?>
+                  <li class="dropdown">
+                    <a href='users/logout' > Đăng xuất </a>
+                  </li>
+              <?php
+                }else{
+                  ?>
+                  <li class="dropdown">
+                    <a href="signup" > Đăng ký </a>
+                  </li>
+                  <li class="dropdown">
+                    <a href='login' > Đăng nhập </a>
+                  </li>
+                  <?php
+                }
+              ?>
           </ul>
 
         </div><!-- /.navbar-collapse -->

@@ -3,6 +3,11 @@
 	padding: auto;
 }
 
+
+.text-main{
+	color:#757575;
+}
+
 .main{
 	margin-bottom: 100px;
 }
@@ -14,21 +19,74 @@
     border-radius: 0;
 	box-shadow: 0;
 }
+
+.header ul li:hover {
+	background-color: blue;
+}
+
 .area-text {
 	margin-top: 10px;
 }
 
+.logo {
+	width: 100px;
+    height: 37px;
+    margin-top: -7px;
+}
 .area_text2{
 	margin-top: 30px;
 	margin-bottom: 20px;
 }
 
 
-.text-left, .text-right{
-	padding-left: 0px;
-	padding-right: 0px;
+.text-left-l, .text-right-r{
+	padding:5px 0px;
+}
+.text-left-l ul li, .text-right-r ul li {
+	list-style: none;
 }
 
+
+.text-right-r{
+	text-align: left;
+}
+
+/*.commentcontent {
+	border-top: 1px solid #757575;
+}*/
+
+.text-left-l .define , .text-right-r .mean{
+	padding: 5px 20px;
+	margin-left: -40px;
+}
+.catgory{
+	color: #337AB5;
+	font-size: 15px;
+	text-shadow: 0px 1px #757575;
+}
+.text-left-l hr , .text-right-r hr{
+	margin-top: 1px;
+	margin-bottom: 2px;
+}
+
+.comment-content {
+	margin-top: 10px;
+}
+
+.comment-date{
+	float: right;
+}
+.newcomment {
+	margin-top: 2px;
+	width: 80%;
+}
+.user{
+	color:#337AB5;
+}
+#rating {
+	font-size: 12px;
+	margin-left: 10px;
+}
 .nav-footer {
 	text-align: center;
 	margin: auto;
@@ -100,9 +158,17 @@ input[type=textFind]:hover,input[type=textseached]:hover {
 /*----------------*/
 .w3-select{padding:0 10px;width:100%; font-size: 14px;color:#000;border:1px solid transparent;border-bottom:1px solid #A46EEA}
 .w3-card-4 {box-shadow:0 6px 8px 0 rgba(0,0,0,0.1),0 0px 1px 0 rgba(0,0,0,0.2)!important}
+.w3-card-2 {box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important}
+
 
 a:hover .likes,a:hover .dislikes{
 	text-decoration:overline;
+}
+
+@media (min-width: 768px){}
+	.navbar {
+	     border-radius: 0; 
+	}
 }
 
 /*==============================*/
@@ -340,7 +406,7 @@ input[type=checkbox].w3-check:disabled+.w3-validate,input[type=radio].w3-radio:d
 .w3-code{line-height:1.4;width:auto;background-color:#fff;padding:8px 12px;border-left:4px solid #4CAF50;word-wrap:break-word}
 .w3-codespan{color:crimson;background-color:#f1f1f1;padding-left:4px;padding-right:4px;font-size:110%}
 .w3-example,.w3-code{margin:20px 0}.w3-card{border:1px solid #ccc}
-.w3-card-2,.w3-example{box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important}
+.w3-example{box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important}
 .w3-hover-shadow:hover{box-shadow:0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important}
 .w3-card-8{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important}
 .w3-card-12{box-shadow:0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19)!important}

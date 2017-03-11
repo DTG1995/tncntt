@@ -37,7 +37,7 @@ class WordsController extends AppController
     {
         $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->get($id, [
-            'contain' => ['Definitions', 'Means']
+            'contain' => ['Definitions'=>['Users','Categorys'], 'Means'=>['Users','Categorys']]
         ]);
 
         $this->set('word', $word);

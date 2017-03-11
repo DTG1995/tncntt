@@ -4,58 +4,47 @@
   */
 ?>
 <div class="definitions view large-9 medium-8 columns content">
-    <h3><?= h($definition->id) ?></h3>
-    <table class="vertical-table">
+    <table class="table table-striped">
         <tr>
-            <th scope="row"><?= __('Word') ?></th>
-            <td><?= $definition->has('word') ? $this->Html->link($definition->word->id, ['controller' => 'Words', 'action' => 'view', $definition->word->id]) : '' ?></td>
+            <th scope="row"><?= __('Thuật Ngữ: ') ?></th>
+            <td><?= $definition->has('word') ? $this->Html->link($definition->word->word, ['controller' => 'Words', 'action' => 'view', $definition->word->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('User') ?></th>
-            <td><?= $definition->has('user') ? $this->Html->link($definition->user->id, ['controller' => 'Users', 'action' => 'view', $definition->user->id]) : '' ?></td>
+            <td><?= $definition->has('user') ? $this->Html->link($definition->user->namedisplay, ['controller' => 'Users', 'action' => 'view', $definition->user->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Category') ?></th>
             <td><?= $definition->has('category') ? $this->Html->link($definition->category->name, ['controller' => 'Categorys', 'action' => 'view', $definition->category->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($definition->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Contribute') ?></th>
+            <th scope="row"><?= __('Đóng Góp') ?></th>
             <td><?= $this->Number->format($definition->contribute) ?></td>
         </tr>
     </table>
     <div class="row">
-        <h4><?= __('Define') ?></h4>
+        <h4><?= __('Định Nghĩa') ?></h4>
         <?= $this->Text->autoParagraph(h($definition->define)); ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Commentdefinitions') ?></h4>
+        <h4><?= __('Bình Luận Liên Quan Đến Định Nghĩa') ?></h4>
         <?php if (!empty($definition->commentdefinitions)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="table table-striped">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Content') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Commentdefinition Id') ?></th>
-                <th scope="col"><?= __('Definition Id') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= __('Nội Dung') ?></th>
+                <th scope="col"><?= __('Thời Gian') ?></th>
+                <th scope="col"><?= __('User') ?></th>
+                <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
             <?php foreach ($definition->commentdefinitions as $commentdefinitions): ?>
             <tr>
-                <td><?= h($commentdefinitions->id) ?></td>
                 <td><?= h($commentdefinitions->content) ?></td>
                 <td><?= h($commentdefinitions->created) ?></td>
-                <td><?= h($commentdefinitions->commentdefinition_id) ?></td>
-                <td><?= h($commentdefinitions->definition_id) ?></td>
-                <td><?= h($commentdefinitions->user_id) ?></td>
+                <td><?= h($commentdefinitions->user->namedisplay) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Commentdefinitions', 'action' => 'view', $commentdefinitions->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Commentdefinitions', 'action' => 'edit', $commentdefinitions->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Commentdefinitions', 'action' => 'delete', $commentdefinitions->id], ['confirm' => __('Are you sure you want to delete # {0}?', $commentdefinitions->id)]) ?>
+                    <?= $this->Html->link(__('Chi Tiết'), ['controller' => 'Commentdefinitions', 'action' => 'view', $commentdefinitions->id]) ?>
+                    <?= $this->Html->link(__('Sửa'), ['controller' => 'Commentdefinitions', 'action' => 'edit', $commentdefinitions->id]) ?>
+                    <?= $this->Form->postLink(__('Xóa'), ['controller' => 'Commentdefinitions', 'action' => 'delete', $commentdefinitions->id], ['confirm' => __('Bạn Có Muốn Xóa Không?', $commentdefinitions->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -63,24 +52,24 @@
         <?php endif; ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Likedefinitions') ?></h4>
+        <h4><?= __('Like Liên Quan Đến Định Nghĩa') ?></h4>
         <?php if (!empty($definition->likedefinitions)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="table table-striped">
             <tr>
                 <th scope="col"><?= __('Definition Id') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
+                <th scope="col"><?= __('User') ?></th>
                 <th scope="col"><?= __('Islike') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
             <?php foreach ($definition->likedefinitions as $likedefinitions): ?>
             <tr>
                 <td><?= h($likedefinitions->definition_id) ?></td>
-                <td><?= h($likedefinitions->user_id) ?></td>
+                <td><?= h($likedefinitions->user->namedisplay) ?></td>
                 <td><?= h($likedefinitions->islike) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Likedefinitions', 'action' => 'view', $likedefinitions->definition_id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Likedefinitions', 'action' => 'edit', $likedefinitions->definition_id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Likedefinitions', 'action' => 'delete', $likedefinitions->definition_id], ['confirm' => __('Are you sure you want to delete # {0}?', $likedefinitions->definition_id)]) ?>
+                    <?= $this->Html->link(__('Chi Tiết'), ['controller' => 'Likedefinitions', 'action' => 'view', $likedefinitions->definition_id]) ?>
+                    <?= $this->Html->link(__('Sửa'), ['controller' => 'Likedefinitions', 'action' => 'edit', $likedefinitions->definition_id]) ?>
+                    <?= $this->Form->postLink(__('Xóa'), ['controller' => 'Likedefinitions', 'action' => 'delete', $likedefinitions->definition_id], ['confirm' => __('Bạn Có Muốn Xóa Không ?', $likedefinitions->definition_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

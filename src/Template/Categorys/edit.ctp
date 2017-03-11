@@ -18,13 +18,13 @@
 <div class="categorys form large-9 medium-8 columns content">
     <?= $this->Form->create($category) ?>
     <fieldset>
-        <legend><?= __('Edit Category') ?></legend>
+        <legend><?= __('Sửa Lĩnh Vực') ?></legend>
         <?php
-            echo $this->Form->input('name');
+            echo $this->Form->input('name',['class'=>'form-control']);
             echo $this->Form->input('active');
-            echo $this->Form->input('contribute');
+            echo $this->Form->input('contribute',['class'=>'form-control']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Sửa'),['class'=>'btn btn-success']) ?>
     <?= $this->Form->end() ?>
 </div>

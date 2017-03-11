@@ -4,14 +4,14 @@
   */
 ?>
 <div class="words index large-9 medium-8 columns content">
-    <h3><?= __('Words') ?></h3>
-     <?= $this->Html->link(__('New Word'), ['action' => 'add']) ?>
-    <table cellpadding="0" cellspacing="0">
+    <h3><?= __('Thuật Ngữ') ?></h3>
+     <?= $this->Html->link(__('Thêm Thuật Ngữ Mới'), ['action' => 'add']) ?>
+    <table cellpadding="0" cellspacing="0" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('word') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Thuật Ngữ') ?></th>
+                <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -20,9 +20,9 @@
                 <td><?= $this->Number->format($word->id) ?></td>
                 <td><?= h($word->word) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $word->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $word->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $word->id], ['confirm' => __('Are you sure you want to delete # {0}?', $word->id)]) ?>
+                    <?= $this->Html->link(__('Chi Tiết'), ['action' => 'view', $word->id]) ?>
+                    <?= $this->Html->link(__('sửa'), ['action' => 'edit', $word->id]) ?>
+                    <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $word->id], ['confirm' => __('Bạn Có Muốn Xóa Không ?', $word->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
