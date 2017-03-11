@@ -119,4 +119,10 @@ class MeansController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+        public $paginate=[
+        'limit'=>10,
+        'order'=>[
+                'means.mean'=>'asc'
+            ]
+    ];
 }

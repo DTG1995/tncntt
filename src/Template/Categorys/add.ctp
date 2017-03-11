@@ -8,7 +8,7 @@
     <?= $this->Form->create($category) ?>
     <fieldset>
         <legend><?= __('Lĩnh Vực') ?></legend>
-    <label for="name">Name</label>
+    <label for="name">Tên Lĩnh Vực</label>
 
     <input type="text" name="name" required="required" maxlength="100" id="name" class="form-control">
 

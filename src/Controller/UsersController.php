@@ -23,8 +23,6 @@ class UsersController extends AppController
 
         $this->set(compact('users'));
         $this->set('_serialize', ['users']);
-        
-
     }
 
     /**
@@ -148,6 +146,7 @@ class UsersController extends AppController
                 }
         }
     }
+
     public function logout()
         {
            $this->Auth->logout();
@@ -170,4 +169,10 @@ class UsersController extends AppController
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
+    public $paginate=[
+        'limit'=>10,
+        'order'=>[
+                'Users.username'=>'asc'
+            ]
+    ];
 }

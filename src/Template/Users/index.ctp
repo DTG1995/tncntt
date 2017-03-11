@@ -11,12 +11,12 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('username') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Tên Hiển Thị') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Admin') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Thời Gian') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Đăng Nhập Lần Cuối') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Trạng Thái') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Hoạt Động') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('namedisplay',['label'=>'Tên Hiển Thị']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('admin',['label'=>'Admin']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created',['label'=>'Thời Gian']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('last_login',['label'=>'Đăng Nhập Lần Cuối']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('status',['label'=>'Trạng Thái']) ?></th>
+                <th scope="col"><?= $this->Paginator->sort('active',['label'=>'Hoạt Động']) ?></th>
                 <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
         </thead>

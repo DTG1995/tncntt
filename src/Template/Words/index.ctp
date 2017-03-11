@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Thuật Ngữ') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('word',['label'=>'Thuật Ngữ']) ?></th>
                 <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
         </thead>

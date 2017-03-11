@@ -283,17 +283,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </li>
 
                                         <li>
-                                            <?=$this->Html->link("<i class='fa fa-reddit'></i><span>Definitions</span><div class='clearfix'></div>",['controller'=>'Definitions','action'=>'index'],[ 'escape' => false]) ?>
+                                            <?=$this->Html->link("<i class='fa fa-american-sign-language-interpreting'></i>
+                                            <span>Definitions</span><div class='clearfix'>
+                                            </div>",['controller'=>'Definitions','action'=>'index'],[ 'escape' => false]) ?>
                                             
                                         </li>
 
                                         <li>
-                                            <?=$this->Html->link("<i class='fa fa-reddit'></i><span>Means</span><div class='clearfix'></div>",['controller'=>'Means','action'=>'index'],[ 'escape' => false]) ?>
+                                            <?=$this->Html->link("<i class='fa fa-meanpath'></i><span>Means</span><div class='clearfix'></div>",['controller'=>'Means','action'=>'index'],[ 'escape' => false]) ?>
                                             
                                         </li>
                                         
                                         <li>
-                                            <?=$this->Html->link("<i class='fa fa-reddit'></i><span>Users</span><div class='clearfix'></div>",['controller'=>'Users','action'=>'index'],[ 'escape' => false]) ?>
+                                            <?=$this->Html->link("<i class='fa fa-user' aria-hidden='true'></i>
+                                            <span>Users</span><div class='clearfix'>
+                                            </div>",['controller'=>'Users','action'=>'index'],[ 'escape' => false]) ?>
                                             
                                         </li>
 
