@@ -20,9 +20,10 @@
                 <td><?= $this->Number->format($word->id) ?></td>
                 <td><?= h($word->word) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('Chi Tiết'), ['action' => 'view', $word->id]) ?>
-                    <?= $this->Html->link(__('sửa'), ['action' => 'edit', $word->id]) ?>
-                    <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $word->id], ['confirm' => __('Bạn Có Muốn Xóa Không ?', $word->id)]) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-info-circle'></i>"), ['action' => 'view', $word->id],[ 'escape' => false,'title'=>'Chi tiết']) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-pencil'></i>"), ['action' => 'edit', $word->id],['escape' => false,'title'=>'chỉnh sửa']) ?>
+                     <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$word->id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $word->id)]);
+                     ?>
                 </td>
             </tr>
             <?php endforeach; ?>
