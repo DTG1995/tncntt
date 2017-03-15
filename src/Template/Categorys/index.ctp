@@ -25,9 +25,12 @@
                 <td><?= h($category->active) ?></td>
                 <td><?= $this->Number->format($category->contribute) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('Chi Tiết'), ['action' => 'view', $category->id]) ?>
-                    <?= $this->Html->link(__('Sửa'), ['action' => 'edit', $category->id]) ?>
-                    <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $category->id], ['confirm' => __('Bạn Có Muốn Xóa Không?', $category->id)]) ?>
+                    <?=$this->Html->link("<i class='fa fa-info-circle'></i>",['action' => 'view', $category->id],[ 'escape' => false,'title'=>'Chi tiết']) ?>
+                   
+                    <?= $this->Html->link(__("<i class='fa fa-pencil'></i>"), ['action' => 'edit', $category->id],['escape' => false,'title'=>'chỉnh sửa']) ?>
+                    <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$category->id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $category->id)]);
+                     ?>
+                    
                 </td>
             </tr>
             <?php endforeach; ?>

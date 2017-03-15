@@ -28,9 +28,11 @@
                 <td><?= $mean->has('user') ? $this->Html->link($mean->user->namedisplay, ['controller' => 'Users', 'action' => 'view', $mean->user->id]) : '' ?></td>
                 <td><?= $mean->has('category') ? $this->Html->link($mean->category->name, ['controller' => 'Categorys', 'action' => 'view', $mean->category->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('Chi Tiết'), ['action' => 'view', $mean->id]) ?>
-                    <?= $this->Html->link(__('Sửa'), ['action' => 'edit', $mean->id]) ?>
-                    <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $mean->id], ['confirm' => __('Bạn Có Muốn Xóa Không?', $mean->id)]) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-info-circle'></i>"), ['action' => 'view', $mean->id],[ 'escape' => false,'title'=>'Chi tiết']) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-pencil'></i>"), ['action' => 'edit', $mean->id],['escape' => false,'title'=>'chỉnh sửa']) ?>
+                    <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$mean->id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $mean->id)]);
+                     ?>
+
                 </td>
             </tr>
             <?php endforeach; ?>

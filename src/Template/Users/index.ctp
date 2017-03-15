@@ -32,9 +32,10 @@
                 <td><?= $this->Number->format($user->status) ?></td>
                 <td><?= h($user->active) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('Chi Tiết'), ['action' => 'view', $user->id]) ?>
-                    <?= $this->Html->link(__('Sửa'), ['action' => 'edit', $user->id]) ?>
-                    <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $user->id], ['confirm' => __('Bạn Có Muốn Xóa Không?', $user->id)]) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-info-circle'></i>"), ['action' => 'view', $user->id],[ 'escape' => false,'title'=>'Chi tiết']) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-pencil'></i>"), ['action' => 'edit', $user->id],['escape' => false,'title'=>'chỉnh sửa']) ?>
+                     <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$user->id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $user->id)]);
+                     ?>
                 </td>
             </tr>
             <?php endforeach; ?>

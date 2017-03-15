@@ -36,9 +36,7 @@ class UsersController extends AppController
     {
         $this->viewBuilder()->setLayout('Admin\default');
         $user = $this->Users->get($id, [
-            'contain' => ['Commentdefinitions', 'Commentmeans', 'Definitions'=>['Users','Categorys','Words'], 'Likedefinitions', 'Likemeans', 'Means'=>['Words','Users','Categorys']]
-        ]);
-
+            'contain' => ['Commentdefinitions'=>['Users','Definitions'], 'Commentmeans'=>['Users','Means'], 'Definitions'=>['Users','Categorys','Words'], 'Likedefinitions'=>['Users','Definitions'], 'Likemeans'=>['Users','Means'], 'Means'=>['Words','Users','Categorys']]]);
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
     }

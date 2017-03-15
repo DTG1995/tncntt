@@ -29,9 +29,10 @@
                 <td><?= $this->Number->format($definition->contribute) ?></td>
                 <td><?= $definition->has('category') ? $this->Html->link($definition->category->name, ['controller' => 'Categorys', 'action' => 'view', $definition->category->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('Chi Tiết'), ['action' => 'view', $definition->id]) ?>
-                    <?= $this->Html->link(__('Sửa'), ['action' => 'edit', $definition->id]) ?>
-                    <?= $this->Form->postLink(__('Xóa'), ['action' => 'delete', $definition->id], ['confirm' => __('Bạn Có Muốn Xóa Không?', $definition->id)]) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-info-circle'></i>"), ['action' => 'view', $definition->id],[ 'escape' => false,'title'=>'Chi tiết']) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-pencil'></i>"), ['action' => 'edit', $definition->id],['escape' => false,'title'=>'chỉnh sửa']) ?>
+                     <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$definition->id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $definition->id)]);
+                     ?>
                 </td>
             </tr>
             <?php endforeach; ?>
