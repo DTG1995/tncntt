@@ -87,7 +87,6 @@ class PagesController extends AppController
 			$this->set('words',$words);
 	}
 	function getresult($str=null){
-
 		$WORDS = TableRegistry::get('Words');
 		$query = $WORDS->find()
 			->select(['id','word'])
@@ -260,4 +259,3 @@ class PagesController extends AppController
 		$this->set('comments',$commentdefinitions);
 	}
 }
-
