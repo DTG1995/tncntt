@@ -114,33 +114,34 @@ class LikemeansController extends AppController
     //     return $this->redirect(['action' => 'index']);
     // }
 
-    function like($mean_id=null,$islike=0){
-        echo $islike;
+    function like($mean_id=null,$islike=0,$top=0){
         if($this->Auth->user()!=null){
             $query = $this->Likemeans->find('all', [
                 'conditions'=>['mean_id'=>$mean_id,'user_id'=>$this->Auth->user('id')]
             ]);
             $likemean = $query->all()->first();
+            
             if($likemean==null)
             {
                 $likemean = $this->Likemeans->newEntity();
                 $likemean->mean_id = $mean_id;
                 $likemean->user_id =$this->Auth->user('id');
+                $likemean->islike = $islike;
             }
-            $likemean->islike = $islike;
-            $likemean->dirty('islike',false);
-            pr($likemean);
+            else{
+                if($likemean->islike == $islike)
+                    $likemean->islike =0;
+                else $likemean->islike = $islike;
+            }
             if ($this->Likemeans->save($likemean)) {
-                $LikeMeans = TableRegistry::get('Likemeans');
-                $query = $LikeMeans->find('all',[
-                'conditions'=>['mean_id'=>$mean_id],
-                'fields'=>['count'=>'count(islike)','islike'],
-                'group'=>['islike']
-                ]);
-                pr($query->all()->toArray());
-                $this->set('likemean',$query->all()->toArray());
+                $query = $this->Likemeans->find()
+                    ->select(['like'=>'SUM(islike=1)','dislike'=>'SUM(islike=-1)','mylike'=>'MAX(IF(user_id='.$this->Auth->user('id').',islike,0))','mean_id'])
+                    ->where(['mean_id'=>$mean_id])
+                    ->group(['mean_id'])
+                    ->first();
+                $this->set('likemean',$query);
             }
-            $this->set('_serialize', ['likemean']);
+            $this->set('top',$top);
         }
     }
 }

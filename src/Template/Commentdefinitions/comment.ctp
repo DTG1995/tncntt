@@ -42,7 +42,7 @@
                 <?php if($parent==0)
                 {?>
                 <a class="comment" onclick="return viewcomment('define','#commentdefine<?=$comment->id?>',<?=$definition?>,<?=$comment->id?>);">
-                <span class="glyphicon glyphicon-comment"></span> Bình luận</a>
+                <i class="fa fa-comment-o" aria-hidden="true"></i> Bình luận</a>
                 <span class="comment" id="commentdefine<?=$comment->id?>_comment"><?php echo count($comment->childrendefinecomment)>0?$comment->childrendefinecomment[0]->count:0 ?></span>
                 <div id="commentdefine<?=$comment->id?>"></div>
                 <?php

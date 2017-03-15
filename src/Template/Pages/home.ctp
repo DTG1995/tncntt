@@ -20,132 +20,13 @@ use Cake\Error\Debugger;
 use Cake\Network\Exception\NotFoundException;
 
 
-if (!Configure::read('debug')):
-    throw new NotFoundException('Please replace src/Template/Pages/home.ctp with your own version.');
-endif;
+// if (!Configure::read('debug')):
+//     throw new NotFoundException('Please replace src/Template/Pages/home.ctp with your own version.');
+// endif;
 
 $this->assign('title','Trang chủ');
 ?>
-
-
-    <script>
-        $(document).ready(function(){
-        $("#search-box").keyup(function(e){
-            $("#result").html("");
-            $("#txtresult").val("");
-            $("#ratingmean").html("");
-            if(e.keyCode == 13){
-                $.ajax({
-                    type: "POST",
-                    url: "pages/getresult/"+$(this).val(),
-                    data:'keyword='+$(this).val(),
-                    success: function(data){
-                        $("#suggesstion-box").hide();
-                        $("#result").html(data);
-                        $("#search-box").css("background","#FFF");
-                 }
-             });
-            }else{   
-                    $.ajax({
-                    type: "POST",
-                    url: "pages/gethint/"+$(this).val(),
-                    data:'keyword='+$(this).val(),
-                    beforeSend: function(){
-                        $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat right");
-                    },
-                    success: function(data){
-                        $("#suggesstion-box").show();
-                        $("#suggesstion-box").html(data);
-                        $("#search-box").css("background","#FFF");
-                    }
-                    });
-                }});
-            });
-    //To select word
-    function selectWord(val) {
-    
-        $("#search-box").val(val);
-        $("#suggesstion-box").hide();
-        $.ajax({
-            type: "POST",
-            url: "pages/getresult/"+val,
-            data:'keyword='+val,
-            success: function(data){
-                $("#suggesstion-box").hide();
-                $("#result").html(data);
-                $("#search-box").css("background","#FFF");
-            }
-        });
-    }
-    function viewcomment(type,idhtml,id,parent){
-        if($(idhtml).text()!="")
-        {
-            $(idhtml).text("");
-            $(idhtml).hide();
-        }
-        else{
-            // $('.commentcontent').hide();
-            if(type=='define')
-            {
-                $.ajax({
-                type: "POST",
-                url: "pages/getcommentdefine/"+id+"/"+parent,
-                success: function(data){
-                    $(idhtml).html(data);
-                    $(idhtml).show();
-                    }
-                });
-            }
-            else{
-                $.ajax({
-                type: "POST",
-                url: "pages/getcommentmean/"+id+"/"+parent,
-                success: function(data){
-                    $(idhtml).html(data);
-                    $(idhtml).show();
-                    }
-                });
-            }
-        }
-    }
-    function addcomment(type,idhtml,id,parent,a,e){
-        
-        if(e.keyCode==13)
-        {
-            $(idhtml).html("");
-            if(type=='define'){
-                url = "commentdefinitions/comment/"+id+"/"+a.value+"/"+parent;
-                if(parent == 0)
-                    url ="commentdefinitions/comment/"+id+"/"+a.value;
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    success: function(data){
-                        $(idhtml).html(data);
-                        $(idhtml).show();
-                        }
-                    });
-            }
-            else{
-                url = "commentmeans/comment/"+id+"/"+a.value+"/"+parent;
-                if(parent == 0)
-                    url ="commentmeans/comment/"+id+"/"+a.value;
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    success: function(data){
-                        $(idhtml).html(data);
-                        $(idhtml).show();
-                        }
-                    });
-            }
-        }
-    }
-
-    </script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <?= $this->Html->script("like-dislike.js") ?>
-    
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  -->
 <h1>Tra cứu thuật ngữ công nghệ thông tin </h1>
 <div>
     <div class="container-fluid area_combobox">
@@ -179,7 +60,7 @@ $this->assign('title','Trang chủ');
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <input readonly type="textseached" id="txtresult" name="fname" placeholder="Hiển thị nghĩa...">
-                    <div class="rating" id="ratingmean">
+                    <div class="rating ratingmean" id="ratingmean">
                     </div>
                 </div>
             </form>
@@ -192,16 +73,3 @@ $this->assign('title','Trang chủ');
         <div class="row contents" id="result">
         </div>
     </div>
-<script>
- $('#rating').likeDislike({
-        reverseMode: false,
-        disabledClass: 'disable',
-        click: function (value, l, d, event) {
-            var likes = $(this.element).find('.likes');
-            var dislikes =  $(this.element).find('.dislikes');
-
-            likes.text(parseInt(likes.text()) + l);
-            dislikes.text(parseInt(dislikes.text()) + d);
-        }
-    });
-</script>

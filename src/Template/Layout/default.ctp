@@ -24,9 +24,11 @@
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
+    <?= $this->Html->css('admin/css/font-awesome')?>
     <?= $this->Html->css('bootstrap.min')?>
     <?= $this->Html->script("jquery-3.1.1.min.js")?>
     <?= $this->Html->script("bootstrap.min.js")?>
+    <?= $this->Html->script("my-scripts.js")?>
      <?= $this->Html->css('layout') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -46,53 +48,56 @@
         }
 
      ?>
-    <nav class="navbar navbar-menu header">
+     <header>
+      <nav class="navbar navbar-menu header">
 
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menumobile" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="glyphicon glyphicon-th"></span>
-          </button>
-          <a class="navbar-brand" style="margin-top: -2px;" href="#">
-              <?php //$this->Html->image('',['alt'=>'logo','class'=>'logo']) ?> 
-          </a>
-        </div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menumobile" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-list-ul" aria-hidden="true"></i>
+            </button>
+            <a class="navbar-brand" style="margin-top: -2px;" href="#">
+                <?=$this->Html->image('Logo-GTP.PNG',['alt'=>'logo','class'=>'logo']) ?> 
+            </a>
+          </div>
 
-        <div class="collapse navbar-collapse" id="menumobile">
-          <ul class="nav navbar-nav">
+          <div class="collapse navbar-collapse" id="menumobile">
+            <ul class="nav navbar-nav">
+              <li class="dropdown mega-dropdown">
+                <a href="#"  > Danh Sách Đóng Góp </a> 
+              </li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                <?php
+                  if($loguser!=null){
+                    ?>
+                    <li class="dropdown">
+                      <a href='#' >Xin chào, <?=$loguser['namedisplay']?> </a>
+                    </li>
+                    <li class="dropdown">
+                      <a href='users/logout' > Đăng xuất </a>
+                    </li>
+                <?php
+                  }else{
+                    ?>
+                    <li class="dropdown">
+                      <a href="signup" > Đăng ký </a>
+                    </li>
+                    <li class="dropdown">
+                      <a href='login' > Đăng nhập </a>
+                    </li>
+                    <?php
+                  }
+                ?>
+            </ul>
 
-             <li class="dropdown mega-dropdown">
-              <a href="#"  > Trang chủ 1 </a> 
-            </li>
-
-          </ul>
-          
-          <ul class="nav navbar-nav navbar-right">
-              <?php
-                if($user){
-                  ?>
-                  <li class="dropdown">
-                    <a href='users/logout' > Đăng xuất </a>
-                  </li>
-              <?php
-                }else{
-                  ?>
-                  <li class="dropdown">
-                    <a href="signup" > Đăng ký </a>
-                  </li>
-                  <li class="dropdown">
-                    <a href='login' > Đăng nhập </a>
-                  </li>
-                  <?php
-                }
-              ?>
-          </ul>
-
-        </div><!-- /.navbar-collapse -->
-      <!-- </div> --><!-- /.container-fluid -->
-    </nav>
+          </div><!-- /.navbar-collapse -->
+        <!-- </div> --><!-- /.container-fluid -->
+      </nav>
+    </header>
     <!-- AREA-TEXT -->
-    <div class="area-text">
+    <div id="mycontent">
         <?= $this->Flash->render() ?>
         <div class="container-fluid">
             <?= $this->fetch('content') ?>

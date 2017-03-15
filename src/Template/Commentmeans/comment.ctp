@@ -42,7 +42,7 @@
                 <?php if($parent==0)
                 {?>
                 <a class="comment" onclick="return viewcomment('mean','#commentmean<?=$comment->id?>',<?=$mean?>,<?=$comment->id?>);">
-                <span class="glyphicon glyphicon-comment"></span> Bình luận</a>
+                <i class="fa fa-comment-o" aria-hidden="true"></i> Bình luận</a>
                 <span class="comment" id="commentmean<?=$comment->id?>_comment" ><?php echo count($comment->children)>0?$comment->children[0]->count:0 ?></span>
                 <div id="commentmean<?=$comment->id?>"></div>
                 <?php

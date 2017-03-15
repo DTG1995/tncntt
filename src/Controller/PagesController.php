@@ -107,7 +107,7 @@ class PagesController extends AppController
 								},
 								'Likemeans'=>function($q){
 									return $q
-										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','mean_id','mylike'=>"MAX(IF(user_id=null,islike,0))"])
+										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','mean_id','mylike'=>"MAX(IF(user_id=".($this->Auth->user()!=null?$this->Auth->user('id'):'NULL').",islike,0))"])
 										->group(['mean_id']);
 								}
 								,
@@ -129,7 +129,7 @@ class PagesController extends AppController
 								},
 								'Likedefinitions'=>function($q){
 									return $q
-										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','definition_id','mylike'=>"MAX(IF(user_id=null,islike,0))"])
+										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','definition_id','mylike'=>"MAX(IF(user_id=".($this->Auth->user()!=null?$this->Auth->user('id'):'NULL').",islike,0))"])
 										->group(['definition_id']);
 								}
 								,'Users','Categorys'

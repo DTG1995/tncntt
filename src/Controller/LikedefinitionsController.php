@@ -113,4 +113,34 @@ class LikedefinitionsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    function like($definition_id=null,$islike=0){
+        if($this->Auth->user()!=null){
+            $query = $this->Likedefinitions->find('all', [
+                'conditions'=>['definition_id'=>$definition_id,'user_id'=>$this->Auth->user('id')]
+            ]);
+            $likedefinition = $query->all()->first();
+            
+            if($likedefinition==null)
+            {
+                $likedefinition = $this->Likedefinitions->newEntity();
+                $likedefinition->definition_id = $definition_id;
+                $likedefinition->user_id =$this->Auth->user('id');
+                $likedefinition->islike = $islike;
+            }
+            else{
+                if($likedefinition->islike == $islike)
+                    $likedefinition->islike =0;
+                else $likedefinition->islike = $islike;
+            }
+            if ($this->Likedefinitions->save($likedefinition)) {
+                $query = $this->Likedefinitions->find()
+                    ->select(['like'=>'SUM(islike=1)','dislike'=>'SUM(islike=-1)','mylike'=>'MAX(IF(user_id='.$this->Auth->user('id').',islike,0))','definition_id'])
+                    ->where(['definition_id'=>$definition_id])
+                    ->group(['definition_id'])
+                    ->first();
+                $this->set('likedefinition',$query);
+            }
+            
+        }
+    }
 }
