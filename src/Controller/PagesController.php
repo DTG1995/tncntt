@@ -87,6 +87,7 @@ class PagesController extends AppController
 			$this->set('words',$words);
 	}
 	function getresult($str=null){
+
 		$WORDS = TableRegistry::get('Words');
 		$query = $WORDS->find()
 			->select(['id','word'])
@@ -107,8 +108,10 @@ class PagesController extends AppController
 								},
 								'Likemeans'=>function($q){
 									return $q
-										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','mean_id']);
-								},
+										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','mean_id','mylike'=>"MAX(IF(user_id=null,islike,0))"])
+										->group(['mean_id']);
+								}
+								,
 								'Users','Categorys'
 							]
 						);
@@ -127,16 +130,57 @@ class PagesController extends AppController
 								},
 								'Likedefinitions'=>function($q){
 									return $q
-										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','definition_id']);
-								},
-								'Users','Categorys'
+										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','definition_id','mylike'=>"MAX(IF(user_id=null,islike,0))"])
+										->group(['definition_id']);
+								}
+								,'Users','Categorys'
 							]
 						);
 				}
 
 			])
 			->first();
-		$this->set('word',$query);
+		$word = $query;
+		$this->set('means',[]);
+		$this->set('defines',[]);	
+		if($word!=null)
+		{
+			$wmeans = $word->means;
+			$wdefines = $word->definitions;
+			$MEANS = TableRegistry::get('Means');
+			$means = [];
+			for($i=1;$i<count($wmeans);$i++){
+			
+				$j =$this->checkcate($wmeans[$i]->cate_id,$means);
+				if($j>=0)
+				{
+					array_push($means[$j][2],$wmeans[$i]);
+				}
+				else
+					array_push($means,[$wmeans[$i]->cate_id,$wmeans[$i]->cate_name,[$wmeans[$i]]]);
+			}
+			$DEFINES = TableRegistry::get('Definition');
+			$defines = [];
+			foreach($wdefines as $define){
+				$i =$this->checkcate($define->cate_id,$defines);
+				if($i>=0)
+				{
+					array_push($defines[$i][2],$define);
+				}
+				else
+					array_push($defines,[$define->cate_id,$define->cate_name,[$define]]);
+			}
+			$this->set('means',$means);
+			$this->set('defines',$defines);
+		}
+		$this->set('word',$word);
+	}
+	function checkcate($cate_id,$cates){
+		for($i=0;$i<count($cates);$i++){
+			if($cate_id == $cates[$i][0])
+				return $i;
+		}
+		return -1;
 	}
 	function getcommentmean($mean_id=0,$parent_id=0){
 		$CommentMeans = TableRegistry::get('Commentmeans');
@@ -173,7 +217,6 @@ class PagesController extends AppController
 				]);
 			$commentmeans = $query->all()->toArray();
 		}
-		// pr($commentmeans);
 		$this->set('mean',$mean_id);
 		$this->set('parent',$parent_id);
 		$this->set('comments',$commentmeans);
@@ -196,18 +239,6 @@ class PagesController extends AppController
 				->order(['commentdefinitions.created'=>'DESC'])
 				->limit(3)
 				->all();
-			// $query = $CommentDefinitons->find('all',[
-			// 	'fields'=>'asdsa',
-			// 	'conditions'=>['commentdefinitions.definition_id'=>$define_id,'commentdefinitions.commentdefinition_id IS'=>NULL],
-			// 	'contain'=>[
-			// 			'Childrendefinecomment'=>[
-			// 			'fields'=>['commentdefinition_id','count'=>'count(Childrendefinecomment.id)'
-			// 			],
-			// 			'Users'
-			// 		],'Users'],
-			// 		'order'=>['commentdefinitions.created'=>'DESC'],
-			// 		'limit'=>3
-			// ]);
 			else 
 				$query= $CommentDefinitons->find()
 					->select(['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
@@ -222,19 +253,6 @@ class PagesController extends AppController
 					->order(['commentdefinitions.created'=>'DESC'])
 					->limit(3)
 					->all();
-			// 	$query = $CommentDefinitons->find('all',[
-			// 	'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
-			// 	],
-			// 	'conditions'=>['commentdefinitions.definition_id'=>$define_id,'commentdefinitions.commentdefinition_id '=>$parent_id],
-			// 	'contain'=>[
-			// 			'Childrendefinecomment'=>[
-			// 			'fields'=>['commentdefinition_id','count'=>'count(Childrendefinecomment.id)'
-			// 			],
-			// 			'Users'
-			// 		],'Users'],
-			// 		'order'=>['commentdefinitions.created'=>'DESC'],
-			// 		'limit'=>3
-			// ]);
 			$commentdefinitions = $query;
 		}
 		$this->set('definition',$define_id);

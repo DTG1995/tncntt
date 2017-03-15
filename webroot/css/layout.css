@@ -165,7 +165,7 @@ a:hover .likes,a:hover .dislikes{
 	text-decoration:overline;
 }
 
-@media (min-width: 768px){}
+@media (min-width: 768px){
 	.navbar {
 	     border-radius: 0; 
 	}
