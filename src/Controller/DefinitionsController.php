@@ -18,7 +18,6 @@ class DefinitionsController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $this->paginate = [
             'contain' => ['Words', 'Users', 'Categorys']
         ];
@@ -37,9 +36,8 @@ class DefinitionsController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->get($id, [
-            'contain' => ['Words', 'Users', 'Categorys', 'Commentdefinitions'=>'Users', 'Likedefinitions'=>'Users']
+            'contain' => ['Words', 'Users', 'Categorys', 'Commentdefinitions', 'Likedefinitions']
         ]);
 
         $this->set('definition', $definition);
@@ -53,10 +51,9 @@ class DefinitionsController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->newEntity();
         if ($this->request->is('post')) {
-            $definition = $this->Definitions->patchEntity($definition, $this->request->getData());
+            $definition = $this->Definitions->patchEntity($definition, $this->request->data);
             if ($this->Definitions->save($definition)) {
                 $this->Flash->success(__('The definition has been saved.'));
 
@@ -80,12 +77,11 @@ class DefinitionsController extends AppController
      */
     public function edit($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $definition = $this->Definitions->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $definition = $this->Definitions->patchEntity($definition, $this->request->getData());
+            $definition = $this->Definitions->patchEntity($definition, $this->request->data);
             if ($this->Definitions->save($definition)) {
                 $this->Flash->success(__('The definition has been saved.'));
 
@@ -119,10 +115,40 @@ class DefinitionsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    public function contribute($idword=null, $word=null){
+        $categorys = $this->Definitions->Categorys->find('list', ['limit' => 200]);
+        if ($this->request->is('post')) {
+            $data =$this->request->getData();
+            $ip = $this->get_client_ip();
+            $length = count($data)/2;
+            $ok = false;
+            for($i=0;$i<$length;$i++){
+                if($data['define'.$i]!="")
+                    {
+                        $define = $this->Definitions->newEntity();
+                        $define->word_id = $idword;
+                        $define->define = $data['define'.$i];
+                        $define->category_id = $data['cate'.$i];
+                        $define->user_id = $this->Auth->user('id');
+                        $define->author = $ip;
+                        $define->contribute = 1;
+                        $define->active = false;
+                        if($this->Definitions->save($define))
+                            $ok = true;
+                        else $ok = false;
+                        pr($define);
+                    }
+            }
+            if($ok)
+                $this->redirect(['action' => 'index']);
+        }
+        $this->set('categorys',$categorys);
+        $this->set('word',$word);
+    }
     public $paginate=[
         'limit'=>10,
         'order'=>[
-                'definitions.define'=>'asc'
+                'Definitions.define'=>'asc'
             ]
     ];
 }

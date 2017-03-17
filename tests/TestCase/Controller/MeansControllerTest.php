@@ -18,13 +18,13 @@ class MeansControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.means',
         'app.words',
-        'app.users',
-        'app.categorys',
         'app.definitions',
+        'app.users',
         'app.commentdefinitions',
-        'app.likedefinitions',
         'app.commentmeans',
-        'app.likemeans'
+        'app.likedefinitions',
+        'app.likemeans',
+        'app.categorys'
     ];
 
     /**

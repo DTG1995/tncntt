@@ -101,8 +101,9 @@ $("#ratingmean").addClass("<?=$liked?>");
                         }
                         echo "</li>";
                     }
+                    echo $this->Html->link('Đóng góp thêm',['controller'=>'definitions','action'=>'contribute',$word->id,$word->word],['class'=>'btn btn-warning']);
                 }
-                else echo "<p>Từ chưa có định nghĩa, ".$this->Html->link('đóng góp');
+                else echo "<p>Từ chưa có định nghĩa, ".$this->Html->link('đóng góp',['controller'=>'definitions','action'=>'contribute',$word->id,$word->word]);
             ?>
             </ul>
         </div>
@@ -110,7 +111,7 @@ $("#ratingmean").addClass("<?=$liked?>");
             <h1>Các nghĩa khác của từ:</h1>
             <ul class="means">
             <?php
-            if(count($defines)>0){
+            if(count($means)>0){
                 foreach($means as $catemeans)
                 {
                     ?>
@@ -158,8 +159,9 @@ $("#ratingmean").addClass("<?=$liked?>");
                     }
                     echo "</li>";
                 }
+                echo $this->Html->link('Đóng góp thêm',['controller'=>'means','action'=>'contribute',$word->id,$word->word],['class'=>'btn btn-warning']);
             }
-            else  echo "<p>Từ chưa có định nghĩa, ".$this->Html->link('đóng góp');
+            else  echo "<p>Từ chưa có định nghĩa, ".$this->Html->link('đóng góp',['controller'=>'means','action'=>'contribute',$word->id,$word->word]);
             ?>
             </ul>
         </div>

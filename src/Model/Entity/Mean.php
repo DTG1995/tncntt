@@ -12,6 +12,8 @@ use Cake\ORM\Entity;
  * @property int $contribute
  * @property int $user_id
  * @property int $category_id
+ * @property string $author
+ * @property bool $active
  *
  * @property \App\Model\Entity\Word $word
  * @property \App\Model\Entity\User $user

@@ -144,6 +144,7 @@ class PagesController extends AppController
 		$this->set('defines',[]);	
 		if($word!=null)
 		{
+
 			$wmeans = $word->means;
 			$wdefines = $word->definitions;
 			$MEANS = TableRegistry::get('Means');

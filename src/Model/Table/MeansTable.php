@@ -36,16 +36,16 @@ class MeansTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('means');
-        $this->setDisplayField('mean');
-        $this->setPrimaryKey('id');
+        $this->table('means');
+        $this->displayField('mean');
+        $this->primaryKey('id');
+
         $this->belongsTo('Words', [
             'foreignKey' => 'word_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'user_id'
         ]);
         $this->belongsTo('Categorys', [
             'foreignKey' => 'category_id',
@@ -79,6 +79,14 @@ class MeansTable extends Table
             ->integer('contribute')
             ->requirePresence('contribute', 'create')
             ->notEmpty('contribute');
+
+        $validator
+            ->allowEmpty('author');
+
+        $validator
+            ->boolean('active')
+            ->requirePresence('active', 'create')
+            ->notEmpty('active');
 
         return $validator;
     }

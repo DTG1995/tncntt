@@ -26,11 +26,13 @@ class DefinitionsTableTest extends TestCase
     public $fixtures = [
         'app.definitions',
         'app.words',
-        'app.users',
-        'app.categorys',
         'app.means',
+        'app.users',
         'app.commentdefinitions',
-        'app.likedefinitions'
+        'app.commentmeans',
+        'app.likedefinitions',
+        'app.likemeans',
+        'app.categorys'
     ];
 
     /**

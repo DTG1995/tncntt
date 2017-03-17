@@ -18,7 +18,6 @@ class MeansController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $this->paginate = [
             'contain' => ['Words', 'Users', 'Categorys']
         ];
@@ -37,9 +36,8 @@ class MeansController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->get($id, [
-            'contain' => ['Words', 'Users', 'Categorys', 'Commentmeans'=>'Users', 'Likemeans'=>'Users']
+            'contain' => ['Words', 'Users', 'Categorys', 'Commentmeans', 'Likemeans']
         ]);
 
         $this->set('mean', $mean);
@@ -53,10 +51,9 @@ class MeansController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->newEntity();
         if ($this->request->is('post')) {
-            $mean = $this->Means->patchEntity($mean, $this->request->getData());
+            $mean = $this->Means->patchEntity($mean, $this->request->data);
             if ($this->Means->save($mean)) {
                 $this->Flash->success(__('The mean has been saved.'));
 
@@ -80,12 +77,11 @@ class MeansController extends AppController
      */
     public function edit($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $mean = $this->Means->patchEntity($mean, $this->request->getData());
+            $mean = $this->Means->patchEntity($mean, $this->request->data);
             if ($this->Means->save($mean)) {
                 $this->Flash->success(__('The mean has been saved.'));
 
@@ -119,10 +115,40 @@ class MeansController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-        public $paginate=[
+    public function contribute($idword=null, $word=null){
+        $categorys = $this->Means->Categorys->find('list', ['limit' => 200]);
+        if ($this->request->is('post')) {
+            $data =$this->request->getData();
+            $ip = $this->get_client_ip();
+            $length = count($data)/2;
+            $ok = false;
+            for($i=0;$i<$length;$i++){
+                if($data['mean'.$i]!="")
+                    {
+                        $mean = $this->Means->newEntity();
+                        $mean->word_id = $idword;
+                        $mean->mean = $data['mean'.$i];
+                        $mean->category_id = $data['cate'.$i];
+                        $mean->user_id = $this->Auth->user('id');
+                        $mean->author = $ip;
+                        $mean->contribute = 1;
+                        $mean->active = false;
+                        if($this->Means->save($mean))
+                            $ok = true;
+                        else $ok = false;
+                        pr($mean);
+                    }
+            }
+            if($ok)
+                $this->redirect(['action' => 'index']);
+        }
+        $this->set('categorys',$categorys);
+        $this->set('word',$word);
+    }
+    public $paginate=[
         'limit'=>10,
         'order'=>[
-                'means.mean'=>'asc'
+                'Means.mean'=>'asc'
             ]
     ];
 }

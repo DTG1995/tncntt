@@ -36,17 +36,16 @@ class DefinitionsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('definitions');
-        $this->setDisplayField('id');
-        $this->setPrimaryKey('id');
+        $this->table('definitions');
+        $this->displayField('id');
+        $this->primaryKey('id');
 
         $this->belongsTo('Words', [
             'foreignKey' => 'word_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'user_id'
         ]);
         $this->belongsTo('Categorys', [
             'foreignKey' => 'category_id',
@@ -80,6 +79,15 @@ class DefinitionsTable extends Table
             ->integer('contribute')
             ->requirePresence('contribute', 'create')
             ->notEmpty('contribute');
+
+        $validator
+            ->requirePresence('author', 'create')
+            ->notEmpty('author');
+
+        $validator
+            ->boolean('active')
+            ->requirePresence('active', 'create')
+            ->notEmpty('active');
 
         return $validator;
     }
