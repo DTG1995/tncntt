@@ -53,7 +53,7 @@ $("#ratingmean").addClass("<?=$liked?>");
 <div class="container-fluid area_text2">
     <div class="">
         <div class="col-sm-6 text-left ">
-            <h1>Định nghĩa:</h1>
+            <h2>Định nghĩa:</h2>
             <ul class="defines">
             <?php 
                 if(count($defines)>0){
@@ -61,7 +61,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                     {
                         ?>
                         <li> 
-                            <h4 class="catgory"><?=$catedefines[1];?></h4>
+                            <h3 class="catgory"><?=$catedefines[1];?></h3>
                         <?php
                         foreach($catedefines[2] as $define)
                         {
@@ -89,7 +89,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                                             </a>
                                             <span> &nbsp </span>
                                         </div>
-                                        <a class="comment" onclick="return viewcomment('define','#define<?=$define->id?>',<?=$define->id?>,0);">
+                                        <a class="comment" data-toggle="modal" data-target="#myModal" onclick="return viewcomment('define','#define<?=$define->id?>',<?=$define->id?>,0);">
                                             <i class="fa fa-comment-o" aria-hidden="true"></i> Bình luận
                                         </a>
                                         <span class="comment" id="define<?=$define->id?>_comment"><?php echo count($define->commentdefinitions)>0?$define->commentdefinitions[0]->count:0 ?></span>
@@ -107,7 +107,7 @@ $("#ratingmean").addClass("<?=$liked?>");
             </ul>
         </div>
         <div class="col-sm-6 text-left">
-            <h1>Các nghĩa khác của từ:</h1>
+            <h2>Các nghĩa khác của từ:</h2>
             <ul class="means">
             <?php
             if(count($defines)>0){
@@ -115,7 +115,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                 {
                     ?>
                     <li> 
-                        <h4 class="catgory"><?=$catemeans[1];?></h4>
+                        <h3 class="catgory"><?=$catemeans[1];?></h3>
                     <?php
                     for($i=0;$i<count($catemeans[2]);$i++)
                     {
@@ -173,3 +173,22 @@ $("#ratingmean").addClass("<?=$liked?>");
     <?php
 }
 ?>
+
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog modal-sm">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Modal Header</h4>
+    </div>
+    <div class="modal-body">
+      <p>This is a small modal.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+  
