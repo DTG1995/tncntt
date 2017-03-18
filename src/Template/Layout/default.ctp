@@ -76,13 +76,13 @@
                       <a href='#' >Xin chào, <?=$loguser['namedisplay']?> </a>
                     </li>
                     <li class="dropdown">
-                      <a href='users/logout' > Đăng xuất </a>
+                      <?= $this->Html->link('Đăng xuất',['controller'=>'users','action'=>'logout'])?>
                     </li>
                 <?php
                   }else{
                     ?>
                     <li class="dropdown">
-                      <a href="signup" > Đăng ký </a>
+                      <?= $this->Html->link('Đăng ký',['controller'=>'users','action'=>'adduser'])?>
                     </li>
                     <li class="dropdown">
                       <a href='login' > Đăng nhập </a>

@@ -240,6 +240,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <ul class="dropdown-menu drp-mnu">
                                             <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
                                             <li> <a href="#"><i class="fa fa-user"></i> Thông Tin</a> </li> 
+                                             <li>
+                                            <?=$this->Html->link("<i class='fa fa-home'></i><span>Trang Chủ</span><div class='clearfix'></div>",['controller'=>'pages','action'=>'display'],[ 'escape' => false]) ?>
+                                             </li>
                                             <li>
                                             <?=$this->Html->link("<i class='fa fa-sign-out'></i><span>Đăng xuất</span><div class='clearfix'></div>",['controller'=>'users','action'=>'logout'],[ 'escape' => false]) ?>
                                              </li>
