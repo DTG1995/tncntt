@@ -259,4 +259,10 @@ class PagesController extends AppController
 		$this->set('parent',$parent_id);
 		$this->set('comments',$commentdefinitions);
 	}
+	function contribute()
+	{
+		$MEANS = TableRegistry::get('Means');
+		$DEFINES = TableRegistry::get('Definitions');
+
+	}
 }
