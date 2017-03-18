@@ -39,7 +39,7 @@ class MeansController extends AppController
     {
         $this->viewBuilder()->setLayout('Admin\default');
         $mean = $this->Means->get($id, [
-            'contain' => ['Words', 'Users', 'Categorys', 'Commentmeans', 'Likemeans']
+            'contain' => ['Words', 'Users', 'Categorys', 'Commentmeans'=>['Users'], 'Likemeans'=>['Users','Means']]
         ]);
 
         $this->set('mean', $mean);
