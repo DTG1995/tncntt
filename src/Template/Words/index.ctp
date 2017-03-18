@@ -5,7 +5,7 @@
 ?>
 <div class="words index large-9 medium-8 columns content">
     <h3><?= __('Thuật Ngữ') ?></h3>
-     <?= $this->Html->link(__('Thêm Thuật Ngữ Mới'), ['action' => 'add']) ?>
+     <?= $this->Html->link(__('Thêm Thuật Ngữ Mới'), ['action' => 'addwordmean']) ?>
     <table cellpadding="0" cellspacing="0" class="table table-striped">
         <thead>
             <tr>
@@ -31,14 +31,12 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?php if($this->Paginator->pages>0){?>
             <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
-            <?php } ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}')]) ?></p>
     </div>
 </div>

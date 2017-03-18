@@ -37,9 +37,10 @@
                 <td><?= h($definitions->contribute) ?></td>
                 <td><?= h($definitions->category->name) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('Chi Tiết'), ['controller' => 'Definitions', 'action' => 'view', $definitions->id]) ?>
-                    <?= $this->Html->link(__('Sửa'), ['controller' => 'Definitions', 'action' => 'edit', $definitions->id]) ?>
-                    <?= $this->Form->postLink(__('Xóa'), ['controller' => 'Definitions', 'action' => 'delete', $definitions->id], ['confirm' => __('Bạn Có Muốn Xóa Không?', $definitions->id)]) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-info-circle'></i>"), ['controller' => 'Definitions', 'action' => 'view', $definitions->id],[ 'escape' => false,'title'=>'Chi tiết']) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-pencil'></i>"), ['controller' => 'Definitions', 'action' => 'edit', $definitions->id],['escape' => false,'title'=>'chỉnh sửa']) ?>
+                     <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$definitions->id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $definitions->id)]);
+                     ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -66,9 +67,10 @@
                 <td><?= h($means->contribute) ?></td>
                 <td><?= h($means->category->name) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('Chi Tiết'), ['controller' => 'Means', 'action' => 'view', $means->id]) ?>
-                    <?= $this->Html->link(__('Sửa'), ['controller' => 'Means', 'action' => 'edit', $means->id]) ?>
-                    <?= $this->Form->postLink(__('Xóa'), ['controller' => 'Means', 'action' => 'delete', $means->id], ['confirm' => __('Bạn Có Muốn Xóa Không?', $means->id)]) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-info-circle'></i>"), ['controller' => 'Means', 'action' => 'view', $means->id],[ 'escape' => false,'title'=>'Chi tiết']) ?>
+                    <?= $this->Html->link(__("<i class='fa fa-pencil'></i>"), ['controller' => 'Means', 'action' => 'edit', $means->id],['escape' => false,'title'=>'chỉnh sửa']) ?>
+                    <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$means->id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $means->id)]);
+                    ?>
                 </td>
             </tr>
             <?php endforeach; ?>

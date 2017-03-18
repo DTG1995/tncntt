@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Words Controller
@@ -111,7 +112,42 @@ class WordsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-        public $paginate=[
+
+    public function addwordmean()
+    {
+        $this->viewBuilder()->setLayout('Admin\default');
+        $word = $this->Words->newEntity();
+        $Categorys = TableRegistry::get('Categorys');
+        $catelist= $Categorys->find('list');
+        $data = $this->request->getData();
+        if($this->request->is('post'))
+        {
+            $word = $this->Words->newEntity();
+            $word->word = $data['word'];
+            if($this->Words->save($word)){
+                $MEANS = TableRegistry::get('Means');
+                $meanobj = $MEANS->newEntity();
+                $meanobj->mean = $data['mean'];
+                $meanobj->category_id = $data['cate_mean'];
+                $meanobj->word_id = $word->id;
+                $meanobj->user_id = $this->Auth->user('id');
+                $MEANS->save($meanobj);
+
+                $DEFINITIONS=TableRegistry::get('Definitions');
+                $definitionobj=$DEFINITIONS->newEntity();
+                $definitionobj->define=$data['definition'];
+                $definitionobj->category_id=$data['cate_mean'];
+                $definitionobj->word_id=$word->id;
+                $definitionobj->user_id=$this->Auth->user('id');
+                $DEFINITIONS->save($definitionobj);
+
+                return $this->redirect(['action' => 'index']);
+            }
+        }
+        $this->set("catelist",$catelist);   
+        $this->set("word",$word);     
+    }
+    public $paginate=[
         'limit'=>10,
         'order'=>[
                 'Words.word'=>'asc'
