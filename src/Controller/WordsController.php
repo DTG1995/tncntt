@@ -115,7 +115,8 @@ class WordsController extends AppController
 
     public function addwordmean()
     {
-        $this->viewBuilder()->setLayout('Admin\default');
+        if($this->Auth->user('isadmin'))
+            $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->newEntity();
         $Categorys = TableRegistry::get('Categorys');
         $catelist= $Categorys->find('list');
