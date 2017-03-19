@@ -15,6 +15,15 @@ header{
 	z-index: 1;
 }
 /*-------*/
+.meanadd{
+	width: 50%;
+	float: left;
+}
+.definitionadd
+{
+	width: 50%;
+	float: right;;
+}
 /*myconten*/
 #mycontent{
 	margin: 50px 0 50px 0;
@@ -144,7 +153,7 @@ q {
 .logo {
 	width: 100px;
     height: 37px;
-    margin-top: -7px;
+    margin-top: 5px;
 }
 .area_text2{
 	margin-top: 30px;

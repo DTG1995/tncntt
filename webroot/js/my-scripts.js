@@ -134,6 +134,7 @@ $(document).ready(function(){
                     });
             }
     }
+
 function changecontribute(type,url,id,value){
     if(type=='define'){
                 $.ajax({
@@ -156,3 +157,8 @@ function changecontribute(type,url,id,value){
                     });
             }
 }
+    //back to top
+        function toBottom()
+        {
+            window.scrollTo(0,document.body.scrollHeight);
+        } 

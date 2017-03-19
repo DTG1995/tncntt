@@ -113,7 +113,8 @@ class PagesController extends AppController
 								,
 								'Users','Categorys'
 							]
-						);
+						)
+						->where(['means.active'=>1]);
 				},
 				'Definitions'=>function($q){
 					return $q
@@ -134,7 +135,8 @@ class PagesController extends AppController
 								}
 								,'Users','Categorys'
 							]
-						);
+						)
+						->where(['means.active'=>1]);
 				}
 
 			])
@@ -182,7 +184,7 @@ class PagesController extends AppController
 		}
 		return -1;
 	}
-	function getcommentmean($mean_id=0,$parent_id=0){
+	function getcommentmean($mean_id=0,$parent_id=0,$page=0){
 		$CommentMeans = TableRegistry::get('Commentmeans');
 		$commentmeans = [];
 		$query;

@@ -1,8 +1,8 @@
 <div class="contain">
-<h4>Danh sách đóng góp của người dùng</h4>
-<div class="col-md-6 contents-contributes">
-    <div class="title">Định nghĩa</div>
-    <div class="content-contributes">
+    <h4>Danh sách đóng góp của người dùng</h4>
+    <div class="col-md-6 contents-contributes">
+        <div class="title">Định nghĩa</div>
+        <div class="content-contributes">
         <?php
             $i=0;
             foreach($defines as $define){
@@ -22,11 +22,13 @@
                     <div id="readmore-contribute-define-<?=$define->id?>" class="readmore-contribute-content collapse">
                         <p><q></i><?=$define->define?></q><p>
                     </div>
-                </div>
+                    </div>
             <?php
             $i++;
             }
         ?>
+        </div>
+        <div class="readmore btn btn-default">Xem Thêm...</div>
     </div>
     <?=count($defines)<$count_define?"<div class='readmore btn btn-default'>Xem Thêm...</div>":""?>
 </div>
@@ -53,10 +55,13 @@
                         <p><q></i><?=$mean->mean?></q><p>
                     </div>
                 </div>
+            </div>
             <?php
             $i++;
             }
         ?>
+        </div>
+        <div class="readmore btn btn-default">Xem Thêm...</div>
     </div>
     <?=count($means)<$count_mean?"<div class='readmore btn btn-default'>Xem Thêm...</div>":""?>
 </div>

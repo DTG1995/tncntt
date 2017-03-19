@@ -57,7 +57,7 @@
               <i class="fa fa-list-ul" aria-hidden="true"></i>
             </button>
             <a class="navbar-brand" style="margin-top: -2px;" href="#">
-                <?=$this->Html->image('Logo-GTP.PNG',['alt'=>'logo','class'=>'logo','url'=>['controller'=>'pages','action'=>'home']]) ?> 
+                <?=$this->Html->image('Logo-GTP.PNG',['alt'=>'logo','class'=>'logo','url'=>['controller'=>'pages','action'=>'display']]) ?> 
             </a>
           </div>
 

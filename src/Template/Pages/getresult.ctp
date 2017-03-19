@@ -23,7 +23,7 @@ if($word!=null)
         }
 ?>
 <script>
- var data = "<?=$word['means'][0]->mean; ?>";
+ var data = `<?=$word['means'][0]->mean; ?>`;
  var likemean = <?=$like?> ;
  var dislikemean = <?=$dislike?>;
  var comment = <?=$comment?>;
@@ -171,7 +171,7 @@ $("#ratingmean").addClass("<?=$liked?>");
 } else
 {
     ?>
-    <h1> Xin lỗi, từ bạn tra chưa có trong dữ liệu. Bạn có muốn <a>đóng góp</a></h1>
+    <h1> Xin lỗi, từ bạn tra chưa có trong dữ liệu. Bạn có muốn <?= $this->Html->link("Đóng góp",['controller'=>'words','action'=>'addwordmean']) ?></h1>
     <?php
 }
 ?>
