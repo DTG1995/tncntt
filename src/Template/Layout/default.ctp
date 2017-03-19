@@ -23,16 +23,21 @@
     <title>
         <?= $this->fetch('title') ?>
     </title>
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('admin/css/font-awesome')?>
     <?= $this->Html->css('bootstrap.min')?>
     <?= $this->Html->script("jquery-3.1.1.min.js")?>
     <?= $this->Html->script("bootstrap.min.js")?>
     <?= $this->Html->script("my-scripts.js")?>
+      <?= $this->Html->script('jquery.easy-autocomplete.min') ?>
       <?= $this->Html->css('layout') ?>
+      <?= $this->Html->css('easy-autocomplete.min') ?>
+      
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
 
 
 </head>

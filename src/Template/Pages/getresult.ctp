@@ -1,5 +1,8 @@
 <?php 
+    $loguser = $this->request->session()->read('Auth.User');
     $this->layout = false;
+
+
 if($word!=null)
 {
     $like=0;
@@ -21,6 +24,8 @@ if($word!=null)
             }
             
         }
+
+
 ?>
 <script>
  var data = "<?=$word['means'][0]->mean; ?>";
@@ -49,7 +54,18 @@ $("#ratingmean").addClass("<?=$liked?>");
 </script>
 <?php
     }
+    if($loguser==0){
 ?>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".like, .dislike").click(function(){
+        alert("đăng nhập");
+    });
+});    
+</script>
+<?php 
+    }
+ ?>
 <div class="container-fluid area_text2">
     <div class="">
         <div class="col-sm-6 text-left ">
@@ -89,7 +105,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                                             </a>
                                             <span> &nbsp </span>
                                         </div>
-                                        <a class="comment" data-toggle="modal" data-target="#myModal" onclick="return viewcomment('define','#define<?=$define->id?>',<?=$define->id?>,0);">
+                                        <a class="comment" onclick="return viewcomment('define','#define<?=$define->id?>',<?=$define->id?>,0);">
                                             <i class="fa fa-comment-o" aria-hidden="true"></i> Bình luận
                                         </a>
                                         <span class="comment" id="define<?=$define->id?>_comment"><?php echo count($define->commentdefinitions)>0?$define->commentdefinitions[0]->count:0 ?></span>
@@ -169,26 +185,9 @@ $("#ratingmean").addClass("<?=$liked?>");
 } else
 {
     ?>
-    <h1> Xin lỗi, từ bạn tra chưa có trong dữ liệu. Bạn có muốn <a>đóng góp</a></h1>
+    <h3> Xin lỗi, từ bạn tra chưa có trong dữ liệu. Bạn có muốn <a>đóng góp</a></h3>
     <?php
 }
 ?>
 
-  <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-<div class="modal-dialog modal-sm">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h4 class="modal-title">Modal Header</h4>
-    </div>
-    <div class="modal-body">
-      <p>This is a small modal.</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
-  </div>
-</div>
-</div>
   

@@ -1,8 +1,10 @@
 $(document).ready(function(){
+        debugger;
         $("#search-box").keyup(function(e){
+            console.log("thu1");
             $("#result").html("");
             $("#txtresult").val("");
-            $(".ratingmean").html("");
+            $("#ratingmean").html("");
             if(e.keyCode == 13){
                 $.ajax({
                     type: "POST",
@@ -15,6 +17,7 @@ $(document).ready(function(){
                  }
              });
             }else{   
+                    console.log("thu2 data");
                     $.ajax({
                     type: "POST",
                     url: "pages/gethint/"+$(this).val(),

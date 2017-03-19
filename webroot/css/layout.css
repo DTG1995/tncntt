@@ -16,7 +16,7 @@ header{
 }
 
 header .nav>li>a:focus, .nav>li>a:hover {
-	color:#000000;
+	color:#538eb0;
 }
 header .nav>li>a:focus, .nav>li>a {
 	color:#ffffff;
