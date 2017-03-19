@@ -134,3 +134,8 @@ $(document).ready(function(){
                     });
             }
     }
+    //back to top
+        function toBottom()
+        {
+            window.scrollTo(0,document.body.scrollHeight);
+        } 

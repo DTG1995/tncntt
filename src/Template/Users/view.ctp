@@ -38,7 +38,7 @@
     <div class="related">
         <h4><?= __('Bình luận liên quan đến định nghĩa') ?></h4>
         <?php if (!empty($user->commentdefinitions)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" class="table table-striped">
             <tr>
                 <th scope="col"><?= __('Nội dung') ?></th>
                 <th scope="col"><?= __('Thời gian') ?></th>
@@ -181,12 +181,14 @@
             <?php foreach ($user->means as $means): ?>
             <tr>
                 <td><?= h($means->word->word) ?></td>
-                <td><?= h($means->mean->mean) ?></td>
+                <td><?= h($means->mean) ?></td>
                 <td><?= h($means->contribute) ?></td>
                 <td><?= h($means->user->namedisplay) ?></td>
                 <td><?= h($means->category->name) ?></td>
                 <td class="actions">
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Means', 'action' => 'delete', $means->id], ['confirm' => __('Bạn có muốn xóa không?', $means->id)]) ?>
+                <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$means->id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $means->mean_id)]);
+                ?>
+        
                 </td>
             </tr>
             <?php endforeach; ?>

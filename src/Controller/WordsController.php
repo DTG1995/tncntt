@@ -108,36 +108,96 @@ class WordsController extends AppController {
 
     public function addwordmean() {
         $active = 0;
-        if ($this->Auth->user('isadmin')) {
-            $this->viewBuilder()->setLayout('Admin\default');
-            $active = 1;
+        $contribute=0;
+        if($this->Auth->user()) {
+             if($this->Auth->user('isadmin')==0)
+            {
+                $active = 1;
+                $contribute=1;
+            }else if($this->Auth->user('isadmin')==1)
+            {
+                $this->viewBuilder()->setLayout('Admin\default');
+                $active=1;
+                $contribute=10;
+            }
         }
         $word = $this->Words->newEntity();
         $Categorys = TableRegistry::get('Categorys');
         $catelist = $Categorys->find('list');
         $data = $this->request->getData();
         if ($this->request->is('post')) {
+            $means =[];
+            $defines=[];
+            // $num = (count($data)-1)/2;
+            // for($i=0;$i<$num;$i++){
+            //     echo array_keys($data,$data[$i*2+1]);
+            // }
+            foreach ($data as $key => $value) {
+                $type = substr($key, 0, 4);
+                $index = substr($key, strlen($key)-1);
+                if($type=="mean"){
+                    if(!array_key_exists($index,$means)){
+                        if(strlen($key)<7)
+                            $means=array_merge($means,[$index=>['mean'=>$value,'cate'=>'']]);
+                        else
+                            $means=array_merge($means,[$index=>['mean'=>'','cate'=>$value]]);
+                    }
+                    else{
+                        if(strlen($key)<7)
+                            $means[$index]['mean']=$value;
+                        else 
+                            $means[$index]['cate']=$value;
+                    }
+                }
+                else if($type=="defi"){
+                    if(!array_key_exists($index,$defines)){
+                        if(strlen($key)<7)
+                            $defines=array_merge($defines,[$index=>['define'=>$value,'cate'=>'']]);
+                        else
+                            $defines=array_merge($defines,[$index=>['define'=>'','cate'=>$value]]);
+                    }
+                    else{
+                        if(strlen($key)<7)
+                            $defines[$index]['define']=$value;
+                        else 
+                            $defines[$index]['cate']=$value;
+                    }
+                }
+            }
+            //array_merge($means,['index'=>['mean'=>'','cate'=>'value']]);
             $word = $this->Words->newEntity();
             $word->word = $data['word'];
             if ($this->Words->save($word)) {
-                $MEANS = TableRegistry::get('Means');
-                $meanobj = $MEANS->newEntity();
-                $meanobj->mean = $data['mean'];
-                $meanobj->category_id = $data['cate_mean'];
-                $meanobj->word_id = $word->id;
-                $meanobj->user_id = $this->Auth->user('id');
-                $meanobj->active = $active;
-                $MEANS->save($meanobj);
+            //save mean
+                foreach ($means as $mean) {
+                    if($mean['mean'])
+                    {
+                        $MEANS = TableRegistry::get('Means');
+                        $meanobj = $MEANS->newEntity();
+                        $meanobj->mean = $mean['mean'];
+                        $meanobj->category_id = $mean['cate'];
+                        $meanobj->word_id = $word->id;
+                        $meanobj->user_id = $this->Auth->user('id');
+                        $meanobj->active = $active;
+                        $meanobj->contribute=$contribute;
+                        $MEANS->save($meanobj);
+                    }
+                }
 
-                $DEFINITIONS = TableRegistry::get('Definitions');
-                $definitionobj = $DEFINITIONS->newEntity();
-                $definitionobj->define = $data['definition'];
-                $definitionobj->category_id = $data['cate_Definitions'];
-                $definitionobj->word_id = $word->id;
-                $definitionobj->user_id = $this->Auth->user('id');
-                $definitionobj->active = $active;
-                $DEFINITIONS->save($definitionobj);
-
+                foreach ($defines as $define) {
+                    if($define['define'] != "")
+                    {
+                        $DEFINITIONS = TableRegistry::get('Definitions');
+                        $definitionobj = $DEFINITIONS->newEntity();
+                        $definitionobj->define = $define['define'];
+                        $definitionobj->category_id = $define['cate'];
+                        $definitionobj->word_id = $word->id;
+                        $definitionobj->user_id = $this->Auth->user('id');
+                        $definitionobj->active = $active;
+                        $definitionobj->contribute=$contribute;
+                        $DEFINITIONS->save($definitionobj);
+                    }
+                }
                 if ($active == 1) {
                     return $this->redirect(['action' => 'index']);
                 } else {
