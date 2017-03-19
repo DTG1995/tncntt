@@ -263,15 +263,32 @@ class PagesController extends AppController
 	{
 		$MEANS = TableRegistry::get('Means');
 		$DEFINES = TableRegistry::get('Definitions');
-		$means = $MEANS->find()
-			->where(['active'=>1,'contribute <'=>10])
-			->contain(['Words'])
-			->order(['contribute'=>'ASC'])
+		$means = $MEANS->find('all')
+			->select(['id'=>'means.id','mean'=>'means.mean','contribute'=>'means.contribute','cate_name'=>'categorys.name','username'=>'users.namedisplay'])
+			->where(['means.active'=>1,'means.contribute <'=>10])
+			->contain(['Categorys','Words','Users'])
+			->order(['means.contribute'=>'DESC'])
+			->limit(10)
 			->all();
-		$defines = $DEFINES->find()
-			->where(['active'=>1,'contribute <'=>10])
-			->contain(['Words'])
+		$defines = $DEFINES->find('all')
+			->select(['id'=>'definitions.id','define'=>'definitions.define','contribute'=>'definitions.contribute',
+						'cate_name'=>'categorys.name','username'=>'users.namedisplay','word'=>'words.word'])
+			->where(['definitions.active'=>1,'definitions.contribute <'=>10])
+			->contain(['Categorys','Words','Users'])
+			->order(['definitions.contribute'=>'DESC'])
+			->limit(10)
 			->all();
-		$this->set(['means'=>$means,'defines'=>$defines]);
+		$count_define = $DEFINES->find('all')
+				->where(['active'=>1,'contribute <'=>10])
+				->count();
+		$count_mean = $MEANS->find('all')
+				->where(['active'=>1,'contribute <'=>10])
+				->count();
+		$this->set(['means'=>$means,'defines'=>$defines,'count_mean'=>$count_mean,'count_define'=>$count_define]);
 	}
+	public $paginate=[
+        'limit'=>5,
+        'order'=>[
+            ]
+    ];
 }

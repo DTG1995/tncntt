@@ -134,3 +134,25 @@ $(document).ready(function(){
                     });
             }
     }
+function changecontribute(type,url,id,value){
+    if(type=='define'){
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    success: function(data){
+                        idhtml = "#define"+id;
+                        $(idhtml).html(data);
+                        }
+                    });
+            }
+            else{
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    success: function(data){
+                        idhtml = "#mean"+id;
+                        $(idhtml).html(data);
+                        }
+                    });
+            }
+}

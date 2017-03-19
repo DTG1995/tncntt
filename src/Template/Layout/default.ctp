@@ -57,14 +57,14 @@
               <i class="fa fa-list-ul" aria-hidden="true"></i>
             </button>
             <a class="navbar-brand" style="margin-top: -2px;" href="#">
-                <?=$this->Html->image('Logo-GTP.PNG',['alt'=>'logo','class'=>'logo']) ?> 
+                <?=$this->Html->image('Logo-GTP.PNG',['alt'=>'logo','class'=>'logo','url'=>['controller'=>'pages','action'=>'home']]) ?> 
             </a>
           </div>
 
           <div class="collapse navbar-collapse" id="menumobile">
             <ul class="nav navbar-nav">
               <li class="dropdown mega-dropdown">
-                <a href="#"  > Danh Sách Đóng Góp </a> 
+                <?= $this->Html->link('Danh Sách Đóng Góp',['controller' => 'Pages', 'action' => 'contribute']);?>
               </li>
             </ul>
             
@@ -75,6 +75,15 @@
                     <li class="dropdown">
                       <a href='#' >Xin chào, <?=$loguser['namedisplay']?> </a>
                     </li>
+                    <?php
+                      if($loguser['isadmin']==1){
+                        ?>
+                        <li class="dropdown">
+                          <?= $this->Html->link('Trang Quản Trị',['controller'=>'admins','action'=>'index'])?>
+                        </li>    
+                        <?php
+                      }
+                    ?>
                     <li class="dropdown">
                       <?= $this->Html->link('Đăng xuất',['controller'=>'users','action'=>'logout'])?>
                     </li>
@@ -85,7 +94,7 @@
                       <?= $this->Html->link('Đăng ký',['controller'=>'users','action'=>'adduser'])?>
                     </li>
                     <li class="dropdown">
-                      <a href='login' > Đăng nhập </a>
+                      <?= $this->Html->link('Đăng nhập',['controller'=>'users','action'=>'login'])?>
                     </li>
                     <?php
                   }

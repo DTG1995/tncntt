@@ -150,6 +150,39 @@ class MeansController extends AppController
         $this->set('categorys',$categorys);
         $this->set('word',$word);
     }
+    public function changecontribute($id=null,$value=0){
+            $definition = $this->Means->get($id);
+            $contributed = false;
+            $iduser = $this->Auth->user('id');
+            if($this->Auth->user()){
+                $Likemeans = TableRegistry::get('Likemeans');
+                $like = $Likemeans->find('all')
+                    ->where(['user_id'=>$iduser,'mean_id'=>$id])
+                    ->first();
+                if(!$like)
+                {
+                    $like = $Likemeans->newEntity();
+                    $definition->contribute +=$value;    
+                    $like->user_id = $this->Auth->user('id');
+                    $like->mean_id = $id;
+                    $like->islike = $value;
+                }
+                else{
+                    if($like->islike != $value)
+                    {
+                        $definition->contribute +=$value;
+                        $like->islike = $value;
+                    }
+                    else{
+                        $contributed=true;                        
+                    }
+                }
+                $Likemeans->save($like);
+            }
+            $this->Means->save($definition);
+            $this->set('contribute',$definition->contribute);
+            $this->set('contributed',$contributed);
+    }
     public $paginate=[
         'limit'=>10,
         'order'=>[

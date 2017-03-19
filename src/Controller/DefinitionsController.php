@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Definitions Controller
@@ -149,6 +150,39 @@ class DefinitionsController extends AppController
         }
         $this->set('categorys',$categorys);
         $this->set('word',$word);
+    }
+    public function changecontribute($id=null,$value=0){
+            $definition = $this->Definitions->get($id);
+            $contributed = false;
+            $iduser = $this->Auth->user('id');
+            if($this->Auth->user()){
+                $LikeDefinitions = TableRegistry::get('Likedefinitions');
+                $like = $LikeDefinitions->find('all')
+                    ->where(['user_id'=>$iduser,'definition_id'=>$id])
+                    ->first();
+                if(!$like)
+                {
+                    $like = $LikeDefinitions->newEntity();
+                    $definition->contribute +=$value;    
+                    $like->user_id = $this->Auth->user('id');
+                    $like->definition_id = $id;
+                    $like->islike = $value;
+                }
+                else{
+                    if($like->islike != $value)
+                    {
+                        $definition->contribute +=$value;
+                        $like->islike = $value;
+                    }
+                    else{
+                        $contributed=true;                        
+                    }
+                }
+                $LikeDefinitions->save($like);
+            }
+            $this->Definitions->save($definition);
+            $this->set('contribute',$definition->contribute);
+            $this->set('contributed',$contributed);
     }
     public $paginate=[
         'limit'=>10,
