@@ -49,6 +49,15 @@ if($word!=null)
                     <div class="commentcontent" id ="mean<?=$mean->id?>"></div>`;
                         
 $("#txtresult").val(data);
+$test = data.length / 85;
+$var = 26;
+$testlen = $test.toFixed();
+if($testlen>1){
+    $var = $var * $testlen ;
+    $("textarea").animate({
+        height: $var
+    });
+}
 $("#ratingmean").html(ratingmean);
 $("#ratingmean").addClass("<?=$liked?>");
 </script>

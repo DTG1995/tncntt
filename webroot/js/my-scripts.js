@@ -1,9 +1,12 @@
 $(document).ready(function(){
-        debugger;
         $("#search-box").keyup(function(e){
             console.log("thu1");
             $("#result").html("");
             $("#txtresult").val("");
+            $var = $("input[type=textFind]").height() + 40;
+            $("textarea").animate({
+                height: $var
+            });
             $("#ratingmean").html("");
             if(e.keyCode == 13){
                 $.ajax({

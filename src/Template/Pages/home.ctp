@@ -63,7 +63,7 @@ $this->assign('title','Trang chủ');
                     <input type="textFind" id="search-box"   name="fname" placeholder="Nhập từ cần tra...">
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <input readonly type="textseached" id="txtresult" name="fname" placeholder="Hiển thị nghĩa...">
+                    <textarea readonly  id="txtresult" placeholder="Hiển thị nghĩa..."></textarea> 
                     <div class="rating ratingmean" id="ratingmean">
                     </div>
                 </div>
