@@ -115,38 +115,50 @@ class WordsController extends AppController
 
     public function addwordmean()
     {
-        if($this->Auth->user('isadmin'))
-            $this->viewBuilder()->setLayout('Admin\default');
-        $word = $this->Words->newEntity();
-        $Categorys = TableRegistry::get('Categorys');
-        $catelist= $Categorys->find('list');
-        $data = $this->request->getData();
-        if($this->request->is('post'))
-        {
-            $word = $this->Words->newEntity();
-            $word->word = $data['word'];
-            if($this->Words->save($word)){
-                $MEANS = TableRegistry::get('Means');
-                $meanobj = $MEANS->newEntity();
-                $meanobj->mean = $data['mean'];
-                $meanobj->category_id = $data['cate_mean'];
-                $meanobj->word_id = $word->id;
-                $meanobj->user_id = $this->Auth->user('id');
-                $MEANS->save($meanobj);
-
-                $DEFINITIONS=TableRegistry::get('Definitions');
-                $definitionobj=$DEFINITIONS->newEntity();
-                $definitionobj->define=$data['definition'];
-                $definitionobj->category_id=$data['cate_mean'];
-                $definitionobj->word_id=$word->id;
-                $definitionobj->user_id=$this->Auth->user('id');
-                $DEFINITIONS->save($definitionobj);
-
-                return $this->redirect(['action' => 'index']);
+            $active=0;
+            if($this->Auth->user('isadmin'))
+            {
+                $this->viewBuilder()->setLayout('Admin\default');
+                $active=1;
             }
-        }
-        $this->set("catelist",$catelist);   
-        $this->set("word",$word);     
+            $word = $this->Words->newEntity();
+            $Categorys = TableRegistry::get('Categorys');
+            $catelist= $Categorys->find('list');
+            $data = $this->request->getData();
+            if($this->request->is('post'))
+            {
+                $word = $this->Words->newEntity();
+                $word->word = $data['word'];
+                if($this->Words->save($word)){
+                    $MEANS = TableRegistry::get('Means');
+                    $meanobj = $MEANS->newEntity();
+                    $meanobj->mean = $data['mean'];
+                    $meanobj->category_id = $data['cate_mean'];
+                    $meanobj->word_id = $word->id;
+                    $meanobj->user_id = $this->Auth->user('id');
+                    $meanobj->active=$active;
+                    $MEANS->save($meanobj);
+
+                    $DEFINITIONS=TableRegistry::get('Definitions');
+                    $definitionobj=$DEFINITIONS->newEntity();
+                    $definitionobj->define=$data['definition'];
+                    $definitionobj->category_id=$data['cate_mean'];
+                    $definitionobj->word_id=$word->id;
+                    $definitionobj->user_id=$this->Auth->user('id');
+                    $definitionobj->active=$active;
+                    $DEFINITIONS->save($definitionobj);
+
+                    if($active==1)
+                        {
+                         return $this->redirect(['action' => 'index']);   
+                     }else{
+                        return $this->redirect(['controller'=>'pages','action'=>'display']);
+                     }
+                }
+            }
+            $this->set("catelist",$catelist);   
+            $this->set("word",$word);   
+          
     }
     public $paginate=[
         'limit'=>10,

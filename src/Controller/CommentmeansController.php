@@ -41,7 +41,7 @@ class CommentmeansController extends AppController
 	    public function view($id = null)
 	    {
 		$commentmean = $this->Commentmeans->get($id, [
-		            'contain' => ['Means', 'Users', 'Commentmeans']
+		            'contain' => ['Means', 'Users']
 		        ]);
 		
 		$this->set('commentmean', $commentmean);

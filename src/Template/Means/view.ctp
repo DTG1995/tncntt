@@ -36,14 +36,13 @@
                 <th scope="col"><?= __('User') ?></th>
                 <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
-            <?php foreach ($mean->commentmeans as $commentmeans): ?>
+            <?php foreach ($mean->commentmeans as $commentmeans):?>
             <tr>
+
                 <td><?= h($commentmeans->content) ?></td>
                 <td><?= h($commentmeans->created) ?></td>
                 <td><?= h($commentmeans->user->namedisplay) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__("<i class='fa fa-info-circle'></i>"), ['controller' => 'Commentmeans', 'action' => 'view', $commentmeans->id],[ 'escape' => false,'title'=>'Chi tiết']) ?>
-                    <?= $this->Html->link(__("<i class='fa fa-pencil'></i>"), ['controller' => 'Commentmeans', 'action' => 'edit', $commentmeans->id],['escape' => false,'title'=>'chỉnh sửa']) ?>
                     <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$commentmeans->id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $commentmeans->id)]);
                      ?>
                 </td>
@@ -57,19 +56,17 @@
         <?php if (!empty($mean->likemeans)): ?>
         <table cellpadding="0" cellspacing="0" class="table table-striped">
             <tr>
-                <th scope="col"><?= __('Mean Id') ?></th>
+                <th scope="col"><?= __('Nghĩa') ?></th>
                 <th scope="col"><?= __('User') ?></th>
                 <th scope="col"><?= __('Islike') ?></th>
                 <th scope="col" class="actions"><?= __('Hành Động') ?></th>
             </tr>
             <?php foreach ($mean->likemeans as $likemeans): ?>
             <tr>
-                <td><?= h($likemeans->mean_id) ?></td>
+                <td><?= h($likemeans->mean->mean) ?></td>
                 <td><?= h($likemeans->user->namedisplay) ?></td>
                 <td><?= h($likemeans->islike) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__("<i class='fa fa-info-circle'></i>"), ['controller' => 'Likemeans', 'action' => 'view', $likemeans->mean_id],[ 'escape' => false,'title'=>'Chi tiết']) ?>
-                    <?= $this->Html->link(__("<i class='fa fa-pencil'></i>"), ['controller' => 'Likemeans', 'action' => 'edit', $likemeans->mean_id],['escape' => false,'title'=>'chỉnh sửa']) ?>
                      <?= $this->Form->postLink('<i class="fa fa-trash"></i>',['action'   => 'delete',$likemeans->mean_id],['escape'   => false,'title'=>'xóa','confirm' => __('Bạn Có Muốn Xóa Không?', $likemeans->mean_id)]);
                      ?>
                 </td>
