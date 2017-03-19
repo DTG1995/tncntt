@@ -24,6 +24,15 @@ a:focus, a:active, a:hover ,a.dropdown-toggle{
     transition: all 0.3s;
   text-decoration:none;
 }
+.meanadd{
+	width: 50%;
+	float: left;
+}
+.definitionadd
+{
+	width: 50%;
+	float: right;
+}
 a {
     background-color:none;
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -9,22 +10,18 @@ use Cake\ORM\TableRegistry;
  *
  * @property \App\Model\Table\WordsTable $Words
  */
-class WordsController extends AppController
-{
+class WordsController extends AppController {
 
     /**
      * Index method
      *
      * @return \Cake\Network\Response|null
      */
-    public function index()
-    {
+    public function index() {
         $this->viewBuilder()->setLayout('Admin\default');
         $words = $this->paginate($this->Words);
         $this->set(compact('words'));
         $this->set('_serialize', ['words']);
-                
-
     }
 
     /**
@@ -34,11 +31,10 @@ class WordsController extends AppController
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->get($id, [
-            'contain' => ['Definitions'=>['Users','Categorys'], 'Means'=>['Users','Categorys']]
+            'contain' => ['Definitions' => ['Users', 'Categorys'], 'Means' => ['Users', 'Categorys']]
         ]);
 
         $this->set('word', $word);
@@ -50,8 +46,7 @@ class WordsController extends AppController
      *
      * @return \Cake\Network\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add() {
         $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->newEntity();
         if ($this->request->is('post')) {
@@ -74,8 +69,7 @@ class WordsController extends AppController
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $this->viewBuilder()->setLayout('Admin\default');
         $word = $this->Words->get($id, [
             'contain' => []
@@ -100,8 +94,7 @@ class WordsController extends AppController
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $word = $this->Words->get($id);
         if ($this->Words->delete($word)) {
@@ -113,57 +106,54 @@ class WordsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function addwordmean()
-    {
-            $active=0;
-            if($this->Auth->user('isadmin'))
-            {
-                $this->viewBuilder()->setLayout('Admin\default');
-                $active=1;
-            }
+    public function addwordmean() {
+        $active = 0;
+        if ($this->Auth->user('isadmin')) {
+            $this->viewBuilder()->setLayout('Admin\default');
+            $active = 1;
+        }
+        $word = $this->Words->newEntity();
+        $Categorys = TableRegistry::get('Categorys');
+        $catelist = $Categorys->find('list');
+        $data = $this->request->getData();
+        if ($this->request->is('post')) {
             $word = $this->Words->newEntity();
-            $Categorys = TableRegistry::get('Categorys');
-            $catelist= $Categorys->find('list');
-            $data = $this->request->getData();
-            if($this->request->is('post'))
-            {
-                $word = $this->Words->newEntity();
-                $word->word = $data['word'];
-                if($this->Words->save($word)){
-                    $MEANS = TableRegistry::get('Means');
-                    $meanobj = $MEANS->newEntity();
-                    $meanobj->mean = $data['mean'];
-                    $meanobj->category_id = $data['cate_mean'];
-                    $meanobj->word_id = $word->id;
-                    $meanobj->user_id = $this->Auth->user('id');
-                    $meanobj->active=$active;
-                    $MEANS->save($meanobj);
+            $word->word = $data['word'];
+            if ($this->Words->save($word)) {
+                $MEANS = TableRegistry::get('Means');
+                $meanobj = $MEANS->newEntity();
+                $meanobj->mean = $data['mean'];
+                $meanobj->category_id = $data['cate_mean'];
+                $meanobj->word_id = $word->id;
+                $meanobj->user_id = $this->Auth->user('id');
+                $meanobj->active = $active;
+                $MEANS->save($meanobj);
 
-                    $DEFINITIONS=TableRegistry::get('Definitions');
-                    $definitionobj=$DEFINITIONS->newEntity();
-                    $definitionobj->define=$data['definition'];
-                    $definitionobj->category_id=$data['cate_mean'];
-                    $definitionobj->word_id=$word->id;
-                    $definitionobj->user_id=$this->Auth->user('id');
-                    $definitionobj->active=$active;
-                    $DEFINITIONS->save($definitionobj);
+                $DEFINITIONS = TableRegistry::get('Definitions');
+                $definitionobj = $DEFINITIONS->newEntity();
+                $definitionobj->define = $data['definition'];
+                $definitionobj->category_id = $data['cate_Definitions'];
+                $definitionobj->word_id = $word->id;
+                $definitionobj->user_id = $this->Auth->user('id');
+                $definitionobj->active = $active;
+                $DEFINITIONS->save($definitionobj);
 
-                    if($active==1)
-                        {
-                         return $this->redirect(['action' => 'index']);   
-                     }else{
-                        return $this->redirect(['controller'=>'pages','action'=>'display']);
-                     }
+                if ($active == 1) {
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                    return $this->redirect(['controller' => 'pages', 'action' => 'display']);
                 }
             }
-            $this->set("catelist",$catelist);   
-            $this->set("word",$word);   
-          
+        }
+        $this->set("catelist", $catelist);
+        $this->set("word", $word);
     }
-    public $paginate=[
-        'limit'=>10,
-        'order'=>[
-                'Words.word'=>'asc'
-            ]
+
+    public $paginate = [
+        'limit' => 10,
+        'order' => [
+            'Words.word' => 'asc'
+        ]
     ];
+
 }

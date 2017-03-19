@@ -15,6 +15,15 @@ header{
 	z-index: 1;
 }
 /*-------*/
+.meanadd{
+	width: 50%;
+	float: left;
+}
+.definitionadd
+{
+	width: 50%;
+	float: right;;
+}
 /*myconten*/
 #mycontent{
 	margin: 50px 0 50px 0;

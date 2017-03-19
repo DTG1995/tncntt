@@ -23,7 +23,7 @@ if($word!=null)
         }
 ?>
 <script>
- var data = "<?=$word['means'][0]->mean; ?>";
+ var data = `<?=$word['means'][0]->mean; ?>`;
  var likemean = <?=$like?> ;
  var dislikemean = <?=$dislike?>;
  var comment = <?=$comment?>;
