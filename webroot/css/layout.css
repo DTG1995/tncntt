@@ -31,6 +31,66 @@ footer{
 	height: 50px;
 }
 /*------*/
+/* contribute */
+.contents-contributes{
+	float: left;
+	padding: 0px;
+}
+.contents-contributes .title{
+	font-weight: bold;
+	font-size: 25px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.contents-contributes .content-contribute{
+	text-align: left;
+	float: left;
+}
+.contents-contributes .contributes{
+	display: block;
+	float: right;
+	text-align: center;
+	font-weight: bold;
+	font-size:20px;
+	padding:0px;
+}
+.contents-contributes p{
+	margin: 0;
+}
+.contents-contributes p.define{
+	font-weight: bold;
+	font-size: 25px;
+}
+.contents-contributes p.word{
+	font-size: 20px;
+}
+.contents-contributes p.contribute{
+	font-weight: bold;
+	font-size: 25px;
+	padding: 0px;
+	line-height: 15px;
+}
+.contents-contributes .readmore{
+	width: 100%;
+	float:left;
+	text-align: center;
+}
+.contents-contributes p.contribute{
+	font-weight: bold;
+	font-size: 25px;
+}
+.contents-contributes .content-contributes{
+	width: 100%;
+	float: left;
+}
+.contents-contributes .contribute-content{
+	width: 100%;
+	float: left;
+}
+.contents-contributes .content-contributes .chang{
+	background-color: rgba(51, 51, 51, 0.09);
+}
+/* ------------- */
 .text-main{
 	color:#757575;
 }

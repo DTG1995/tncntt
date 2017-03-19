@@ -263,6 +263,15 @@ class PagesController extends AppController
 	{
 		$MEANS = TableRegistry::get('Means');
 		$DEFINES = TableRegistry::get('Definitions');
-
+		$means = $MEANS->find()
+			->where(['active'=>1,'contribute <'=>10])
+			->contain(['Words'])
+			->order(['contribute'=>'ASC'])
+			->all();
+		$defines = $DEFINES->find()
+			->where(['active'=>1,'contribute <'=>10])
+			->contain(['Words'])
+			->all();
+		$this->set(['means'=>$means,'defines'=>$defines]);
 	}
 }
