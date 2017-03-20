@@ -198,6 +198,10 @@ class WordsController extends AppController {
                         $DEFINITIONS->save($definitionobj);
                     }
                 }
+                if(!$this->Auth->user('isadmin')){
+                    $user_id = ($this->Auth->user()?$this->Auth->user('id'):$this->get_client_ip());
+                    $this->addNotification('add','word',$word->id,'Đóng góp từ '.$word->word,$user_id);     
+                }
                 if ($active == 1) {
                     return $this->redirect(['action' => 'index']);
                 } else {

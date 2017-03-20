@@ -86,7 +86,7 @@ class PagesController extends AppController
 			else $words = [];
 			$this->set('words',$words);
 	}
-	function getresult($str=null){
+	function getresult($str=null){                 
 		$WORDS = TableRegistry::get('Words');
 		$query = $WORDS->find()
 			->select(['id','word'])

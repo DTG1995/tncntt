@@ -29,12 +29,10 @@
     <?= $this->Html->script("jquery-3.1.1.min.js")?>
     <?= $this->Html->script("bootstrap.min.js")?>
     <?= $this->Html->script("my-scripts.js")?>
-     <?= $this->Html->css('layout') ?>
+    <?= $this->Html->css('layout') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-
-
 </head>
 <body>
 <!-- NAV-MENU -->
@@ -79,7 +77,7 @@
                       if($loguser['isadmin']==1){
                         ?>
                         <li class="dropdown">
-                          <?= $this->Html->link('Trang Quản Trị',['controller'=>'admins','action'=>'index'])?>
+                          <?= $this->Html->link('Trang Quản Trị',['controller'=>'admin','action'=>'index'])?>
                         </li>    
                         <?php
                       }
@@ -107,7 +105,6 @@
     </header>
     <!-- AREA-TEXT -->
     <div id="mycontent">
-        <?= $this->Flash->render() ?>
         <div class="container-fluid">
             <?= $this->fetch('content') ?>
         </div>

@@ -1,8 +1,13 @@
 $(document).ready(function(){
         $("#search-box").keyup(function(e){
+            console.log("thu1");
             $("#result").html("");
             $("#txtresult").val("");
-            $(".ratingmean").html("");
+            $var = $("input[type=textFind]").height() + 40;
+            $("textarea").animate({
+                height: $var
+            });
+            $("#ratingmean").html("");
             if(e.keyCode == 13){
                 $.ajax({
                     type: "POST",
@@ -15,6 +20,7 @@ $(document).ready(function(){
                  }
              });
             }else{   
+                    console.log("thu2 data");
                     $.ajax({
                     type: "POST",
                     url: "pages/gethint/"+$(this).val(),
@@ -23,8 +29,15 @@ $(document).ready(function(){
                         $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat right");
                     },
                     success: function(data){
-                        $("#suggesstion-box").show();
-                        $("#suggesstion-box").html(data);
+                        var availableTags =data.substring(0,data.length-1).split('@');
+                        options={
+                            source:availableTags,
+                            max: 6,
+                            highlightItem: true,
+                            multiple: true,
+                            multipleSeparator: " ", 
+                        };
+                        $("#search-box").autocomplete(options);
                         $("#search-box").css("background","#FFF");
                     }
                     });
