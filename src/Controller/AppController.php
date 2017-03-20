@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Application Controller
@@ -76,6 +77,17 @@ class AppController extends Controller
         else
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
+    }
+    public function addNotification($type,$cate,$idtopic,$content,$user_id=null){
+        $Notifications = TableRegistry::get('Notifications');
+        $notification = $Notifications->newEntity();
+        $notification->type = $type;
+        $notification->cate = $cate;
+        $notification->idtopic = $idtopic;
+        $notification->content = $content;
+        $notification->seen = 0;
+        $notification->user_id = $user_id;
+        $Notifications->save($notification);
     }
     public function beforeRender(Event $event)
     {

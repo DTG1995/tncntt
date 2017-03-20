@@ -139,9 +139,14 @@ class MeansController extends AppController
                         $mean->contribute = 1;
                         $mean->active = false;
                         if($this->Means->save($mean))
+                        {
                             $ok = true;
+                            if(!$this->Auth->user('isadmin')){
+                                $user_id = ($this->Auth->user()?$this->Auth->user('id'):$this->get_client_ip());
+                                $this->addNotification('add','mean',$mean->id,'Đóng góp nghĩa '.$mean->mean.' của từ '.$word,$user_id);     
+                            } 
+                        }
                         else $ok = false;
-                        pr($mean);
                     }
             }
             if($ok)

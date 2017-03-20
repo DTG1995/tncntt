@@ -107,7 +107,6 @@
     </header>
     <!-- AREA-TEXT -->
     <div id="mycontent">
-        <?= $this->Flash->render() ?>
         <div class="container-fluid">
             <?= $this->fetch('content') ?>
         </div>

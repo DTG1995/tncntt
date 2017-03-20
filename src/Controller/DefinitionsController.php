@@ -140,7 +140,13 @@ class DefinitionsController extends AppController
                         $define->contribute = 1;
                         $define->active = false;
                         if($this->Definitions->save($define))
+                        {
                             $ok = true;
+                            if(!$this->Auth->user('isadmin')){
+                                $user_id = ($this->Auth->user()?$this->Auth->user('id'):$this->get_client_ip());
+                                $this->addNotification('add','define',$define->id,'Đóng góp nghĩa '.$define->define.' của từ '.$word,$user_id);     
+                            } 
+                        }
                         else $ok = false;
                         pr($define);
                     }
