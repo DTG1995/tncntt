@@ -22,5 +22,16 @@ class AdminController extends AppController{
             ->all()->count();
         $session->write('contributes', $contributes);
         $session->write('count_contributes', $count_contributes);
+        $warnings = $Notifications->find()
+            ->where(['type'=>'warning'])
+            ->order(['created'=>'DESC'])
+            ->limit(10)
+            ->all();
+        $count_warnings = $Notifications->find('all')
+            ->where(['type'=>'warning','seen'=>0])
+            ->order(['created'=>'DESC'])
+            ->all()->count();
+        $session->write('warnings',$warnings?$warnings:[]);
+        $session->write('count_warnings', $count_warnings?$count_warnings:0);
     }
 }

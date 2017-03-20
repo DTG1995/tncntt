@@ -1,5 +1,8 @@
 <?php 
+    $loguser = $this->request->session()->read('Auth.User');
     $this->layout = false;
+
+
 if($word!=null)
 {
     $like=0;
@@ -21,6 +24,8 @@ if($word!=null)
             }
             
         }
+
+
 ?>
 <script>
  var data = `<?=$word['means'][0]->mean; ?>`;
@@ -44,16 +49,36 @@ if($word!=null)
                     <div class="commentcontent" id ="mean<?=$mean->id?>"></div>`;
                         
 $("#txtresult").val(data);
+$test = data.length / 85;
+$var = 26;
+$testlen = $test.toFixed();
+if($testlen>1){
+    $var = $var * $testlen ;
+    $("textarea").animate({
+        height: $var
+    });
+}
 $("#ratingmean").html(ratingmean);
 $("#ratingmean").addClass("<?=$liked?>");
 </script>
 <?php
     }
+    if($loguser==0){
 ?>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".like, .dislike").click(function(){
+        alert("đăng nhập");
+    });
+});    
+</script>
+<?php 
+    }
+ ?>
 <div class="container-fluid area_text2">
     <div class="">
         <div class="col-sm-6 text-left ">
-            <h1>Định nghĩa:</h1>
+            <h2>Định nghĩa:</h2>
             <ul class="defines">
             <?php 
                 if(count($defines)>0){
@@ -61,7 +86,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                     {
                         ?>
                         <li> 
-                            <h4 class="catgory"><?=$catedefines[1];?></h4>
+                            <h3 class="catgory"><?=$catedefines[1];?></h3>
                         <?php
                         foreach($catedefines[2] as $define)
                         {
@@ -108,7 +133,7 @@ $("#ratingmean").addClass("<?=$liked?>");
             </ul>
         </div>
         <div class="col-sm-6 text-left">
-            <h1>Các nghĩa khác của từ:</h1>
+            <h2>Các nghĩa khác của từ:</h2>
             <ul class="means">
             <?php
             if(count($means)>0){
@@ -116,7 +141,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                 {
                     ?>
                     <li> 
-                        <h4 class="catgory"><?=$catemeans[1];?></h4>
+                        <h3 class="catgory"><?=$catemeans[1];?></h3>
                     <?php
                     for($i=0;$i<count($catemeans[2]);$i++)
                     {
@@ -175,3 +200,5 @@ $("#ratingmean").addClass("<?=$liked?>");
     <?php
 }
 ?>
+
+  

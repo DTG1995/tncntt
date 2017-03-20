@@ -1,9 +1,10 @@
-<?php  
-    if(isset($words) ||  count($words)>0)
+<?php 
+$listWord = "";
+if(isset($words) ||  count($words)>0){
         foreach ($words as $word){
-            ?>
-            <li onClick="selectWord('<?=$word->word?>');">
-                <?=$word->word?>
-            <?php
+            $listWord = $listWord."\"".$word["word"]."\"".",";
+            // echo "{\"name\":\"".$word->word."\",\"code\":\"".$word->id."\"}@";
+            echo $word->word."@";
         }
-?>
+}
+ ?>
