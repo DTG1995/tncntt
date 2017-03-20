@@ -9,7 +9,7 @@
                     <?=$this->Form->input('category_id', ['options' => $categorys,'class'=>'form-control cate_id','label'=>'Lĩnh vực','name'=>"cate"]);?>
                 </div>
                 <div class="row mean">
-                    <?=$this->Form->input('mean',['label'=>'Nghĩa','type'=>'textarea','class'=>'form-control mean_text','name'=>'mean'])?>
+                    <?=$this->Form->input('mean',['label'=>'Nghĩa','type'=>'textarea','class'=>'form-control mean_text','name'=>'mean','style'=>'resize:none;'])?>
                 </div>
             </div>`
             );

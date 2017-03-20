@@ -136,7 +136,7 @@ class PagesController extends AppController
 								,'Users','Categorys'
 							]
 						)
-						->where(['means.active'=>1]);
+						->where(['definitions.active'=>1]);
 				}
 
 			])
