@@ -9,9 +9,11 @@ $(document).ready(function(){
             });
             $("#ratingmean").html("");
             if(e.keyCode == 13){
+                debugger;
+                var str = jQuery.param($(this).val()  );
                 $.ajax({
                     type: "POST",
-                    url: "pages/getresult/"+$(this).val(),
+                    url: "pages/getresult?word="+$(this).val(),
                     data:'keyword='+$(this).val(),
                     success: function(data){
                         $("#suggesstion-box").hide();
@@ -23,7 +25,7 @@ $(document).ready(function(){
                     console.log("thu2 data");
                     $.ajax({
                     type: "POST",
-                    url: "pages/gethint/"+$(this).val(),
+                    url: "pages/gethint?word="+$(this).val(),
                     data:'keyword='+$(this).val(),
                     beforeSend: function(){
                         $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat right");
@@ -45,7 +47,7 @@ $(document).ready(function(){
             });
     //To select word
     function selectWord(val) {
-    
+        
         $("#search-box").val(val);
         $("#suggesstion-box").hide();
         $.ajax({

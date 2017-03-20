@@ -73,7 +73,8 @@ class PagesController extends AppController
 		}
 		
 	}
-	function gethint($str=null){
+	function gethint(){
+		$str = $this->request['?']['word'];
 		$WORDS = TableRegistry::get('Words');
 		// 		if ($this->request->is('post')){
 			if($str!=null){
@@ -86,8 +87,10 @@ class PagesController extends AppController
 			else $words = [];
 			$this->set('words',$words);
 	}
-	function getresult($str=null){                 
+	function getresult(){                 
+		$str = $this->request['?']['word'];
 		$WORDS = TableRegistry::get('Words');
+	
 		$query = $WORDS->find()
 			->select(['id','word'])
 			->where(['words.word'=>$str])
