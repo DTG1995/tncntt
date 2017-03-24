@@ -97,16 +97,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 </div>
                                             </li>
                                             <?php foreach($contributes as $contribute)
-                                            {?>
+                                            {
+                                                $text = "
+                                                        <div class='notification_desc'>
+                                                            <p>".$contribute->content."</p>
+                                                            <p><span>time</span></p>
+                                                            </div>
+                                                        <div class='clearfix'></div> ";
+                                                $div = $this->Html->div(null, $text, array('id' => 'notescover'));
+
+                                                // echo $this->Html->link(
+                                                //     $div, 
+                                                //     array('controller' => 'notes', 'action' => 'view', $viewnotes['Note']['id']),
+                                                //     array('class' => 'light_blue', 'escape' => false)
+                                                // );
+                                            ?>
                                             <li>
-                                                <a href="#">
-                                                <div class="user_img"><!-- <img src="images/in11.jpg" alt=""> --></div>
-                                                <div class="notification_desc">
-                                                    <p><?=$contribute->content?></p>
-                                                    <p><span>1 hour ago</span></p>
-                                                    </div>
-                                                <div class="clearfix"></div> 
-                                                </a>
+                                                <?=$this->Html->link($div,['controller'=>'Notifications','action'=>'view',$contribute->id],['escape' => false]);?>
                                             </li>
                                             <?php
                                             }
@@ -129,14 +136,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <?php foreach($warnings as $warning)
                                             {?>
                                             <li>
-                                                <a href="#">
-                                                <div class="user_img"><!-- <img src="images/in11.jpg" alt=""> --></div>
-                                                <div class="notification_desc">
-                                                    <p><?=$warning->content?></p>
-                                                    <p><span>1 hour ago</span></p>
+                                                <?=$this->Html->link("<div class='user_img'><!-- <img src='images/in11.jpg' alt=''></div>
+                                                <div class='notification_desc'>
+                                                    <p>"+$warning->content+"</p>
+                                                    <p><span>time</span></p>
                                                     </div>
-                                                <div class="clearfix"></div> 
-                                                </a>
+                                                <div class='clearfix'></div> ",['controller'=>'Notifications','action'=>'view',$warning->id]);?>
                                             </li>
                                             <?php
                                             }

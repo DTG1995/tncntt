@@ -152,7 +152,7 @@ class DefinitionsController extends AppController
                     }
             }
             if($ok)
-                $this->redirect(['action' => 'index']);
+                $this->redirect(['controller'=>'pages', 'action' => 'contribute']);
         }
         $this->set('categorys',$categorys);
         $this->set('word',$word);

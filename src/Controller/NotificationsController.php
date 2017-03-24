@@ -37,7 +37,7 @@ class NotificationsController extends AppController
     public function view($id = null)
     {
         $notification = $this->Notifications->get($id, [
-            'contain' => ['Users']
+            'contain' => []
         ]);
 
         $this->set('notification', $notification);

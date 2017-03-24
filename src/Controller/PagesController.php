@@ -269,7 +269,8 @@ class PagesController extends AppController
 		$MEANS = TableRegistry::get('Means');
 		$DEFINES = TableRegistry::get('Definitions');
 		$means = $MEANS->find('all')
-			->select(['id'=>'means.id','mean'=>'means.mean','contribute'=>'means.contribute','cate_name'=>'categorys.name','username'=>'users.namedisplay'])
+			->select(['id'=>'means.id','mean'=>'means.mean','contribute'=>'means.contribute',
+				'cate_name'=>'categorys.name','username'=>'users.namedisplay','word'=>'words.word'])
 			->where(['means.active'=>1,'means.contribute <'=>10])
 			->contain(['Categorys','Words','Users'])
 			->order(['means.contribute'=>'DESC'])

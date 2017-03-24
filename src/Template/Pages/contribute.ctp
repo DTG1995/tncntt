@@ -6,6 +6,7 @@
         <?php
             $i=0;
             foreach($defines as $define){
+            
                 $url = $this->Url->build(["controller" => "Definitions","action" => "changecontribute",$define->id]);
             ?>
                 <div class="contribute-content <?=$i%2==0?'chang':'le'?>" >
@@ -28,7 +29,6 @@
             }
         ?>
         </div>
-        <div class="readmore btn btn-default">Xem Thêm...</div>
     </div>
     <?=count($defines)<$count_define?"<div class='readmore btn btn-default'>Xem Thêm...</div>":""?>
 </div>
@@ -40,11 +40,11 @@
             foreach($means as $mean){
                 $url = $this->Url->build(["controller" => "Means","action" => "changecontribute",$mean->id]);
             ?>
-                <div class="contribute-content <?=$i%2==0?'chang':'le'?>" >
+                <div class="contribute-content <?=$i%2==0?'le':'chang'?>" >
                     <div class="content-contribute col-md-11">
-                        <p class="define"><?=$mean->mean?><span class="cate-contribute"><?=$define->category->name?></span></p>
-                        <p class="word"><?=$mean->word->word?></p>
-                        <p class="username-contribute"><?=$mean->user->displayname?><a class="readmore-contribute" data-toggle="collapse" data-target="#readmore-contribute-mean-<?=$mean->id?>">Xem nghĩa đầy đủ...</a></p>
+                        <p class="define"><?=$mean->mean?><span class="cate-contribute"><?=$define->cate_name?></span></p>
+                        <p class="word"><?=$mean->word?></p>
+                        <p class="username-contribute"><?=$mean->username?><a class="readmore-contribute" data-toggle="collapse" data-target="#readmore-contribute-mean-<?=$mean->id?>">Xem nghĩa đầy đủ...</a></p>
                     </div>
                     <div class="contributes col-md-1" id="contribute">
                         <i class="fa fa-chevron-up" onclick="changecontribute('mean','<?=$url."/1"?>',<?=$mean->id?>);" aria-hidden="true"></i>
@@ -55,13 +55,11 @@
                         <p><q></i><?=$mean->mean?></q><p>
                     </div>
                 </div>
-            </div>
             <?php
             $i++;
             }
         ?>
         </div>
-        <div class="readmore btn btn-default">Xem Thêm...</div>
     </div>
     <?=count($means)<$count_mean?"<div class='readmore btn btn-default'>Xem Thêm...</div>":""?>
 </div>
