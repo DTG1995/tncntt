@@ -59,6 +59,12 @@ $(document).ready(function(){
             }
         });
     }
+    //Login
+    function Login()
+    {
+       
+    }
+
     function viewcomment(type,idhtml,id,parent){
         if($(idhtml).text()!="")
         {

@@ -103,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <div class="user_img"><!-- <img src="images/in11.jpg" alt=""> --></div>
                                                 <div class="notification_desc">
                                                     <p><?=$contribute->content?></p>
-                                                    <p><span>1 hour ago</span></p>
+                                                    <p><span><?= $contribute->created->hour;?></span></p>
                                                     </div>
                                                 <div class="clearfix"></div> 
                                                 </a>
