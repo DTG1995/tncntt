@@ -6,11 +6,6 @@ if($loguser['isadmin']==0 || $loguser == null)
     header("Location: ".$url);
     exit();
 }
-$session = $this->request->session();
-$contributes = $session->read('contributes');
-$count_contributes = $session->read('count_contributes');
-$warnings = $session->read('warnings');
-$count_warnings = $session->read('count_warnings');
 // namespace App\View\Helper;
 // App::uses('AuthComponent', 'Controller/Component');
 
@@ -59,7 +54,65 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>-->
 <!-- lined-icons -->
 <?php echo $this->Html->css('admin/css/icon-font.min.css')?>
-
+<script>
+    var count_contribute=0,count_warning=0;
+    var height_contribute=0,height_warning=0;
+    window.setInterval(function(){
+        checkDB();
+    }, 1000);
+    function checkDB(){
+        $.ajax({
+                type: "POST",
+                url: "<?=$this->Url->build(['controller'=>'notifications','action'=>'getall'])?>",
+                success: function(data){
+                    var obj = JSON.parse(data);
+                    $(".count_contribute").html(obj['count_contributes']);
+                    count_contribute = obj['count_contributes'];
+                    if(height_contribute==0)
+                        $("#content-contribute").css("height","250px");
+                    $(".count_warning").html(obj['count_warnings']);
+                    count_warning = obj['count_warnings'];
+                    if(height_warning==0)
+                        $("#content-warnings").css("height","250px");
+                }
+        }); 
+    }
+    function getalltype(type){
+        if(type=="contribute"){
+            $.ajax({
+                    type: "POST",
+                    url: "<?=$this->Url->build(['controller'=>'notifications','action'=>'getalltype'])?>"+"/contribute",
+                    beforeSend: function(){
+                        $("#content-contribute").css("width","306px");
+                        $("#content-contribute").html('');
+                        $("#content-contribute").css("background","#FFF url('<?=$this->Url->build('/LoaderIcon.gif',true)?>') no-repeat center");
+                    },
+                    success: function(data){
+                        $("#content-contribute").html(data);
+                        $(".count_contribute").html(count_contribute);
+                        $("#content-contribute").css("background","#FFF");
+                    }
+            });
+        }
+        else{
+            $.ajax({
+                    type: "POST",
+                    url: "<?=$this->Url->build(['controller'=>'notifications','action'=>'getalltype'])?>"+"/warning",
+                    beforeSend: function(){
+                        $("#content-warnings").css("width","306px");
+                        $("#content-warnings").html('');
+                        $("#content-warnings").css("background","#FFF url('<?=$this->Url->build('/LoaderIcon.gif',true)?>') no-repeat center");
+                    },
+                    success: function(data){
+                        $("#content-warnings").html(data);
+                        $(".count_warning").html(count_warning);
+                        $("#content-warnings").css("background","#FFF");
+                    }
+            });
+        }
+        
+    }
+</script>
 
 
 </head> 
@@ -72,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
              <!--header start here-->
                 <div class="header-main">
                     <div class="logo-w3-agile">
-                                <h1><a href="index.html">Pooled</a></h1>
+                        <h1> <?=$this->Html->link('Dashboard',['controller'=>'Admin','action'=>'index'])?></h1>
                             </div>
                     <div class="w3layouts-left">
                             
@@ -86,76 +139,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="clearfix"> </div>
                          </div>
                          <div class="w3layouts-right">
-                            <div class="profile_details_left">
+                            <!--notification menu-->
+                            <div class="profile_details_left" id="notifications">
                                 <ul class="nofitications-dropdown">
-                                    <li class="dropdown head-dpdn" style="width:50%;">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge"><?=$count_contributes?></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <div class="notification_header">
-                                                    <h3>Có <?=$count_contributes?> đóng góp mới</h3>
-                                                </div>
-                                            </li>
-                                            <?php foreach($contributes as $contribute)
-                                            {
-                                                $text = "
-                                                        <div class='notification_desc'>
-                                                            <p>".$contribute->content."</p>
-                                                            <p><span>time</span></p>
-                                                            </div>
-                                                        <div class='clearfix'></div> ";
-                                                $div = $this->Html->div(null, $text, array('id' => 'notescover'));
-
-                                                // echo $this->Html->link(
-                                                //     $div, 
-                                                //     array('controller' => 'notes', 'action' => 'view', $viewnotes['Note']['id']),
-                                                //     array('class' => 'light_blue', 'escape' => false)
-                                                // );
-                                            ?>
-                                            <li>
-                                                <?=$this->Html->link($div,['controller'=>'Notifications','action'=>'view',$contribute->id],['escape' => false]);?>
-                                            </li>
-                                            <?php
-                                            }
-                                            ?>
-                                            <li>
-                                                <div class="notification_bottom">
-                                                    <a href="#">See all messages</a>
-                                                </div> 
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown head-dpdn" style="width:50%;">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span class="badge blue"><?=$count_warnings?></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <div class="notification_header">
-                                                    <h3>Có <?=$count_warnings?> cảnh báo mới</h3>
-                                                </div>
-                                            </li>
-                                            <?php foreach($warnings as $warning)
-                                            {?>
-                                            <li>
-                                                <?=$this->Html->link("<div class='user_img'><!-- <img src='images/in11.jpg' alt=''></div>
-                                                <div class='notification_desc'>
-                                                    <p>"+$warning->content+"</p>
-                                                    <p><span>time</span></p>
-                                                    </div>
-                                                <div class='clearfix'></div> ",['controller'=>'Notifications','action'=>'view',$warning->id]);?>
-                                            </li>
-                                            <?php
-                                            }
-                                            ?>
-                                             <li>
-                                                <div class="notification_bottom">
-                                                    <a href="#">See all notifications</a>
-                                                </div> 
-                                            </li>
-                                        </ul>
-                                    </li>  
-                                    <div class="clearfix"> </div>
-                                </ul>
+                                <li class="dropdown head-dpdn" style="width:50%;">
+                                    <a href="#" onclick="getalltype('contribute');" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge count_contribute">0</span></a>
+                                    <ul class="dropdown-menu" id="content-contribute">
+                                        
+                                    </ul>
+                                </li>
+                                <li class="dropdown head-dpdn" style="width:50%;">
+                                    <a href="#" onclick="getalltype('warning');" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span class="badge blue count_warning">0</span></a>
+                                    <ul class="dropdown-menu" id="content-warnings" >
+                                        
+                                    </ul>
+                                </li>  
                                 <div class="clearfix"> </div>
+                            </ul>
+                            <div class="clearfix"> </div>
                             </div>
                             <!--notification menu end -->
                             

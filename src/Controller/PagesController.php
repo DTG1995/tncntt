@@ -117,7 +117,7 @@ class PagesController extends AppController
 								'Users','Categorys'
 							]
 						)
-						->where(['means.active'=>1]);
+						->where(['means.active'=>1,'means.contribute >='=>10]);
 				},
 				'Definitions'=>function($q){
 					return $q
@@ -139,7 +139,7 @@ class PagesController extends AppController
 								,'Users','Categorys'
 							]
 						)
-						->where(['definitions.active'=>1]);
+						->where(['definitions.active'=>1,'definitions.contribute >='=>10]);
 				}
 
 			])
@@ -291,6 +291,21 @@ class PagesController extends AppController
 				->where(['active'=>1,'contribute <'=>10])
 				->count();
 		$this->set(['means'=>$means,'defines'=>$defines,'count_mean'=>$count_mean,'count_define'=>$count_define]);
+	}
+	function warning($type,$id){
+		$this->set('type',$type);
+		if($type=="mean"){
+			$MEANS = TableRegistry::get('Means');
+			$mean = $MEANS->find()
+				->where(['id'=>$id])->first();
+			$this->set('mean',$mean);
+		}
+		else{
+			$DEFINES = TableRegistry::get('Definitions');
+			$define = $DEFINES->find()
+				->where(['id'=>$id])->first();
+			$this->set('define',$define);
+		}
 	}
 	public $paginate=[
         'limit'=>5,

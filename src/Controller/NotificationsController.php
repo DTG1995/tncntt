@@ -2,7 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
 /**
  * Notifications Controller
  *
@@ -16,12 +17,14 @@ class NotificationsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function index()
+    public function index($type)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
         $this->paginate = [
-            'contain' => ['Users']
+            'contain' => []
         ];
-        $notifications = $this->paginate($this->Notifications);
+        $notifications = $this->paginate($this->Notifications->find()
+            ->where(['type'=>$type]));
 
         $this->set(compact('notifications'));
         $this->set('_serialize', ['notifications']);
@@ -36,12 +39,96 @@ class NotificationsController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('Admin\default');
+        $WORDS = TableRegistry::get('Words');
+        $MEANS = TableRegistry::get('Means');
+        $DEFINES = TableRegistry::get('Definitions');
         $notification = $this->Notifications->get($id, [
             'contain' => []
         ]);
+        $notification->seen = 1;
+        $this->Notifications->save($notification);
+        if($notification){
+            if($notification->type =="add"){
+                switch($notification->cate){
+                    case 'word':
+                        $word = $WORDS->find()
+                            ->where(['id'=>$notification->idtopic])
+                            ->contain(['Means'=>function($q){
+                                    return $q->order(['means.active','means.id'=>'DESC'])
+                                        ->contain(['Categorys']);
+                                },'Definitions'=>function($q){
+                                    return $q->order(['definitions.active','definitions.id'=>'DESC'])
+                                        ->contain(['Categorys']);
+                                }])
+                            ->first();
+                    break;
+                    case 'mean':
+                        $mean= $MEANS->find()
+                            ->where(['id'=>$notification->idtopic])
+                            ->first();
+                        $word= $WORDS->find()
+                            ->where(['id'=>$mean->word_id])
+                            ->contain(['Means'=>function($q){
+                                return $q
+                                    ->order(['means.active','means.id'=>'DESC'])
+                                    ->contain(['Categorys']);
+                            }])
+                            ->first();
+                    break;
+                    case 'define':
+                        $define = $DEFINES->find()
+                            ->where(['id'=>$notification->idtopic])
+                            ->first();
+                        $word= $WORDS->find()
+                            ->where(['id'=>$define->word_id])
+                            ->contain(['Definitions'=>function($q){
+                                return $q
+                                    ->order(['definitions.active','definitions.id'=>'DESC'])
+                                    ->contain(['Categorys']);
+                            }])
+                            ->first();
+                    break;
+                }
+                $this->set('cate',$notification->cate);
+                $this->set('word',$word);
+            }
+            else{
+                switch($notification->cate){
+                    case 'mean':
+                        $mean= $MEANS->find()
+                            ->where(['id'=>$notification->idtopic])
+                            ->first();
+                        $word= $WORDS->find()
+                            ->where(['id'=>$mean->word_id])
+                            ->contain(['Means'=>function($q){
+                                return $q
+                                    ->order(['means.active','means.id'=>'DESC'])
+                                    ->contain(['Categorys']);
+                            }])
+                            ->first();
+                    break;
+                    case 'define':
+                        $define = $DEFINES->find()
+                            ->where(['id'=>$notification->idtopic])
+                            ->first();
+                        $word= $WORDS->find()
+                            ->where(['id'=>$define->word_id])
+                            ->contain(['Definitions'=>function($q){
+                                return $q
+                                    ->order(['definitions.active','definitions.id'=>'DESC'])
+                                    ->contain(['Categorys']);
+                            }])
+                            ->first();
+                    break;
+                }
+            }
+            $this->set('notifi',$notification);
+            $this->set('word',$word);
+        }     
+            
+       
 
-        $this->set('notification', $notification);
-        $this->set('_serialize', ['notification']);
     }
 
     /**
@@ -111,4 +198,36 @@ class NotificationsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    public function getall(){
+        
+        $count_contributes = $this->Notifications->find('all')
+            ->where(['type'=>'add','seen'=>0])
+            ->all()->count();
+        $this->set('count_contributes', $count_contributes);
+        $count_warnings = $this->Notifications->find('all')
+            ->where(['type'=>'warning','seen'=>0])
+            ->all()->count();
+        $this->set('count_warnings', $count_warnings?$count_warnings:0);
+    }
+    public function getalltype($type){
+        $this->set('type',$type);
+        if($type=="contribute")
+        {
+            $contributes = $this->Notifications->find()
+            ->where(['type'=>'add'])
+            ->order(['created'=>'DESC'])
+            ->limit(5)
+            ->all();
+            $this->set('contributes', $contributes);
+        }
+        else{
+            $warnings = $this->Notifications->find()
+            ->where(['type'=>'warning'])
+            ->order(['created'=>'DESC'])
+            ->limit(5)
+            ->all();
+            $this->set('warnings',$warnings?$warnings:[]);
+        }
+    }
+    
 }

@@ -1,0 +1,1 @@
+<?='{"count_contributes":"'.$count_contributes.'","count_warnings":"'.$count_warnings.'"}'?>

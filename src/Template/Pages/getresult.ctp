@@ -46,6 +46,9 @@ if($word!=null)
                     <a class="comment" onclick="return viewcomment('mean','#mean<?=$mean->id?>',<?=$mean->id?>,0);">
                         <i class="fa fa-comment-o" aria-hidden="true"></i> Bình luận&nbsp<span id="mean<?=$mean->id?>_comment">`+comment+`</span>
                     </a>
+                    <a class="warning" data-toggle="modal" data-target="#modalwarning" onclick="warning('mean',<?=$mean->id?>)"  style="color:red;float:right;">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Báo cáo
+                    </a>
                     <div class="commentcontent" id ="mean<?=$mean->id?>"></div>`;
                         
 $("#txtresult").val(data);
@@ -118,6 +121,9 @@ $(document).ready(function(){
                                             <i class="fa fa-comment-o" aria-hidden="true"></i> Bình luận
                                         </a>
                                         <span class="comment" id="define<?=$define->id?>_comment"><?php echo count($define->commentdefinitions)>0?$define->commentdefinitions[0]->count:0 ?></span>
+                                        <a class="warning" data-toggle="modal" data-target="#modalwarning" onclick="warning('define',<?=$define->id?>)"  style="color:red;float:right;">
+                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Báo cáo
+                                        </a>
                                         <hr>
                                         <div class="commentcontent" id ="define<?=$define->id?>"></div>
                                     </div>
@@ -175,6 +181,9 @@ $(document).ready(function(){
                                             <i class="fa fa-comment-o" aria-hidden="true"></i> Bình luận
                                         </a>
                                     <span class="comment" id="mean<?=$mean->id?>_comment"><?php echo count($mean->commentmeans)>0?$mean->commentmeans[0]->count:0 ?></span>
+                                        <a class="warning" data-toggle="modal" data-target="#modalwarning" onclick="warning('mean',<?=$mean->id?>)"  style="color:red;float:right;">
+                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Báo cáo
+                                        </a>
                                     <hr>
                                     <div class="commentcontent" id ="mean<?=$mean->id?>"></div>
                                 </div>
@@ -200,5 +209,26 @@ $(document).ready(function(){
     <?php
 }
 ?>
-
+<?php 
+    $loguser = $this->request->session()->read('Auth.User');
+?>
+<div class="modal fade" id="modalwarning" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Báo cáo</h4>
+        </div>
+        <div class="modal-body" id="modal-content">
+          
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-warning" onclick="addwarning()"  data-dismiss="modal">Báo Cáo</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
   

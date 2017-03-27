@@ -190,6 +190,26 @@ class DefinitionsController extends AppController
             $this->set('contribute',$definition->contribute);
             $this->set('contributed',$contributed);
     }
+    function active($id){
+        if($this->Auth->user('isadmin')){
+            $definition = $this->Definitions->get($id, [
+            'contain' => []
+        ]);
+            $definition->active = !$definition->active;
+            $this->Definitions->save($definition);
+        }
+    }
+    public function setcontribute($id=null,$value=null){
+        if($id || $value){
+            if($this->Auth->user('isadmin')){
+            $definition = $this->Definitions->get($id, [
+            'contain' => []
+        ]);
+            $definition->contribute =$value;
+            $this->Definitions->save($definition);
+        }
+        }
+    }
     public $paginate=[
         'limit'=>10,
         'order'=>[

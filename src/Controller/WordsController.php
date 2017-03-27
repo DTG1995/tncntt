@@ -212,7 +212,7 @@ class WordsController extends AppController {
         $this->set("catelist", $catelist);
         $this->set("word", $word);
     }
-
+    
     public $paginate = [
         'limit' => 10,
         'order' => [

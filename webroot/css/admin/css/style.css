@@ -15,7 +15,7 @@ body a{
   -moz-transition:0.5s all;
   -o-transition:0.5s all;
   -ms-transition:0.5s all;
-  background:#011D4A!mportant;
+  /*background:#011D4A;*/
 }
 a:focus, a:active, a:hover ,a.dropdown-toggle{
     outline: none;
@@ -298,7 +298,9 @@ li#menu-academico{
     vertical-align: middle;
     -webkit-filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.5));
 }*/
-
+ul.dropdown-menu li.notification-seen{
+      background-color: rgba(16, 16, 16, 0.16);
+}
 .fa-html5 {
   color: #fff;
   margin-left: 50px;
@@ -590,6 +592,9 @@ li.dropdown.head-dpdn i {
   text-decoration:underline;
   background:none;
 }
+#content-contribute li:hover{
+  color:#4A4A4A;
+}
 .user_img{
   float:left;
   width:19%;
@@ -612,7 +617,7 @@ li.dropdown.head-dpdn i {
   font-size:13px;
   padding:2px 0;
 }
-.wrapper-dropdown-2 .dropdown li a:hover .notification_desc p{
+.wrapper-dropdown-2 .dropdown  li a:hover .notification_desc p{
   color:#424242;
 }
 .notification_desc p span{

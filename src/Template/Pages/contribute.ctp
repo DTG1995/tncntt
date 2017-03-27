@@ -48,7 +48,7 @@
                     </div>
                     <div class="contributes col-md-1" id="contribute">
                         <i class="fa fa-chevron-up" onclick="changecontribute('mean','<?=$url."/1"?>',<?=$mean->id?>);" aria-hidden="true"></i>
-                        <p class="contribute"><?=$mean->contribute?></p>
+                        <p class="contribute" id="mean<?=$mean->id?>"><?=$mean->contribute?></p>
                         <i class="fa fa-chevron-down" onclick="changecontribute('mean','<?=$url."/-1"?>',<?=$mean->id?>);" aria-hidden="true"></i>
                     </div>
                     <div id="readmore-contribute-mean-<?=$mean->id?>" class="readmore-contribute-content collapse">

@@ -23,12 +23,12 @@
     <title>
         <?= $this->fetch('title') ?>
     </title>
+    <?= $this->Html->script("jquery.min.js")?>
+    <?= $this->Html->script("bootstrap.js")?>
+    <?= $this->Html->script("my-scripts.js")?>
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('admin/css/font-awesome')?>
     <?= $this->Html->css('bootstrap.min')?>
-    <?= $this->Html->script("jquery-3.1.1.min.js")?>
-    <?= $this->Html->script("bootstrap.min.js")?>
-    <?= $this->Html->script("my-scripts.js")?>
     <?= $this->Html->css('layout') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

@@ -87,7 +87,10 @@ class AppController extends Controller
         $notification->idtopic = $idtopic;
         $notification->content = $content;
         $notification->seen = 0;
-        $notification->user_id = $user_id;
+        if($this->Auth->user())
+        $notification->user = $this->Auth->user(id);
+        else 
+            $notification->user = $user_id." - ".$this->get_client_ip();
         $Notifications->save($notification);
     }
     public function beforeRender(Event $event)
@@ -100,6 +103,6 @@ class AppController extends Controller
     }
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['display','gethint','getresult','getcommentdefine','getcommentmean','comment','adduser','addwordmean','contribute','changecontribute']);
+        $this->Auth->allow(['display','gethint','getresult','getcommentdefine','getcommentmean','comment','adduser','addwordmean','contribute','changecontribute','warning','addNotification']);
     }
 }

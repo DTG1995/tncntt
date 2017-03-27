@@ -9,7 +9,6 @@ $(document).ready(function(){
             });
             $("#ratingmean").html("");
             if(e.keyCode == 13){
-                debugger;
                 var str = jQuery.param($(this).val()  );
                 $.ajax({
                     type: "POST",
@@ -177,3 +176,32 @@ function changecontribute(type,url,id,value){
         {
             window.scrollTo(0,document.body.scrollHeight);
         } 
+
+var idwarning=-1;
+var typewarning='';
+function warning(type,id){
+    idwarning = id;
+    typewarning=type;
+    url ="pages/warning/"+type+"/"+id
+    $.ajax({
+            type: "POST",
+            url: url,
+            beforeSend: function(){
+                $("#modal-content").html('');
+                $("#modal-content").css("background","#FFF url('LoaderIcon.gif') no-repeat center");
+            },
+            success: function(data){
+                $("#modal-content").html(data);
+                $("#modal-content").css("background","#FFF");
+        }
+    });
+}
+function addwarning(){
+   url = 'app/addNotification/warning/'+typewarning+'/'+idwarning+'/'+encodeURIComponent($("#contentwarning").val())+'/'+encodeURIComponent($("#userwarning").val());
+    $.ajax({
+        url: url,
+        success: function(data){
+            alert('Cảm ơn bạn đã giúp chúng tôi phát hiên lỗi')
+        }
+    });
+}

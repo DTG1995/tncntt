@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Means Controller
@@ -187,6 +188,27 @@ class MeansController extends AppController
             $this->Means->save($definition);
             $this->set('contribute',$definition->contribute);
             $this->set('contributed',$contributed);
+    }
+    public function active($id){
+        if($this->Auth->user('isadmin')){
+            $means = $this->Means->get($id, [
+            'contain' => []
+        ]);
+            $means->active = !$means->active;
+            $this->Means->save($means);
+        }
+
+    }
+    public function setcontribute($id=null,$value=null){
+        if($id || $value){
+            if($this->Auth->user('isadmin')){
+            $means = $this->Means->get($id, [
+            'contain' => []
+        ]);
+            $means->contribute =$value;
+            $this->Means->save($means);
+        }
+        }
     }
     public $paginate=[
         'limit'=>10,
