@@ -29,10 +29,17 @@
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('admin/css/font-awesome')?>
     <?= $this->Html->css('bootstrap.min')?>
+    <?= $this->Html->script("jquery-3.1.1.min.js")?>
+    <?= $this->Html->script("bootstrap.min.js")?>
+    <?= $this->Html->script("my-scripts.js")?>
+    <?= $this->Html->css("popupreset")?>
+    <?= $this->Html->css("popupstyle")?>
+    <?= $this->HTml->script("modernizr")?>
     <?= $this->Html->css('layout') ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+  
 </head>
 <body>
 <!-- NAV-MENU -->
@@ -66,43 +73,108 @@
               </li>
             </ul>
             
-            <ul class="nav navbar-nav navbar-right">
-                <?php
-                  if($loguser!=null){
-                    ?>
-                    <li class="dropdown">
-                      <a href='#' >Xin chào, <?=$loguser['namedisplay']?> </a>
-                    </li>
-                    <?php
-                      if($loguser['isadmin']==1){
-                        ?>
-                        <li class="dropdown">
-                          <?= $this->Html->link('Trang Quản Trị',['controller'=>'admin','action'=>'index'])?>
-                        </li>    
-                        <?php
-                      }
-                    ?>
-                    <li class="dropdown">
-                      <?= $this->Html->link('Đăng xuất',['controller'=>'users','action'=>'logout'])?>
-                    </li>
-                <?php
-                  }else{
-                    ?>
-                    <li class="dropdown">
-                      <?= $this->Html->link('Đăng ký',['controller'=>'users','action'=>'adduser'])?>
-                    </li>
-                    <li class="dropdown">
-                      <?= $this->Html->link('Đăng nhập',['controller'=>'users','action'=>'login'])?>
-                    </li>
-                    <?php
-                  }
-                ?>
-            </ul>
+            <nav class="main-nav">
+              <ul>
+                <!-- inser more links here -->
+                <li><a class="cd-signin" href="#0">Đăng Nhập</a></li>
+              </ul>
+            </nav>
 
-          </div><!-- /.navbar-collapse -->
+        </div><!-- /.navbar-collapse -->
         <!-- </div> --><!-- /.container-fluid -->
       </nav>
     </header>
+    <!-- popup -->
+    <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+      <ul class="cd-switcher">
+        <li><a href="#0">Đăng Nhập</a></li>
+        <li><a href="#0">Đăng Ký</a></li>
+      </ul>
+
+      <div id="cd-login"> <!-- log in form -->
+        <form class="cd-form" action="/pages/login"  >
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="signin-email">Tên Đăng Nhập</label>
+            <input class="full-width has-padding has-border" id="signin-username" type="username" placeholder="Tên Đăng Nhập" name="username">
+<!--             <span class="cd-error-message">Error message here!</span>
+ -->          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signin-password">Mật Khẩu</label>
+            <input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Mật Khẩu" name="password">
+            <!-- <span class="cd-error-message">Error message here!</span> -->
+          </p>
+
+          <p class="fieldset">
+            <input type="checkbox" id="remember-me" checked>
+            <label for="remember-me">Nhớ Mật Khẩu</label>
+          </p>
+
+          <p class="fieldset">
+           <input class="full-width" type="submit" value="Đăng nhập"/>
+          </p>
+        </form>
+        
+        <p class="cd-form-bottom-message"><a href="#0">Quên mật khẩu</a></p>
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-login -->
+
+      <div id="cd-signup"> <!-- sign up form -->
+        <form class="cd-form" action="">
+          <p class="fieldset">
+            <label class="image-replace cd-username" for="signup-username">Tên Đăng Nhập</label>
+            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Tên Đăng Nhập">
+            <!-- <span class="cd-error-message">Error message here!</span> -->
+          </p>
+          <p class="fieldset">
+            <label class="image-replace cd-username" for="signup-fullname">Tên Hiển Thị</label>
+            <input class="full-width has-padding has-border" id="signup-fullname" type="text"  placeholder="Tên Hiển Thị">
+            <!-- <span class="cd-error-message">Error message here!</span> -->
+          </p>
+
+          <p class="fieldset">
+            <label class="image-replace cd-password" for="signup-password">Mật Khẩu</label>
+            <input class="full-width has-padding has-border" id="signup-password" type="password"  placeholder="Mật Khẩu">
+            
+            <!-- <span class="cd-error-message">Error message here!</span> -->
+          </p>
+
+<!--           <p class="fieldset">
+            <input type="checkbox" id="accept-terms">
+            <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+          </p> -->
+
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Đăng Ký">
+          </p>
+        </form>
+
+        <!-- <a href="#0" class="cd-close-form">Close</a> -->
+      </div> <!-- cd-signup -->
+
+      <div id="cd-reset-password"> <!-- reset password form -->
+        <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+        <form class="cd-form">
+          <p class="fieldset">
+            <label class="image-replace cd-email" for="reset-email">E-mail</label>
+            <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+            <span class="cd-error-message">Error message here!</span>
+          </p>
+
+          <p class="fieldset">
+            <input class="full-width has-padding" type="submit" value="Reset password">
+          </p>
+        </form>
+
+        <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+      </div> <!-- cd-reset-password -->
+      <a href="#0" class="cd-close-form">Close</a>
+    </div> <!-- cd-user-modal-container -->
+  </div> <!-- cd-user-modal -->
+  <!-- popup -->
+
     <!-- AREA-TEXT -->
     <div id="mycontent">
         <div class="container-fluid">
@@ -121,5 +193,7 @@
             </div>
         </div>
     </footer>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <?= $this->Html->script("main")?>
 </body>
 </html>

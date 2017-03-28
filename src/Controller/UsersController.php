@@ -110,8 +110,8 @@ class UsersController extends AppController
     }
     public function login()
     {
-        if($this->Auth->user('id') == null)
-        {
+        // if($this->Auth->user('id') == null)
+        // {
             if($this->request->is('post'))
             {
                 $user=$this->Auth->identify();
@@ -131,18 +131,18 @@ class UsersController extends AppController
                 }
                 return $this->redirect(['Controller'=>'users','action'=>'login']);
             }
-        }
-        else{
-            if($this->Auth->user('isadmin'))
-                {
-                    return $this->redirect(['controller'=>'admin','action'=>'index']);
-                }
-                else
-                {
-                return $this->redirect(['controller'=>'pages','action'=>'display']);
+        // }
+        // else{
+        //     if($this->Auth->user('isadmin'))
+        //         {
+        //             return $this->redirect(['controller'=>'admin','action'=>'index']);
+        //         }
+        //         else
+        //         {
+        //         return $this->redirect(['controller'=>'pages','action'=>'display']);
 
-                }
-        }
+        //         }
+        // }
     }
 
     public function logout()
