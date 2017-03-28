@@ -14,7 +14,7 @@ $this->layout=null;
 <div class="row contain">
 <div class="login-page">
   <div class="form">
-    <h1>Đăng Ký</h1>
+    <h1>Đăng Nhập</h1>
     <?php echo $this->Form->create('Accounts',['url' => ['action' => 'login']]);?>
     <form class="login-form">
       <input type="username" placeholder="Tên đăng nhập" name="username"/>

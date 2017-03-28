@@ -9,7 +9,7 @@
                     <?=$this->Form->input('category_id', ['options' => $categorys,'class'=>'form-control cate_id','label'=>'Lĩnh vực','name'=>"cate"]);?>
                 </div>
                 <div class="row define">
-                    <?=$this->Form->input('define',['label'=>'Định nghĩa','type'=>'textarea','class'=>'form-control define_text','name'=>'define'])?>
+                    <?=$this->Form->input('define',['label'=>'Định nghĩa','type'=>'textarea','class'=>'form-control define_text','name'=>'define','style'=>'resize:none;'])?>
                 </div>
             </div>`
             );
@@ -20,7 +20,7 @@
 </script>
 
 
-<div class="contain">
+<div class="col-md-6 col-md-offset-3">
     <?php
     ?>
     <div class="row">
@@ -34,7 +34,7 @@
                         <?=$this->Form->input('category_id', ['options' => $categorys,'class'=>'form-control','label'=>'Lĩnh vực','name'=>'cate0']);?>
                     </div>
                     <div class="row define">
-                        <?=$this->Form->input('define',['label'=>'Định nghĩa','type'=>'textarea','class'=>'form-control','name'=>'define0'])?>
+                        <?=$this->Form->input('define',['label'=>'Định nghĩa','type'=>'textarea','class'=>'form-control','name'=>'define0','style'=>'resize:none;'])?>
                     </div>
                 </div>
             </div>
