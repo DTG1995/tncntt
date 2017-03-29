@@ -115,7 +115,6 @@ class CommentdefinitionsController extends AppController
     }
     public function comment($define_id=0,$content=null,$parent=0){
 		if($this->Auth->user()!=null){
-			
 			$comment = $this->Commentdefinitions->newEntity();
 			$comment->content = $content;
 			$comment->user_id=$this->Auth->user('id');
@@ -158,6 +157,6 @@ class CommentdefinitionsController extends AppController
 			$this->set('definition',$define_id);
 			$this->set('parent',$parent);
 			// 			$this->set('_serialize', ['likemean']);
-		}
+		}else return null;
 	}
 }

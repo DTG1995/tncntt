@@ -1,49 +1,50 @@
 $(document).ready(function(){
-        $("#search-box").keyup(function(e){
-            console.log("thu1");
-            $("#result").html("");
+        $.ajax({
+                    type: "POST",
+                    url: "pages/gethint",
+                    data:'keyword='+$(this).val(),
+                    success: function(data){
+                        var availableTags =data.substring(0,data.length-1).split('@');
+                        var options = {
+	
+                                data: availableTags,
+                                list: {	
+                                    match: {
+                                        enabled: true
+                                    },
+                                    onClickEvent: function() {
+                                        getresult();
+                                    },
+                                    onChooseEvent:function(){
+                                       getresult();
+                                    }
+                                },
+
+                                theme: "square"
+                            };
+                        $("#search-box").easyAutocomplete(options);
+                    }
+                    });
+            });
+    function getresult(){
+        $("#result").html("");
             $("#txtresult").val("");
             $var = $("input[type=textFind]").height() + 40;
             $("textarea").animate({
                 height: $var
             });
             $("#ratingmean").html("");
-            if(e.keyCode == 13){
-                var str = jQuery.param($(this).val()  );
+                var str = $("#search-box").val();
                 $.ajax({
                     type: "POST",
-                    url: "pages/getresult?word="+$(this).val(),
-                    data:'keyword='+$(this).val(),
+                    url: "pages/getresult?word="+$("#search-box").val(),
                     success: function(data){
                         $("#suggesstion-box").hide();
                         $("#result").html(data);
                         $("#search-box").css("background","#FFF");
                  }
              });
-            }else{   
-                    console.log("thu2 data");
-                    $.ajax({
-                    type: "POST",
-                    url: "pages/gethint?word="+$(this).val(),
-                    data:'keyword='+$(this).val(),
-                    beforeSend: function(){
-                        $("#search-box").css("background","#FFF url(LoaderIcon.gif) no-repeat right");
-                    },
-                    success: function(data){
-                        var availableTags =data.substring(0,data.length-1).split('@');
-                        options={
-                            source:availableTags,
-                            max: 6,
-                            highlightItem: true,
-                            multiple: true,
-                            multipleSeparator: " ", 
-                        };
-                        $("#search-box").autocomplete(options);
-                        $("#search-box").css("background","#FFF");
-                    }
-                    });
-                }});
-            });
+    }
     //To select word
     function selectWord(val) {
         
@@ -59,11 +60,6 @@ $(document).ready(function(){
                 $("#search-box").css("background","#FFF");
             }
         });
-    }
-    //Login
-    function Login()
-    {
-       
     }
 
     function viewcomment(type,idhtml,id,parent){
@@ -110,9 +106,13 @@ $(document).ready(function(){
                     type: "POST",
                     url: url,
                     success: function(data){
+                        if(data!=""){
                         $(idhtml).html(data);
                         $(idhtml).show();
+                        }else{
+                            login();
                         }
+                    }
                     });
             }
             else{
@@ -123,37 +123,18 @@ $(document).ready(function(){
                     type: "POST",
                     url: url,
                     success: function(data){
+                        if(data!=""){
                         $(idhtml).html(data);
                         $(idhtml).show();
+                        }else{
+                            login();
                         }
+                    }
                     });
             }
         }
     }
-    function like_dislike(type,id,value,idhtml,top=0){
-        if(type=='define'){
-                url = "likedefinitions/like/"+id+"/"+value;
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    success: function(data){
-                        $(idhtml).html(data);
-                        }
-                    });
-            }
-            else{
-                if(top==0)
-                    url = "likemeans/like/"+id+"/"+value;
-                else url = "likemeans/like/"+id+"/"+value+"/"+top;
-                $.ajax({
-                    type: "script",
-                    url: url,
-                    success: function(data){
-                        $(idhtml).html(data);
-                        }
-                    });
-            }
-    }
+    
 
 function changecontribute(type,url,id,value){
     if(type=='define'){
@@ -211,3 +192,65 @@ function addwarning(){
         }
     });
 }
+
+    function login(click=true){
+      //$(".cd-close-form").click();
+      $(".cd-signin").click();
+    var username = $("#signin-username").val();
+    var password = $("#signin-password").val();
+    return $.ajax({
+        type: 'POST',
+        url: 'pages/login',
+        data: { 
+            'username': username, 
+            'password': password // <-- the $ sign in the parameter name seems unusual, I would avoid it
+        },
+        beforeSend: function(){
+            $("#cd-btn-login").prop('disabled', true);
+            $("#cd-btn-login").html(` Đăng nhập <i class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i>`);
+        },
+        success: function(data){
+            if(data=="false")
+            {
+                $("#msg-cd-login").html(`<div class="message error" onclick="this.classList.add('hidden');">Your username or password is incorrect.</div>`);
+                $("#cd-btn-login").html(` Đăng nhập`);
+                $("#cd-btn-login").prop('disabled', false);
+            }
+            else{
+              $("#login-page").html(data);
+              $(".cd-close-form").click();
+            }
+        }
+    });
+}
+  function like_dislike(type,id,value,idhtml,top=0){
+        
+        if(type=='define'){
+                url = "likedefinitions/like/"+id+"/"+value;
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    success: function(data){
+                        if(data!="")
+                          $(idhtml).html(data);
+                        else
+                          login();
+                        }
+                    });
+            }
+            else{
+                if(top==0)
+                    url = "likemeans/like/"+id+"/"+value;
+                else url = "likemeans/like/"+id+"/"+value+"/"+top;
+                $.ajax({
+                    type: "script",
+                    url: url,
+                    success: function(data){
+                       if(data!="")
+                          $(idhtml).html(data);
+                        else
+                          login();
+                        }
+                    });
+            }
+    }

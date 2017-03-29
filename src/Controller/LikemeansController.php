@@ -143,5 +143,6 @@ class LikemeansController extends AppController
             }
             $this->set('top',$top);
         }
+        else return null;
     }
 }

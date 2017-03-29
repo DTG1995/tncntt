@@ -68,13 +68,7 @@ $("#ratingmean").addClass("<?=$liked?>");
     }
     if($loguser==0){
 ?>
-<script type="text/javascript">
-$(document).ready(function(){
-    $(".like, .dislike").click(function(){
-        alert("đăng nhập");
-    });
-});    
-</script>
+
 <?php 
     }
  ?>

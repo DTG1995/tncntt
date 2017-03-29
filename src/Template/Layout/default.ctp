@@ -23,23 +23,24 @@
     <title>
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->script("jquery.min.js")?>
-    <?= $this->Html->script("bootstrap.js")?>
-    <?= $this->Html->script("my-scripts.js")?>
+    
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('admin/css/font-awesome')?>
+    
+    
     <?= $this->Html->css('bootstrap.min')?>
-    <?= $this->Html->script("jquery-3.1.1.min.js")?>
-    <?= $this->Html->script("bootstrap.min.js")?>
-    <?= $this->Html->script("my-scripts.js")?>
     <?= $this->Html->css("popupreset")?>
     <?= $this->Html->css("popupstyle")?>
-    <?= $this->HTml->script("modernizr")?>
     <?= $this->Html->css('layout') ?>
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
-  
+    <?= $this->Html->script("jquery-3.1.1.min")?>
+    <?= $this->Html->script("jquery.easy-autocomplete")?>
+    <?= $this->Html->script("bootstrap.min")?>
+    <?= $this->Html->script("my-js/my-scripts.js")?>
+    <?=$this->Html->script('popup/modernizr')?>
+    <?= $this->Html->script("popup/main")?>
+    
+    <!--<link href="http://easyautocomplete.com/dist/easy-autocomplete.min.css" rel="stylesheet">-->
+
 </head>
 <body>
 <!-- NAV-MENU -->
@@ -72,13 +73,35 @@
                 <?= $this->Html->link('Danh Sách Đóng Góp',['controller' => 'Pages', 'action' => 'contribute']);?>
               </li>
             </ul>
-            
-            <nav class="main-nav">
-              <ul>
-                <!-- inser more links here -->
-                <li><a class="cd-signin" href="#0">Đăng Nhập</a></li>
-              </ul>
-            </nav>
+            <ul class="nav navbar-nav navbar-right" id="login-page">
+                <?php
+                  if($loguser!=null){
+                  ?>
+                    <li class="dropdown">
+                      <a href='#' >Xin chào, <?=$loguser['namedisplay']?> </a>
+                    </li>
+                    <?php
+                      if($loguser['isadmin']){
+                      ?>
+                          <li class="dropdown">
+                            <?=$this->Html->link('Trang Quản Trị',['controller'=>'admin'])?>
+                          </li>
+                      <?php
+                    }
+                    ?>
+                    <li class="dropdown">
+                      <a href='users/logout' > Đăng xuất </a>
+                    </li>
+                  <?php
+                  }else{
+                    ?>
+                    <li class="dropdown main-nav">
+                    <a class="cd-signin" href="#0">Đăng Nhập/ Đăng Ký</a>
+                    </li>
+                    <?php
+                  }
+                ?>
+            </ul>
 
         </div><!-- /.navbar-collapse -->
         <!-- </div> --><!-- /.container-fluid -->
@@ -93,16 +116,19 @@
       </ul>
 
       <div id="cd-login"> <!-- log in form -->
-        <form class="cd-form" action="/pages/login"  >
+        <form class="cd-form">
+          <p class="fieldset" id="msg-cd-login">
+              
+          </p>
           <p class="fieldset">
             <label class="image-replace cd-email" for="signin-email">Tên Đăng Nhập</label>
-            <input class="full-width has-padding has-border" id="signin-username" type="username" placeholder="Tên Đăng Nhập" name="username">
-<!--             <span class="cd-error-message">Error message here!</span>
- -->          </p>
+            <input class="full-width has-padding has-border" id="signin-username" type="username" placeholder="Tên Đăng Nhập" name="signin-username">
+            <span class="cd-error-message">Error message here!</span>
+        </p>
 
           <p class="fieldset">
             <label class="image-replace cd-password" for="signin-password">Mật Khẩu</label>
-            <input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Mật Khẩu" name="password">
+            <input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Mật Khẩu" name="signin-password">
             <!-- <span class="cd-error-message">Error message here!</span> -->
           </p>
 
@@ -112,7 +138,7 @@
           </p>
 
           <p class="fieldset">
-           <input class="full-width" type="submit" value="Đăng nhập"/>
+            <button class="full-width" type="submit" id="cd-btn-login" onclick="login()">Đăng nhập</button>
           </p>
         </form>
         
@@ -124,8 +150,7 @@
         <form class="cd-form" action="">
           <p class="fieldset">
             <label class="image-replace cd-username" for="signup-username">Tên Đăng Nhập</label>
-            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Tên Đăng Nhập">
-            <!-- <span class="cd-error-message">Error message here!</span> -->
+            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Tên Đăng Nhập" >
           </p>
           <p class="fieldset">
             <label class="image-replace cd-username" for="signup-fullname">Tên Hiển Thị</label>
@@ -146,7 +171,7 @@
           </p> -->
 
           <p class="fieldset">
-            <input class="full-width has-padding" type="submit" value="Đăng Ký">
+            <input class="full-width has-padding " type="submit" value="Đăng Ký">
           </p>
         </form>
 
@@ -170,7 +195,7 @@
 
         <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
       </div> <!-- cd-reset-password -->
-      <a href="#0" class="cd-close-form">Close</a>
+      <a href="" class="cd-close-form">Close</a>
     </div> <!-- cd-user-modal-container -->
   </div> <!-- cd-user-modal -->
   <!-- popup -->
@@ -193,7 +218,7 @@
             </div>
         </div>
     </footer>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <?= $this->Html->script("main")?>
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+  
 </body>
 </html>

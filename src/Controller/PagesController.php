@@ -74,17 +74,14 @@ class PagesController extends AppController
 		
 	}
 	function gethint(){
-		$str = $this->request['?']['word'];
+		
+		// $str = $this->request['?']['word'];
 		$WORDS = TableRegistry::get('Words');
 		// 		if ($this->request->is('post')){
-			if($str!=null){
-				$query = $WORDS->find('all'
-				                ,[
-				                    'conditions'=>['words.word LIKE'=>'%'.$str.'%']
-				                    ]);
+			
+				$query = $WORDS->find('all');
 				$words = $query->all();
-			}
-			else $words = [];
+		// $words = [];
 			$this->set('words',$words);
 	}
 	function getresult(){                 
@@ -306,6 +303,20 @@ class PagesController extends AppController
 				->where(['id'=>$id])->first();
 			$this->set('define',$define);
 		}
+	}
+	function login(){
+		if ($this->request->is('post')) {
+			$user = $this->Auth->identify();
+			if ($user) {
+				$this->Auth->setUser($user);
+				$this->set('login',$user);
+				// return $this->redirect($this->Auth->redirectUrl());
+			}
+			else{
+			$this->set('login',false);
+			$this->Flash->error('Your username or password is incorrect.');
+			}
+		}else $this->set('login',false);
 	}
 	public $paginate=[
         'limit'=>5,

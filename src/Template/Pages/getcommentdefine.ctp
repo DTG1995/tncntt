@@ -7,18 +7,8 @@
         ?>
      
         <div class="comments">
-        <?php
-        if($loguser==null)
-        {
-            echo "<span>Bạn cần ".$this->Html->link('đăng nhập',['controller'=>'Users','action'=>'login'])." để có thể tham gia bình luận!</span>";
-        }
-        else
-        {
-            ?>
+        
             <input type="text" onkeypress="addcomment('define','<?=$idhtml?>',<?=$definition?>,<?=$parent?>,this,event);" class="newcomment" placeholder="Viết bình luận..."/>
-        <?php
-        }
-        ?>
         </div>
         <?php
     }
@@ -47,18 +37,12 @@
     
     <?php
     }
-    if($loguser==null)
-    {
-        echo "<li><span>Bạn cần ".$this->Html->link('đăng nhập',['controller'=>'Users','action'=>'login'])." để có thể tham gia bình luận!</span></li>";
-    }
-    else
-    {
+   
         ?>
         <li>
             <input type="text" onkeypress="addcomment('define','<?=$idhtml?>',<?=$definition?>,<?=$parent?>,this,event);" class="newcomment" placeholder="Viết bình luận..."/>
         </li>
-    <?php
-    }?>
+
     </ul>
     </div>
 <?php

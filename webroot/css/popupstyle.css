@@ -87,14 +87,14 @@ header[role=banner]::after {
   }
 }
 
-.main-nav {
+/*.main-nav {
   float: right;
   margin-right: 5%;
   width: 44px;
   height: 100%;
   background: url("../img/cd-icon-menu.svg") no-repeat center center;
   cursor: pointer;
-}
+}*/
 .main-nav ul {
   position: absolute;
   top: 0;
@@ -113,7 +113,7 @@ header[role=banner]::after {
   -o-transform: translateY(50px);
   transform: translateY(50px);
 }
-.main-nav a {
+/*.main-nav a {
   display: block;
   height: 50px;
   line-height: 50px;
@@ -121,14 +121,14 @@ header[role=banner]::after {
   background: #292a34;
   border-top: 1px solid #3b3d4b;
   color: #FFF;
-}
+}*/
 @media only screen and (min-width: 768px) {
-  .main-nav {
+  /*.main-nav {
     width: auto;
     height: auto;
     background: none;
     cursor: auto;
-  }
+  }*/
   .main-nav ul {
     position: static;
     width: auto;
@@ -159,11 +159,11 @@ header[role=banner]::after {
     line-height: normal;
     background: transparent;
   }
-  .main-nav a.cd-signin, .main-nav a.cd-signup {
+  /*.main-nav a.cd-signin, .main-nav a.cd-signup {
     padding: .6em 1em;
     border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 50em;
-  }
+  }*/
   .main-nav a.cd-signup {
     background: #2f889a;
     border: none;
@@ -344,6 +344,34 @@ xsigin/signup popup
   padding: 16px 0;
   cursor: pointer;
   background: #2f889a;
+  color: #FFF;
+  font-weight: bold;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.cd-form button[type=submit] {
+  width: 100%;
+  padding: 16px 0;
+  cursor: pointer;
+  background: #2f889a;
+  color: #FFF;
+  font-weight: bold;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+}
+.cd-form button[type=submit]:disabled {
+  width: 100%;
+  padding: 16px 0;
+  cursor: pointer;
+  background: rgba(11, 63, 109, 0.38);
   color: #FFF;
   font-weight: bold;
   border: none;

@@ -47,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Graph CSS -->
 <?php echo $this->Html->css('admin/css/font-awesome')?>
 <!-- jQuery -->
-<?php echo $this->Html->script('jquery-2.1.4.min.js')?>
+<?php echo $this->Html->script('jquery-3.1.1.min.js')?>
 
 <!-- //jQuery -->
 <!--<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
@@ -272,14 +272,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         });
                             </script>
 <!--js -->
-<?php echo $this->Html->script('jquery.nicescroll.js')?>
-<?php echo $this->Html->script('scripts.js')?>
+<?php echo $this->Html->script('admins/jquery.nicescroll.js')?>
+<?php echo $this->Html->script('admins/scripts.js')?>
 <!-- Bootstrap Core JavaScript -->
 <?php echo $this->Html->script('bootstrap.min.js')?>
    <!-- /Bootstrap Core JavaScript -->     
 <!-- morris JavaScript -->  
-<?php echo $this->Html->script('raphael-min.js')?>
-<?php echo $this->Html->script('morris.js')?>
+<?php echo $this->Html->script('admins/raphael-min.js')?>
+<?php echo $this->Html->script('admins/morris.js')?>
 <script>
     $(document).ready(function() {
         //BOX BUTTON SHOW AND CLOSE

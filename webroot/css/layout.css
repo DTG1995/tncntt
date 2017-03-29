@@ -6,7 +6,6 @@
 header{
 	position:fixed;
     top:0;
-	text-transform: uppercase;
 	background-color: #538eb0;
 	font-weight: bold;
 	color: #ffffff;
@@ -47,6 +46,8 @@ footer{
 	height: 50px;
 }
 /*------*/
+
+
 /* contribute */
 .contents-contributes{
 	float: left;
