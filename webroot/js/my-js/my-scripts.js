@@ -31,9 +31,6 @@ $(document).ready(function(){
                         getresult();
                     }
                 });});
-                
-
-                
             });
 
     function getresult(){
