@@ -194,7 +194,7 @@ function addwarning(){
     });
 }
 
-    function login(click=true){
+    function login(){
       //$(".cd-close-form").click();
       $(".cd-signin").click();
     var username = $("#signin-username").val();
@@ -220,6 +220,37 @@ function addwarning(){
             else{
               $("#login-page").html(data);
               $(".cd-close-form").click();
+            }
+        }
+    });
+}
+function signup(){
+    debugger;
+    // $(".cd-signin").click();
+    var username = $("#signup-username").val();
+    var namedisplay = $("#signup-fullname").val();
+    var password = $("#signup-password").val();
+    $.ajax({
+        type: 'POST',
+        url: 'pages/signup',
+        data: { 
+            'username': username, 
+            'password': password,
+            'namedisplay':namedisplay // <-- the $ sign in the parameter name seems unusual, I would avoid it
+        },
+        beforeSend: function(){
+            $("#cd-btn-signup").prop('disabled', true);
+            $("#cd-btn-signup").html(` Đăng nhập <i class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i>`);
+        },
+        success: function(data){
+            if(data=="false")
+            {
+                $("#msg-cd-signup").html(`<div class="message error" onclick="this.classList.add('hidden');">Your username or password is incorrect.</div>`);
+                $("#cd-btn-signup").html(` Đăng nhập`);
+                $("#cd-btn-signup").prop('disabled', false);
+            }
+            else{
+             login();
             }
         }
     });

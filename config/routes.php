@@ -56,9 +56,9 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     // $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
 
-    $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
-    $routes->connect('/logout', ['controller' => 'Users', 'action' => 'logout']);
-    $routes->connect('/signup', ['controller' => 'Users', 'action' => 'adduser']);
+    $routes->connect('/dang-nhap', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/dang-xuat', ['controller' => 'Users', 'action' => 'logout']);
+    $routes->connect('/dang-ky', ['controller' => 'Users', 'action' => 'adduser']);
     $routes->connect('/danh-sach-dong-gop', ['controller' => 'Pages', 'action' => 'contribute']);
 
     
