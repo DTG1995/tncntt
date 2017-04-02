@@ -1,12 +1,9 @@
-*{
-	margin:auto;
-	padding: auto;
-}
+html,body{font-family:Verdana,sans-serif;font-size:15px;line-height:1.5}html{overflow-x:hidden}
 /*header*/
 header{
 	position:fixed;
     top:0;
-	background-color: #538eb0;
+	background-color: #f44336!important;
 	font-weight: bold;
 	color: #ffffff;
 	width: 100%;
@@ -14,8 +11,15 @@ header{
 	z-index: 1;
 }
 
+/*header:hover{
+
+	-moz-box-shadow: 1px 1px 1px #000;
+    -webkit-box-shadow: 1px 1px 1px #000;
+    box-shadow: 1px 3px 1px #000;
+}*/
+
 header .nav>li>a:focus, .nav>li>a:hover {
-	color:#538eb0;
+	background-color: #f44336;
 }
 header .nav>li>a:focus, .nav>li>a {
 	color:#ffffff;
@@ -39,7 +43,6 @@ header .nav>li>a:focus, .nav>li>a {
 footer{
 	position:fixed;
     bottom:0;
-	background-color: #538eb0;
 	font-weight: bold;
 	color: #ffffff;
 	width: 100%;
@@ -51,7 +54,7 @@ footer{
 /* contribute */
 .contents-contributes{
 	float: left;
-	padding: 0px;
+	padding: 5px;
 }
 .contents-contributes .title{
 	font-weight: bold;
@@ -77,12 +80,15 @@ footer{
 }
 .contents-contributes p.define{
 	font-weight: bold;
-	font-size: 25px;
+	font-size: 16px;
 	width: 100%;
 }
 .contents-contributes p.word{
-	font-size: 20px;
-	color: red;
+	font-size: 16px;
+	color: #00bcd4!important;
+}
+.contents-contributes .word>span{
+	float:right;
 }
 .contents-contributes p.word:before{
 	content: "Thuật ngữ: ";
@@ -98,9 +104,10 @@ footer{
 	color: #3e3e3e;
 	font-size: 20px;
 	float: right;
+	margin-bottom: 3px;
 }
 .contents-contributes p.username-contribute{
-	color: blueviolet;
+	color: #00bcd4!important;
 }
 .contents-contributes a.readmore-contribute{
 	color: grey;
@@ -109,7 +116,7 @@ footer{
 }
 p.username-contribute:before{
 	content: "Người đóng góp: ";
-	color: darkseagreen;
+	color: darkblue;
 }
 .contents-contributes .readmore{
 	width: 100%;
@@ -125,7 +132,8 @@ p.username-contribute:before{
 	float: left;
 }
 .contents-contributes .content-contributes .chang{
-	background-color: rgba(51, 51, 51, 0.09);
+	background-color: #ddd;
+	padding:5px;
 }
 .contents-contributes .fa-chevron-down,.contents-contributes .fa-chevron-up{
 	cursor: pointer;
@@ -143,6 +151,10 @@ p.username-contribute:before{
 q {
     quotes: "\201C" "\201D" ;
 }
+
+.col-define{
+	border-bottom: 1px solid lightgrey;
+}
 /* ------------- */
 .text-main{
 	color:#757575;
@@ -152,7 +164,7 @@ q {
 	margin-bottom: 100px;
 }
 .navbar{
-	background-color: #538eb0;
+	background-color: #f44336!important;
 }
 
 .area-text {
@@ -192,7 +204,6 @@ q {
 }
 .catgory{
 	color: #337AB5;
-	font-size: 15px;
 	text-shadow: 0px 1px #757575;
 }
 .text-left-l hr , .text-right-r hr{
@@ -240,8 +251,12 @@ q {
 	cursor: pointer;
 }
 
+.comment{
+	text-decoration: none;
+	cursor: pointer;
+}
 
-#like_dislikemean a,#like_dislikedefine1 a,#like_dislikemean3 a,#like_dislikemean4 a,#like_dislikedefine1 a, #define a,#ratingmean3 a, #ratingmean a,#mean4 a, .comment a, #mean3 a{
+#mean26 a, #like_dislikemean a,#like_dislikedefine1 a,#like_dislikemean3 a,#like_dislikemean4 a,#like_dislikedefine1 a, #define a,#ratingmean3 a, #ratingmean a,#mean4 a, .comment a, #mean3 a{
 	text-decoration: none;
 	cursor: pointer;
 }
@@ -255,7 +270,18 @@ ul li{
 }
 
 h1 {
+	margin-top: 20px;
 	color: #5f5f5f;
+	font-size: 30px;
+}
+h2 {
+	margin-top: 20px;
+	color: #5f5f5f;
+	font-size: 20px;
+}
+
+a {
+	font-size: 15px;
 }
 /*.nav-footer {
 	text-align: center;
@@ -292,11 +318,13 @@ input[type=textFind] {
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
+    border-radius: 0px;
 }
 
 input[type=textFind]:focus {
 	resize: none;
     border: 3px solid #538eb0;
+    width: 100%;
 }
 
 
@@ -323,6 +351,9 @@ input[type=textFind]:hover,textarea:hover{
 	box-shadow:0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important
 }
 
+input[type=textFind]:hover,textarea:hover{
+	margin-bottom: 0px;
+}
 
 
 /*----------------*/
@@ -343,3 +374,83 @@ input[type=textFind]:hover,textarea:hover{
 .ui-autocomplete {
 z-index: 100;
 }
+
+
+
+.w3-btn,.w3-button{border:none;display:inline-block;outline:0;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+.w3-btn:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)}
+.w3-btn,.w3-button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}   
+.w3-disabled,.w3-btn:disabled,.w3-button:disabled{cursor:not-allowed;opacity:0.3}.w3-disabled *,:disabled *{pointer-events:none}
+.w3-btn.w3-disabled:hover,.w3-btn:disabled:hover{box-shadow:none}
+
+.w3-ul{list-style-type:none;padding:0;margin:0}.w3-ul li{padding:8px 16px;border-bottom:1px solid #ddd}.w3-ul li:last-child{border-bottom:none}
+.w3-hoverable tbody tr:hover,.w3-ul.w3-hoverable li:hover{background-color:#ccc}.w3-centered tr th,.w3-centered tr td{text-align:center}
+.w3-border-left{border-left:1px solid #ccc!important}.w3-border-right{border-right:1px solid #ccc!important}
+
+/* W3.CSS 4.02 Mar 2017 by Jan Egil and Borge Refsnes */
+
+
+
+h1{font-size:36px}h2{font-size:30px}h3{font-size:24px}h4{font-size:20px}h5{font-size:18px}h6{font-size:16px}.w3-serif{font-family:serif}
+h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin:10px 0}.w3-wide{letter-spacing:4px}
+hr{border:0;border-top:1px solid #eee;margin:10px 0}
+
+
+.time1 {
+	font-size: 13px;
+	color:grey;
+}
+.time1>.user{
+	font-size: 15px;
+	font-style: bold;
+	font-style: italic;
+	font-weight: bold;
+}
+.time1>span{
+	float: right;
+}
+
+.cmment{
+	background-color: #f0e68c!important;
+}
+
+.cmment1{
+	background-color: #f0e68c!important;
+	border: 2px;
+	padding: 5px 6px;
+}
+
+.w3-ul li:hover{
+	background-color: #f1f1f1;
+}
+.btn {
+	margin-top: 20px;
+}
+h2{
+	margin-top: 20px;
+    color: #1f1f1f;
+    background-color: LIGHTBLUE;
+    padding: 8px;
+}
+
+.btn-default{
+	background-color: #f44336;
+	color:white;
+}
+.btn-default:hover{
+	background-color: #f44336;
+	color:white;
+	box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
+}
+
+#ratingmean a{
+	font-size: 14px;
+}
+#contribute{
+	color: #5f5f5f;
+}
+.col-define>.word{
+	border-bottom: 1px solid lightgrey;
+}
+/*==========================*/
+.w3-display-middle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}

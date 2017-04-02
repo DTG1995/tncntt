@@ -26,10 +26,11 @@ $(document).ready(function(){
                     }
                     });
             });
+
     function getresult(){
         $("#result").html("");
             $("#txtresult").val("");
-            $var = $("input[type=textFind]").height() + 40;
+            $var = $("input[type=textFind]").height() + 43;
             $("textarea").animate({
                 height: $var
             });
@@ -39,7 +40,7 @@ $(document).ready(function(){
                     type: "POST",
                     url: "pages/getresult?word="+$("#search-box").val(),
                     success: function(data){
-                        $("#suggesstion-box").hide();
+                        $("#suggesstion-box").show();
                         $("#result").html(data);
                         $("#search-box").css("background","#FFF");
                  }
@@ -253,4 +254,17 @@ function addwarning(){
                         }
                     });
             }
+    }
+
+    function getLineCount() {
+        var lines = $('textarea').val().length;
+        var width = $('textarea').width();
+        var lg= lines * 7.2;
+        var kq = 0;
+        while(lg + width >= width){
+            kq++;
+            lg = lg - width;
+        }
+        console.log(kq);
+        return kq;
     }

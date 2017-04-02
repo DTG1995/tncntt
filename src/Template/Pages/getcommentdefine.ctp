@@ -6,8 +6,8 @@
     {
         ?>
      
-        <div class="comments">
-        
+        <div class="comments cmment1">
+            <b class="user"><?=$loguser['namedisplay']?></b>
             <input type="text" onkeypress="addcomment('define','<?=$idhtml?>',<?=$definition?>,<?=$parent?>,this,event);" class="newcomment" placeholder="Viết bình luận..."/>
         </div>
         <?php
@@ -16,13 +16,13 @@
     {
 ?>
     <div class="comments">
-    <ul>
+    <ul class="w3-ul">
         <?php foreach($comments as $comment)
         {
             ?>
-        <li>
+        <li class="w3-border-left">
             <div class="comment">
-                <b class="user"><?=$comment->user_name?></b><span><?=$comment->created?></span>
+                <p class="time1"><b class="user"><?=$comment->user_name?></b><span>&nbsp;<?=$comment->created?></span></p>
                 <p><?=$comment->content?><p>
                 <?php if($parent==0)
                 {?>
@@ -39,7 +39,8 @@
     }
    
         ?>
-        <li>
+        <li class="cmment1">
+            <b class="user"><?=$loguser['namedisplay']?></b>
             <input type="text" onkeypress="addcomment('define','<?=$idhtml?>',<?=$definition?>,<?=$parent?>,this,event);" class="newcomment" placeholder="Viết bình luận..."/>
         </li>
 

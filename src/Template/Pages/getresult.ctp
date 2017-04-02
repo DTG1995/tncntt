@@ -52,15 +52,28 @@ if($word!=null)
                     <div class="commentcontent" id ="mean<?=$mean->id?>"></div>`;
                         
 $("#txtresult").val(data);
-$test = data.length / 85;
-$var = 26;
-$testlen = $test.toFixed();
-if($testlen>1){
-    $var = $var * $testlen ;
+
+var lg = $('textarea').val().length * 7.2;
+var width = $('textarea').width();
+var textFind = $('input[type=textFind]').val();
+    console.log(textFind);
+var kq = 0;
+while(lg + width >= width){
+    kq++;
+    lg = lg - width;
+}
+$var = 25;
+if(kq>1){
+    $var = $var * kq ;
+        console.log($var);
     $("textarea").animate({
         height: $var
     });
 }
+
+
+
+
 $("#ratingmean").html(ratingmean);
 $("#ratingmean").addClass("<?=$liked?>");
 </script>
@@ -76,7 +89,7 @@ $("#ratingmean").addClass("<?=$liked?>");
     <div class="">
         <div class="col-sm-6 text-left ">
             <h2>Định nghĩa:</h2>
-            <ul class="defines">
+            <ul class="defines w3-ul">
             <?php 
                 if(count($defines)>0){
                     foreach($defines as $catedefines)
@@ -118,7 +131,6 @@ $("#ratingmean").addClass("<?=$liked?>");
                                         <a class="warning" data-toggle="modal" data-target="#modalwarning" onclick="warning('define',<?=$define->id?>)"  style="color:red;float:right;">
                                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Báo cáo
                                         </a>
-                                        <hr>
                                         <div class="commentcontent" id ="define<?=$define->id?>"></div>
                                     </div>
                                 </li>
@@ -126,7 +138,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                         }
                         echo "</li>";
                     }
-                    echo $this->Html->link('Đóng góp thêm',['controller'=>'definitions','action'=>'contribute',$word->id,$word->word],['class'=>'btn btn-warning']);
+                    echo $this->Html->link('Đóng góp thêm',['controller'=>'definitions','action'=>'contribute',$word->id,$word->word],['class'=>'btn btn-default']);
                 }
                 else echo "<p>Từ chưa có định nghĩa, ".$this->Html->link('đóng góp',['controller'=>'definitions','action'=>'contribute',$word->id,$word->word]);
             ?>
@@ -134,7 +146,7 @@ $("#ratingmean").addClass("<?=$liked?>");
         </div>
         <div class="col-sm-6 text-left">
             <h2>Các nghĩa khác của từ:</h2>
-            <ul class="means">
+            <ul class="means w3-ul">
             <?php
             if(count($means)>0){
                 foreach($means as $catemeans)
@@ -178,7 +190,6 @@ $("#ratingmean").addClass("<?=$liked?>");
                                         <a class="warning" data-toggle="modal" data-target="#modalwarning" onclick="warning('mean',<?=$mean->id?>)"  style="color:red;float:right;">
                                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Báo cáo
                                         </a>
-                                    <hr>
                                     <div class="commentcontent" id ="mean<?=$mean->id?>"></div>
                                 </div>
                                 </div>
@@ -187,7 +198,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                     }
                     echo "</li>";
                 }
-                echo $this->Html->link('Đóng góp thêm',['controller'=>'means','action'=>'contribute',$word->id,$word->word],['class'=>'btn btn-warning']);
+                echo $this->Html->link('Đóng góp thêm',['controller'=>'means','action'=>'contribute',$word->id,$word->word],['class'=>'btn btn-default']);
             }
             else  echo "<p>Từ chưa có định nghĩa, ".$this->Html->link('đóng góp',['controller'=>'means','action'=>'contribute',$word->id,$word->word]);
             ?>

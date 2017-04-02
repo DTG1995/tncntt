@@ -24,6 +24,12 @@
         <?= $this->fetch('title') ?>
     </title>
     
+    <?= $this->Html->script("jquery-3.1.1.min")?>
+    <?= $this->Html->script("jquery.easy-autocomplete.min")?>
+    <?= $this->Html->script("my-js/my-scripts.js")?>
+    <?= $this->Html->script('popup/modernizr')?>
+    <?= $this->Html->script("popup/main")?>
+
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('admin/css/font-awesome')?>
     
@@ -31,16 +37,11 @@
     <?= $this->Html->css('bootstrap.min')?>
     <?= $this->Html->css("popupreset")?>
     <?= $this->Html->css("popupstyle")?>
+    <?= $this->Html->css('easy-autocomplete') ?>
     <?= $this->Html->css('layout') ?>
-    <?= $this->Html->script("jquery-3.1.1.min")?>
-    <?= $this->Html->script("jquery.easy-autocomplete")?>
-    <?= $this->Html->script("bootstrap.min")?>
-    <?= $this->Html->script("my-js/my-scripts.js")?>
-    <?=$this->Html->script('popup/modernizr')?>
-    <?= $this->Html->script("popup/main")?>
-    
-    <!--<link href="http://easyautocomplete.com/dist/easy-autocomplete.min.css" rel="stylesheet">-->
 
+    
+    
 </head>
 <body>
 <!-- NAV-MENU -->
@@ -54,7 +55,7 @@
         }
 
      ?>
-     <header>
+     <header class="w3-card-2">
       <nav class="navbar navbar-menu header">
 
           <div class="navbar-header">
@@ -69,7 +70,7 @@
 
           <div class="collapse navbar-collapse" id="menumobile">
             <ul class="nav navbar-nav">
-              <li class="dropdown mega-dropdown">
+              <li class="dropdown mega-dropdown w3-btn">
                 <?= $this->Html->link('Danh Sách Đóng Góp',['controller' => 'Pages', 'action' => 'contribute']);?>
               </li>
             </ul>
@@ -77,25 +78,25 @@
                 <?php
                   if($loguser!=null){
                   ?>
-                    <li class="dropdown">
+                    <li class="dropdown w3-btn">
                       <a href='#' >Xin chào, <?=$loguser['namedisplay']?> </a>
                     </li>
                     <?php
                       if($loguser['isadmin']){
                       ?>
-                          <li class="dropdown">
+                          <li class="dropdown w3-btn">
                             <?=$this->Html->link('Trang Quản Trị',['controller'=>'admin'])?>
                           </li>
                       <?php
                     }
                     ?>
-                    <li class="dropdown">
+                    <li class="dropdown w3-btn">
                       <a href='users/logout' > Đăng xuất </a>
                     </li>
                   <?php
                   }else{
                     ?>
-                    <li class="dropdown main-nav">
+                    <li class="dropdown main-nav w3-btn">
                     <a class="cd-signin" href="#0">Đăng Nhập/ Đăng Ký</a>
                     </li>
                     <?php
@@ -212,7 +213,7 @@
             <div class="container" style="margin: auto">
 
               <p class="navbar-text">© 2016 - Được phát triển bởi thuatnguchuyennganhCNTT
-                   <a href="index.php" target="_blank" >Nhóm TPG</a>
+                   <a href="index.php" target="_blank" >Nhóm GTP</a>
               </p>
 
             </div>
