@@ -14,12 +14,15 @@
     else
     {
 ?>
-    <div class="comments">
-    <ul class="w3-ul">
+    <div class="comments w3-margin">
+    <ul class="w3-ul w3-hoverable">
         <?php foreach($comments as $comment)
         {
             ?>
-        <li class="w3-border-left">
+        <li class="w3-border-left w3-padding-small">
+            <div class="" style="width:50px">
+                <?=$this->Html->image('image.ico',['alt'=>'ico','class'=>'w3-left w3-margin-right']) ?>
+            </div>
             <div class="comment">
                 <p class="time1"><b class="user"><?=$comment->user_name?></b><span>&nbsp;<?=$comment->created?></span></p>
                 <p><?=$comment->content?><p>

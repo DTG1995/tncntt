@@ -328,7 +328,7 @@ input[type=textFind]:focus {
 }
 
 
-textarea {
+ #txtresult {
 	background-color: #ebebeb;
     width: 100%;
     padding: 10px 20px;
@@ -341,7 +341,7 @@ textarea {
 }
 
 
-textarea:focus  {
+#txtresult:focus  {
     border: 3px solid #ebebeb;
 }
 
@@ -384,7 +384,7 @@ z-index: 100;
 .w3-btn.w3-disabled:hover,.w3-btn:disabled:hover{box-shadow:none}
 
 .w3-ul{list-style-type:none;padding:0;margin:0}.w3-ul li{padding:8px 16px;border-bottom:1px solid #ddd}.w3-ul li:last-child{border-bottom:none}
-.w3-hoverable tbody tr:hover,.w3-ul.w3-hoverable li:hover{background-color:#ccc}.w3-centered tr th,.w3-centered tr td{text-align:center}
+.w3-hoverable tbody tr:hover,.w3-ul.w3-hoverable li:hover{background-color:#ebebeb}.w3-centered tr th,.w3-centered tr td{text-align:center}
 .w3-border-left{border-left:1px solid #ccc!important}.w3-border-right{border-right:1px solid #ccc!important}
 
 /* W3.CSS 4.02 Mar 2017 by Jan Egil and Borge Refsnes */
@@ -454,3 +454,16 @@ h2{
 }
 /*==========================*/
 .w3-display-middle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%)}
+.w3-margin{margin:10px!important}
+.w3-left{float:left!important}
+.w3-margin-right{margin-right:16px!important}
+.w3-padding-small{padding:4px 8px!important}
+.image {
+	width: 40px;
+	height: 40px;
+}
+
+.waring{
+	text-decoration: none;
+	cursor: pointer;
+}
