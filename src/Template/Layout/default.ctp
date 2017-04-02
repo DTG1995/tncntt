@@ -29,7 +29,6 @@
     <?= $this->Html->script("my-js/my-scripts.js")?>
     <?= $this->Html->script('popup/modernizr')?>
     <?= $this->Html->script("popup/main")?>
-
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('admin/css/font-awesome')?>
     
@@ -149,6 +148,9 @@
 
       <div id="cd-signup"> <!-- sign up form -->
         <form class="cd-form" action="">
+        <p class="fieldset" id="msg-cd-signup">
+              
+          </p>
           <p class="fieldset">
             <label class="image-replace cd-username" for="signup-username">Tên Đăng Nhập</label>
             <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Tên Đăng Nhập" >
@@ -172,7 +174,7 @@
           </p> -->
 
           <p class="fieldset">
-            <input class="full-width has-padding " type="submit" value="Đăng Ký">
+            <button class="full-width" type="submit" id="cd-btn-signup" onclick="signup()">Đăng ký</button>
           </p>
         </form>
 

@@ -162,9 +162,10 @@ class CommentmeansController extends AppController
                     ]);
 			}
 			$this->set('comments',$query->all()->toArray());
-		}
-		$this->set('count',$query->count());
-		$this->set('mean',$mean_id);
-		$this->set('parent',$parent);
+			$this->set('count',$query->count());
+			$this->set('mean',$mean_id);
+			$this->set('parent',$parent);
+		} else return null;
+		
 	}
 }

@@ -27,8 +27,10 @@ $(document).ready(function(){
                 }).then(
                 function(){
                 $("#search-box").keyup(function(e){
+                    $(".easy-autocomplete-container").show();
                     if(e.keyCode ==13){
                         getresult();
+                        $(".easy-autocomplete-container").hide();
                     }
                 });});
             });
@@ -219,7 +221,13 @@ function addwarning(){
         success: function(data){
             if(data=="false")
             {
-                $("#msg-cd-login").html(`<div class="message error" onclick="this.classList.add('hidden');">Your username or password is incorrect.</div>`);
+                if(click)
+                    $("#msg-cd-login").html(`
+                    <div class="alert alert-danger" onclick="this.classList.add('hidden');">
+                        <strong>Lỗi!</strong> Tên đăng nhập hoặc mật khẩu không đúng.
+                    </div>`);
+                else click = true;
+                
                 $("#cd-btn-login").html(` Đăng nhập`);
                 $("#cd-btn-login").prop('disabled', false);
             }
@@ -241,7 +249,7 @@ function addwarning(){
                         if(data!="")
                           $(idhtml).html(data);
                         else
-                          login();
+                          login(false);
                         }
                     });
             }
@@ -256,7 +264,7 @@ function addwarning(){
                        if(data!="")
                           $(idhtml).html(data);
                         else
-                          login();
+                          login(false);
                         }
                     });
             }
@@ -274,3 +282,51 @@ function addwarning(){
         console.log(kq);
         return kq;
     }
+    function signup(){
+    // $(".cd-signin").click();
+    var username = $("#signup-username").val();
+    var namedisplay = $("#signup-fullname").val();
+    var password = $("#signup-password").val();
+    $.ajax({
+        type: 'post',
+        url: "pages/signup" ,
+        data: { 
+            'username': username, 
+            'password': password,
+            'namedisplay':namedisplay // <-- the $ sign in the parameter name seems unusual, I would avoid it
+        },
+        beforeSend: function(){
+            $("#cd-btn-signup").prop('disabled', true);
+            $("#cd-btn-signup").html(` Đăng ký <i class="fa fa-refresh fa-spin fa-fw" aria-hidden="true"></i>`);
+        },
+        success: function(data){
+            if(data=="false")
+            {
+                $("#msg-cd-signup").html(` <div class="alert alert-danger" onclick="this.classList.add('hidden');">
+                        <strong>Lỗi!</strong> Có lỗi khi đãng ký.
+                    </div>`);
+                $("#cd-btn-signup").html(` Đăng ký`);
+                $("#cd-btn-signup").prop('disabled', false);
+            }
+            else if(data=="isset")
+            {
+                $("#msg-cd-signup").html( `<div class="alert alert-danger" onclick="this.classList.add('hidden');">
+                        <strong>Lỗi!</strong> Người dùng đã tồn tại.
+                    </div>`);
+                $("#cd-btn-signup").html(` Đăng ký`);
+                $("#cd-btn-signup").prop('disabled', false);
+            }
+            else{
+              $("#msg-cd-login").html(`<div  class="alert alert-success" onclick="this.classList.add('hidden');">
+                        <strong>Hoàn tất!</strong> Đăng ký thành công, mời bạn đăng nhập..
+                    </div>`);
+              $("#cd-btn-signup").html(` Đăng ký`);
+              $("#cd-btn-signup").prop('disabled', false);
+              login(false);
+            }
+        },
+        error:function(error){
+          alert(error);
+        }
+    });
+}

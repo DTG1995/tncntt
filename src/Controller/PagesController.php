@@ -318,6 +318,26 @@ class PagesController extends AppController
 			}
 		}else $this->set('login',false);
 	}
+	function signup(){
+		$Users = TableRegistry::get('Users');
+        if ($this->request->is('post')) {
+			$user = $Users->find()
+				->where(['username'=>$this->request->getData('username')])
+				->first();
+			if(!$user)
+			{
+				$user = $Users->newEntity();
+				$user = $Users->patchEntity($user, $this->request->getData());
+				if ($Users->save($user)) {
+					$this->set('signup',"true");
+				}
+				else{
+					$this->set('signup',"false");
+				}
+			}
+			else $this->set('signup','isset');
+        }
+	}
 	public $paginate=[
         'limit'=>5,
         'order'=>[
