@@ -201,7 +201,7 @@ class PagesController extends AppController
 						'Users'
 					],'Users'],
 					'order'=>['commentmeans.created'=>'DESC'],
-					'limit'=>3
+					'limit'=>10
 				]);
 			else
 				$query = $CommentMeans->find('all',[
@@ -215,7 +215,7 @@ class PagesController extends AppController
 						'Users'
 					],'Users'],
 					'order'=>['commentmeans.created'=>'DESC'],
-					'limit'=>3
+					'limit'=>10
 				]);
 			$commentmeans = $query->all()->toArray();
 		}

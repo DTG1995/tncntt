@@ -17,15 +17,16 @@
 ?>
     <div class="comments w3-margin">
     <ul class="w3-ul w3-hoverable">
-        <?php foreach($comments as $comment)
+        <?php for($i = count($comments)-1;$i>=0;$i--)
         {
+            $comment = $comments[$i];
             ?>
         <li class="w3-border-left w3-padding-small">
             <div class="" style="width:50px">
                 <?=$this->Html->image('image.ico',['alt'=>'ico','class'=>'w3-left w3-margin-right']) ?>
             </div>
             <div class="comment">
-                <p class="time1"><b class="user"><?=$comment->user_name?></b><span>&nbsp;<?=$comment->created?></span></p>
+                <p class="time1"><b class="user"><?=$comment->user_name?></b><span>&nbsp;<?=$comment->created->i18nFormat('dd-MM-yyyy HH:mm:ss')?></span></p>
                 <p><?=$comment->content?><p>
                 <?php if($parent==0)
                 {?>

@@ -275,7 +275,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <?php echo $this->Html->script('admins/jquery.nicescroll.js')?>
 <?php echo $this->Html->script('admins/scripts.js')?>
 <!-- Bootstrap Core JavaScript -->
-<?php echo $this->Html->script('bootstrap.min.js')?>
+<?php echo $this->Html->script('bootstrap.js')?>
    <!-- /Bootstrap Core JavaScript -->     
 <!-- morris JavaScript -->  
 <?php echo $this->Html->script('admins/raphael-min.js')?>

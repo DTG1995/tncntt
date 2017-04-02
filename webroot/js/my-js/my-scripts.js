@@ -24,7 +24,16 @@ $(document).ready(function(){
                             };
                         $("#search-box").easyAutocomplete(options);
                     }
-                    });
+                }).then(
+                function(){
+                $("#search-box").keyup(function(e){
+                    if(e.keyCode ==13){
+                        getresult();
+                    }
+                });});
+                
+
+                
             });
 
     function getresult(){
