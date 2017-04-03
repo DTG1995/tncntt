@@ -26,6 +26,9 @@ use Cake\Network\Exception\NotFoundException;
 
 $this->assign('title','Trang chủ');
 ?>
+<script>
+   $("#search-box").focus();
+</script>
 
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  -->

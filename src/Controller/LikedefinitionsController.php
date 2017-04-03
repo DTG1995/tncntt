@@ -119,7 +119,7 @@ class LikedefinitionsController extends AppController
                 'conditions'=>['definition_id'=>$definition_id,'user_id'=>$this->Auth->user('id')]
             ]);
             $likedefinition = $query->all()->first();
-            
+            $delete = false;
             if($likedefinition==null)
             {
                 $likedefinition = $this->Likedefinitions->newEntity();
@@ -129,18 +129,19 @@ class LikedefinitionsController extends AppController
             }
             else{
                 if($likedefinition->islike == $islike)
-                    $likedefinition->islike =0;
+                   $likedefinition->islike = -1;
                 else $likedefinition->islike = $islike;
             }
-            if ($this->Likedefinitions->save($likedefinition)) {
-                $query = $this->Likedefinitions->find()
-                    ->select(['like'=>'SUM(islike=1)','dislike'=>'SUM(islike=-1)','mylike'=>'MAX(IF(user_id='.$this->Auth->user('id').',islike,0))','definition_id'])
-                    ->where(['definition_id'=>$definition_id])
-                    ->group(['definition_id'])
-                    ->first();
-                $this->set('likedefinition',$query);
-            }
-            
+            // if($delete)
+            //     $this->Likedefinitions->delete($likedefinition);
+            // else
+                $this->Likedefinitions->save($likedefinition);
+            $query = $this->Likedefinitions->find()
+                ->select(['like'=>'SUM(`islike`=1)','dislike'=>'SUM(`islike`=0)','mylike'=>'MAX(IF(`user_id`='.$this->Auth->user('id').',`islike`,-1))','definition_id'])
+                ->where(['definition_id'=>$definition_id])
+                ->group(['definition_id'])
+                ->first();
+            $this->set('likedefinition',$query);
         }
     }
 }

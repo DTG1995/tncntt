@@ -120,7 +120,7 @@ class LikemeansController extends AppController
                 'conditions'=>['mean_id'=>$mean_id,'user_id'=>$this->Auth->user('id')]
             ]);
             $likemean = $query->all()->first();
-            
+            $delete = false;
             if($likemean==null)
             {
                 $likemean = $this->Likemeans->newEntity();
@@ -130,17 +130,19 @@ class LikemeansController extends AppController
             }
             else{
                 if($likemean->islike == $islike)
-                    $likemean->islike =0;
+                    $likemean->islike = -1;
                 else $likemean->islike = $islike;
             }
-            if ($this->Likemeans->save($likemean)) {
-                $query = $this->Likemeans->find()
-                    ->select(['like'=>'SUM(islike=1)','dislike'=>'SUM(islike=-1)','mylike'=>'MAX(IF(user_id='.$this->Auth->user('id').',islike,0))','mean_id'])
-                    ->where(['mean_id'=>$mean_id])
-                    ->group(['mean_id'])
-                    ->first();
-                $this->set('likemean',$query);
-            }
+            // if($delete)
+            //     $this->likemeans->delete($likemean);
+            // else
+                $this->Likemeans->save($likemean);
+            $query = $this->Likemeans->find()
+                ->select(['like'=>'SUM(`islike`=1)','dislike'=>'SUM(`islike`=0)','mylike'=>'MAX(IF(`user_id`='.$this->Auth->user('id').',`islike`,-1))','mean_id'])
+                ->where(['mean_id'=>$mean_id])
+                ->group(['mean_id'])
+                ->first();
+            $this->set('likemean',$query);
             $this->set('top',$top);
         }
         else return null;

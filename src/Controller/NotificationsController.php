@@ -19,7 +19,7 @@ class NotificationsController extends AppController
      */
     public function index($type)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
+        $this->viewBuilder()->setLayout('Admin/default');
         $this->paginate = [
             'contain' => []
         ];
@@ -39,7 +39,7 @@ class NotificationsController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
+        $this->viewBuilder()->setLayout('Admin/default');
         $WORDS = TableRegistry::get('Words');
         $MEANS = TableRegistry::get('Means');
         $DEFINES = TableRegistry::get('Definitions');
@@ -55,10 +55,10 @@ class NotificationsController extends AppController
                         $word = $WORDS->find()
                             ->where(['id'=>$notification->idtopic])
                             ->contain(['Means'=>function($q){
-                                    return $q->order(['means.active','means.id'=>'DESC'])
+                                    return $q->order(['Means.active','Means.id'=>'DESC'])
                                         ->contain(['Categorys']);
                                 },'Definitions'=>function($q){
-                                    return $q->order(['definitions.active','definitions.id'=>'DESC'])
+                                    return $q->order(['Definitions.active','Definitions.id'=>'DESC'])
                                         ->contain(['Categorys']);
                                 }])
                             ->first();
@@ -71,7 +71,7 @@ class NotificationsController extends AppController
                             ->where(['id'=>$mean->word_id])
                             ->contain(['Means'=>function($q){
                                 return $q
-                                    ->order(['means.active','means.id'=>'DESC'])
+                                    ->order(['Means.active','Means.id'=>'DESC'])
                                     ->contain(['Categorys']);
                             }])
                             ->first();
@@ -84,7 +84,7 @@ class NotificationsController extends AppController
                             ->where(['id'=>$define->word_id])
                             ->contain(['Definitions'=>function($q){
                                 return $q
-                                    ->order(['definitions.active','definitions.id'=>'DESC'])
+                                    ->order(['Definitions.active','Definitions.id'=>'DESC'])
                                     ->contain(['Categorys']);
                             }])
                             ->first();
@@ -103,7 +103,7 @@ class NotificationsController extends AppController
                             ->where(['id'=>$mean->word_id])
                             ->contain(['Means'=>function($q){
                                 return $q
-                                    ->order(['means.active','means.id'=>'DESC'])
+                                    ->order(['Means.active','Means.id'=>'DESC'])
                                     ->contain(['Categorys']);
                             }])
                             ->first();
@@ -116,7 +116,7 @@ class NotificationsController extends AppController
                             ->where(['id'=>$define->word_id])
                             ->contain(['Definitions'=>function($q){
                                 return $q
-                                    ->order(['definitions.active','definitions.id'=>'DESC'])
+                                    ->order(['Definitions.active','Definitions.id'=>'DESC'])
                                     ->contain(['Categorys']);
                             }])
                             ->first();

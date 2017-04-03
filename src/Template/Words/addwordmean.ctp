@@ -31,7 +31,7 @@
     <?= $this->Form->create($word) ?>
         <div class="form-group">
         <div class="col-md-12">
-        <?= $this->Form->input('word',['class'=>'form-control','label'=>'Thuật ngữ'])?>
+        <?= $this->Form->input('word',['class'=>'form-control','label'=>'Thuật ngữ','value'=>$strword])?>
         </div>        
         <div class="meanadd col-md-6">
             <div id="addmeans">

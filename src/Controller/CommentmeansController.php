@@ -134,31 +134,31 @@ class CommentmeansController extends AppController
 			if ($this->Commentmeans->save($comment)) {
 				if($parent!=0)
                     $query = $this->Commentmeans->find('all',[
-                        'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+                        'fields'=>['id','content','created','user_name'=>'Users.namedisplay','user_id'=>'Users.id',
                         ],
-                        'conditions'=>['commentmeans.mean_id'=>$mean_id,'commentmeans.commentmean_id'=>$parent],
+                        'conditions'=>['Commentmeans.mean_id'=>$mean_id,'Commentmeans.commentmean_id'=>$parent],
                         'contain'=>[
                             'Children'=>[
                             'fields'=>['commentmean_id','count'=>'count(Children.id)'
                             ],
                             'Users'
                         ],'Users'],
-                        'order'=>['commentmeans.created'=>'DESC'],
-                        'limit'=>3
+                        'order'=>['Commentmeans.created'=>'DESC'],
+                        'limit'=>10
                     ]);
 				else 
                     $query = $this->Commentmeans->find('all',[
-                        'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+                        'fields'=>['id','content','created','user_name'=>'Users.namedisplay','user_id'=>'Users.id',
                         ],
-                        'conditions'=>['commentmeans.mean_id'=>$mean_id,'commentmeans.commentmean_id IS'=> NULL],
+                        'conditions'=>['Commentmeans.mean_id'=>$mean_id,'Commentmeans.commentmean_id IS'=> NULL],
                         'contain'=>[
                             'Children'=>[
                             'fields'=>['commentmean_id','count'=>'count(Children.id)'
                             ],
                             'Users'
                         ],'Users'],
-                        'order'=>['commentmeans.created'=>'DESC'],
-                        'limit'=>3
+                        'order'=>['Commentmeans.created'=>'DESC'],
+                        'limit'=>10
                     ]);
 			}
 			$this->set('comments',$query->all()->toArray());

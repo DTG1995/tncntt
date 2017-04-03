@@ -355,6 +355,7 @@ input[type=textFind]:focus {
 
 
  #txtresult {
+	resize: none;
 	background-color: #ebebeb;
     width: 100%;
     padding: 10px 20px;

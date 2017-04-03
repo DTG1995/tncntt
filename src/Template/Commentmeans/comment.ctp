@@ -25,8 +25,9 @@
     ?>
         <div class="comments w3-margin">
         <ul class="w3-ul w3-hoverable">
-            <?php foreach($comments as $comment)
+            <?php for($i = count($comments)-1;$i>=0;$i--)
             {
+                $comment = $comments[$i];
                 ?>
             <li class="w3-border-left w3-padding-small">
                 <div class="" style="width:50px">

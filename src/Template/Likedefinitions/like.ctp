@@ -3,7 +3,7 @@
     {
         $liked = "";
         switch($likedefinition->mylike){
-            case -1:
+            case 0:
                 $liked = "disliked";
                 break;
             case 1:
@@ -20,7 +20,7 @@
             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Thích&nbsp<span ><?=$likedefinition->like?></span>
         </a>
         <span> &nbsp </span>
-        <a class="dislike" onclick="return like_dislike('define',<?=$likedefinition->definition_id?>,-1,'#like_dislikedefine<?=$likedefinition->definition_id?>');"> 
+        <a class="dislike" onclick="return like_dislike('define',<?=$likedefinition->definition_id?>,0,'#like_dislikedefine<?=$likedefinition->definition_id?>');"> 
             <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Không thích&nbsp<span><?=$likedefinition->dislike?></span>
         </a>
         <span> &nbsp </span>

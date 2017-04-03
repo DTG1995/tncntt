@@ -29,6 +29,7 @@
     <?= $this->Html->script("my-js/my-scripts.js")?>
     <?= $this->Html->script('popup/modernizr')?>
     <?= $this->Html->script("popup/main")?>
+    <?=$this->Html->script("bootstrap")?>
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('admin/css/font-awesome')?>
     
@@ -131,18 +132,10 @@
             <input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Mật Khẩu" name="signin-password">
             <!-- <span class="cd-error-message">Error message here!</span> -->
           </p>
-
-          <p class="fieldset">
-            <input type="checkbox" id="remember-me" checked>
-            <label for="remember-me">Nhớ Mật Khẩu</label>
-          </p>
-
           <p class="fieldset">
             <button class="full-width" type="submit" id="cd-btn-login" onclick="login()">Đăng nhập</button>
           </p>
         </form>
-        
-        <p class="cd-form-bottom-message"><a href="#0">Quên mật khẩu</a></p>
         <!-- <a href="#0" class="cd-close-form">Close</a> -->
       </div> <!-- cd-login -->
 
@@ -209,6 +202,55 @@
             <?= $this->fetch('content') ?>
         </div>
     </div>
+
+    
+    <style>
+        .myloader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .modal {
+          text-align: center;
+        }
+
+        @media screen and (min-width: 768px) { 
+          .modal:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%;
+          }
+        }
+
+        .modal-dialog {
+          display: inline-block;
+          text-align: left;
+          vertical-align: middle;
+        }
+    </style>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModalLoader" role="dialog">
+    <div class="modal-dialog" style="margin: 0 auto;width: 0px;">
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="border: 0px;">
+        <div class="modal-body" style="margin-left: -80px;">
+          <div class="myloader"></div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
     <!-- FOOTER -->
     <footer>
         <div class="navbar nav-footer">
@@ -222,6 +264,6 @@
         </div>
     </footer>
     <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
-  
+    
 </body>
 </html>

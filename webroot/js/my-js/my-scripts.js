@@ -32,7 +32,9 @@ $(document).ready(function(){
                         getresult();
                         $(".easy-autocomplete-container").hide();
                     }
-                });});
+                });
+                $("#search-box").focus();
+            });
             });
 
     function getresult(){
@@ -47,10 +49,14 @@ $(document).ready(function(){
                 $.ajax({
                     type: "POST",
                     url: "pages/getresult?word="+$("#search-box").val(),
+                    beforeSend: function(){
+                        $("#myModalLoader").modal({backdrop: 'static', keyboard: false});
+                    },
                     success: function(data){
                         $("#suggesstion-box").show();
                         $("#result").html(data);
                         $("#search-box").css("background","#FFF");
+                        $("#myModalLoader").modal('hide');
                  }
              });
     }

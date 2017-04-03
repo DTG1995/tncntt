@@ -90,14 +90,14 @@ class PagesController extends AppController
 	
 		$query = $WORDS->find()
 			->select(['id','word'])
-			->where(['words.word'=>$str])
+			->where(['Words.word'=>$str])
 			->contain([
 				'Means'=>function($q){
 					return $q
-						->select(['id','mean','word_id','contribute','user_id'=>'users.id',
-							'user_display'=>'users.namedisplay','cate_id'=>'categorys.id', 'cate_name'=>'categorys.name'
+						->select(['id','mean','word_id','contribute','user_id'=>'Users.id',
+							'user_display'=>'Users.namedisplay','cate_id'=>'Categorys.id', 'cate_name'=>'Categorys.name'
 							])
-						->order(['means.contribute'=>'DESC'])
+						->order(['Means.contribute'=>'DESC'])
 						->contain([
 								'Commentmeans'=>function($q){
 									return $q
@@ -107,20 +107,20 @@ class PagesController extends AppController
 								},
 								'Likemeans'=>function($q){
 									return $q
-										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','mean_id','mylike'=>"MAX(IF(user_id=".($this->Auth->user()!=null?$this->Auth->user('id'):'NULL').",islike,0))"])
+										->select(['like'=>'sum(`islike`=1)','dislike'=>'sum(`islike`=0)','mean_id','mylike'=>'MAX(IF(`user_id` '.($this->Auth->user()!=null?"=".$this->Auth->user('id'):'IS NULL').",`islike`,-1))"])
 										->group(['mean_id']);
 								}
 								,
 								'Users','Categorys'
 							]
 						)
-						->where(['means.active'=>1,'means.contribute >='=>10]);
+						->where(['Means.active'=>1,'Means.contribute >='=>10]);
 				},
 				'Definitions'=>function($q){
 					return $q
-						->select(['id','define','word_id','contribute','user_id'=>'users.id',
-							'user_display'=>'users.namedisplay','cate_id'=>'categorys.id', 'cate_name'=>'categorys.name'])
-						->order(['definitions.contribute'=>'DESC'])
+						->select(['id','define','word_id','contribute','user_id'=>'Users.id',
+							'user_display'=>'Users.namedisplay','cate_id'=>'Categorys.id', 'cate_name'=>'Categorys.name'])
+						->order(['Definitions.contribute'=>'DESC'])
 						->contain([
 								'Commentdefinitions'=>function($q){
 									return $q
@@ -130,13 +130,13 @@ class PagesController extends AppController
 								},
 								'Likedefinitions'=>function($q){
 									return $q
-										->select(['like'=>'sum(islike=1)','dislike'=>'sum(islike=-1)','definition_id','mylike'=>"MAX(IF(user_id=".($this->Auth->user()!=null?$this->Auth->user('id'):'NULL').",islike,0))"])
+										->select(['like'=>'sum(`islike`=1)','dislike'=>'sum(`islike`=0)','definition_id','mylike'=>'MAX(IF(`user_id` '.($this->Auth->user()!=null?"=".$this->Auth->user('id'):'IS NULL').",`islike`,-1))"])
 										->group(['definition_id']);
 								}
 								,'Users','Categorys'
 							]
 						)
-						->where(['definitions.active'=>1,'definitions.contribute >='=>10]);
+						->where(['Definitions.active'=>1,'Definitions.contribute >='=>10]);
 				}
 
 			])
@@ -176,6 +176,7 @@ class PagesController extends AppController
 			$this->set('defines',$defines);
 		}
 		$this->set('word',$word);
+		$this->set('strword',$str);
 	}
 	function checkcate($cate_id,$cates){
 		for($i=0;$i<count($cates);$i++){
@@ -191,30 +192,30 @@ class PagesController extends AppController
 		if($mean_id!=0){
 			if($parent_id==0)
 				$query = $CommentMeans->find('all',[
-					'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+					'fields'=>['id','content','created','user_name'=>'Users.namedisplay','user_id'=>'Users.id',
 					],
-					'conditions'=>['commentmeans.mean_id'=>$mean_id,'commentmeans.commentmean_id IS'=>NULL],
+					'conditions'=>['Commentmeans.mean_id'=>$mean_id,'Commentmeans.commentmean_id IS'=>NULL],
 					'contain'=>[
 						'Children'=>[
 						'fields'=>['commentmean_id','count'=>'count(Children.id)'
 						],
 						'Users'
 					],'Users'],
-					'order'=>['commentmeans.created'=>'DESC'],
+					'order'=>['Commentmeans.created'=>'DESC'],
 					'limit'=>10
 				]);
 			else
 				$query = $CommentMeans->find('all',[
-					'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+					'fields'=>['id','content','created','user_name'=>'Users.namedisplay','user_id'=>'Users.id',
 					],
-					'conditions'=>['commentmeans.mean_id'=>$mean_id,'commentmeans.commentmean_id'=>$parent_id],
+					'conditions'=>['Commentmeans.mean_id'=>$mean_id,'Commentmeans.commentmean_id'=>$parent_id],
 					'contain'=>[
 						'Children'=>[
 						'fields'=>['commentmean_id','count'=>'count(Children.id)'
 						],
 						'Users'
 					],'Users'],
-					'order'=>['commentmeans.created'=>'DESC'],
+					'order'=>['Commentmeans.created'=>'DESC'],
 					'limit'=>10
 				]);
 			$commentmeans = $query->all()->toArray();
@@ -229,33 +230,31 @@ class PagesController extends AppController
 		if($define_id!=null){
 			if($parent_id==0)
 			$query= $CommentDefinitons->find()
-				->select(['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+				->select(['id','content','created','user_name'=>'Users.namedisplay','user_id'=>'Users.id',
 				])
-				->where(['commentdefinitions.definition_id'=>$define_id,'commentdefinitions.commentdefinition_id IS'=>NULL])
+				->where(['Commentdefinitions.definition_id'=>$define_id,'Commentdefinitions.commentdefinition_id IS'=>NULL])
 				->contain([
 					'Childrendefinecomment'=>function($q){
 						return $q
 							->select(['commentdefinition_id','count'=>'count(Childrendefinecomment.id)'])
 							->group('commentdefinition_id');
 					},'Users'])
-				->order(['commentdefinitions.created'=>'DESC'])
-				->limit(3)
-				->all();
+				->order(['Commentdefinitions.created'=>'DESC'])
+				->limit(10);
 			else 
 				$query= $CommentDefinitons->find()
-					->select(['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+					->select(['id','content','created','user_name'=>'Users.namedisplay','user_id'=>'Users.id',
 					])
-					->where(['commentdefinitions.definition_id'=>$define_id,'commentdefinitions.commentdefinition_id '=>$parent_id])
+					->where(['Commentdefinitions.definition_id'=>$define_id,'Commentdefinitions.commentdefinition_id '=>$parent_id])
 					->contain([
 						'Childrendefinecomment'=>function($q){
 							return $q
 								->select(['commentdefinition_id','count'=>'count(Childrendefinecomment.id)'])
 								->group('commentdefinition_id');
 						},'Users'])
-					->order(['commentdefinitions.created'=>'DESC'])
-					->limit(3)
-					->all();
-			$commentdefinitions = $query;
+					->order(['Commentdefinitions.created'=>'DESC'])
+					->limit(10);
+			$commentdefinitions = $query->all()->toArray();
 		}
 		$this->set('definition',$define_id);
 		$this->set('parent',$parent_id);
@@ -266,19 +265,19 @@ class PagesController extends AppController
 		$MEANS = TableRegistry::get('Means');
 		$DEFINES = TableRegistry::get('Definitions');
 		$means = $MEANS->find('all')
-			->select(['id'=>'means.id','mean'=>'means.mean','contribute'=>'means.contribute',
-				'cate_name'=>'categorys.name','username'=>'users.namedisplay','word'=>'words.word'])
-			->where(['means.active'=>1,'means.contribute <'=>10])
+			->select(['id'=>'Means.id','mean'=>'Means.mean','contribute'=>'Means.contribute',
+				'cate_name'=>'Categorys.name','username'=>'Users.namedisplay','word'=>'Words.word'])
+			->where(['Means.active'=>1,'Means.contribute <'=>10])
 			->contain(['Categorys','Words','Users'])
-			->order(['means.contribute'=>'DESC'])
+			->order(['Means.contribute'=>'DESC'])
 			->limit(10)
 			->all();
 		$defines = $DEFINES->find('all')
-			->select(['id'=>'definitions.id','define'=>'definitions.define','contribute'=>'definitions.contribute',
-						'cate_name'=>'categorys.name','username'=>'users.namedisplay','word'=>'words.word'])
-			->where(['definitions.active'=>1,'definitions.contribute <'=>10])
+			->select(['id'=>'Definitions.id','define'=>'Definitions.define','contribute'=>'Definitions.contribute',
+						'cate_name'=>'Categorys.name','username'=>'Users.namedisplay','word'=>'Words.word'])
+			->where(['Definitions.active'=>1,'Definitions.contribute <'=>10])
 			->contain(['Categorys','Words','Users'])
-			->order(['definitions.contribute'=>'DESC'])
+			->order(['Definitions.contribute'=>'DESC'])
 			->limit(10)
 			->all();
 		$count_define = $DEFINES->find('all')

@@ -125,31 +125,31 @@ class CommentdefinitionsController extends AppController
 			if ($this->Commentdefinitions->save($comment)) {
 				if($parent!=0)
                     $query = $this->Commentdefinitions->find('all',[
-                        'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+                        'fields'=>['id','content','created','user_name'=>'Users.namedisplay','user_id'=>'Users.id',
                         ],
-                        'conditions'=>['commentdefinitions.definition_id'=>$define_id,'commentdefinitions.commentdefinition_id'=>$parent],
+                        'conditions'=>['Commentdefinitions.definition_id'=>$define_id,'Commentdefinitions.commentdefinition_id'=>$parent],
                         'contain'=>[
                             'Childrendefinecomment'=>[
                             'fields'=>['commentdefinition_id','count'=>'count(Childrendefinecomment.id)'
                             ],
                             'Users'
                         ],'Users'],
-                        'order'=>['commentdefinitions.created'=>'DESC'],
-                        'limit'=>3
+                        'order'=>['Commentdefinitions.created'=>'DESC'],
+                        'limit'=>10
                     ]);
 				else 
                     $query = $this->Commentdefinitions->find('all',[
-                        'fields'=>['id','content','created','user_name'=>'users.namedisplay','user_id'=>'users.id',
+                        'fields'=>['id','content','created','user_name'=>'Users.namedisplay','user_id'=>'Users.id',
                         ],
-                        'conditions'=>['commentdefinitions.definition_id'=>$define_id,'commentdefinitions.commentdefinition_id IS'=> NULL],
+                        'conditions'=>['Commentdefinitions.definition_id'=>$define_id,'Commentdefinitions.commentdefinition_id IS'=> NULL],
                         'contain'=>[
                             'Childrendefinecomment'=>[
                             'fields'=>['commentdefinition_id','count'=>'count(Childrendefinecomment.id)'
                             ],
                             'Users'
                         ],'Users'],
-                        'order'=>['commentdefinitions.created'=>'DESC'],
-                        'limit'=>3
+                        'order'=>['Commentdefinitions.created'=>'DESC'],
+                        'limit'=>10
                     ]);
 			}
 			$this->set('count',$query->count());

@@ -15,7 +15,7 @@ if($word!=null)
             $like = $mean->likemeans[0]->like;
             $dislike = $mean->likemeans[0]->dislike;
             switch($mean->likemeans[0]->mylike){
-                case -1:
+                case 0:
                     $liked="disliked";
                     break;
                 case 1:
@@ -38,7 +38,7 @@ if($word!=null)
                             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Thích&nbsp<span >`+likemean+`</span>
                         </a>
                         <span> &nbsp </span>
-                        <a class="dislike" onclick="return like_dislike('mean',<?=$mean->id?>,-1,'#like_dislikemean<?=$mean->id?>',1);"> 
+                        <a class="dislike" onclick="return like_dislike('mean',<?=$mean->id?>,0,'#like_dislikemean<?=$mean->id?>',1);"> 
                             <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Không thích&nbsp<span>`+dislikemean+`</span>
                         </a>
                         <span> &nbsp </span>
@@ -103,7 +103,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                             $liked="";
                             if(count($define->likedefinitions)>0)
                                 switch($define->likedefinitions[0]->mylike){
-                                    case -1:
+                                    case 0:
                                         $liked="disliked";
                                         break;
                                     case 1:
@@ -119,15 +119,15 @@ $("#ratingmean").addClass("<?=$liked?>");
                                                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Thích&nbsp<span><?php echo count($define->likedefinitions)>0?$define->likedefinitions[0]->like:0;?></span>
                                             </a>
                                             <span> &nbsp </span>
-                                            <a class="dislike" onclick="return like_dislike('define',<?=$define->id?>,-1,'#like_dislikedefine<?=$define->id?>');"> 
+                                            <a class="dislike" onclick="return like_dislike('define',<?=$define->id?>,0,'#like_dislikedefine<?=$define->id?>');"> 
                                                 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Không thích&nbsp<span><?php echo count($define->likedefinitions)>0?$define->likedefinitions[0]->dislike:0;?></span>
                                             </a>
                                             <span> &nbsp </span>
                                         </div>
                                         <a class="comment" onclick="return viewcomment('define','#define<?=$define->id?>',<?=$define->id?>,0);">
                                             <i class="fa fa-comment-o" aria-hidden="true"></i> Bình luận
+                                            <span class="comment" id="define<?=$define->id?>_comment"><?php echo count($define->commentdefinitions)>0?$define->commentdefinitions[0]->count:0 ?></span>
                                         </a>
-                                        <span class="comment" id="define<?=$define->id?>_comment"><?php echo count($define->commentdefinitions)>0?$define->commentdefinitions[0]->count:0 ?></span>
                                         <a class="warning" data-toggle="modal" data-target="#modalwarning" onclick="warning('define',<?=$define->id?>)"  style="color:red;float:right;">
                                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Báo cáo
                                         </a>
@@ -161,7 +161,7 @@ $("#ratingmean").addClass("<?=$liked?>");
                         $liked="";
                         if(count($mean->likemeans)>0)
                             switch($mean->likemeans[0]->mylike){
-                                case -1:
+                                case 0:
                                     $liked="disliked";
                                     break;
                                 case 1:
@@ -178,15 +178,15 @@ $("#ratingmean").addClass("<?=$liked?>");
                                                 <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Thích&nbsp<span><?php echo count($mean->likemeans)>0?$mean->likemeans[0]->like:0;?></span>
                                             </a>
                                             <span> &nbsp </span>
-                                            <a class="dislike" onclick="return like_dislike('mean',<?=$mean->id?>,-1,'#like_dislikemean<?=$mean->id?>');"> 
+                                            <a class="dislike" onclick="return like_dislike('mean',<?=$mean->id?>,0,'#like_dislikemean<?=$mean->id?>');"> 
                                                 <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Không thích&nbsp<span ><?php echo count($mean->likemeans)>0?$mean->likemeans[0]->dislike:0;?></span>
                                             </a>
                                             <span> &nbsp</span>
                                         </div>
                                         <a class="comment" onclick="return viewcomment('mean','#mean<?=$mean->id?>',<?=$mean->id?>,0);">
                                             <i class="fa fa-comment-o" aria-hidden="true"></i> Bình luận
+                                            <span class="comment" id="mean<?=$mean->id?>_comment"><?php echo count($mean->commentmeans)>0?$mean->commentmeans[0]->count:0 ?></span>
                                         </a>
-                                    <span class="comment" id="mean<?=$mean->id?>_comment"><?php echo count($mean->commentmeans)>0?$mean->commentmeans[0]->count:0 ?></span>
                                         <a class="warning" data-toggle="modal" data-target="#modalwarning" onclick="warning('mean',<?=$mean->id?>)"  style="color:red;float:right;">
                                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Báo cáo
                                         </a>
@@ -210,7 +210,7 @@ $("#ratingmean").addClass("<?=$liked?>");
 } else
 {
     ?>
-    <h1> Xin lỗi, từ bạn tra chưa có trong dữ liệu. Bạn có muốn <?= $this->Html->link("Đóng góp",['controller'=>'words','action'=>'addwordmean']) ?></h1>
+    <h1> Xin lỗi, từ bạn tra chưa có trong dữ liệu. Bạn có muốn <?= $this->Html->link("Đóng góp",['controller'=>'words','action'=>'addwordmean',$strword]) ?> từ <q><?=$strword?></q>.</h1>
     <?php
 }
 ?>
