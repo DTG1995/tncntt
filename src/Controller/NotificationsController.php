@@ -19,7 +19,7 @@ class NotificationsController extends AppController
      */
     public function index($type)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
+        $this->viewBuilder()->setLayout('Admin/default');
         $this->paginate = [
             'contain' => []
         ];
@@ -39,7 +39,7 @@ class NotificationsController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('Admin\default');
+        $this->viewBuilder()->setLayout('Admin/default');
         $WORDS = TableRegistry::get('Words');
         $MEANS = TableRegistry::get('Means');
         $DEFINES = TableRegistry::get('Definitions');
